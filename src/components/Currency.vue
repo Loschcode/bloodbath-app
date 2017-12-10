@@ -1,6 +1,6 @@
 <template>
-  <div class="welcome">
-    {{ msg }}
+  <div>
+    {{ msg }}{{ $route.params.id }}
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      msg: 'Welcome to Cryptoscreen'
+      msg: 'Currency is '
     }
   }
 }
