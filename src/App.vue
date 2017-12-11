@@ -22,7 +22,26 @@
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {}
+  },
+  created () {
+    if (!this.$auth.check()) {
+      console.log('definitely not logged-in')
+
+      this.$auth.login({
+        data: {email: 'test@test.com', password: 'test'}, // Axios
+        rememberMe: true
+      })
+      .then(() => {
+        console.log('success ' + this.context)
+      }, (res) => {
+        console.log('error ' + this.context)
+        this.error = res.data
+      })
+    }
+  }
 }
 </script>
 
