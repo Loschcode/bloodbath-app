@@ -15,15 +15,13 @@ export default {
     }
   },
 
-  // Fetches posts when the component is created.
   created () {
     axios.get(`currencies/xrp`)
     .then(response => {
       this.currencies = response.data
-      console.log(this.currencies)
+      console.log(response.data)
     })
     .catch(e => {
-      console.log(this.errors)
       this.errors.push(e)
     })
   }
