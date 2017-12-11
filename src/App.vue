@@ -32,13 +32,13 @@ export default {
 
       this.$auth.login({
         data: { anonymous: true },
-        // data: { auth: {email: 'test@test.com', password: 'test'} }, <-- normal loggin
-        rememberMe: true
+        // data: { auth: {email: 'test@test.com', password: 'test'} }, <-- normal logging
+        rememberMe: true,
+        fetchUser: false
       })
       .then(() => {
-        console.log('success ' + this.context)
+        console.log('yeahboi')
       }, (res) => {
-        console.log('error ' + res.data)
         this.error = res.data
       })
     }
