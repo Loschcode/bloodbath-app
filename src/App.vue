@@ -31,13 +31,13 @@ export default {
       console.log('definitely not logged-in')
 
       this.$auth.login({
-        data: {email: 'test@test.com', password: 'test'}, // Axios
+        data: { auth: {email: 'test@test.com', password: 'test'} }, // Axios
         rememberMe: true
       })
       .then(() => {
         console.log('success ' + this.context)
       }, (res) => {
-        console.log('error ' + this.context)
+        console.log('error ' + res.data)
         this.error = res.data
       })
     }
