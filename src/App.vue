@@ -20,25 +20,25 @@
 </template>
 
 <script>
-
 export default {
   name: 'app',
   data () {
     return {}
   },
+
   created () {
     if (!this.$auth.check()) {
       console.log('definitely not logged-in')
 
       this.$auth.login({
-        data: { anonymous: true },
-        // data: { auth: {email: 'test@test.com', password: 'test'} }, <-- normal logging
-        rememberMe: true,
-        fetchUser: false
+        data: {email: 'test@test.com', password: '12345678'}
       })
-      .then(() => {
-        console.log('yeahboi')
+      .then((res) => {
+        console.log(res.data)
+        console.log('success log-in')
+        console.log('token : ' + this.$auth.token())
       }, (res) => {
+        console.log('fail log-in')
         this.error = res.data
       })
     }

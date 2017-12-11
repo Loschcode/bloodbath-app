@@ -18,6 +18,7 @@ export default {
   created () {
     axios.get(`currencies/xrp`)
     .then(response => {
+      console.log('currency fetching')
       this.currencies = response.data
       console.log(response.data)
     })
