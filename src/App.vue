@@ -31,7 +31,8 @@ export default {
       console.log('definitely not logged-in')
 
       this.$auth.login({
-        data: { auth: {email: 'test@test.com', password: 'test'} }, // Axios
+        data: { anonymous: true },
+        // data: { auth: {email: 'test@test.com', password: 'test'} }, <-- normal loggin
         rememberMe: true
       })
       .then(() => {

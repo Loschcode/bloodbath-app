@@ -25,7 +25,7 @@ Vue.router = new Router({
 export default Vue.router
 
 Vue.use(VueAxios, axios)
-Vue.axios.defaults.baseURL = 'http://localhost:3000/'
+Vue.axios.defaults.baseURL = 'http://localhost:8000/'
 
 Vue.use(VueAuth, {
   auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
