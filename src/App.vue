@@ -27,18 +27,17 @@ export default {
   },
 
   created () {
+    // TODO : abstract this shit somewhere else
     if (!this.$auth.check()) {
       console.log('definitely not logged-in')
-
+      // TODO : Make the anonymous login
       this.$auth.login({
-        data: {email: 'test@test.com', password: '12345678'}
+        data: {email: 'test@test.com', password: '12345678'}, redirect: false
       })
       .then((res) => {
-        console.log(res.data)
-        console.log('success log-in')
         console.log('token : ' + this.$auth.token())
       }, (res) => {
-        console.log('fail log-in')
+        console.log('failed log-in')
         this.error = res.data
       })
     }
