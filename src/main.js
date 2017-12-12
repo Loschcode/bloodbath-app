@@ -22,8 +22,9 @@ Vue.use(VueAuth, {
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
   // rolesVar: 'type',
   loginData: { url: '/auth/sign_in' },
-  refreshData: { url: '/auth/validate_token' },
+  refreshData: { url: '/auth/validate_token', interval: 1 },
   fetchData: { url: '/auth/validate_token' }
+
 })
 
 /* eslint-disable no-new */

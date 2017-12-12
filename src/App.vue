@@ -32,7 +32,8 @@ export default {
       console.log('definitely not logged-in')
       // TODO : Make the anonymous login
       this.$auth.login({
-        data: {email: 'test@test.com', password: '12345678'}, redirect: false
+        data: {email: 'test@test.com', password: '12345678'},
+        redirect: false
       })
       .then((res) => {
         console.log('token : ' + this.$auth.token())
