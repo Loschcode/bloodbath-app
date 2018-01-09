@@ -1,6 +1,9 @@
 <template>
   <div>
-    Currency is {{ $route.params.currency }}
+    Currency : {{ currency.name }}<br />
+    Base Value : {{ currency.base_value }}<br />
+    Current Value : {{ currency.current_value }}<br />
+    Difference : {{ currency.difference }}%<br />
   </div>
 </template>
 
@@ -10,7 +13,12 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      currency: {},
+      currency: {
+        name: '', // $route.params.currency
+        base_value: 0.0,
+        current_value: 0.0,
+        difference: 0.0
+      },
       errors: []
     }
   },
@@ -18,9 +26,7 @@ export default {
   created () {
     axios.get(`currencies/xrp`)
     .then(response => {
-      console.log('currency fetching')
-      this.currencies = response.data
-      console.log(response.data)
+      this.currency = response.data
     })
     .catch(e => {
       this.errors.push(e)
