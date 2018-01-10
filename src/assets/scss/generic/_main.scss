@@ -6,8 +6,5 @@
    Imports
    ========================================================================== */
 
-// @import "";
-
-body {
-  background-color: $main-background-color
-}
+@import "misc";
+@import "font-smoothing";

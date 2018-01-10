@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /**
+ * Normalize
+ */
+@import "../node_modules/normalize.css/normalize";
+
+/**
  * Gridle import
  */
 @import "../node_modules/coffeekraken-gridle/index";

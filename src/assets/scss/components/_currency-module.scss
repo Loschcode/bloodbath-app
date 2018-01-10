@@ -1,0 +1,17 @@
+.currency-module {
+  background-color: $module-background-color;
+  border: 2px solid $module-border-color;
+  @include border-radius(10px);
+  margin: 1em
+}
+
+.currency-module__title {
+  background-color: $module-title-background-color;
+  padding: 1em;
+  text-align: center;
+  @include border-radius-top(10px);
+}
+
+.currency-module__content {
+  padding: 1em;
+}
