@@ -2,7 +2,9 @@
   <div id="app">
 
     <default-header />
-    <auth-routing />
+    <div class="content">
+      <auth-routing />
+    </div>
     <default-footer />
 
   </div>

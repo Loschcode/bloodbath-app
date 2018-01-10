@@ -1,6 +1,17 @@
 <template>
-  <div>
-    HEADER
+  <div class="row header">
+      <div class="gr-4">
+      </div>
+      <div class="gr-4">
+        <div class="header__title">
+          <h1>
+            # Trackers
+          </h1>
+        </div>
+      </div>
+      <div class="gr-4">
+      </div>
+    </div>
   </div>
 </template>
 

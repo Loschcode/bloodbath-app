@@ -1,0 +1,14 @@
+.header {
+  background-color: $header-background-color;
+  color: $header-text-color;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.header__title {
+  text-transform: uppercase;
+  text-align: center;
+  h1 {
+    font-weight: 300;
+  }
+}
