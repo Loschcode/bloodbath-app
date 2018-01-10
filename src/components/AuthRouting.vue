@@ -1,18 +1,21 @@
 <template>
-  <div v-if="$auth.ready()">
-
+  <div class="auth-routing" v-if="$auth.ready()">
     <div v-if="$auth.check()">
-      <router-view/>
+      <router-view />
     </div>
 
     <div v-else>
-      Recovering history ...
+      <div class="loader">
+        Recovering history ...
+      </div>
     </div>
 
   </div>
 
   <div v-else>
-    Loading ...
+    <div class="loader">
+      Loading ...
+    </div>
   </div>
 </template>
 

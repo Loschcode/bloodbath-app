@@ -1,6 +1,8 @@
 <template>
   <div class="currency">
 
+    <currency-header :currencyProp="currency" />
+
     <div class="section">
     <!-- Tracker -->
     <div class="row">
@@ -68,12 +70,13 @@
 
 <script>
 import axios from 'axios'
+import CurrencyHeader from '@/components/CurrencyHeader'
 
 export default {
   data () {
     return {
       currency: {
-        name: '-', // $route.params.currency
+        name: '-',
         base_value: 0.0,
         current_value: 0.0,
         difference: 0.0
@@ -90,6 +93,10 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
+  },
+
+  components: {
+    CurrencyHeader
   }
 
 }

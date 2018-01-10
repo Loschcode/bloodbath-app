@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <default-header />
+    <!-- The header is specific to each section -->
     <div class="content">
       <auth-routing />
     </div>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import DefaultHeader from '@/components/DefaultHeader'
 import DefaultFooter from '@/components/DefaultFooter'
 import AuthRouting from '@/components/AuthRouting'
 
@@ -25,7 +24,6 @@ export default {
   },
 
   components: {
-    DefaultHeader,
     DefaultFooter,
     AuthRouting
   }
