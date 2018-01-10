@@ -1,5 +1,5 @@
 <template>
-  <div class="row header">
+  <div class="row-full header">
       <div class="gr-4">
       </div>
       <div class="gr-4">
