@@ -21,7 +21,7 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              {{ currency.base_value }}
+              ${{ currency.base_value }}
             </div>
           </div>
           <div class="module__footer">
@@ -38,7 +38,7 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              {{ currency.current_value }}
+              ${{ currency.current_value }}
             </div>
           </div>
           <div class="module__footer">
