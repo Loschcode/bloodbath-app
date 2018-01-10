@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       currency: {
-        name: '', // $route.params.currency
+        name: '-', // $route.params.currency
         base_value: 0.0,
         current_value: 0.0,
         difference: 0.0
