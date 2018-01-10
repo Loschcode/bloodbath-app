@@ -83,7 +83,7 @@ export default {
   },
 
   created () {
-    axios.get(`currencies/xrp`)
+    axios.get(`currencies/${this.$route.params.currency}`)
     .then(response => {
       this.currency = response.data
     })
