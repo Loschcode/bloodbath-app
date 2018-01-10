@@ -1,4 +1,6 @@
 <template>
+
+  <!-- Currency module -->
   <div class="row">
     <div class="gr-10 push-1">
       <div class="currency-module">
@@ -13,6 +15,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>

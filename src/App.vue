@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+
+    <!-- Authentication -->
     <div v-if="$auth.ready()">
 
       <div v-if="$auth.check()">
@@ -15,6 +17,7 @@
     <div v-else>
         Loading ...
     </div>
+    <!-- End of Authentication -->
 
   </div>
 </template>
@@ -27,24 +30,29 @@ export default {
   },
 
   created () {
-    // TODO : abstract this shit somewhere else
-    if (!this.$auth.check()) {
-      console.log('definitely not logged-in')
+    this.doAuth({email: 'test@test.com', password: '12345678'})
+  },
 
-      // TODO : replace this with anonymous call
-      let credentials = {email: 'test@test.com', password: '12345678'}
+  methods: {
+    /**
+     * Authenticate the client
+     */
+    doAuth: function (credentials) {
+      if (!this.$auth.check()) {
+        console.log('definitely not logged-in')
 
-      this.$auth.login({
-        data: credentials,
-        redirect: false
-      })
+        this.$auth.login({
+          data: credentials,
+          redirect: false
+        })
 
-      .then((res) => {
-        console.log('token : ' + this.$auth.token())
-      }, (res) => {
-        console.log('failed log-in')
-        this.error = res.data
-      })
+        .then((res) => {
+          console.log('token : ' + this.$auth.token())
+        }, (res) => {
+          console.log('failed log-in')
+          this.error = res.data
+        })
+      }
     }
   }
 }

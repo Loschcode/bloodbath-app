@@ -7,14 +7,21 @@ Vue.use(Router)
 
 Vue.router = new Router({
   routes: [
+
     {
       path: '/',
       name: 'Welcome',
       component: Welcome
     },
-    { path: '/currencies/:currency',
-      component: Currency
+
+    {
+      path: '/currencies/:currency',
+      component: Currency,
+      meta: {
+        layout: 'layoutDefault'
+      }
     }
+
   ]
 })
 
