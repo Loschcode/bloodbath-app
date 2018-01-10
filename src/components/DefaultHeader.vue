@@ -5,7 +5,7 @@
       <div class="gr-4">
         <div class="header__title">
           <h1>
-            # Trackers
+            XRP (Ripple)
           </h1>
         </div>
       </div>
