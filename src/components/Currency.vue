@@ -1,9 +1,13 @@
 <template>
-  <div>
-    Currency : {{ currency.name }}<br />
-    Base Value : {{ currency.base_value }}<br />
-    Current Value : {{ currency.current_value }}<br />
-    Difference : {{ currency.difference }}%<br />
+  <div class="row">
+    <div class="gr-10 push-1">
+      <div class="currency_module">
+        Currency : {{ currency.name }}<br />
+        Base Value : {{ currency.base_value }}<br />
+        Current Value : {{ currency.current_value }}<br />
+        Difference : {{ currency.difference }}%<br />
+      </div>
+    </div>
   </div>
 </template>
 

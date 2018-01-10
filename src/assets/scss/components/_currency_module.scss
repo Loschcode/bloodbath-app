@@ -1,0 +1,6 @@
+.currency_module {
+  background-color: $module-background-color;
+  border: 2px solid $module-border-color;
+  padding: 1em;
+  @include border-radius(5px);
+}
