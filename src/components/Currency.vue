@@ -1,7 +1,7 @@
 <template>
   <div class="currency">
 
-    <currency-header :currencyProp="currency" />
+    <currency-header :currencyStateProp="currencyState" />
 
     <div class="section">
     <!-- Tracker -->
@@ -15,15 +15,20 @@
 
     <div class="row">
 
-      <!-- Base Value -->
+      <!-- Base Price -->
       <div class="gr-6 gr-12@mobile">
         <div class="module">
           <div class="module__title">
-            <h2>Base Value</h2>
+            <h2>Base Price</h2>
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              ${{ currency.base_value }}
+              <div v-if="currencyTracking.base_price">
+              ${{ currencyTracking.base_price }}
+              </div>
+              <div v-else>
+                -
+              </div>
             </div>
           </div>
           <div class="module__footer">
@@ -32,15 +37,20 @@
         </div>
       </div>
 
-      <!-- Current Value -->
+      <!-- Current Price -->
       <div class="gr-6 gr-12@mobile">
         <div class="module">
           <div class="module__title">
-            <h2>Current Value</h2>
+            <h2>Current Price</h2>
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              ${{ currency.current_value }}
+              <div v-if="currencyState.price">
+              ${{ currencyState.price }}
+              </div>
+              <div v-else>
+                -
+              </div>
             </div>
           </div>
           <div class="module__footer">
@@ -55,7 +65,14 @@
             <h2>Difference</h2>
           </div>
           <div class="module__content">
-            <div class="module__content-percent">{{ currency.difference }}%</div>
+            <div class="module__content-percent">
+              <div v-if="metadata.difference">
+                {{ metadata.difference }}%
+              </div>
+              <div v-else>
+                -
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -75,11 +92,11 @@ import CurrencyHeader from '@/components/CurrencyHeader'
 export default {
   data () {
     return {
-      currency: {
-        name: '-',
-        base_value: 0.0,
-        current_value: 0.0,
-        difference: 0.0
+      currencyState: {
+      },
+      currencyTracking: {
+      },
+      metadata: {
       },
       errors: []
     }
@@ -88,7 +105,9 @@ export default {
   created () {
     axios.get(`currencies/${this.$route.params.currency}`)
     .then(response => {
-      this.currency = response.data
+      this.currencyState = response.data.currency_state;
+      this.currencyTracking = response.data.currency_tracking;
+      this.metadata = response.data.metadata;
     })
     .catch(e => {
       this.errors.push(e)
