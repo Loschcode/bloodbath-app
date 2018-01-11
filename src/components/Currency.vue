@@ -103,6 +103,8 @@ export default {
   },
 
   created () {
+    this.$cable.subscriptions.create({ channel: 'CurrencyStateChannel' })
+
     axios.get(`currencies/${this.$route.params.currency}`)
     .then(response => {
       this.currencyState = response.data.currency_state

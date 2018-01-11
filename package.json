@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@websanova/vue-auth": "^2.21.0-beta",
+    "actioncable": "^5.1.4",
     "axios": "^0.17.1",
     "coffeekraken-gridle": "^3.0.0-rc.4",
     "lodash": "^4.17.4",
