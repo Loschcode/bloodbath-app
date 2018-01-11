@@ -1,6 +1,8 @@
 <template>
   <div>
-    {{ msg }}
+    <div class="loader">
+      {{ msg }}
+    </div>
   </div>
 </template>
 
