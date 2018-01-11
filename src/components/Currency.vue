@@ -62,12 +62,12 @@
       <div class="gr-12">
         <div class="module">
           <div class="module__title">
-            <h2>Difference</h2>
+            <h2>Variation</h2>
           </div>
           <div class="module__content">
             <div class="module__content-percent">
-              <div v-if="metadata.difference">
-                {{ metadata.difference }}%
+              <div v-if="solveVariation">
+                {{ solveVariation() }}%
               </div>
               <div v-else>
                 -
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import axios from 'axios'
 import CurrencyHeader from '@/components/CurrencyHeader'
 
@@ -96,8 +97,7 @@ export default {
       },
       currencyTracking: {
       },
-      metadata: {
-      },
+      variation: 0.0,
       errors: []
     }
   },
@@ -105,13 +105,23 @@ export default {
   created () {
     axios.get(`currencies/${this.$route.params.currency}`)
     .then(response => {
-      this.currencyState = response.data.currency_state;
-      this.currencyTracking = response.data.currency_tracking;
-      this.metadata = response.data.metadata;
+      this.currencyState = response.data.currency_state
+      this.currencyTracking = response.data.currency_tracking
     })
     .catch(e => {
       this.errors.push(e)
     })
+  },
+
+  methods: {
+    solveVariation () {
+      let rawVariation = (100 - (this.currencyTracking.base_price / this.currencyState.price) * 100)
+      if (isNaN(rawVariation)) {
+        return 0.0
+      } else {
+        return _.round(rawVariation, 2)
+      }
+    }
   },
 
   components: {

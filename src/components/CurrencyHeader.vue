@@ -5,7 +5,7 @@
     <div class="gr-4">
       <div class="header__title">
         <h1>
-          {{ currencyStateProp.symbol }}
+          {{ currencyStateProp.full_name }}
         </h1>
       </div>
     </div>
