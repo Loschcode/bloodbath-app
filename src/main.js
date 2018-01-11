@@ -5,19 +5,18 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 
-import ActionCable from 'actioncable'
 import VueAxios from 'vue-axios'
 import VueAuth from '@websanova/vue-auth'
 
 Vue.config.productionTip = false
 
 // ActionCable configuration
-// TODO : make it dynamic
-const cable = ActionCable.createConsumer('ws://localhost:8000/cable')
-Vue.prototype.$cable = cable
+// NOTE : ActionCable is activated after the log-in
+// Please checkout AuthRouting.vue
 
 // Axios configuration
 Vue.use(VueAxios, axios)
+Vue.prototype.$axios = axios
 Vue.axios.defaults.baseURL = 'http://localhost:8000'
 
 Vue.use(VueAuth, {

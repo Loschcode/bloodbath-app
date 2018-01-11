@@ -5,7 +5,7 @@
     <div class="gr-4">
       <div class="header__title">
         <h1>
-          {{ currencyStateProp.full_name }}
+          {{ marketCoinProp.full_name }}
         </h1>
       </div>
     </div>
@@ -17,7 +17,7 @@
 <script>
 export default {
   props: [
-    'currencyStateProp'
+    'marketCoinProp'
   ],
 
   data () {

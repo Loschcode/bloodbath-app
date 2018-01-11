@@ -1,7 +1,7 @@
 <template>
-  <div class="currency">
+  <div class="coin">
 
-    <currency-header :currencyStateProp="currencyState" />
+    <coin-header :marketCoinProp="marketCoin" />
 
     <div class="section">
     <!-- Tracker -->
@@ -23,8 +23,8 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="currencyTracking.base_price">
-              ${{ currencyTracking.base_price }}
+              <div v-if="coinTracking.base_price">
+              ${{ coinTracking.base_price }}
               </div>
               <div v-else>
                 -
@@ -45,8 +45,8 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="currencyState.price">
-              ${{ currencyState.price }}
+              <div v-if="marketCoin.price">
+              ${{ marketCoin.price }}
               </div>
               <div v-else>
                 -
@@ -87,15 +87,14 @@
 
 <script>
 import _ from 'lodash'
-import axios from 'axios'
-import CurrencyHeader from '@/components/CurrencyHeader'
+import CoinHeader from '@/components/CoinHeader'
 
 export default {
   data () {
     return {
-      currencyState: {
+      marketCoin: {
       },
-      currencyTracking: {
+      coinTracking: {
       },
       variation: 0.0,
       errors: []
@@ -103,12 +102,13 @@ export default {
   },
 
   created () {
-    this.$cable.subscriptions.create({ channel: 'CurrencyStateChannel' })
+    // this.$auth.token()
+    // this.$cable.subscriptions.create({ channel: 'CoinStateChannel' })
 
-    axios.get(`currencies/${this.$route.params.currency}`)
+    this.$axios.get(`coins/${this.$route.params.coin}`)
     .then(response => {
-      this.currencyState = response.data.currency_state
-      this.currencyTracking = response.data.currency_tracking
+      this.marketCoin = response.data.market_coin
+      this.coinTracking = response.data.coin_tracking
     })
     .catch(e => {
       this.errors.push(e)
@@ -117,7 +117,7 @@ export default {
 
   methods: {
     solveVariation () {
-      let rawVariation = (100 - (this.currencyTracking.base_price / this.currencyState.price) * 100)
+      let rawVariation = (100 - (this.coinTracking.base_price / this.marketCoin.price) * 100)
       if (isNaN(rawVariation)) {
         return 0.0
       } else {
@@ -127,7 +127,7 @@ export default {
   },
 
   components: {
-    CurrencyHeader
+    CoinHeader
   }
 
 }
