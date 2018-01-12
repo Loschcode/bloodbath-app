@@ -1,6 +1,6 @@
 <template>
   <div class="connect-routing">
-    <div v-if="$user.token()">
+    <div v-if="valid_token">
       <router-view />
     </div>
 
@@ -21,18 +21,32 @@ export default {
 
   data () {
     return {
+      valid_token: false
     }
   },
 
   created () {
-    if (!this.$user.token()) {
+    if (this.$user.token()) {
+      this.connectAll(this.$user.token())
+    } else {
       this.connectAnonymous()
     }
   },
 
   methods: {
 
-    // TODO : to link somewhere (after login ?)
+    /**
+     * ensure connection on action cable
+     * and the classic AJAX
+     */
+    connectAll (token) {
+      this.connectCable(token)
+      this.connect(token)
+    },
+
+    /**
+     * connect to the action cable system
+     */
     connectCable (token) {
       console.log('connect to action cable ...')
       const origin = 'ws://localhost:8000'
@@ -41,6 +55,11 @@ export default {
       console.log('action cable connected.')
     },
 
+    /**
+     * process the anonymous log-in
+     * this will create a new user
+     * and connect it completely
+     */
     connectAnonymous () {
       console.log('connect anonymous ...')
 
@@ -49,7 +68,7 @@ export default {
       .then(
         (response) => {
           console.log(`token: ${response.data.token}`)
-          return this.connect(response.data.token)
+          return this.connectAll(response.data.token)
         },
         this.throwError.bind(this)
       )
@@ -58,9 +77,11 @@ export default {
     /**
      * save as much info as we can into $user
      * using a token
+     * this method on each page refresh
+     * to verify the token validity
      */
     connect (token) {
-      console.log('definitely not logged-in')
+      console.log('check connection ...')
 
       this.$axios
       .get('/', {params: {token: token}})
@@ -68,7 +89,7 @@ export default {
         (response) => {
           console.log('connected.')
           localStorage.setItem('token', token)
-          // this.$cookie.set('token', token)
+          this.valid_token = true
           return true
         },
         this.throwError.bind(this)

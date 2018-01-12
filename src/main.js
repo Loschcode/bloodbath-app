@@ -10,6 +10,8 @@ import VueCookie from 'vue-cookie'
 
 Vue.config.productionTip = false
 
+// localStorage.clear()
+
 // ActionCable configuration
 // NOTE : ActionCable is activated after the log-in
 // Please checkout ConnectRouting.vue

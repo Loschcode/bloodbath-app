@@ -102,8 +102,7 @@ export default {
   },
 
   created () {
-    // this.$auth.token()
-    // this.$cable.subscriptions.create({ channel: 'CoinStateChannel' })
+    this.$cable.subscriptions.create({ channel: 'CoinStateChannel' })
 
     this.$axios.get(`coins/${this.$route.params.coin}`, {params: {token: this.$user.token()}})
     .then(response => {
@@ -117,11 +116,11 @@ export default {
 
   methods: {
     solveBasePrice () {
-      return _.round(this.coinTracking.base_price, 2)
+      return _.round(this.coinTracking.base_price, 3)
     },
 
     solvePrice () {
-      return _.round(this.marketCoin.price, 2)
+      return _.round(this.marketCoin.price, 3)
     },
 
     solveVariation () {
