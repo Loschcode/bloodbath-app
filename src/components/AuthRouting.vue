@@ -42,18 +42,16 @@ export default {
 
     connectAnonymous () {
       console.log('connect anonymous ...')
-      this.$axios.post(`connect/anonymous`)
-      .then(response => {
-        // TODO : same here, just use http verb
-        if (response.data.success) {
-          return this.connect(response.data.data.token)
-        } else {
-          return false
-        }
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+
+      this.$axios
+      .post(`connect/anonymous`)
+      .then(
+        (response) => {
+          console.log(`token: ${response.token}`)
+          return this.connect(response.token)
+        },
+        this.throwError.bind(this)
+      )
     },
 
     /**
@@ -62,21 +60,24 @@ export default {
      */
     connect (token) {
       console.log('definitely not logged-in')
-      this.$axios.get('/', {params: {token: token}})
-      .then(response => {
-        console.log(response)
-        if (response.data.success) {
+
+      this.$axios
+      .get('/', {params: {token: token}})
+      .then(
+        (response) => {
           this.$cookie.set('token', token)
           return true
-        } else {
-          // TODO : improve this using only HTTP to setup errors to avoid double
-          return false
-        }
-      })
-      .catch(e => {
-        console.log('failed log-in')
-        return false
-      })
+        },
+        this.throwError.bind(this)
+      )
+    },
+
+    /**
+     * TODO : should be abstracted elsewhere such as in a mixin and used everywhere
+     */
+    throwError (error) {
+      console.log(error.response.data)
+      return false
     }
   }
 }
