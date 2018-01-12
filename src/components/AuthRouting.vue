@@ -1,6 +1,6 @@
 <template>
-  <div class="auth-routing" v-if="$auth.ready()">
-    <div v-if="$auth.check()">
+  <div class="auth-routing">
+    <div v-if="$user.token()">
       <router-view />
     </div>
 
@@ -10,12 +10,6 @@
       </div>
     </div>
 
-  </div>
-
-  <div v-else>
-    <div class="loader">
-      Loading ...
-    </div>
   </div>
 </template>
 
@@ -27,35 +21,34 @@ export default {
 
   data () {
     return {
-      email: '',
-      password: ''
     }
   },
 
   created () {
-    this.registerAnonymous()
-    // this.doAuth({email: this.email, password: this.password})
+    if (!this.$user.token()) {
+      this.connectAnonymous()
+    }
   },
 
   methods: {
 
-    connectCable (credentials) {
+    connectCable (token) {
       console.log('connect to action cable ...')
       const origin = 'ws://localhost:8000'
-      const cable = ActionCable.createConsumer(`${origin}/cable?email=${credentials.email}&password=${credentials.password}`)
+      const cable = ActionCable.createConsumer(`${origin}/cable?token=${token}`)
       Vue.prototype.$cable = cable
       console.log('action cable connected.')
     },
 
-    registerAnonymous () {
+    connectAnonymous () {
+      console.log('connect anonymous ...')
       this.$axios.post(`connect/anonymous`)
       .then(response => {
+        // TODO : same here, just use http verb
         if (response.data.success) {
-          this.email = response.data.data.email
-          this.password = response.data.data.password
-
-          // TODO : this is for test purpose
-          this.doAuth({email: this.email, password: this.password})
+          return this.connect(response.data.data.token)
+        } else {
+          return false
         }
       })
       .catch(e => {
@@ -64,26 +57,26 @@ export default {
     },
 
     /**
-     * Authenticate the client
+     * save as much info as we can into $user
+     * using a token
      */
-    doAuth (credentials) {
-      if (!this.$auth.check()) {
-        console.log('definitely not logged-in')
-
-        console.log(credentials)
-        this.$auth.login({
-          data: credentials,
-          redirect: false
-        })
-
-        .then((res) => {
-          console.log('token : ' + this.$auth.token())
-          // this.connectCable(credentials)
-        }, (res) => {
-          console.log('failed log-in')
-          this.error = res.data
-        })
-      }
+    connect (token) {
+      console.log('definitely not logged-in')
+      this.$axios.get('/', {params: {token: token}})
+      .then(response => {
+        console.log(response)
+        if (response.data.success) {
+          this.$cookie.set('token', token)
+          return true
+        } else {
+          // TODO : improve this using only HTTP to setup errors to avoid double
+          return false
+        }
+      })
+      .catch(e => {
+        console.log('failed log-in')
+        return false
+      })
     }
   }
 }

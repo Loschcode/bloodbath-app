@@ -105,7 +105,7 @@ export default {
     // this.$auth.token()
     // this.$cable.subscriptions.create({ channel: 'CoinStateChannel' })
 
-    this.$axios.get(`coins/${this.$route.params.coin}`)
+    this.$axios.get(`coins/${this.$route.params.coin}`, {params: {token: this.$user.token()}})
     .then(response => {
       this.marketCoin = response.data.market_coin
       this.coinTracking = response.data.coin_tracking

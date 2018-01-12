@@ -6,7 +6,7 @@ import App from './App'
 import router from './router'
 
 import VueAxios from 'vue-axios'
-import VueAuth from '@websanova/vue-auth'
+import VueCookie from 'vue-cookie'
 
 Vue.config.productionTip = false
 
@@ -15,20 +15,19 @@ Vue.config.productionTip = false
 // Please checkout AuthRouting.vue
 
 // Axios configuration
-Vue.use(VueAxios, axios)
 Vue.prototype.$axios = axios
+Vue.use(VueAxios, axios)
 Vue.axios.defaults.baseURL = 'http://localhost:8000'
 
-Vue.use(VueAuth, {
-  auth: require('@websanova/vue-auth/drivers/auth/devise.js'),
-  http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-  // rolesVar: 'type',
-  loginData: { url: '/auth/sign_in' },
-  refreshData: { url: '/auth/validate_token', interval: 1 },
-  fetchData: { url: '/auth/validate_token' }
+// VueCookie configuration
+Vue.use(VueCookie)
 
-})
+// User configuration
+Vue.prototype.$user = {
+  token () {
+    return VueCookie.get('token')
+  }
+}
 
 /* eslint-disable no-new */
 new Vue({
