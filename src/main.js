@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 // ActionCable configuration
 // NOTE : ActionCable is activated after the log-in
-// Please checkout AuthRouting.vue
+// Please checkout ConnectRouting.vue
 
 // Axios configuration
 Vue.prototype.$axios = axios
@@ -25,7 +25,8 @@ Vue.use(VueCookie)
 // User configuration
 Vue.prototype.$user = {
   token () {
-    return VueCookie.get('token')
+    return localStorage.getItem('token')
+    // return VueCookie.get('token')
   }
 }
 

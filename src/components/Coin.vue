@@ -24,7 +24,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="coinTracking.base_price">
-              ${{ coinTracking.base_price }}
+              ${{ solveBasePrice() }}
               </div>
               <div v-else>
                 -
@@ -46,7 +46,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="marketCoin.price">
-              ${{ marketCoin.price }}
+              ${{ solvePrice() }}
               </div>
               <div v-else>
                 -
@@ -116,6 +116,14 @@ export default {
   },
 
   methods: {
+    solveBasePrice () {
+      return _.round(this.coinTracking.base_price, 2)
+    },
+
+    solvePrice () {
+      return _.round(this.marketCoin.price, 2)
+    },
+
     solveVariation () {
       let rawVariation = (100 - (this.coinTracking.base_price / this.marketCoin.price) * 100)
       if (isNaN(rawVariation)) {

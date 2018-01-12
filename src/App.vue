@@ -3,7 +3,7 @@
 
     <!-- The header is specific to each section -->
     <div class="content">
-      <auth-routing />
+      <connect-routing />
     </div>
     <default-footer />
 
@@ -12,7 +12,7 @@
 
 <script>
 import DefaultFooter from '@/components/DefaultFooter'
-import AuthRouting from '@/components/AuthRouting'
+import ConnectRouting from '@/components/ConnectRouting'
 
 export default {
   name: 'app',
@@ -25,7 +25,7 @@ export default {
 
   components: {
     DefaultFooter,
-    AuthRouting
+    ConnectRouting
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-routing">
+  <div class="connect-routing">
     <div v-if="$user.token()">
       <router-view />
     </div>
@@ -32,6 +32,7 @@ export default {
 
   methods: {
 
+    // TODO : to link somewhere (after login ?)
     connectCable (token) {
       console.log('connect to action cable ...')
       const origin = 'ws://localhost:8000'
@@ -47,8 +48,8 @@ export default {
       .post(`connect/anonymous`)
       .then(
         (response) => {
-          console.log(`token: ${response.token}`)
-          return this.connect(response.token)
+          console.log(`token: ${response.data.token}`)
+          return this.connect(response.data.token)
         },
         this.throwError.bind(this)
       )
@@ -65,7 +66,9 @@ export default {
       .get('/', {params: {token: token}})
       .then(
         (response) => {
-          this.$cookie.set('token', token)
+          console.log('connected.')
+          localStorage.setItem('token', token)
+          // this.$cookie.set('token', token)
           return true
         },
         this.throwError.bind(this)
