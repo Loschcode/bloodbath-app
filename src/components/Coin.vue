@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="module__footer">
-            From 21/02/2018 18:00 GMT
+            {{ solveBasePriceTime() }}
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="marketCoin.price">
-              {{ solvePrice() }}
+                  {{ solvePrice() }}
               </div>
               <div v-else>
                 -
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="module__footer">
-            From 21/02/2018 18:00 GMT
+            {{ solvePriceTime() }}
           </div>
         </div>
       </div>
@@ -67,8 +67,14 @@
           </div>
           <div class="module__content">
             <div class="module__content-percent">
-              <div v-if="solveVariation">
-                {{ solveVariation() }}
+              <div v-if="rawVariation()">
+                <div v-if="rawVariation() < 0">
+                  <div class="module__content-percent-negative">{{ solveVariation() }}</div>
+                </div>
+                <div v-else>
+                  <div class="module__content-percent-positive">{{ solveVariation() }}</div>
+                </div>
+
               </div>
               <div v-else>
                 -
@@ -115,8 +121,9 @@
 </template>
 
 <script>
-import numeral from 'numeral'
 import CoinHeader from '@/components/CoinHeader'
+import numeral from 'numeral'
+import moment from 'moment'
 
 export default {
   data () {
@@ -169,13 +176,27 @@ export default {
       return numeral(digits).format('$0,0.000')
     },
 
+    solveBasePriceTime () {
+      let date = moment(this.coinTracking.updated_at).fromNow()
+      return `From ${date}`
+    },
+
     solvePrice () {
       let digits = this.marketCoin.price
       return numeral(digits).format('$0,0.000')
     },
 
+    solvePriceTime () {
+      let date = moment(this.marketCoin.updated_at).fromNow()
+      return `From ${date}`
+    },
+
+    rawVariation () {
+      return (1 - (this.coinTracking.base_price / this.marketCoin.price))
+    },
+
     solveVariation () {
-      let rawVariation = 1 - (this.coinTracking.base_price / this.marketCoin.price)
+      let rawVariation = this.rawVariation()
       let digits = 0
 
       if (!isNaN(rawVariation)) {

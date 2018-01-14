@@ -29,6 +29,13 @@
   font-size: 60px;
 }
 
+.module__content-percent-positive {
+  color: $digits-positive
+}
+
+.module__content-percent-negative {
+  color: $digits-negative
+}
 .module__footer {
   text-align: right;
   font-size: 12px;

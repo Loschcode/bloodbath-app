@@ -28,7 +28,6 @@ Vue.use(VueCookie)
 Vue.prototype.$user = {
   token () {
     return localStorage.getItem('token')
-    // return VueCookie.get('token')
   }
 }
 
