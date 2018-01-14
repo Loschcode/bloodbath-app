@@ -4,11 +4,12 @@
     <coin-header :marketCoinProp="marketCoin" />
 
     <div class="section">
+
     <!-- Tracker -->
     <div class="row">
       <div class="gr-12">
         <div class="section__title">
-          Trackers
+          Units
         </div>
       </div>
     </div>
@@ -24,7 +25,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="coinTracking.base_price">
-              ${{ solveBasePrice() }}
+              {{ solveBasePrice() }}
               </div>
               <div v-else>
                 -
@@ -46,7 +47,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="marketCoin.price">
-              ${{ solvePrice() }}
+              {{ solvePrice() }}
               </div>
               <div v-else>
                 -
@@ -67,7 +68,35 @@
           <div class="module__content">
             <div class="module__content-percent">
               <div v-if="solveVariation">
-                {{ solveVariation() }}%
+                {{ solveVariation() }}
+              </div>
+              <div v-else>
+                -
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tracker -->
+    <div class="row">
+      <div class="gr-12">
+        <div class="section__title">
+          Market
+        </div>
+      </div>
+
+      <div class="gr-12">
+        <div class="module">
+          <div class="module__title">
+            <h2>Market Capitalization</h2>
+          </div>
+          <div class="module__content">
+            <div class="module__content-digits">
+              <div v-if="solveMarketCapitalization">
+                {{ solveMarketCapitalization() }}
               </div>
               <div v-else>
                 -
@@ -86,7 +115,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import numeral from 'numeral'
 import CoinHeader from '@/components/CoinHeader'
 
 export default {
@@ -96,18 +125,38 @@ export default {
       },
       coinTracking: {
       },
-      variation: 0.0,
-      errors: []
+      variation: 0.0
     }
   },
 
   created () {
-    this.$cable.subscriptions.create({ channel: 'CoinStateChannel' })
+    var self = this
 
-    this.$axios.get(`coins/${this.$route.params.coin}`, {params: {token: this.$user.token()}})
+    this.$axios
+    .get(`coins/${this.$route.params.coin}`, {params: {token: this.$user.token()}})
     .then(response => {
       this.marketCoin = response.data.market_coin
       this.coinTracking = response.data.coin_tracking
+
+      // THIS WILL PLACED SOMEWHERE ELSE AT SOME POINT
+      this.$cable.subscriptions.create(
+        { channel: 'MarketCoinChannel', id: this.marketCoin.id },
+        {
+          connected (data) {
+            console.log('connected to market coin channel')
+            this.perform('ping')
+          },
+
+          received (data) {
+            console.log(`action received ${data.action}`)
+            if (data.action === 'refresh_market_coin') {
+              console.log('refreshing market coin')
+              self.marketCoin = data.market_coin
+            }
+          }
+        }
+      )
+      // END
     })
     .catch(e => {
       this.errors.push(e)
@@ -116,20 +165,28 @@ export default {
 
   methods: {
     solveBasePrice () {
-      return _.round(this.coinTracking.base_price, 3)
+      let digits = this.coinTracking.base_price
+      return numeral(digits).format('$0,0.000')
     },
 
     solvePrice () {
-      return _.round(this.marketCoin.price, 3)
+      let digits = this.marketCoin.price
+      return numeral(digits).format('$0,0.000')
     },
 
     solveVariation () {
-      let rawVariation = (100 - (this.coinTracking.base_price / this.marketCoin.price) * 100)
-      if (isNaN(rawVariation)) {
-        return 0.0
-      } else {
-        return _.round(rawVariation, 2)
+      let rawVariation = 1 - (this.coinTracking.base_price / this.marketCoin.price)
+      let digits = 0
+
+      if (!isNaN(rawVariation)) {
+        digits = rawVariation
       }
+      return numeral(digits).format('0,0.00%')
+    },
+
+    solveMarketCapitalization () {
+      let digits = this.marketCoin.market_cap
+      return numeral(digits).format('$0,0')
     }
   },
 

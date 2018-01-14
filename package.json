@@ -20,6 +20,7 @@
     "coffeekraken-gridle": "^3.0.0-rc.4",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
+    "numeral": "^2.0.6",
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",
     "vue-cookie": "^1.1.4",
