@@ -25,7 +25,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="coinTracking.base_price">
-              {{ solveBasePrice() }}
+                <animated-number :value="coinTracking.base_price" :type="`money`" />
               </div>
               <div v-else>
                 -
@@ -47,7 +47,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="marketCoin.price">
-                  {{ solvePrice() }}
+                  <animated-number :value="marketCoin.price" :type="`money`" />
               </div>
               <div v-else>
                 -
@@ -69,10 +69,14 @@
             <div class="module__content-percent">
               <div v-if="rawVariation()">
                 <div v-if="rawVariation() < 0">
-                  <div class="module__content-percent-negative">{{ solveVariation() }}</div>
+                  <div class="module__content-percent-negative">
+                    <animated-number :value="rawVariation()" :type="`percent`" />
+                  </div>
                 </div>
                 <div v-else>
-                  <div class="module__content-percent-positive">{{ solveVariation() }}</div>
+                  <div class="module__content-percent-positive">
+                    <animated-number :value="rawVariation()" :type="`percent`" />
+                  </div>
                 </div>
 
               </div>
@@ -101,9 +105,8 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="solveMarketCapitalization">
-                <!-- <animated-number :value="10000" /> -->
-                {{ solveMarketCapitalization() }}
+              <div v-if="marketCoin.market_cap">
+                <animated-number :value="marketCoin.market_cap" :type="`big-money`" />
               </div>
               <div v-else>
                 -
@@ -124,7 +127,6 @@
 <script>
 import CoinHeader from '@/components/CoinHeader'
 import AnimatedNumber from '@/components/AnimatedNumber'
-import numeral from 'numeral'
 import moment from 'moment'
 
 export default {
@@ -201,19 +203,9 @@ export default {
   },
 
   methods: {
-    solveBasePrice () {
-      let digits = this.coinTracking.base_price
-      return numeral(digits).format('$0,0.000')
-    },
-
     solveBasePriceTime () {
       let date = moment(this.coinTracking.updated_at).fromNow()
       return `From ${date}`
-    },
-
-    solvePrice () {
-      let digits = this.marketCoin.price
-      return numeral(digits).format('$0,0.000')
     },
 
     solvePriceTime () {
@@ -222,22 +214,12 @@ export default {
     },
 
     rawVariation () {
-      return (1 - (this.coinTracking.base_price / this.marketCoin.price))
-    },
-
-    solveVariation () {
-      let rawVariation = this.rawVariation()
-      let digits = 0
-
-      if (!isNaN(rawVariation)) {
-        digits = rawVariation
+      let digits = (1 - (this.coinTracking.base_price / this.marketCoin.price))
+      if (isNaN(digits)) {
+        return 0.0
+      } else {
+        return digits
       }
-      return numeral(digits).format('0,0.00%')
-    },
-
-    solveMarketCapitalization () {
-      let digits = this.marketCoin.market_cap
-      return numeral(digits).format('$0,0')
     }
   },
 
