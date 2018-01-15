@@ -1,13 +1,29 @@
 <template>
-  <div v-if="showValue">
-    <div v-if="valueUp">
-      <span class="number__up">{{ formattedValue() }}</span>
+  <div>
+    <div v-if="animatedColors">
+      <div v-if="showValue">
+        <div v-if="valueUp">
+          <span class="number__up">{{ formattedValue() }}</span>
+        </div>
+        <div v-else>
+          <span class="number__down">{{ formattedValue() }}</span>
+        </div>
+      </div>
     </div>
     <div v-else>
-      <span class="number__down">{{ formattedValue() }}</span>
+      <div v-if="numberColors">
+        <div v-if="value > 0">
+          <span class="number__positive">{{ formattedValue() }}</span>
+        </div>
+        <div v-else>
+          <span class="number__negative">{{ formattedValue() }}</span>
+        </div>
+      </div>
+      <div v-else>
+        <span>{{ formattedValue() }}</span>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -22,7 +38,18 @@ export default {
     },
     type: {
       type: String,
-      required: false
+      required: false,
+      default: false
+    },
+    animatedColors: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    numberColors: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data: function () {
@@ -38,20 +65,29 @@ export default {
       this.showValue = false
       this.$nextTick(() => {
         this.showValue = true
-        if (oldValue > newValue) {
-          this.valueUp = false
-        } else if (oldValue === newValue) {
-        } else {
-          this.valueUp = true
-        }
-        this.tween(oldValue, newValue)
+        this.loopValue(newValue, oldValue)
       })
     }
   },
+
   mounted: function () {
     this.tween(0, this.value)
   },
   methods: {
+
+    /**
+     * We loop the value to have a cool animated effect on the numbers
+     */
+    loopValue: function (newValue, oldValue) {
+      if (oldValue > newValue) {
+        this.valueUp = false
+      } else if (oldValue === newValue) {
+      } else {
+        this.valueUp = true
+      }
+      this.tween(oldValue, newValue)
+    },
+
     formattedValue: function () {
       let digits = this.changingValue
       if (this.type === 'money') {

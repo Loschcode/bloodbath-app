@@ -68,17 +68,7 @@
           <div class="module__content">
             <div class="module__content-percent">
               <div v-if="rawVariation()">
-                <div v-if="rawVariation() < 0">
-                  <div class="module__content-percent-negative">
-                    <animated-number :value="rawVariation()" :type="`percent`" />
-                  </div>
-                </div>
-                <div v-else>
-                  <div class="module__content-percent-positive">
-                    <animated-number :value="rawVariation()" :type="`percent`" />
-                  </div>
-                </div>
-
+                <animated-number :value="rawVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" />
               </div>
               <div v-else>
                 -

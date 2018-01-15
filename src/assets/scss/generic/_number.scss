@@ -15,3 +15,11 @@
 .number__down {
   animation: totalDown 1s;
 }
+
+.number__negative {
+  color: $digits-negative;
+}
+
+.number__positve {
+  color: $digits-positive;
+}
