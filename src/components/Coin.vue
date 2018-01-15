@@ -204,7 +204,7 @@ export default {
     },
 
     rawVariation () {
-      let digits = (1 - (this.marketCoin.day_open / this.marketCoin.price))
+      let digits = this.marketCoin.price / this.marketCoin.day_open - 1
       if (isNaN(digits)) {
         return 0.0
       } else {
