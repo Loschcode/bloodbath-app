@@ -14,6 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^17.1.1",
     "@websanova/vue-auth": "^2.21.0-beta",
     "actioncable": "^5.1.4",
     "axios": "^0.17.1",

@@ -124,11 +124,14 @@
 import CoinHeader from '@/components/CoinHeader'
 import numeral from 'numeral'
 import moment from 'moment'
+import Tween from '@tweenjs/tween.js'
 
 export default {
   data () {
     return {
       marketCoin: {
+        market_cap: 0.0,
+        price: 0.0
       },
       coinTracking: {
       },
@@ -136,8 +139,34 @@ export default {
     }
   },
 
+  watch: {
+    marketCoin: function (newMarketCoin, oldMarketCoin) {
+
+      // Start of animation
+      var vm = this
+      function animate () {
+        if (Tween.update()) {
+          requestAnimationFrame(animate)
+        }
+      }
+
+      new Tween.Tween({ marketCap: oldMarketCoin.market_cap })
+      .easing(Tween.Easing.Quadratic.Out)
+      .to({ marketCap: newMarketCoin.market_cap }, 500)
+      .onUpdate(function (obj) {
+        if (typeof obj.marketCap !== 'undefined') {
+          vm.marketCoin.market_cap = obj.marketCap.toFixed(0)
+        }
+      })
+      .start()
+
+      animate()
+      // End of animation
+    }
+  },
+
   created () {
-    var self = this
+    var vm = this
 
     this.$axios
     .get(`coins/${this.$route.params.coin}`, {params: {token: this.$user.token()}})
@@ -158,12 +187,13 @@ export default {
             console.log(`action received ${data.action}`)
             if (data.action === 'refresh_market_coin') {
               console.log('refreshing market coin')
-              self.marketCoin = data.market_coin
+              vm.marketCoin = data.market_coin
             }
           }
         }
       )
       // END
+      //
     })
     .catch(e => {
       this.errors.push(e)
