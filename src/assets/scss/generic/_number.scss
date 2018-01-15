@@ -1,10 +1,10 @@
 @keyframes totalUp {
-    0%  { color: $digits-positive; }
+    0%  { color: $positive-number; }
     100% { color: #3E4651; }
 }
 
 @keyframes totalDown {
-    0%  { color: $digits-negative; }
+    0%  { color: $negative-number; }
     100% { color: #3E4651; }
 }
 
@@ -17,9 +17,9 @@
 }
 
 .number__negative {
-  color: $digits-negative;
+  color: $negative-number;
 }
 
 .number__positive {
-  color: $digits-positive;
+  color: $positive-number;
 }
