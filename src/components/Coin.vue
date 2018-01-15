@@ -102,6 +102,7 @@
           <div class="module__content">
             <div class="module__content-digits">
               <div v-if="solveMarketCapitalization">
+                <!-- <animated-number :value="10000" /> -->
                 {{ solveMarketCapitalization() }}
               </div>
               <div v-else>
@@ -122,9 +123,9 @@
 
 <script>
 import CoinHeader from '@/components/CoinHeader'
+import AnimatedNumber from '@/components/AnimatedNumber'
 import numeral from 'numeral'
 import moment from 'moment'
-import Tween from '@tweenjs/tween.js'
 
 export default {
   data () {
@@ -139,31 +140,30 @@ export default {
     }
   },
 
-  watch: {
-    marketCoin: function (newMarketCoin, oldMarketCoin) {
-
-      // Start of animation
-      var vm = this
-      function animate () {
-        if (Tween.update()) {
-          requestAnimationFrame(animate)
-        }
-      }
-
-      new Tween.Tween({ marketCap: oldMarketCoin.market_cap })
-      .easing(Tween.Easing.Quadratic.Out)
-      .to({ marketCap: newMarketCoin.market_cap }, 500)
-      .onUpdate(function (obj) {
-        if (typeof obj.marketCap !== 'undefined') {
-          vm.marketCoin.market_cap = obj.marketCap.toFixed(0)
-        }
-      })
-      .start()
-
-      animate()
-      // End of animation
-    }
-  },
+  // watch: {
+  //   marketCoin: function (newMarketCoin, oldMarketCoin) {
+  //     // Start of animation
+  //     var vm = this
+  //     function animate () {
+  //       if (Tween.update()) {
+  //         requestAnimationFrame(animate)
+  //       }
+  //     }
+  //
+  //     new Tween.Tween({ marketCap: oldMarketCoin.market_cap })
+  //     .easing(Tween.Easing.Quadratic.Out)
+  //     .to({ marketCap: newMarketCoin.market_cap }, 500)
+  //     .onUpdate(function (obj) {
+  //       if (typeof obj.marketCap !== 'undefined') {
+  //         vm.marketCoin.market_cap = obj.marketCap.toFixed(0)
+  //       }
+  //     })
+  //     .start()
+  //
+  //     animate()
+  //     // End of animation
+  //   }
+  // },
 
   created () {
     var vm = this
@@ -242,7 +242,8 @@ export default {
   },
 
   components: {
-    CoinHeader
+    CoinHeader,
+    AnimatedNumber
   }
 
 }
