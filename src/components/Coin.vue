@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="module__footer">
-            {{ solveBasePriceTime() }}
+            {{ solveDayOpenTime() }}
           </div>
         </div>
       </div>
@@ -193,8 +193,8 @@ export default {
   },
 
   methods: {
-    solveBasePriceTime () {
-      let date = moment(this.coinTracking.updated_at).fromNow()
+    solveDayOpenTime () {
+      let date = moment().startOf('day').fromNow()
       return `From ${date}`
     },
 

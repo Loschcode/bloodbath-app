@@ -46,7 +46,7 @@ new Vue({
       /**
        * if the token isn't already present we add it up to the system
        */
-      if (_.has(config, 'params.token')) {
+      if (!_.has(config, 'params.token')) {
         config.params = {token: this.$user.token()}
       }
       return config
