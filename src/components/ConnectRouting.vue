@@ -15,6 +15,7 @@
 
 <script>
 import ActionCable from 'actioncable'
+import DryCable from '@/plugins/DryCable'
 import Vue from 'vue'
 import ThrowError from '@/mixins/ThrowError'
 
@@ -54,8 +55,11 @@ export default {
      */
     connectCable (token) {
       console.log('connect to action cable ...')
-      const cable = ActionCable.createConsumer(`${Vue.config.cable_domain}/cable?token=${token}`)
+
+      const cableDomain = 'ws://localhost:8000'
+      const cable = ActionCable.createConsumer(`${cableDomain}/cable?token=${token}`)
       Vue.prototype.$cable = cable
+      Vue.use(DryCable, cable)
       console.log('action cable connected.')
     },
 

@@ -17,7 +17,9 @@ import VueCookie from 'vue-cookie'
 Vue.config.productionTip = false
 
 // ActionCable configuration
-Vue.config.cable_domain = 'ws://localhost:8000'
+// Configuration is made on connection
+// Because for this project we don't
+// any connection out of token
 
 // Axios configuration
 Vue.prototype.$axios = axios

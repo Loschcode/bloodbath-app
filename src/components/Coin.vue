@@ -132,60 +132,15 @@ export default {
     }
   },
 
-  // watch: {
-  //   marketCoin: function (newMarketCoin, oldMarketCoin) {
-  //     // Start of animation
-  //     var vm = this
-  //     function animate () {
-  //       if (Tween.update()) {
-  //         requestAnimationFrame(animate)
-  //       }
-  //     }
-  //
-  //     new Tween.Tween({ marketCap: oldMarketCoin.market_cap })
-  //     .easing(Tween.Easing.Quadratic.Out)
-  //     .to({ marketCap: newMarketCoin.market_cap }, 500)
-  //     .onUpdate(function (obj) {
-  //       if (typeof obj.marketCap !== 'undefined') {
-  //         vm.marketCoin.market_cap = obj.marketCap.toFixed(0)
-  //       }
-  //     })
-  //     .start()
-  //
-  //     animate()
-  //     // End of animation
-  //   }
-  // },
-
   created () {
-    var vm = this
-
+    // var vm = this
     this.$axios
     .get(`coins/${this.$route.params.coin}`)
     .then(response => {
       this.marketCoin = response.data.market_coin
       this.coinTracking = response.data.coin_tracking
 
-      // THIS WILL PLACED SOMEWHERE ELSE AT SOME POINT
-      this.$cable.subscriptions.create(
-        { channel: 'MarketCoinChannel', id: this.marketCoin.id },
-        {
-          connected (data) {
-            console.log('connected to market coin channel')
-            this.perform('ping')
-          },
-
-          received (data) {
-            console.log(`action received ${data.action}`)
-            if (data.action === 'refresh_market_coin') {
-              console.log('refreshing market coin')
-              vm.marketCoin = data.market_coin
-            }
-          }
-        }
-      )
-      // END
-      //
+      this.$drycable.subscribe(this, 'marketCoin')
     })
     .catch(e => {
       console.warn(e)
