@@ -19,7 +19,7 @@ export default {
   },
   data: function () {
     return {
-      tweeningValue: 0
+      changingValue: 0
     }
   },
   watch: {
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     formattedValue: function () {
-      let digits = this.tweeningValue
+      let digits = this.changingValue
       if (this.type === 'money') {
         return numeral(digits).format('$0,0.000')
       } else if (this.type === 'big-money') {
@@ -52,10 +52,10 @@ export default {
         }
       }
 
-      new TWEEN.Tween({ tweeningValue: startValue })
-        .to({ tweeningValue: endValue }, 500)
+      new TWEEN.Tween({ changingValue: startValue })
+        .to({ changingValue: endValue }, 500)
         .onUpdate(function (object) {
-          vm.tweeningValue = object.tweeningValue.toFixed(6)
+          vm.changingValue = object.changingValue.toFixed(6)
         })
         .start()
 
