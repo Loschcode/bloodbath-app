@@ -171,7 +171,7 @@ export default {
     var vm = this
 
     this.$axios
-    .get(`coins/${this.$route.params.coin}`, {params: {token: this.$user.token()}})
+    .get(`coins/${this.$route.params.coin}`)
     .then(response => {
       this.marketCoin = response.data.market_coin
       this.coinTracking = response.data.coin_tracking

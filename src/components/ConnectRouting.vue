@@ -54,8 +54,7 @@ export default {
      */
     connectCable (token) {
       console.log('connect to action cable ...')
-      const origin = 'ws://localhost:8000'
-      const cable = ActionCable.createConsumer(`${origin}/cable?token=${token}`)
+      const cable = ActionCable.createConsumer(`${Vue.config.cable_domain}/cable?token=${token}`)
       Vue.prototype.$cable = cable
       console.log('action cable connected.')
     },
@@ -85,15 +84,15 @@ export default {
      * to verify the token validity
      */
     connectApi (token) {
-      console.log('check connection ...')
+      console.log('connection to api ...')
 
       this.$axios
-      .get('/', {params: {token: token}})
+      .get('/')
       .then(
         (response) => {
-          console.log('connected.')
           localStorage.setItem('token', token)
           this.valid_token = true
+          console.log('api connected.')
           return true
         },
         this.throwError.bind(this)
