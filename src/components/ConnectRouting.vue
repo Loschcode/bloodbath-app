@@ -16,6 +16,7 @@
 <script>
 import ActionCable from 'actioncable'
 import Vue from 'vue'
+import ThrowError from '@/mixins/ThrowError'
 
 export default {
 
@@ -33,6 +34,10 @@ export default {
     }
   },
 
+  mixins: [
+    ThrowError
+  ],
+
   methods: {
 
     /**
@@ -41,7 +46,7 @@ export default {
      */
     connectAll (token) {
       this.connectCable(token)
-      this.connect(token)
+      this.connectApi(token)
     },
 
     /**
@@ -67,7 +72,6 @@ export default {
       .post(`connect/anonymous`)
       .then(
         (response) => {
-          console.log(`token: ${response.data.token}`)
           return this.connectAll(response.data.token)
         },
         this.throwError.bind(this)
@@ -80,7 +84,7 @@ export default {
      * this method on each page refresh
      * to verify the token validity
      */
-    connect (token) {
+    connectApi (token) {
       console.log('check connection ...')
 
       this.$axios
@@ -94,14 +98,6 @@ export default {
         },
         this.throwError.bind(this)
       )
-    },
-
-    /**
-     * TODO : should be abstracted elsewhere such as in a mixin and used everywhere
-     */
-    throwError (error) {
-      console.log(error.response.data)
-      return false
     }
   }
 }
