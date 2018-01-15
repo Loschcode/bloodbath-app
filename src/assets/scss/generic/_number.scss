@@ -1,0 +1,17 @@
+@keyframes totalUp {
+    0%  { color: $digits-positive; }
+    100% { color: #3E4651; }
+}
+
+@keyframes totalDown {
+    0%  { color: $digits-negative; }
+    100% { color: #3E4651; }
+}
+
+.number__up {
+  animation: totalUp 1s;
+}
+
+.number__down {
+  animation: totalDown 1s;
+}

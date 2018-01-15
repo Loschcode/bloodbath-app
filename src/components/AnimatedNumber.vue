@@ -1,5 +1,13 @@
 <template>
-<span>{{ formattedValue() }}</span>
+  <div v-if="showValue">
+    <div v-if="valueUp">
+      <span class="number__up">{{ formattedValue() }}</span>
+    </div>
+    <div v-else>
+      <span class="number__down">{{ formattedValue() }}</span>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -19,12 +27,25 @@ export default {
   },
   data: function () {
     return {
-      changingValue: 0
+      changingValue: 0,
+      valueUp: true,
+      showValue: true
     }
   },
   watch: {
     value: function (newValue, oldValue) {
-      this.tween(oldValue, newValue)
+      // NOTE : this code should be cleaned up and improved
+      this.showValue = false
+      this.$nextTick(() => {
+        this.showValue = true
+        if (oldValue > newValue) {
+          this.valueUp = false
+        } else if (oldValue === newValue) {
+        } else {
+          this.valueUp = true
+        }
+        this.tween(oldValue, newValue)
+      })
     }
   },
   mounted: function () {
