@@ -20,12 +20,12 @@
       <div class="gr-6 gr-12@mobile">
         <div class="module">
           <div class="module__title">
-            <h2>Base Price</h2>
+            <h2>Open Price</h2>
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="coinTracking.base_price">
-                <animated-number :value="coinTracking.base_price" :type="`money`" />
+              <div v-if="marketCoin.day_open">
+                <animated-number :value="marketCoin.day_open" :type="`money`" />
               </div>
               <div v-else>
                 -
@@ -188,7 +188,7 @@ export default {
       //
     })
     .catch(e => {
-      this.errors.push(e)
+      console.warn(e)
     })
   },
 
@@ -204,7 +204,7 @@ export default {
     },
 
     rawVariation () {
-      let digits = (1 - (this.coinTracking.base_price / this.marketCoin.price))
+      let digits = (1 - (this.marketCoin.day_open / this.marketCoin.price))
       if (isNaN(digits)) {
         return 0.0
       } else {

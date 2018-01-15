@@ -4,6 +4,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import App from './App'
 import router from './router'
+import _ from 'lodash'
 
 import VueAxios from 'vue-axios'
 import VueCookie from 'vue-cookie'
@@ -42,7 +43,12 @@ new Vue({
 
   created () {
     axios.interceptors.request.use((config) => {
-      config.params = {token: this.$user.token()}
+      /**
+       * if the token isn't already present we add it up to the system
+       */
+      if (_.has(config, 'params.token')) {
+        config.params = {token: this.$user.token()}
+      }
       return config
     })
 

@@ -86,8 +86,11 @@ export default {
     connectApi (token) {
       console.log('connection to api ...')
 
+      /**
+       *  here is the only time we actually force the token beforehand
+       */
       this.$axios
-      .get('/')
+      .get('/', {params: {token: token}})
       .then(
         (response) => {
           localStorage.setItem('token', token)

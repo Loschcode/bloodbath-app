@@ -6,7 +6,7 @@ export default {
   },
   methods: {
     throwError (error) {
-      console.log(error.response.data)
+      console.warn(error.response.data)
       return false
     }
   }

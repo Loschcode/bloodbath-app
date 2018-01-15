@@ -79,15 +79,24 @@ export default {
      * We loop the value to have a cool animated effect on the numbers
      */
     loopValue: function (newValue, oldValue) {
-      if (oldValue > newValue) {
-        this.valueUp = false
-      } else if (oldValue === newValue) {
-      } else {
-        this.valueUp = true
-      }
+      this.refreshValueColor(newValue, oldValue)
       this.tween(oldValue, newValue)
     },
 
+    /**
+     * We refresh the color if needed (it will highlight in red or green with the SCSS)
+     */
+    refreshValueColor: function (newValue, oldValue) {
+      if (oldValue > newValue) {
+        this.valueUp = false
+      } else if (oldValue < newValue) {
+        this.valueUp = true
+      }
+    },
+
+    /**
+     * We format the value to % / $ and with some precision over the final number
+     */
     formattedValue: function () {
       let digits = this.changingValue
       if (this.type === 'money') {
@@ -101,6 +110,9 @@ export default {
       }
     },
 
+    /**
+     * Animation tweak to go from 0,1,2,3 progressively
+     */
     tween: function (startValue, endValue) {
       var vm = this
       function animate () {
