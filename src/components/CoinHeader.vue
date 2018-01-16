@@ -1,13 +1,13 @@
-<template>  
+<template>
   <h1>
-    {{ marketCoinProp.full_name }}
+    {{ marketCoin.full_name }}
   </h1>
 </template>
 
 <script>
 export default {
   props: [
-    'marketCoinProp'
+    'marketCoin'
   ],
 
   data () {

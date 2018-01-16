@@ -3,7 +3,7 @@
 
     <default-header>
       <div slot="center">
-        <coin-header :marketCoinProp="marketCoin" />
+        <coin-header :marketCoin="marketCoin" />
       </div>
     </default-header>
 
