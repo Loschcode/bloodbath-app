@@ -22,7 +22,7 @@
 
     <div class="row">
       <div class="gr-3 gr-12@mobile" v-for="marketCoin in topCoins">
-        <coin-preview :marketCoin="marketCoin" />
+        <coin-preview :marketCoinProp="marketCoin" />
       </div>
     </div>
 

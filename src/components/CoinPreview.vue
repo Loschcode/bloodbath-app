@@ -1,54 +1,61 @@
 <template>
   <div class="coin-preview">
 
-    <!-- Base Price -->
-    <div class="gr-12 gr-12@mobile">
-      <div class="module">
-        <div class="module__title">
-          <h2>{{ marketCoin.name }}</h2>
-        </div>
-        <div class="module__content">
+    <router-link :to="{ name: 'coin', params: { coin: marketCoin.symbol } }">
 
-          <div class="module__content-digits">
-            <div v-if="marketCoin.price">
-              <animated-number :value="marketCoin.price" :type="`money`" />
-            </div>
-            <div v-else>
-              -
-            </div>
+      <!-- Base Price -->
+      <div class="gr-12 gr-12@mobile">
+        <div class="module">
+          <div class="module__title">
+            <h2>{{ marketCoin.name }}</h2>
           </div>
+          <div class="module__content">
 
-          <div class="module__content-percent --small">
-            <div v-if="rawVariation()">
-              <animated-number :value="rawVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" />
+            <div class="module__content-digits">
+              <div v-if="marketCoin.price">
+                <animated-number :value="marketCoin.price" :type="`money`" />
+              </div>
+              <div v-else>
+                -
+              </div>
             </div>
-            <div v-else>
-              -
+
+            <div class="module__content-percent --small">
+              <div v-if="rawVariation()">
+                <animated-number :value="rawVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" />
+              </div>
+              <div v-else>
+                -
+              </div>
             </div>
+
           </div>
-
-        </div>
-        <div class="module__footer">
+          <div class="module__footer">
+          </div>
         </div>
       </div>
-    </div>
+
+    </router-link>
 
   </div>
 </template>
+
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
 
 export default {
   props: [
-    'marketCoin'
+    'marketCoinProp'
   ],
 
   created () {
+    this.marketCoin = this.marketCoinProp
     this.$drycable.subscribe(this, 'marketCoin')
   },
 
   data () {
     return {
+      marketCoin: {}
     }
   },
 
