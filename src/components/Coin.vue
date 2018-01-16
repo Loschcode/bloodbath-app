@@ -1,7 +1,11 @@
 <template>
   <div class="coin">
 
-    <coin-header :marketCoinProp="marketCoin" />
+    <default-header>
+      <div slot="center">
+        <coin-header :marketCoinProp="marketCoin" />
+      </div>
+    </default-header>
 
     <div class="section">
 
@@ -115,6 +119,7 @@
 </template>
 
 <script>
+import DefaultHeader from '@/components/DefaultHeader'
 import CoinHeader from '@/components/CoinHeader'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import moment from 'moment'
@@ -169,6 +174,7 @@ export default {
   },
 
   components: {
+    DefaultHeader,
     CoinHeader,
     AnimatedNumber
   }
