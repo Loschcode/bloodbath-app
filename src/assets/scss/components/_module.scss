@@ -25,6 +25,11 @@
 
 .module__content {
   padding: 1em;
+
+  .--small {
+    font-size: 25px
+  }
+
 }
 
 .module__content-digits {
@@ -37,6 +42,7 @@
   text-align: center;
   font-size: 60px;
 }
+
 
 .module__footer {
   text-align: right;
