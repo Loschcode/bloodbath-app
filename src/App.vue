@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-
-    <!-- The header is specific to each section -->
     <div class="content">
       <connect-routing />
     </div>
@@ -21,6 +19,14 @@ export default {
   },
 
   created () {
+  },
+
+  metaInfo: {
+    title: 'CryptoScreen',
+    link: [
+      { rel: 'stylesheet', href: 'https://file.myfontastic.com/mLeXuFUMRFSYfxjxh5UTTd/icons.css' },
+      { rel: 'favicon', href: 'favicon.ico' }
+    ]
   },
 
   components: {

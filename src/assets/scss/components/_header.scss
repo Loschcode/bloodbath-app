@@ -3,6 +3,11 @@
   color: $header-text-color;
   padding-top: 1em;
   padding-bottom: 1em;
+
+  a {
+    text-decoration: none;
+    color: $header-text-color;
+  }
 }
 
 .header__title {
@@ -11,4 +16,10 @@
   h1 {
     font-weight: 300;
   }
+}
+
+.header__back {
+  font-size: 2.5em;
+  vertical-align: middle;
+  margin-top: 0.64em
 }

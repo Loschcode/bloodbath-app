@@ -1,13 +1,16 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import axios from 'axios'
 import App from './App'
+
 import router from './router'
+
 import _ from 'lodash'
 
+import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookie from 'vue-cookie'
+import VueMeta from 'vue-meta'
 
 // NOTE : to reset users or memory
 // just uncomment this line
@@ -29,12 +32,21 @@ Vue.axios.defaults.baseURL = 'http://localhost:8000'
 // VueCookie configuration
 Vue.use(VueCookie)
 
+// VueMeta
+Vue.use(VueMeta)
+
 // User configuration
 Vue.prototype.$user = {
   token () {
     return localStorage.getItem('token')
   }
 }
+
+// VueRouter
+// Vue.use(Router)
+
+// VueMeta
+// Vue.use(Meta)
 
 /* eslint-disable no-new */
 new Vue({

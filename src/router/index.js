@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Welcome from '@/components/Welcome'
+import Home from '@/components/Home'
 import Coin from '@/components/Coin'
 
 Vue.use(Router)
@@ -10,12 +10,13 @@ Vue.router = new Router({
 
     {
       path: '/',
-      name: 'Welcome',
-      component: Welcome
+      name: 'home',
+      component: Home
     },
 
     {
       path: '/coins/:coin',
+      name: 'coin',
       component: Coin,
       meta: {
         layout: 'layoutDefault'
