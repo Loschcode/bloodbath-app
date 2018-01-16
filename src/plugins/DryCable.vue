@@ -35,6 +35,7 @@ export default {
              */
             received (data) {
               if (data.action === 'show') {
+                console.log('received data ' + data[receivedModel])
                 scope[modelName] = data[receivedModel]
               }
             }

@@ -11,7 +11,7 @@
           </div>
           <div class="module__content">
 
-            <div class="module__content-digits">
+            <div class="module__content-digits --medium">
               <div v-if="marketCoin.price">
                 <animated-number :value="marketCoin.price" :type="`money`" />
               </div>
