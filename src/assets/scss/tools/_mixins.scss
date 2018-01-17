@@ -11,3 +11,9 @@
   -ms-border-radius: $radius $radius 0 0;
   border-radius: $radius $radius 0 0;
 }
+
+@mixin wrap-words {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

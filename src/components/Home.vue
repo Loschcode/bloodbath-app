@@ -40,15 +40,24 @@
 
       <div class="row">
         <div class="gr-12">
-          <div v-if="resultCoins.length > 0">
-            <div class="gr-3 gr-12@mobile" v-for="marketCoin in resultCoins">
-              <coin-preview :marketCoinProp="marketCoin" />
+          <div v-if="resultLoading">
+            <div class="search__loading">
+              Loading ...
             </div>
           </div>
           <div v-else>
-            <div class="search__no-result">
-              No result
+
+            <div v-if="resultCoins.length > 0">
+              <div class="gr-3 gr-12@mobile" v-for="marketCoin in resultCoins">
+                <coin-preview :marketCoinProp="marketCoin" />
+              </div>
             </div>
+            <div v-else>
+              <div class="search__no-result">
+                No result
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -88,7 +97,8 @@ export default {
   data () {
     return {
       topCoins: {},
-      resultCoins: false
+      resultCoins: false,
+      resultLoading: false
     }
   },
 
@@ -103,14 +113,20 @@ export default {
   methods: {
     searchCoins (event) {
       let query = event.target.value
+
       if (_.isEmpty(query)) {
         this.resultCoins = false
         return false
       }
+
+      this.resultCoins = {}
+      this.resultLoading = true
+
       this.$axios
       .get(`coins/search`, { params: { query: query } })
       .then(response => {
         this.resultCoins = response.data.market_coins
+        this.resultLoading = false
       })
       return true
     }

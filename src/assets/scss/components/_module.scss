@@ -12,6 +12,10 @@
   padding: 1em;
   text-align: center;
   @include border-radius-top(10px);
+  @include wrap-words;
+    h2 {
+      @include wrap-words;
+    }
 }
 
 .module__logo {

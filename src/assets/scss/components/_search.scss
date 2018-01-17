@@ -17,5 +17,13 @@
   margin-top: 2em;
   margin-bottom: 2em;
   font-size: 20px;
-  color: $header-background-color;
+  color: $loader-text-color;
+}
+
+.search__loading {
+  padding-left: 0.3em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 20px;
+  color: $loader-text-color;
 }
