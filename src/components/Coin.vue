@@ -161,7 +161,6 @@ export default {
   },
 
   destroyed () {
-    console.log('unsubscribe')
     this.$drycable.unsubscribe(this.channel)
   },
 

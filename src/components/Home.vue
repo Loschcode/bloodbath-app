@@ -8,6 +8,27 @@
       </div>
     </default-header>
 
+    <div class="section">
+
+    <!-- Trendy coins -->
+    <div class="row">
+      <div class="gr-12">
+        <div class="section__title">
+          Search
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="gr-12">
+        <div class="search">
+          <input autofocus type="text" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 
     <div class="section">
 

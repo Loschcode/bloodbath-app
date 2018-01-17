@@ -7,7 +7,7 @@
       <div class="gr-12 gr-12@mobile">
         <div class="module">
           <div class="module__title">
-            <h2>{{ marketCoin.name }}</h2>
+            <h2>{{ marketCoin.full_name }}</h2>
           </div>
           <div class="module__content">
 

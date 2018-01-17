@@ -1,4 +1,6 @@
 <script>
+import _ from 'lodash'
+
 export default {
   props: {
   },
@@ -6,7 +8,11 @@ export default {
   },
   methods: {
     throwError (error) {
-      console.warn(error.response.data)
+      if (_.isEmpty(error.response)) {
+        console.warn(error)
+      } else {
+        console.warn(error.response.data)
+      }
       return false
     }
   }
