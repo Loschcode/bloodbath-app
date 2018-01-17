@@ -141,7 +141,8 @@ export default {
       },
       coinTracking: {
       },
-      variation: 0.0
+      variation: 0.0,
+      channel: null
     }
   },
 
@@ -152,12 +153,16 @@ export default {
     .then(response => {
       this.marketCoin = response.data.market_coin
       this.coinTracking = response.data.coin_tracking
-
-      this.$drycable.subscribe(this, 'marketCoin')
+      this.channel = this.$drycable.subscribe(this, 'marketCoin')
     })
     .catch(e => {
       console.warn(e)
     })
+  },
+
+  destroyed () {
+    console.log('unsubscribe')
+    this.$drycable.unsubscribe(this.channel)
   },
 
   methods: {

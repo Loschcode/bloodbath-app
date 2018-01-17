@@ -50,12 +50,17 @@ export default {
 
   created () {
     this.marketCoin = this.marketCoinProp
-    this.$drycable.subscribe(this, 'marketCoin')
+    this.channel = this.$drycable.subscribe(this, 'marketCoin')
+  },
+
+  destroyed () {
+    this.$drycable.unsubscribe(this.channel)
   },
 
   data () {
     return {
-      marketCoin: {}
+      marketCoin: {},
+      channel: null
     }
   },
 
