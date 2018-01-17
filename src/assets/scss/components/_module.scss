@@ -18,6 +18,12 @@
     }
 }
 
+.module__title-favorite {
+  font-size: 27px;
+  color: $color-favorite-on;
+  opacity: 0.2;
+}
+
 .module__logo {
   background-color: $module-title-background-color;
   @include border-radius(10px);

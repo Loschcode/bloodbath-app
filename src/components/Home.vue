@@ -124,9 +124,7 @@ export default {
      */
     firstResultCoins (event) {
       if (_.size(this.resultCoins) > 0) {
-        // <router-link :to="{ name: 'coin', params: { coin: marketCoin.symbol } }">
         let firstCoin = this.resultCoins[0]
-
         this.$router.push({ name: 'coin', params: { coin: firstCoin.symbol } })
       }
     },

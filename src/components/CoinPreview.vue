@@ -7,7 +7,16 @@
       <div class="gr-12 gr-12@mobile">
         <div class="module">
           <div class="module__title">
-            <h2>{{ marketCoin.full_name }}</h2>
+            <div class="row">
+              <div class="gr-1">
+                <div class="module__title-favorite">
+                  <span class="icon-favorite"></span>
+                </div>
+              </div>
+              <div class="gr-11">
+                <h2>{{ marketCoin.full_name }}</h2>
+              </div>
+            </div>
           </div>
           <div class="module__content">
 
