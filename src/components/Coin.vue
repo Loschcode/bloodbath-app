@@ -130,6 +130,7 @@
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinHeader from '@/components/CoinHeader'
 import AnimatedNumber from '@/components/AnimatedNumber'
+import ThrowError from '@/mixins/ThrowError'
 import moment from 'moment'
 
 export default {
@@ -147,17 +148,16 @@ export default {
   },
 
   created () {
-    // var vm = this
     this.$axios
     .get(`coins/${this.$route.params.coin}`)
-    .then(response => {
-      this.marketCoin = response.data.market_coin
-      this.coinTracking = response.data.coin_tracking
-      this.channel = this.$drycable.subscribe(this, 'marketCoin')
-    })
-    .catch(e => {
-      console.warn(e)
-    })
+    .then(
+      (response) => {
+        this.marketCoin = response.data.market_coin
+        this.coinTracking = response.data.coin_tracking
+        this.channel = this.$drycable.subscribe(this, 'marketCoin')
+      },
+      this.throwError.bind(this)
+    )
   },
 
   destroyed () {
@@ -189,7 +189,11 @@ export default {
     DefaultHeader,
     CoinHeader,
     AnimatedNumber
-  }
+  },
+
+  mixins: [
+    ThrowError
+  ]
 
 }
 </script>

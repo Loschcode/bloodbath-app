@@ -5,8 +5,10 @@ import EventBus from '@/misc/event-bus.js'
 export default {
   props: {
   },
+
   mounted () {
   },
+
   methods: {
     throwError (error) {
       if (_.isEmpty(error.response)) {

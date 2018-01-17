@@ -10,7 +10,18 @@
             <div class="row">
               <div class="gr-1">
                 <div class="module__title-favorite">
-                  <span class="icon-favorite"></span>
+                  <!-- TODO : this should be abstracted as a component in itself -->
+                  <div v-if="coinTracking.favorite">
+                    <a href="">
+                      <span @click="removeFavorite" class="icon-favorite --on"></span>
+                    </a>
+                  </div>
+                  <div v-else>
+                    <a href="">
+                      <span @click="addFavorite" class="icon-favorite --off"></span>
+                    </a>
+                  </div>
+                  <!-- End of abstraction -->
                 </div>
               </div>
               <div class="gr-11">
@@ -51,6 +62,7 @@
 
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
+import ThrowError from '@/mixins/ThrowError'
 
 export default {
   props: [
@@ -60,6 +72,17 @@ export default {
   created () {
     this.marketCoin = this.marketCoinProp
     this.channel = this.$drycable.subscribe(this, 'marketCoin')
+
+    this.$axios
+    .get(`coins/${this.marketCoinProp.symbol}`)
+    .then(
+      (response) => {
+        // this.marketCoin = response.data.market_coin
+        this.coinTracking = response.data.coin_tracking
+        // this.channel = this.$drycable.subscribe(this, 'marketCoin')
+      },
+      this.throwError.bind(this)
+    )
   },
 
   destroyed () {
@@ -69,11 +92,40 @@ export default {
   data () {
     return {
       marketCoin: {},
+      coinTracking: {},
       channel: null
     }
   },
 
   methods: {
+    // TODO : improve that a lot
+    removeFavorite (event) {
+      event.preventDefault()
+
+      this.$axios
+      .patch(`coin_trackings/${this.coinTracking.id}`, { coin_tracking: { favorite: false } })
+      .then(
+        (response) => {
+          this.coinTracking = response.data.coin_tracking
+        },
+        this.throwError.bind(this)
+      )
+    },
+
+    // TODO : improve that a lot (like DRY it up and stuff)
+    addFavorite (event) {
+      event.preventDefault()
+
+      this.$axios
+      .patch(`coin_trackings/${this.coinTracking.id}`, { coin_tracking: { favorite: true } })
+      .then(
+        (response) => {
+          this.coinTracking = response.data.coin_tracking
+        },
+        this.throwError.bind(this)
+      )
+    },
+
     // this is a copy paste (for now) from Coin.vue
     rawVariation () {
       let digits = this.marketCoin.price / this.marketCoin.day_open - 1
@@ -87,6 +139,10 @@ export default {
 
   components: {
     AnimatedNumber
-  }
+  },
+
+  mixins: [
+    ThrowError
+  ]
 }
 </script>
