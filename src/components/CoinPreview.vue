@@ -8,24 +8,11 @@
         <div class="module">
           <div class="module__title">
             <div class="row">
-              <div class="gr-1">
-                <div class="module__title-favorite">
-                  <!-- TODO : this should be abstracted as a component in itself -->
-                  <div v-if="coinTracking.favorite">
-                    <a href="">
-                      <span @click="removeFavorite" class="icon-favorite --on"></span>
-                    </a>
-                  </div>
-                  <div v-else>
-                    <a href="">
-                      <span @click="addFavorite" class="icon-favorite --off"></span>
-                    </a>
-                  </div>
-                  <!-- End of abstraction -->
-                </div>
+              <div class="gr-2">
+                <coin-preview-favorite :coinTrackingProp="coinTracking" />
               </div>
-              <div class="gr-11">
-                <h2>{{ marketCoin.full_name }}</h2>
+              <div class="gr-10">
+                <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
               </div>
             </div>
           </div>
@@ -62,6 +49,7 @@
 
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
+import CoinPreviewFavorite from '@/components/CoinPreviewFavorite'
 import ThrowError from '@/mixins/ThrowError'
 
 export default {
@@ -129,7 +117,8 @@ export default {
   },
 
   components: {
-    AnimatedNumber
+    AnimatedNumber,
+    CoinPreviewFavorite
   },
 
   mixins: [

@@ -143,7 +143,7 @@ export default {
       this.$axios
       .get(`coins/search`, { params: { query: query } })
       .then(response => {
-        this.resultCoins = response.data.market_coins
+        this.resultCoins = response.data.result_coins
         this.resultLoading = false
       })
       return true
