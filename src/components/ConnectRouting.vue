@@ -1,13 +1,21 @@
 <template>
   <div class="connect-routing">
-    <div v-if="valid_token">
-      <router-view />
-    </div>
-
-    <div v-else>
-      <div class="loader">
-        Recovering history ...
+    <div v-if="error">
+      <div class="error">
+        {{ error }}
       </div>
+    </div>
+    <div v-else>
+
+      <div v-if="valid_token">
+        <router-view />
+      </div>
+      <div v-else>
+        <div class="loader">
+          Recovering history ...
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -18,16 +26,30 @@ import ActionCable from 'actioncable'
 import DryCable from '@/plugins/DryCable'
 import Vue from 'vue'
 import ThrowError from '@/mixins/ThrowError'
+import EventBus from '@/misc/event-bus.js'
 
 export default {
 
   data () {
     return {
-      valid_token: false
+      valid_token: false,
+      error: ''
     }
   },
 
   created () {
+    /**
+     * We put a listener to the errorEvent
+     */
+    EventBus.$on('errorEvent', error => {
+      if (error.message === 'Network Error') {
+        this.error = 'Network error, please refresh the page.'
+      }
+    })
+
+    /**
+     * We take care of the connection
+     */
     if (this.$user.token()) {
       this.connectAll(this.$user.token())
     } else {
