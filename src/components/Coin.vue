@@ -166,7 +166,7 @@ export default {
 
   methods: {
     solveDayOpenTime () {
-      let date = moment().startOf('day').fromNow()
+      let date = moment().subtract(24, 'hour').fromNow()
       return `From ${date}`
     },
 

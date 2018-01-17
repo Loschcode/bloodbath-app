@@ -59,26 +59,13 @@ new Vue({
     axios.interceptors.request.use((config) => {
       /**
        * if the token isn't already present we add it up to the system
+       * we also keep the other data by merging the objects
        */
-      if (!_.has(config, 'params.token')) {
-        config.params = {token: this.$user.token()}
-      }
+      config.params = _.merge({token: this.$user.token()}, config.params)
       return config
     })
 
     // axios.interceptors.response.use((response) => {
-    //   console.log(response.headers)
-    //   // Set user headers only if they are not blank.
-    //   // If DTA gets a lot of request quickly, it won't return headers for some requests
-    //   // so you need a way to keep headers in localStorage to gettting set to undefined
-    //   if (response.headers.client) {
-    //     localStorage.setItem('access-token', response.headers['access-token'])
-    //     localStorage.setItem('client', response.headers.client)
-    //     localStorage.setItem('uid', response.headers.uid)
-    //     localStorage.setItem('token-type', response.headers['token-type'])
-    //   }
-    //   // You have to return the response here or you won't have access to it
-    //   // later
     //   return response
     // })
   }
