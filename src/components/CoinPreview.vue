@@ -66,23 +66,14 @@ import ThrowError from '@/mixins/ThrowError'
 
 export default {
   props: [
-    'marketCoinProp'
+    'marketCoinProp',
+    'coinTrackingProp'
   ],
 
   created () {
     this.marketCoin = this.marketCoinProp
+    this.coinTracking = this.coinTrackingProp
     this.channel = this.$drycable.subscribe(this, 'marketCoin')
-
-    this.$axios
-    .get(`coins/${this.marketCoinProp.symbol}`)
-    .then(
-      (response) => {
-        // this.marketCoin = response.data.market_coin
-        this.coinTracking = response.data.coin_tracking
-        // this.channel = this.$drycable.subscribe(this, 'marketCoin')
-      },
-      this.throwError.bind(this)
-    )
   },
 
   destroyed () {

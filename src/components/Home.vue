@@ -48,8 +48,8 @@
           <div v-else>
 
             <div v-if="resultCoins.length > 0">
-              <div class="gr-3 gr-12@mobile" v-for="marketCoin in resultCoins">
-                <coin-preview :marketCoinProp="marketCoin" />
+              <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
+                <coin-preview :marketCoinProp="resultCoin.market_coin" :coinTrackingProp="resultCoin.coin_tracking" />
               </div>
             </div>
             <div v-else>
@@ -78,8 +78,8 @@
     </div>
 
     <div class="row">
-      <div class="gr-3 gr-12@mobile" v-for="marketCoin in topCoins">
-        <coin-preview :marketCoinProp="marketCoin" />
+      <div class="gr-3 gr-12@mobile" v-for="topCoin in topCoins">
+        <coin-preview :marketCoinProp="topCoin.market_coin" :coinTrackingProp="topCoin.coin_tracking" />
       </div>
     </div>
 
@@ -106,7 +106,7 @@ export default {
     this.$axios
     .get(`coins/top`)
     .then(response => {
-      this.topCoins = response.data.market_coins
+      this.topCoins = response.data.top_coins
     })
   },
 
