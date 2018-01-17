@@ -125,7 +125,7 @@ export default {
     firstResultCoins (event) {
       if (_.size(this.resultCoins) > 0) {
         let firstCoin = this.resultCoins[0]
-        this.$router.push({ name: 'coin', params: { coin: firstCoin.symbol } })
+        this.$router.push({ name: 'coin', params: { coin: firstCoin.market_coin.symbol } })
       }
     },
 
