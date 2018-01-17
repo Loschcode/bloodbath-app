@@ -140,7 +140,7 @@ export default {
         market_cap: 0.0,
         price: 0.0
       },
-      coinTracking: {
+      userMarketCoin: {
       },
       variation: 0.0,
       channel: null
@@ -153,7 +153,7 @@ export default {
     .then(
       (response) => {
         this.marketCoin = response.data.market_coin
-        this.coinTracking = response.data.coin_tracking
+        this.userMarketCoin = response.data.user_market_coin
         this.channel = this.$drycable.subscribe(this, 'marketCoin')
       },
       this.throwError.bind(this)

@@ -49,7 +49,7 @@
 
             <div v-if="resultCoins.length > 0">
               <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
-                <coin-preview :marketCoinProp="resultCoin.market_coin" :coinTrackingProp="resultCoin.coin_tracking" />
+                <coin-preview :marketCoinProp="resultCoin.market_coin" :userMarketCoinProp="resultCoin.user_market_coin" />
               </div>
             </div>
             <div v-else>
@@ -79,7 +79,7 @@
 
     <div class="row">
       <div class="gr-3 gr-12@mobile" v-for="topCoin in topCoins">
-        <coin-preview :marketCoinProp="topCoin.market_coin" :coinTrackingProp="topCoin.coin_tracking" />
+        <coin-preview :marketCoinProp="topCoin.market_coin" :userMarketCoinProp="topCoin.user_market_coin" />
       </div>
     </div>
 

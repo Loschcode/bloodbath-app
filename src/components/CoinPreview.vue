@@ -9,7 +9,7 @@
           <div class="module__title">
             <div class="row">
               <div class="gr-2">
-                <coin-preview-favorite :coinTrackingProp="coinTracking" />
+                <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
               </div>
               <div class="gr-10">
                 <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
@@ -55,12 +55,12 @@ import ThrowError from '@/mixins/ThrowError'
 export default {
   props: [
     'marketCoinProp',
-    'coinTrackingProp'
+    'userMarketCoinProp'
   ],
 
   created () {
     this.marketCoin = this.marketCoinProp
-    this.coinTracking = this.coinTrackingProp
+    this.userMarketCoin = this.userMarketCoinProp
     this.channel = this.$drycable.subscribe(this, 'marketCoin')
   },
 
@@ -71,7 +71,7 @@ export default {
   data () {
     return {
       marketCoin: {},
-      coinTracking: {},
+      userMarketCoin: {},
       channel: null
     }
   },
@@ -82,10 +82,10 @@ export default {
       event.preventDefault()
 
       this.$axios
-      .patch(`coin_trackings/${this.coinTracking.id}`, { coin_tracking: { favorite: false } })
+      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: false } })
       .then(
         (response) => {
-          this.coinTracking = response.data.coin_tracking
+          this.userMarketCoin = response.data.user_market_coin
         },
         this.throwError.bind(this)
       )
@@ -96,10 +96,10 @@ export default {
       event.preventDefault()
 
       this.$axios
-      .patch(`coin_trackings/${this.coinTracking.id}`, { coin_tracking: { favorite: true } })
+      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: true } })
       .then(
         (response) => {
-          this.coinTracking = response.data.coin_tracking
+          this.userMarketCoin = response.data.user_market_coin
         },
         this.throwError.bind(this)
       )

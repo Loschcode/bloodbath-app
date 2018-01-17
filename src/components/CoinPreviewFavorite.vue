@@ -1,7 +1,7 @@
 <template>
   <div class="coin-preview-favorite">
     <div class="module__title-left">
-      <div v-if="coinTracking.favorite">
+      <div v-if="userMarketCoin.favorite">
         <a @click="removeFavorite">
           <span class="icon-favorite --on"></span>
         </a>
@@ -20,16 +20,16 @@ import ThrowError from '@/mixins/ThrowError'
 
 export default {
   props: [
-    'coinTrackingProp'
+    'userMarketCoinProp'
   ],
 
   created () {
-    this.coinTracking = this.coinTrackingProp
+    this.userMarketCoin = this.userMarketCoinProp
   },
 
   data () {
     return {
-      coinTracking: {}
+      userMarketCoin: {}
     }
   },
 
@@ -39,10 +39,10 @@ export default {
       event.preventDefault()
 
       this.$axios
-      .patch(`coin_trackings/${this.coinTracking.id}`, { coin_tracking: { favorite: false } })
+      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: false } })
       .then(
         (response) => {
-          this.coinTracking = response.data.coin_tracking
+          this.userMarketCoin = response.data.user_market_coin
         },
         this.throwError.bind(this)
       )
@@ -53,10 +53,10 @@ export default {
       event.preventDefault()
 
       this.$axios
-      .patch(`coin_trackings/${this.coinTracking.id}`, { coin_tracking: { favorite: true } })
+      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: true } })
       .then(
         (response) => {
-          this.coinTracking = response.data.coin_tracking
+          this.userMarketCoin = response.data.user_market_coin
         },
         this.throwError.bind(this)
       )
