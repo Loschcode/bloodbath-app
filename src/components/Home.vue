@@ -22,7 +22,7 @@
     <div class="row">
       <div class="gr-12">
         <div class="search">
-          <input autofocus type="text" v-on:keyup="searchCoins" />
+          <input type="text" ref="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" />
         </div>
       </div>
     </div>
@@ -110,7 +110,27 @@ export default {
     })
   },
 
+  mounted () {
+    /**
+     * We auto-focus the search area
+     */
+    this.$refs.search.focus()
+  },
+
   methods: {
+    /**
+     * When we press enter we can quick re-route
+     * to the first result if there is one
+     */
+    firstResultCoins (event) {
+      if (_.size(this.resultCoins) > 0) {
+        // <router-link :to="{ name: 'coin', params: { coin: marketCoin.symbol } }">
+        let firstCoin = this.resultCoins[0]
+
+        this.$router.push({ name: 'coin', params: { coin: firstCoin.symbol } })
+      }
+    },
+
     searchCoins (event) {
       let query = event.target.value
 

@@ -38,6 +38,19 @@ export default {
   },
 
   created () {
+    // NOTE : we don't use that as it makes more issues than anything else in the system
+    // var vm = this
+    // const keyBack = 8
+    // window.addEventListener('keyup', function (event) {
+    //   // if you press the back key
+    //   if (event.keyCode === keyBack) {
+    //     // if we don't have the focus on any specific element on the page
+    //     if (document.activeElement.tagName.toLowerCase() === 'body') {
+    //       vm.$router.go('/')
+    //     }
+    //   }
+    // })
+
     /**
      * We put a listener to the errorEvent
      */
