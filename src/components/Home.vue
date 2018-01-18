@@ -12,7 +12,7 @@
     <search-coins />
 
     <!-- Favorites Coins -->
-    <div v-if="favoriteCoins != {}">
+    <div v-if="Object.keys(favoriteCoins).length">
       <div class="section">
         <div class="row">
           <div class="gr-12">
