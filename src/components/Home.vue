@@ -66,13 +66,13 @@ export default {
   },
 
   created () {
-    var vm = this
+    // var vm = this
     this.fetchFavoriteCoins()
     this.fetchTopCoins()
 
-    EventBus.$on('reloadFavoriteCoins', function (event) {
-      vm.fetchFavoriteCoins()
-    })
+    // EventBus.$on('reloadFavoriteCoins', function (event) {
+    //   vm.fetchFavoriteCoins()
+    // })
   },
 
   mounted () {
