@@ -77,34 +77,6 @@ export default {
   },
 
   methods: {
-    // TODO : improve that a lot
-    removeFavorite (event) {
-      event.preventDefault()
-
-      this.$axios
-      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: false } })
-      .then(
-        (response) => {
-          this.userMarketCoin = response.data.user_market_coin
-        },
-        this.throwError.bind(this)
-      )
-    },
-
-    // TODO : improve that a lot (like DRY it up and stuff)
-    addFavorite (event) {
-      event.preventDefault()
-
-      this.$axios
-      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: true } })
-      .then(
-        (response) => {
-          this.userMarketCoin = response.data.user_market_coin
-        },
-        this.throwError.bind(this)
-      )
-    },
-
     // this is a copy paste (for now) from Coin.vue
     rawVariation () {
       let digits = this.marketCoin.price / this.marketCoin.day_open - 1
