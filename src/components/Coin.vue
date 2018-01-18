@@ -149,7 +149,7 @@ export default {
 
   created () {
     this.$axios
-    .get(`coins/${this.$route.params.coin}`)
+    .get(`coins/${this.$route.params.coinName}`)
     .then(
       (response) => {
         this.marketCoin = response.data.market_coin

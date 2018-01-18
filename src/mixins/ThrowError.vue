@@ -1,6 +1,6 @@
 <script>
 import _ from 'lodash'
-import EventBus from '@/misc/event-bus.js'
+import EventBus from '@/misc/EventBus'
 
 export default {
   props: {

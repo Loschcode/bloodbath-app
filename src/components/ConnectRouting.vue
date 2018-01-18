@@ -26,7 +26,7 @@ import ActionCable from 'actioncable'
 import DryCable from '@/plugins/DryCable'
 import Vue from 'vue'
 import ThrowError from '@/mixins/ThrowError'
-import EventBus from '@/misc/event-bus.js'
+import EventBus from '@/misc/EventBus'
 
 export default {
 

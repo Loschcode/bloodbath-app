@@ -1,7 +1,7 @@
 <template>
   <div class="coin-preview">
 
-    <router-link :to="{ name: 'coin', params: { coin: marketCoin.symbol } }">
+    <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
 
       <!-- Base Price -->
       <div class="gr-12 gr-12@mobile">

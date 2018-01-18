@@ -17,6 +17,7 @@
 
 <script>
 import ThrowError from '@/mixins/ThrowError'
+import EventBus from '@/misc/EventBus'
 
 export default {
   props: [
@@ -24,7 +25,17 @@ export default {
   ],
 
   created () {
+    var vm = this
     this.userMarketCoin = this.userMarketCoinProp
+
+    EventBus.$on(`userMarketCoin-${this.userMarketCoin.id}`, function (userMarketCoin) {
+      console.log('listening')
+      vm.userMarketCoin = userMarketCoin
+    })
+  },
+
+  destroyed () {
+    EventBus.$off(`userMarketCoin-${this.userMarketCoin.id}`)
   },
 
   data () {
@@ -43,6 +54,8 @@ export default {
       .then(
         (response) => {
           this.userMarketCoin = response.data.user_market_coin
+          EventBus.$emit('reloadFavoriteCoins')
+          EventBus.$emit(`userMarketCoin-${this.userMarketCoin.id}`, this.userMarketCoin)
         },
         this.throwError.bind(this)
       )
@@ -57,6 +70,8 @@ export default {
       .then(
         (response) => {
           this.userMarketCoin = response.data.user_market_coin
+          EventBus.$emit('reloadFavoriteCoins')
+          EventBus.$emit(`userMarketCoin-${this.userMarketCoin.id}`, this.userMarketCoin)
         },
         this.throwError.bind(this)
       )
@@ -64,6 +79,7 @@ export default {
   },
 
   components: {
+    EventBus
   },
 
   mixins: [

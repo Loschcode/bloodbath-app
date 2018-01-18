@@ -15,7 +15,7 @@ Vue.router = new Router({
     },
 
     {
-      path: '/coins/:coin',
+      path: '/coins/:coinName',
       name: 'coin',
       component: Coin,
       meta: {
