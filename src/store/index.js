@@ -26,10 +26,8 @@ export default new Vuex.Store({
       console.log('we will change the data of user market coin')
       let current = state.userMarketCoins.find(entry => entry.id === userMarketCoin.id)
       if (_.isUndefined(current)) {
-        // create
         state.userMarketCoins.push(userMarketCoin)
       } else {
-        // update
         state.userMarketCoins.splice(current, 0, userMarketCoin)
       }
     }
