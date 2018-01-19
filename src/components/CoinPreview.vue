@@ -64,6 +64,16 @@ export default {
     this.channel = this.$drycable.subscribe(this, 'marketCoin')
   },
 
+  // TODO : dry this up
+  watch: {
+    marketCoinProp: function (newValue, oldValue) {
+      this.marketCoin = this.marketCoinProp
+    },
+    userMarketCoinProp: function (newValue, oldValue) {
+      this.userMarketCoin = this.userMarketCoinProp
+    }
+  },
+
   destroyed () {
     this.$drycable.unsubscribe(this.channel)
   },
