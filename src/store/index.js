@@ -10,7 +10,7 @@ export default new Vuex.Store({
   state: {
     favoriteCoins: [],
     topCoins: [],
-    userMarketCoins: [{}]
+    userMarketCoins: []
   },
 
   mutations: {
@@ -30,8 +30,7 @@ export default new Vuex.Store({
         state.userMarketCoins.push(userMarketCoin)
       } else {
         // update
-        let index = state.userMarketCoins.indexOf(current)
-        state.userMarketCoins[index] = userMarketCoin
+        state.userMarketCoins.splice(current, 0, userMarketCoin)
       }
     }
   },
@@ -71,8 +70,5 @@ export default new Vuex.Store({
     getFavoriteCoins: (state) => state.favoriteCoins,
     getTopCoins: (state) => state.topCoins,
     getUserMarketCoins: (state) => state.userMarketCoins
-  },
-
-  mixins: [
-  ]
+  }
 })

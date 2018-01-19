@@ -1,7 +1,6 @@
 <template>
   <div class="coin-preview-favorite">
     <div v-if="userMarketCoin">
-      {{ userMarketCoin.id }}
       <div class="module__title-left">
         <div v-if="userMarketCoin.favorite">
           <a @click="removeFavorite">
@@ -50,7 +49,6 @@ export default {
 
   computed: {
     userMarketCoin () {
-      console.log(this.userMarketCoinProp.id)
       return this.$store.getters.getUserMarketCoins.find((item) => item.id === this.userMarketCoinProp.id)
     }
   },
