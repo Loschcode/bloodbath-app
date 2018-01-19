@@ -48,8 +48,7 @@ export default {
       .then(
         (response) => {
           this.userMarketCoin = response.data.user_market_coin
-          // EventBus.$emit('reloadFavoriteCoins')
-          // EventBus.$emit(`userMarketCoin-${this.userMarketCoin.id}`, this.userMarketCoin)
+          this.$store.dispatch('fetchFavoriteCoins')
         },
         this.throwError.bind(this)
       )
@@ -64,8 +63,7 @@ export default {
       .then(
         (response) => {
           this.userMarketCoin = response.data.user_market_coin
-          // EventBus.$emit('reloadFavoriteCoins')
-          // EventBus.$emit(`userMarketCoin-${this.userMarketCoin.id}`, this.userMarketCoin)
+          this.$store.dispatch('fetchFavoriteCoins')
         },
         this.throwError.bind(this)
       )

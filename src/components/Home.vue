@@ -54,25 +54,32 @@
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
-
 import EventBus from '@/misc/EventBus'
+
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
-      topCoins: {},
-      favoriteCoins: {}
+      topCoins: []
     }
   },
 
   created () {
-    // var vm = this
     this.fetchFavoriteCoins()
     this.fetchTopCoins()
+  },
 
-    // EventBus.$on('reloadFavoriteCoins', function (event) {
-    //   vm.fetchFavoriteCoins()
-    // })
+  computed: {
+    ...mapGetters({
+      favoriteCoins: 'getFavoriteCoins'
+    })
+  },
+
+  watch: {
+    favoriteCoins (newValue, oldValue) {
+      console.log('yo')
+    }
   },
 
   mounted () {
@@ -80,11 +87,7 @@ export default {
 
   methods: {
     fetchFavoriteCoins () {
-      this.$axios
-      .get(`coins/favorite`)
-      .then(response => {
-        this.favoriteCoins = response.data.favorite_coins
-      })
+      this.$store.dispatch('fetchFavoriteCoins')
     },
 
     fetchTopCoins () {
