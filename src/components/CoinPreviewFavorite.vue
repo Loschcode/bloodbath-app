@@ -2,7 +2,7 @@
   <div class="coin-preview-favorite">
     <div v-if="userMarketCoin">
       <div class="module__title-left">
-        <div v-if="userMarketCoin.favorite">
+        <div v-if="userMarketCoin.favorited_at">
           <a @click="removeFavorite">
             <span class="icon-favorite --on"></span>
           </a>
@@ -38,12 +38,12 @@ export default {
   methods: {
     removeFavorite (event) {
       event.preventDefault()
-      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorite: false } })
+      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: null } })
     },
 
     addFavorite (event) {
       event.preventDefault()
-      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorite: true } })
+      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: true } })
     }
   },
 
