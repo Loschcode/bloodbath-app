@@ -61,42 +61,25 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      topCoins: []
     }
   },
 
   created () {
-    this.fetchFavoriteCoins()
-    this.fetchTopCoins()
+    this.$store.dispatch('fetchFavoriteCoins')
+    this.$store.dispatch('fetchTopCoins')
   },
 
   computed: {
     ...mapGetters({
-      favoriteCoins: 'getFavoriteCoins'
+      favoriteCoins: 'getFavoriteCoins',
+      topCoins: 'getTopCoins'
     })
-  },
-
-  watch: {
-    favoriteCoins (newValue, oldValue) {
-      console.log('yo')
-    }
   },
 
   mounted () {
   },
 
   methods: {
-    fetchFavoriteCoins () {
-      this.$store.dispatch('fetchFavoriteCoins')
-    },
-
-    fetchTopCoins () {
-      this.$axios
-      .get(`coins/top`)
-      .then(response => {
-        this.topCoins = response.data.top_coins
-      })
-    }
   },
 
   components: {

@@ -7,12 +7,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    favoriteCoins: []
+    favoriteCoins: [],
+    topCoins: []
   },
 
   mutations: {
     setFavoriteCoins (state, favoriteCoins) {
       state.favoriteCoins = favoriteCoins
+    },
+
+    setTopCoins (state, topCoins) {
+      state.topCoins = topCoins
     }
   },
 
@@ -23,10 +28,19 @@ export default new Vuex.Store({
       .then(response => {
         context.commit('setFavoriteCoins', response.data.favorite_coins)
       })
+    },
+
+    fetchTopCoins (context) {
+      axios
+      .get(`coins/top`)
+      .then(response => {
+        context.commit('setTopCoins', response.data.top_coins)
+      })
     }
   },
 
   getters: {
-    getFavoriteCoins: (state) => state.favoriteCoins
+    getFavoriteCoins: (state) => state.favoriteCoins,
+    getTopCoins: (state) => state.topCoins
   }
 })
