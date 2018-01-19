@@ -9,7 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     favoriteCoins: [],
-    topCoins: []
+    topCoins: [],
+    userMarketCoins: [{}]
   },
 
   mutations: {
@@ -19,20 +20,39 @@ export default new Vuex.Store({
 
     setTopCoins (state, topCoins) {
       state.topCoins = topCoins
+    },
+
+    setUserMarketCoin (state, userMarketCoin) {
+      console.log('we will change the data of user market coin')
+      let current = state.userMarketCoins.find(entry => entry.id === userMarketCoin.id)
+      if (_.isUndefined(current)) {
+        // create
+        state.userMarketCoins.push(userMarketCoin)
+      } else {
+        // update
+        let index = state.userMarketCoins.indexOf(current)
+        state.userMarketCoins[index] = userMarketCoin
+      }
     }
   },
 
   actions: {
+    updateUserMarketCoin (context, params) {
+      axios
+      .patch(`user_market_coins/${params.id}`, { user_market_coin: params.changeset })
+      .then(
+        (response) => {
+          console.log(response.data.user_market_coin)
+          context.commit('setUserMarketCoin', response.data.user_market_coin)
+          context.dispatch('fetchFavoriteCoins')
+        }
+      )
+    },
+
     fetchFavoriteCoins (context) {
       axios
       .get(`coins/favorite`)
       .then(response => {
-        let mc = _.map(response.data.favorite_coins, 'market_coin')
-        console.log(_.map(mc, 'symbol'))
-
-        let uc = _.map(response.data.favorite_coins, 'user_market_coin')
-        console.log(_.map(uc, 'id'))
-
         context.commit('setFavoriteCoins', response.data.favorite_coins)
       })
     },
@@ -49,6 +69,10 @@ export default new Vuex.Store({
 
   getters: {
     getFavoriteCoins: (state) => state.favoriteCoins,
-    getTopCoins: (state) => state.topCoins
-  }
+    getTopCoins: (state) => state.topCoins,
+    getUserMarketCoins: (state) => state.userMarketCoins
+  },
+
+  mixins: [
+  ]
 })

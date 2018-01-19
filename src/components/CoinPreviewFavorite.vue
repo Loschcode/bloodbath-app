@@ -1,15 +1,18 @@
 <template>
   <div class="coin-preview-favorite">
-    <div class="module__title-left">
-      <div v-if="userMarketCoin.favorite">
-        <a @click="removeFavorite">
-          <span class="icon-favorite --on"></span>
-        </a>
-      </div>
-      <div v-else>
-        <a @click="addFavorite">
-          <span class="icon-favorite --off"></span>
-        </a>
+    <div v-if="userMarketCoin">
+      {{ userMarketCoin.id }}
+      <div class="module__title-left">
+        <div v-if="userMarketCoin.favorite">
+          <a @click="removeFavorite">
+            <span class="icon-favorite --on"></span>
+          </a>
+        </div>
+        <div v-else>
+          <a @click="addFavorite">
+            <span class="icon-favorite --off"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -25,48 +28,30 @@ export default {
   ],
 
   created () {
-    this.userMarketCoin = this.userMarketCoinProp
-  },
-
-  destroyed () {
-    // EventBus.$off(`userMarketCoin-${this.userMarketCoin.id}`)
+    this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
   },
 
   data () {
     return {
-      userMarketCoin: {}
     }
   },
 
   methods: {
-    // TODO : improve that a lot
     removeFavorite (event) {
       event.preventDefault()
-
-      this.$axios
-      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: false } })
-      .then(
-        (response) => {
-          this.userMarketCoin = response.data.user_market_coin
-          this.$store.dispatch('fetchFavoriteCoins')
-        },
-        this.throwError.bind(this)
-      )
+      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorite: false } })
     },
 
-    // TODO : improve that a lot (like DRY it up and stuff)
     addFavorite (event) {
       event.preventDefault()
+      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorite: true } })
+    }
+  },
 
-      this.$axios
-      .patch(`user_market_coins/${this.userMarketCoin.id}`, { user_market_coin: { favorite: true } })
-      .then(
-        (response) => {
-          this.userMarketCoin = response.data.user_market_coin
-          this.$store.dispatch('fetchFavoriteCoins')
-        },
-        this.throwError.bind(this)
-      )
+  computed: {
+    userMarketCoin () {
+      console.log(this.userMarketCoinProp.id)
+      return this.$store.getters.getUserMarketCoins.find((item) => item.id === this.userMarketCoinProp.id)
     }
   },
 
