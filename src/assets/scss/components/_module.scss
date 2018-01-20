@@ -8,6 +8,8 @@
 
 .module__title {
   background-color: $module-title-background-color;
+  background-image: $circuit-board-pattern-on-white;
+  border-bottom: 2px solid $module-border-color;
   color: $module-title-color;
   padding: 1em;
   text-align: left;
@@ -49,7 +51,7 @@
 
 .module__content {
   padding: 1em;
-
+  background-color: $main-background-color;
 
   .--small {
     font-size: 25px;

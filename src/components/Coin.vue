@@ -2,7 +2,9 @@
   <div class="coin">
     <default-header>
       <div slot="center">
-        <coin-header :marketCoin="marketCoin" />
+        <div class="header__title">
+          <coin-header :marketCoin="marketCoin" />
+        </div>
       </div>
     </default-header>
 

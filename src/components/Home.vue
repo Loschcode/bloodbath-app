@@ -2,9 +2,25 @@
   <div class="home">
     <default-header>
       <div slot="left">
+        <div class="header__left-title">
+          <h1>CryptoScreen</h1>
+        </div>
       </div>
       <div slot="center">
-        <h1>CryptoScreen</h1>
+        <div class="header__center-menu">
+          <div class="row">
+            <div class="gr-2 gr-12@mobile">
+              <a href="#">
+                Coins
+              </a>
+            </div>
+            <div class="gr-2 gr-12@mobile">
+              <a href="#">
+                Portfolio
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </default-header>
 

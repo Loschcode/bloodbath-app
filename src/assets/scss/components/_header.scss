@@ -18,6 +18,27 @@
   }
 }
 
+.header__left-title {
+  text-transform: uppercase;
+  text-align: left;
+  margin-left: 0.7em;
+  h1 {
+    font-weight: 300;
+  }
+}
+
+.header__center-menu {
+  text-align: left;
+  margin-top: 1.8em;
+  text-transform: uppercase;
+  font-size: 18px;
+  a {
+    border-bottom: 1px solid $header-text-color;
+    display: initial;
+    padding-bottom: 0.2em;
+  }
+}
+
 .header__back {
   font-size: 2.5em;
   vertical-align: middle;

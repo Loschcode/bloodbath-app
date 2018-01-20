@@ -1,6 +1,6 @@
 <template>
   <div class="row row-full header">
-    <div class="gr-4 gr-2@mobile">
+    <div class="gr-3 gr-4@tablet gr-12@mobile">
       <slot name="left">
         <!-- By default we have a go back link -->
         <div class="header__back">
@@ -10,14 +10,10 @@
         </div>
       </slot>
     </div>
-    <div class="gr-4 gr-8@mobile">
-      <!-- Any title -->
-      <div class="header__title">
-        <slot name="center"></slot>
-      </div>
+    <div class="gr-6 gr-8@mobile">
+      <slot name="center"></slot>
     </div>
-    <div class="gr-4 gr-2@mobile">
-      <!-- Nothing yet -->
+    <div class="gr-3 gr-2@mobile">
       <slot name="right"></slot>
     </div>
   </div>
