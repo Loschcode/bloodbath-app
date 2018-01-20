@@ -3,7 +3,18 @@
   color: $footer-text-color;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  min-height: 50px;
-  border-top: 2px solid $footer-border-color;
+  min-height: 8vh;
+  border-top: 3px solid $footer-border-color;
   position: fixed;
+  top: 92%;
+  text-align: center;
+}
+
+.footer__title {
+  text-transform: uppercase;
+  margin-top: 0.5em;
+}
+
+.footer__content {
+
 }
