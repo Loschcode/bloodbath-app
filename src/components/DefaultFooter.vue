@@ -1,5 +1,7 @@
 <template>
-  <div class="row row-full footer">
+  <div>
+    <div class="row row-full footer-placeholder"></div>
+    <div class="row row-full footer">
       <div class="gr-4">
         <div class="footer__title">Coins</div>
         <div class="footer__content">$10,000 BTC</div>
@@ -14,6 +16,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
