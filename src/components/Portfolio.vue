@@ -2,12 +2,11 @@
   <div class="coins">
     <default-header>
       <div slot="left">
-        <div class="header__left-title">
-          <h1>Portfolio</h1>
-        </div>
       </div>
       <div slot="center">
-        <main-menu />
+        <div class="header__title">
+          <h1>Portfolio</h1>
+        </div>
       </div>
     </default-header>
 

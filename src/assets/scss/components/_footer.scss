@@ -6,6 +6,11 @@
   border-top: 3px solid $footer-border-color;
   position: fixed;
   text-align: center;
+  a {
+    text-decoration: none;
+    display: block;
+  }
+
 }
 
 .footer__right-border {
@@ -18,9 +23,16 @@
 
 .footer__title {
   text-transform: uppercase;
-  margin-top: 0.5em;
+  padding-top: 0.5em;
+  font-weight: 200;
 }
 
 .footer__content {
   @include wrap-words;
+  font-size: 18px;
+  padding-bottom: 0.5em;
+  font-weight: 400;
+}
+
+.footer__content-digits {
 }
