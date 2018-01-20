@@ -2,12 +2,13 @@
   <div class="coins">
     <default-header>
       <div slot="left">
-        <div class="header__left-title">
+      </div>
+      <div slot="center">
+        <div class="header__title">
           <h1>CryptoScreen</h1>
         </div>
       </div>
-      <div slot="center">
-        <main-menu />
+      <div slot="right">
       </div>
     </default-header>
 
@@ -55,7 +56,6 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
-import MainMenu from '@/components/MainMenu'
 import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
@@ -88,7 +88,6 @@ export default {
 
   components: {
     DefaultHeader,
-    MainMenu,
     CoinPreview,
     SearchCoins,
     EventBus

@@ -8,9 +8,9 @@
           </router-link>
         </div>
         <div class="gr-2 gr-12@mobile">
-          <a href="#">
+          <router-link :to="{ name: 'portfolio' }">
             Portfolio
-          </a>
+          </router-link>
         </div>
       </div>
     </div>

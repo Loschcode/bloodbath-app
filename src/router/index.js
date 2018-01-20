@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Coins from '@/components/Coins'
 import Coin from '@/components/Coin'
+import Portfolio from '@/components/Portfolio'
 
 Vue.use(Router)
 
@@ -17,6 +18,12 @@ Vue.router = new Router({
       path: '/coins',
       name: 'coins',
       component: Coins
+    },
+
+    {
+      path: '/portfolio',
+      name: 'portfolio',
+      component: Portfolio
     },
 
     {
