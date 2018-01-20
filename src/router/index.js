@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+import Coins from '@/components/Coins'
 import Coin from '@/components/Coin'
 
 Vue.use(Router)
@@ -10,8 +10,13 @@ Vue.router = new Router({
 
     {
       path: '/',
-      name: 'home',
-      component: Home
+      redirect: { name: 'coins' }
+    },
+
+    {
+      path: '/coins',
+      name: 'coins',
+      component: Coins
     },
 
     {

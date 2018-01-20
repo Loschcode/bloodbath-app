@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="coins">
     <default-header>
       <div slot="left">
         <div class="header__left-title">
@@ -7,20 +7,7 @@
         </div>
       </div>
       <div slot="center">
-        <div class="header__center-menu">
-          <div class="row">
-            <div class="gr-2 gr-12@mobile">
-              <a href="#">
-                Coins
-              </a>
-            </div>
-            <div class="gr-2 gr-12@mobile">
-              <a href="#">
-                Portfolio
-              </a>
-            </div>
-          </div>
-        </div>
+        <main-menu />
       </div>
     </default-header>
 
@@ -68,6 +55,7 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
+import MainMenu from '@/components/MainMenu'
 import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
@@ -100,6 +88,7 @@ export default {
 
   components: {
     DefaultHeader,
+    MainMenu,
     CoinPreview,
     SearchCoins,
     EventBus
