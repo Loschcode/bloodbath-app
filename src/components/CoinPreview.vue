@@ -58,6 +58,14 @@ export default {
     'userMarketCoinProp'
   ],
 
+  data () {
+    return {
+      marketCoin: {},
+      userMarketCoin: {},
+      channel: null
+    }
+  },
+
   created () {
     this.marketCoin = this.marketCoinProp
     this.userMarketCoin = this.userMarketCoinProp
@@ -79,14 +87,6 @@ export default {
 
   destroyed () {
     this.$drycable.unsubscribe(this.channel)
-  },
-
-  data () {
-    return {
-      marketCoin: {},
-      userMarketCoin: {},
-      channel: null
-    }
   },
 
   methods: {

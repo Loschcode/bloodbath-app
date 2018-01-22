@@ -3,8 +3,6 @@ import _ from 'lodash'
 
 // initial state
 const state = {
-  currentChannels: [],
-
   marketCoins: [],
   favoriteCoins: [],
   topCoins: []
@@ -20,7 +18,6 @@ const getters = {
 
 // actions
 const actions = {
-
   fetchMarketCoin (context, params) {
     return new Promise((resolve, reject) => {
       axios

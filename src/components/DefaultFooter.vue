@@ -48,6 +48,7 @@ import animatedNumber from '@/components/AnimatedNumber'
 export default {
   data () {
     return {
+      channel: null
     }
   },
 

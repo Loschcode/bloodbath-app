@@ -133,8 +133,7 @@ export default {
     return {
       marketCoinId: null,
       userMarketCoinId: null,
-      variation: 0.0,
-      channel: null
+      variation: 0.0
     }
   },
 
