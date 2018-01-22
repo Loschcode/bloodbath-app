@@ -48,7 +48,16 @@ import animatedNumber from '@/components/AnimatedNumber'
 export default {
   data () {
     return {
-      defaultMarketCoin: false
+    }
+  },
+
+  created () {
+    this.$store.dispatch('fetchMarketCoin', { id: this.$user.data().user_setting.default_market_coin_id })
+  },
+
+  computed: {
+    defaultMarketCoin () {
+      return this.$store.getters.getMarketCoin(this.$user.data().user_setting.default_market_coin_id)
     }
   },
 

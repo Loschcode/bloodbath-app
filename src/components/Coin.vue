@@ -141,7 +141,7 @@ export default {
   created () {
     var vm = this
     this.$store
-    .dispatch('fetchMarketCoin', { name: this.$route.params.coinName })
+    .dispatch('fetchMarketCoin', { id: this.$route.params.coinName })
     .then((response) => {
       /**
        * Once we get the response from the server we can set the IDs
