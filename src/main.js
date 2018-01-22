@@ -16,7 +16,7 @@ import User from '@/plugins/User'
 
 // NOTE : to reset users or memory
 // just uncomment this line
-localStorage.clear()
+// localStorage.clear()
 
 // Global configuration
 Vue.config.productionTip = false

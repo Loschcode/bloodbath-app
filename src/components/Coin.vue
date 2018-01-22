@@ -20,16 +20,7 @@
     </div>
 
     <div class="row">
-
-      <!-- Logo -->
-      <!-- <div class="gr-2 gr-12@mobile">
-        <div class="module">
-          <div class="module__logo">
-            <img :src="marketCoin.logo_url" />
-          </div>
-        </div>
-      </div> -->
-
+      
       <!-- Base Price -->
       <div class="gr-6 gr-12@mobile">
         <div class="module">
