@@ -8,7 +8,12 @@
             <div class="footer__title">Coins</div>
             <div class="footer__content">
               <div class="footer__content-digits">
-                $10,000 BTC
+                <div v-if="defaultMarketCoin">
+                  <animated-number :value="defaultMarketCoin.price" :type="`money`" /> {{ defaultMarketCoin.name }}
+                </div>
+                <div v-else>
+                  -
+                </div>
               </diV>
             </div>
           </router-link>
@@ -38,9 +43,17 @@
     </template>
 
 <script>
+import animatedNumber from '@/components/AnimatedNumber'
+
 export default {
   data () {
-    return {}
+    return {
+      defaultMarketCoin: false
+    }
+  },
+
+  components: {
+    animatedNumber
   }
 }
 </script>

@@ -40,6 +40,9 @@ Vue.use(VueMeta)
 Vue.prototype.$user = {
   token () {
     return localStorage.getItem('token')
+  },
+  data () {
+    return localStorage.getItem('current_user')
   }
 }
 
