@@ -60,33 +60,33 @@ export default {
 
   data () {
     return {
-      marketCoin: {},
-      userMarketCoin: {},
-      channel: null
     }
   },
 
   created () {
-    this.marketCoin = this.marketCoinProp
-    this.userMarketCoin = this.userMarketCoinProp
     /**
-     * NOTE : aren't we supposed to put everything through the store ?
+     * TODO : we don't need to fetch through API but just open the socket listener here
+     * please work on that.
+     * Make something like subscribeMarketCoin (or something)
      */
-    this.channel = this.$drycable.subscribe(this, 'marketCoin')
+    this.$store.dispatch('fetchMarketCoin', { id: this.marketCoinProp.id })
   },
 
-  // TODO : dry this up
   watch: {
-    marketCoinProp: function (newValue, oldValue) {
-      this.marketCoin = this.marketCoinProp
+  },
+
+  computed: {
+    marketCoin () {
+      return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
     },
-    userMarketCoinProp: function (newValue, oldValue) {
-      this.userMarketCoin = this.userMarketCoinProp
+
+    userMarketCoin () {
+      return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
     }
   },
 
   destroyed () {
-    this.$drycable.unsubscribe(this.channel)
+    this.$store.dispatch('destroyMarketCoin', { id: this.marketCoinProp.id })
   },
 
   methods: {

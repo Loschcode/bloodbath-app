@@ -3,12 +3,11 @@ import ActionCable from 'actioncable'
 import DryCable from '@/plugins/DryCable'
 
 export default {
+  cable: null,
 
   config: {
     cableDomain: 'ws://localhost:8000'
   },
-
-  cable: null,
 
   connect (token) {
     console.log('connect to action cable ...')

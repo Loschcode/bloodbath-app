@@ -47,6 +47,7 @@ const actions = {
         /**
         * We start the stream
         */
+       // NOTE : this could be abstracted / improved elsewhere
         var channelName = 'MarketCoinChannel'
         var channelId = response.data.market_coin.id
         var channel = Cable.cable.subscriptions

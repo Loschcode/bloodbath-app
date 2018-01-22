@@ -162,7 +162,7 @@ export default {
     },
 
     userMarketCoin () {
-      return this.$store.getters.getUserMarketCoins(this.userMarketCoinId)
+      return this.$store.getters.getUserMarketCoin(this.userMarketCoinId)
     }
   },
 
