@@ -61,6 +61,9 @@ export default {
   created () {
     this.marketCoin = this.marketCoinProp
     this.userMarketCoin = this.userMarketCoinProp
+    /**
+     * NOTE : aren't we supposed to put everything through the store ?
+     */
     this.channel = this.$drycable.subscribe(this, 'marketCoin')
   },
 
