@@ -129,10 +129,11 @@ export default {
        *  here is the only time we actually force the token beforehand
        */
       this.$axios
-      .get('/', {params: {token: token}})
+      .get('/user', {params: {token: token}})
       .then(
         (response) => {
-          localStorage.setItem('token', token)
+          console.log('we set user local')
+          this.$user.set(response.data.user)
           this.valid_token = true
           console.log('api connected.')
           return true
