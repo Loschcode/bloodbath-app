@@ -138,7 +138,7 @@ export default {
   },
 
   created () {
-    var vm = this
+    // var vm = this
     this.$store
     .dispatch('fetchMarketCoin', { id: this.$route.params.coinName })
     .then((response) => {
@@ -149,15 +149,11 @@ export default {
        */
       this.marketCoinId = response.marketCoinId
       this.userMarketCoinId = response.userMarketCoinId
-      this.$drycable.subscribe(this, 'marketCoin', function (channel, marketCoin) {
-        vm.channel = channel
-        vm.$store.commit('setMarketCoin', marketCoin)
-      })
     })
   },
 
   destroyed () {
-    this.$drycable.unsubscribe(this.channel)
+    this.$store.dispatch('destroyMarketCoin', { id: this.$route.params.coinName })
   },
 
   computed: {

@@ -22,11 +22,9 @@
 </template>
 
 <script>
-import ActionCable from 'actioncable'
-import DryCable from '@/plugins/DryCable'
-import Vue from 'vue'
 import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
+import Cable from '@/misc/Cable'
 
 export default {
 
@@ -89,13 +87,7 @@ export default {
      * connect to the action cable system
      */
     connectCable (token) {
-      console.log('connect to action cable ...')
-
-      const cableDomain = 'ws://localhost:8000'
-      const cable = ActionCable.createConsumer(`${cableDomain}/cable?token=${token}`)
-      Vue.prototype.$cable = cable
-      Vue.use(DryCable, cable)
-      console.log('action cable connected.')
+      Cable.connect(token)
     },
 
     /**

@@ -1,8 +1,11 @@
 import axios from 'axios'
 import _ from 'lodash'
+import Cable from '@/misc/Cable'
 
 // initial state
 const state = {
+  currentChannels: [],
+
   marketCoins: [],
   favoriteCoins: [],
   topCoins: []
@@ -18,6 +21,21 @@ const getters = {
 
 // actions
 const actions = {
+  destroyMarketCoin (context, params) {
+    let channel = context.state.currentChannels.find(entry => entry.id === params.id)
+    channel.unsubscribe()
+    context.state.currentChannels.splice(channel, 1)
+    console.log('unsubscribe the coin')
+  },
+
+  destroyMarketCoins (context, params) {
+    context.state.currentChannels.forEach(function (channel, index, object) {
+      channel.unsubscribe()
+      object.splice(index, 1)
+    })
+    console.log('unsubscribed all channels')
+  },
+
   fetchMarketCoin (context, params) {
     return new Promise((resolve, reject) => {
       axios
@@ -25,9 +43,33 @@ const actions = {
       .then(response => {
         context.commit('setMarketCoin', response.data.market_coin)
         context.commit('setUserMarketCoin', response.data.user_market_coin)
+
         /**
-         * We transmit the fixed IDs to the component
-         */
+        * We start the stream
+        */
+        var channelName = 'MarketCoinChannel'
+        var channelId = response.data.market_coin.id
+        var channel = Cable.cable.subscriptions
+        .create(
+          { channel: channelName, id: channelId },
+          {
+            connected (data) {
+              console.log(`connected to ${channelName}.${channelId}`)
+            },
+            received (data) {
+              if (data.action === 'show') {
+                console.log(`received data from ${channelName}.${channelId}`)
+                context.commit('setMarketCoin', data.market_coin)
+              }
+            }
+          }
+        )
+
+        context.state.currentChannels.push(channel)
+
+        /**
+        * We transmit the fixed IDs to the component
+        */
         resolve({
           marketCoinId: response.data.market_coin.id,
           userMarketCoinId: response.data.user_market_coin.id
