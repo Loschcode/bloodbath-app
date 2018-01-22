@@ -3,6 +3,8 @@ import _ from 'lodash'
 
 // initial state
 const state = {
+  currentChannels: [],
+
   marketCoins: [],
   favoriteCoins: [],
   topCoins: []
@@ -18,6 +20,7 @@ const getters = {
 
 // actions
 const actions = {
+
   fetchMarketCoin (context, params) {
     return new Promise((resolve, reject) => {
       axios
@@ -25,6 +28,9 @@ const actions = {
       .then(response => {
         context.commit('setMarketCoin', response.data.market_coin)
         context.commit('setUserMarketCoin', response.data.user_market_coin)
+        /**
+         * We transmit the fixed IDs to the component
+         */
         resolve({
           marketCoinId: response.data.market_coin.id,
           userMarketCoinId: response.data.user_market_coin.id

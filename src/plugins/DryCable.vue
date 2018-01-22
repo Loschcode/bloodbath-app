@@ -33,7 +33,7 @@ export default {
       * @param  {object} scope     context from vuejs
       * @param  {string} modelName a camelCase model name
       */
-      subscribe (scope, modelName) {
+      subscribe (scope, modelName, onShow) {
         const channelName = _.upperFirst(`${modelName}Channel`)
         const receivedModel = _.snakeCase(modelName)
 
@@ -55,7 +55,15 @@ export default {
             received (data) {
               if (data.action === 'show') {
                 console.log(`received data from ${channelName}.${scope[modelName].id}`)
-                scope[modelName] = data[receivedModel]
+                /**
+                 * We can make a specific action onShow if we have something like a store
+                 * and the refresh is complicated to setup
+                 */
+                if (_.isUndefined(onShow)) {
+                  scope[modelName] = data[receivedModel]
+                } else {
+                  onShow(channel, data[receivedModel])
+                }
               }
             }
           }
