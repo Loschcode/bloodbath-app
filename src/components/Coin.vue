@@ -3,7 +3,9 @@
     <default-header>
       <div slot="center">
         <div class="header__title">
-          <coin-header :marketCoin="marketCoin" />
+          <div v-if="marketCoin">
+            <coin-header :marketCoin="marketCoin" />
+          </div>
         </div>
       </div>
     </default-header>
@@ -20,7 +22,7 @@
     </div>
 
     <div class="row">
-      
+
       <!-- Base Price -->
       <div class="gr-6 gr-12@mobile">
         <div class="module">
@@ -29,7 +31,7 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="marketCoin.day_open">
+              <div v-if="marketCoin">
                 <animated-number :value="marketCoin.day_open" :type="`money`" />
               </div>
               <div v-else>
@@ -51,7 +53,7 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="marketCoin.price">
+              <div v-if="marketCoin">
                   <animated-number :value="marketCoin.price" :type="`money`" />
               </div>
               <div v-else>
@@ -100,7 +102,7 @@
           </div>
           <div class="module__content">
             <div class="module__content-digits">
-              <div v-if="marketCoin.market_cap">
+              <div v-if="marketCoin">
                 <animated-number :value="marketCoin.market_cap" :type="`big-money`" />
               </div>
               <div v-else>
@@ -129,46 +131,63 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      marketCoin: {
-        market_cap: 0.0,
-        price: 0.0
-      },
-      userMarketCoin: {
-      },
+      marketCoinId: null,
+      userMarketCoinId: null,
       variation: 0.0,
       channel: null
     }
   },
 
   created () {
-    this.$axios
-    .get(`coins/${this.$route.params.coinName}`)
-    .then(
-      (response) => {
-        this.marketCoin = response.data.market_coin
-        this.userMarketCoin = response.data.user_market_coin
-        this.channel = this.$drycable.subscribe(this, 'marketCoin')
-      },
-      this.throwError.bind(this)
-    )
+    this.$store
+    .dispatch('fetchMarketCoin', { name: this.$route.params.coinName })
+    .then((response) => {
+      /**
+       * Once we get the response from the server we can set the IDs
+       * So we will be able to call the computed from those fixed data
+       * And refresh any model down there
+       */
+      this.marketCoinId = response.marketCoinId
+      this.userMarketCoinId = response.userMarketCoinId
+      this.channel = this.$drycable.subscribe(this, 'marketCoin')
+    })
   },
 
   destroyed () {
     this.$drycable.unsubscribe(this.channel)
   },
 
+  computed: {
+    marketCoin () {
+      return this.$store.getters.getMarketCoins.find((item) => item.id === this.marketCoinId)
+    },
+
+    userMarketCoin () {
+      return this.$store.getters.getUserMarketCoins.find((item) => item.id === this.userMarketCoinId)
+    }
+  },
+
   methods: {
     solveDayOpenTime () {
+      if (!this.marketCoin) {
+        return null
+      }
       let date = moment().subtract(24, 'hour').fromNow()
       return `From ${date}`
     },
 
     solvePriceTime () {
+      if (!this.marketCoin) {
+        return null
+      }
       let date = moment(this.marketCoin.updated_at).fromNow()
       return `From ${date}`
     },
 
     rawVariation () {
+      if (!this.marketCoin) {
+        return null
+      }
       let digits = this.marketCoin.price / this.marketCoin.day_open - 1
       if (isNaN(digits)) {
         return 0.0

@@ -1,19 +1,37 @@
 import axios from 'axios'
+import _ from 'lodash'
 
 // initial state
 const state = {
+  marketCoins: [],
   favoriteCoins: [],
   topCoins: []
 }
 
 // getters
 const getters = {
+  getMarketCoins: (state) => state.marketCoins,
   getFavoriteCoins: (state) => state.favoriteCoins,
   getTopCoins: (state) => state.topCoins
 }
 
 // actions
 const actions = {
+  fetchMarketCoin (context, params) {
+    return new Promise((resolve, reject) => {
+      axios
+      .get(`coins/${params.name}`)
+      .then(response => {
+        context.commit('setMarketCoin', response.data.market_coin)
+        context.commit('setUserMarketCoin', response.data.user_market_coin)
+        resolve({
+          marketCoinId: response.data.market_coin.id,
+          userMarketCoinId: response.data.user_market_coin.id
+        })
+      })
+    })
+  },
+
   fetchFavoriteCoins (context) {
     axios
     .get(`coins/favorite`)
@@ -34,6 +52,15 @@ const actions = {
 
 // mutations
 const mutations = {
+  setMarketCoin (state, marketCoin) {
+    let current = state.marketCoins.find(entry => entry.id === marketCoin.id)
+    if (_.isUndefined(current)) {
+      state.marketCoins.push(marketCoin)
+    } else {
+      state.marketCoins.splice(current, 0, marketCoin)
+    }
+  },
+
   setFavoriteCoins (state, favoriteCoins) {
     state.favoriteCoins = favoriteCoins
   },
