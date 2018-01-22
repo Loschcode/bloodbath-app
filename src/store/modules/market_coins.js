@@ -22,15 +22,15 @@ const getters = {
 // actions
 const actions = {
   destroyMarketCoin (context, params) {
-    let channel = context.state.currentChannels.find(entry => entry.id === params.id)
-    channel.unsubscribe()
-    context.state.currentChannels.splice(channel, 1)
-    console.log('unsubscribe the coin')
+    let current = context.state.currentChannels.find(entry => entry.id === params.id)
+    current.channel.unsubscribe()
+    context.state.currentChannels.splice(current, 1)
+    console.log(context.state.currentChannels)
   },
 
   destroyMarketCoins (context, params) {
-    context.state.currentChannels.forEach(function (channel, index, object) {
-      channel.unsubscribe()
+    context.state.currentChannels.forEach(function (current, index, object) {
+      current.channel.unsubscribe()
       object.splice(index, 1)
     })
     console.log('unsubscribed all channels')
@@ -65,7 +65,7 @@ const actions = {
           }
         )
 
-        context.state.currentChannels.push(channel)
+        context.state.currentChannels.push({id: channelId, channel: channel})
 
         /**
         * We transmit the fixed IDs to the component

@@ -153,7 +153,7 @@ export default {
   },
 
   destroyed () {
-    this.$store.dispatch('destroyMarketCoin', { id: this.$route.params.coinName })
+    this.$store.dispatch('destroyMarketCoin', { id: this.marketCoinId })
   },
 
   computed: {
