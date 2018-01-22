@@ -1,29 +1,29 @@
 <template>
-  <div>
-    <div v-if="animatedColors">
-      <div v-if="showValue">
-        <div v-if="valueUp">
+  <span>
+    <span v-if="animatedColors">
+      <span v-if="showValue">
+        <span v-if="valueUp">
           <span class="number__up">{{ formattedValue() }}</span>
-        </div>
-        <div v-else>
+        </span>
+        <span v-else>
           <span class="number__down">{{ formattedValue() }}</span>
-        </div>
-      </div>
-    </div>
-    <div v-else>
-      <div v-if="numberColors">
-        <div v-if="value > 0">
+        </span>
+      </span>
+    </span>
+    <span v-else>
+      <span v-if="numberColors">
+        <span v-if="value > 0">
           <span class="number__positive">{{ formattedValue() }}</span>
-        </div>
-        <div v-else>
+        </span>
+        <span v-else>
           <span class="number__negative">{{ formattedValue() }}</span>
-        </div>
-      </div>
-      <div v-else>
+        </span>
+      </span>
+      <span v-else>
         <span>{{ formattedValue() }}</span>
-      </div>
-    </div>
-  </div>
+      </span>
+    </span>
+  </span>
 </template>
 
 <script>
