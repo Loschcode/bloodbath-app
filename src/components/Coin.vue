@@ -159,11 +159,11 @@ export default {
 
   computed: {
     marketCoin () {
-      return this.$store.getters.getMarketCoins.find((item) => item.id === this.marketCoinId)
+      return this.$store.getters.getMarketCoin(this.marketCoinId)
     },
 
     userMarketCoin () {
-      return this.$store.getters.getUserMarketCoins.find((item) => item.id === this.userMarketCoinId)
+      return this.$store.getters.getUserMarketCoins(this.userMarketCoinId)
     }
   },
 

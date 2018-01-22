@@ -11,6 +11,7 @@ const state = {
 // getters
 const getters = {
   getMarketCoins: (state) => state.marketCoins,
+  getMarketCoin: (state) => (id) => state.marketCoins.find((item) => item.id === id),
   getFavoriteCoins: (state) => state.favoriteCoins,
   getTopCoins: (state) => state.topCoins
 }

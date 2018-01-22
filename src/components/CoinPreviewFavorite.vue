@@ -49,7 +49,7 @@ export default {
 
   computed: {
     userMarketCoin () {
-      return this.$store.getters.getUserMarketCoins.find((item) => item.id === this.userMarketCoinProp.id)
+      return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
     }
   },
 
