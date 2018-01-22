@@ -42,31 +42,7 @@ const actions = {
       .get(`coins/${params.id}`)
       .then(response => {
         context.commit('setMarketCoin', response.data.market_coin)
-        context.commit('setUserMarketCoin', response.data.user_market_coin)
-
-        /**
-        * We start the stream
-        */
-       // NOTE : this could be abstracted / improved elsewhere
-        var channelName = 'MarketCoinChannel'
-        var channelId = response.data.market_coin.id
-        var channel = Cable.cable.subscriptions
-        .create(
-          { channel: channelName, id: channelId },
-          {
-            connected (data) {
-              console.log(`connected to ${channelName}.${channelId}`)
-            },
-            received (data) {
-              if (data.action === 'show') {
-                console.log(`received data from ${channelName}.${channelId}`)
-                context.commit('setMarketCoin', data.market_coin)
-              }
-            }
-          }
-        )
-
-        context.state.currentChannels.push({id: channelId, channel: channel})
+        context.dispatch('listenMarketCoin', response.data.market_coin)
 
         /**
         * We transmit the fixed IDs to the component
@@ -77,6 +53,32 @@ const actions = {
         })
       })
     })
+  },
+
+  listenMarketCoin (context, params) {
+    /**
+    * We start the stream
+    */
+    var channelName = 'MarketCoinChannel'
+    var channelId = params.id
+    var channel = Cable.cable.subscriptions
+    .create(
+      { channel: channelName, id: channelId },
+      {
+        connected (data) {
+          console.log(`connected to ${channelName}.${channelId}`)
+        },
+        received (data) {
+          if (data.action === 'show') {
+            console.log(`received data from ${channelName}.${channelId}`)
+            context.commit('setMarketCoin', data.market_coin)
+          }
+        }
+      }
+    )
+    console.log(channelId)
+    console.log(channel)
+    context.state.currentChannels.push({id: channelId, channel: channel})
   },
 
   fetchFavoriteCoins (context) {

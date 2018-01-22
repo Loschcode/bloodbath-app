@@ -1,49 +1,50 @@
 <template>
   <div class="coin-preview">
+    <!-- NOTE : this should turn instant when we avoid AJAX call at first -->
+    <div v-if="marketCoin">
+      <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
 
-    <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
-
-      <!-- Base Price -->
-      <div class="gr-12 gr-12@mobile">
-        <div class="module">
-          <div class="module__title">
-            <div class="row">
-              <div class="gr-2">
-                <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
-              </div>
-              <div class="gr-10">
-                <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+        <!-- Base Price -->
+        <div class="gr-12 gr-12@mobile">
+          <div class="module">
+            <div class="module__title">
+              <div class="row">
+                <div class="gr-2">
+                  <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
+                </div>
+                <div class="gr-10">
+                  <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="module__content">
+            <div class="module__content">
 
-            <div class="module__content-digits --medium">
-              <div v-if="marketCoin.price">
-                <animated-number :value="marketCoin.price" :type="`money`" />
+              <div class="module__content-digits --medium">
+                <div v-if="marketCoin.price">
+                  <animated-number :value="marketCoin.price" :type="`money`" />
+                </div>
+                <div v-else>
+                  -
+                </div>
               </div>
-              <div v-else>
-                -
+
+              <div class="module__content-percent --small">
+                <div v-if="rawVariation()">
+                  <animated-number :value="rawVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                </div>
+                <div v-else>
+                  -
+                </div>
               </div>
+
             </div>
-
-            <div class="module__content-percent --small">
-              <div v-if="rawVariation()">
-                <animated-number :value="rawVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" />
-              </div>
-              <div v-else>
-                -
-              </div>
+            <div class="module__footer">
             </div>
-
-          </div>
-          <div class="module__footer">
           </div>
         </div>
-      </div>
 
-    </router-link>
-
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -64,12 +65,14 @@ export default {
   },
 
   created () {
+    this.$store.commit('setMarketCoin', this.marketCoinProp)
+    this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
     /**
      * TODO : we don't need to fetch through API but just open the socket listener here
      * please work on that.
      * Make something like subscribeMarketCoin (or something)
      */
-    this.$store.dispatch('fetchMarketCoin', { id: this.marketCoinProp.id })
+    this.$store.dispatch('listenMarketCoin', this.marketCoinProp)
   },
 
   watch: {
