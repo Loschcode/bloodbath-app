@@ -43,10 +43,10 @@ const mutations = {
   setPortfolioCoin (state, portfolioCoin) {
     let current = state.portfolioCoins.find(entry => entry.id === portfolioCoin.id)
     if (_.isUndefined(current)) {
-      console.log('pushing')
       state.portfolioCoins.push(portfolioCoin)
     } else {
-      state.portfolioCoins.splice(current, 0, portfolioCoin)
+      let index = state.portfolioCoins.indexOf(current)
+      state.portfolioCoins.splice(index, 1, portfolioCoin)
     }
   }
 }

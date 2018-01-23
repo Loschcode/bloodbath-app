@@ -109,7 +109,8 @@ const mutations = {
     if (_.isUndefined(current)) {
       state.marketCoins.push(marketCoin)
     } else {
-      state.marketCoins.splice(current, 0, marketCoin)
+      let index = state.marketCoins.indexOf(current)
+      state.marketCoins.splice(index, 1, marketCoin)
     }
   },
 

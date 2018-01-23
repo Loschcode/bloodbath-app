@@ -33,7 +33,7 @@ export default {
 
   created () {
     // INFINITE LOOP
-    // this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
+    this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
   },
 
   watch: {
