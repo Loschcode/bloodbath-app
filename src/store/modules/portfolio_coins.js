@@ -27,9 +27,11 @@ const actions = {
   fetchPortfolioCoins (context) {
     axios
     .get(`portfolio_coins`)
-    .then(response => {
-      context.commit('setPortfolioCoins', response.data.portfolio_coins)
-    })
+    .then(
+      (response) => {
+        context.commit('setPortfolioCoins', response.data.portfolio_coins)
+      }
+    )
   }
 
 }

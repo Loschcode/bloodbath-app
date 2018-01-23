@@ -24,13 +24,26 @@
   font-weight: 200;
 }
 
-.module__title-left {
+.module__title-favorite {
   font-size: 27px;
   a {
     color: $color-favorite-on;
     text-decoration: none;
     display: block;
   }
+  .--on {
+    opacity: 1.0;
+  }
+  .--off {
+    opacity: 0.2;
+  }
+}
+
+.module__title-folio {
+  font-size: 24px;
+  color: $color-folio-on;
+  text-decoration: none;
+  display: block;
   .--on {
     opacity: 1.0;
   }

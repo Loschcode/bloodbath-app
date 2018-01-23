@@ -5,8 +5,17 @@
         <div class="gr-12 gr-12@mobile">
           <div class="module">
             <div class="module__title">
+              <div class="gr-2">
+                <div class="module__title-folio">
+                  <span class="icon-folio --on"></span>
+                </div>
+              </div>
+              <div class="gr-10">
+                <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+              </div>
             </div>
             <div class="module__content">
+              HERE VALUES
             </div>
             <div class="module__footer">
             </div>
@@ -18,7 +27,6 @@
 </template>
 
 <script>
-import CoinPreviewTitle from '@/components/CoinPreviewTitle'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 
 export default {
@@ -32,7 +40,7 @@ export default {
   },
 
   created () {
-    // INFINITE LOOP
+    this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
     this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
   },
 
@@ -42,6 +50,10 @@ export default {
   computed: {
     portfolioCoin () {
       return this.$store.getters.getPortfolioCoin(this.portfolioCoinProp.id)
+    },
+
+    marketCoin () {
+      return this.$store.getters.getMarketCoin(this.portfolioCoinProp.market_coin.id)
     }
   },
 
@@ -49,7 +61,6 @@ export default {
   },
 
   components: {
-    CoinPreviewTitle,
     CoinPreviewContent
   }
 }

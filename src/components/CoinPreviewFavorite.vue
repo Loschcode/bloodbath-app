@@ -1,7 +1,7 @@
 <template>
   <div class="coin-preview-favorite">
     <div v-if="userMarketCoin">
-      <div class="module__title-left">
+      <div class="module__title-favorite">
         <div v-if="userMarketCoin.favorited_at">
           <a @click="removeFavorite">
             <span class="icon-favorite --on"></span>
