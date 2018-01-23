@@ -1,6 +1,5 @@
 <template>
   <div class="coin-preview">
-    <!-- NOTE : this should turn instant when we avoid AJAX call at first -->
     <div v-if="marketCoin">
       <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
 
@@ -67,11 +66,6 @@ export default {
   created () {
     this.$store.commit('setMarketCoin', this.marketCoinProp)
     this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
-    /**
-     * TODO : we don't need to fetch through API but just open the socket listener here
-     * please work on that.
-     * Make something like subscribeMarketCoin (or something)
-     */
     this.$store.dispatch('listenMarketCoin', this.marketCoinProp)
   },
 

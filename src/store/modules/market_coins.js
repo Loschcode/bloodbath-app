@@ -23,11 +23,16 @@ const getters = {
 const actions = {
   destroyMarketCoin (context, params) {
     let current = context.state.currentChannels.find(entry => entry.id === params.id)
-    current.channel.unsubscribe()
-    context.state.currentChannels.splice(current, 1)
-    console.log(context.state.currentChannels)
+    if (!_.isNil(current)) {
+      current.channel.unsubscribe()
+      context.state.currentChannels.splice(current, 1)
+      console.log('destroy channel ' + params.id)
+    }
   },
 
+  /**
+   * TODO : use that on "page change" per say
+   */
   destroyMarketCoins (context, params) {
     context.state.currentChannels.forEach(function (current, index, object) {
       current.channel.unsubscribe()
@@ -76,8 +81,6 @@ const actions = {
         }
       }
     )
-    console.log(channelId)
-    console.log(channel)
     context.state.currentChannels.push({id: channelId, channel: channel})
   },
 
