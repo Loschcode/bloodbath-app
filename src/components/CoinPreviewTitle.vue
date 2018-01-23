@@ -27,10 +27,11 @@ export default {
 
   computed: {
     marketCoin () {
-      return this.marketCoinProp
+      return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
     },
+
     userMarketCoin () {
-      return this.userMarketCoinProp
+      return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
     }
   },
 

@@ -27,7 +27,7 @@ export default {
 
   methods: {
     backLink () {
-      router.go(-1)
+      return router.go(-1)
     }
   }
 }

@@ -10,8 +10,27 @@
       </div>
     </default-header>
 
+    <!-- Favorites Coins -->
+    <div v-if="portfolioCoins.length">
+      <div class="section">
+        <div class="row">
+          <div class="gr-12">
+            <div class="section__title">
+              Current Portfolio
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="gr-3 gr-12@mobile" v-for="portfolioCoin in portfolioCoins">
+            <portfolio-coin :portfolioCoinProp="portfolioCoin" />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Search -->
-    <search-coins>
+    <search-coins contextProp="portfolio">
       <div slot="title">
         Add new coin
       </div>
@@ -22,7 +41,7 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
-// import CoinPreview from '@/components/CoinPreview'
+import PortfolioCoin from '@/components/PortfolioCoin'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
@@ -35,14 +54,12 @@ export default {
   },
 
   created () {
-    // this.$store.dispatch('fetchFavoriteCoins')
-    // this.$store.dispatch('fetchTopCoins')
+    this.$store.dispatch('fetchPortfolioCoins')
   },
 
   computed: {
     ...mapGetters({
-      // favoriteCoins: 'getFavoriteCoins',
-      // topCoins: 'getTopCoins'
+      portfolioCoins: 'getPortfolioCoins'
     })
   },
 
@@ -54,7 +71,7 @@ export default {
 
   components: {
     DefaultHeader,
-    // CoinPreview,
+    PortfolioCoin,
     SearchCoins,
     EventBus
   }

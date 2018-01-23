@@ -2,7 +2,7 @@
   <div class="coin-preview">
     <div v-if="marketCoin">
       <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
-        
+
         <div class="gr-12 gr-12@mobile">
           <div class="module">
             <div class="module__title">

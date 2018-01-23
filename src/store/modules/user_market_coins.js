@@ -22,6 +22,7 @@ const actions = {
         console.log(response.data.user_market_coin)
         context.commit('setUserMarketCoin', response.data.user_market_coin)
         context.dispatch('fetchFavoriteCoins')
+        context.dispatch('fetchTopCoins')
       }
     )
   }
