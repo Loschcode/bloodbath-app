@@ -16,7 +16,7 @@
     <search-coins />
 
     <!-- Favorites Coins -->
-    <div v-if="Object.keys(favoriteCoins).length">
+    <div v-if="favoriteCoins.length">
       <div class="section">
         <div class="row">
           <div class="gr-12">
@@ -35,18 +35,20 @@
     </div>
 
     <!-- Top Coins -->
-    <div class="section">
-      <div class="row">
-        <div class="gr-12">
-          <div class="section__title">
-            Top Coins
+    <div v-if="topCoins.length">
+      <div class="section">
+        <div class="row">
+          <div class="gr-12">
+            <div class="section__title">
+              Top Coins
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="gr-3 gr-12@mobile" v-for="topCoin in topCoins">
-          <coin-preview :marketCoinProp="topCoin.market_coin" :userMarketCoinProp="topCoin.user_market_coin" />
+        <div class="row">
+          <div class="gr-3 gr-12@mobile" v-for="topCoin in topCoins">
+            <coin-preview :marketCoinProp="topCoin.market_coin" :userMarketCoinProp="topCoin.user_market_coin" />
+          </div>
         </div>
       </div>
     </div>
