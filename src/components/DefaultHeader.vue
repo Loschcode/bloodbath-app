@@ -4,9 +4,9 @@
       <slot name="left">
         <!-- By default we have a go back link -->
         <div class="header__back">
-          <router-link :to="{ name: 'coins'}">
+          <a href="#" @click="backLink">
             <span class="icon-back"></span>
-          </router-link>
+          </a>
         </div>
       </slot>
     </div>
@@ -20,7 +20,15 @@
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
-  props: []
+  props: [],
+
+  methods: {
+    backLink () {
+      router.go(-1)
+    }
+  }
 }
 </script>

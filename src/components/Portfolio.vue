@@ -10,19 +10,12 @@
       </div>
     </default-header>
 
-    <!-- Top Coins -->
-    <div class="section">
-      <div class="row">
-        <div class="gr-12">
-          <div class="section__title">
-            Add new coins
-          </div>
-        </div>
+    <!-- Search -->
+    <search-coins>
+      <div slot="title">
+        Add new coin
       </div>
-
-      <div class="row">
-      </div>
-    </div>
+    </search-coins>
 
   </div>
 </template>
@@ -30,7 +23,7 @@
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
 // import CoinPreview from '@/components/CoinPreview'
-// import SearchCoins from '@/components/SearchCoins'
+import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
 import { mapGetters } from 'vuex'
@@ -62,7 +55,7 @@ export default {
   components: {
     DefaultHeader,
     // CoinPreview,
-    // SearchCoins,
+    SearchCoins,
     EventBus
   }
 }

@@ -5,7 +5,9 @@
   <div class="row">
     <div class="gr-12">
       <div class="section__title">
-        Search
+        <slot name="title">
+          Search
+        </slot>
       </div>
     </div>
   </div>
@@ -38,7 +40,7 @@
         </div>
         <div v-else>
 
-          <div v-if="resultCoins.length > 0">
+          <div v-if="resultCoins.length">
             <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
               <coin-preview :marketCoinProp="resultCoin.market_coin" :userMarketCoinProp="resultCoin.user_market_coin" />
             </div>
