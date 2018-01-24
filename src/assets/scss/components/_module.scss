@@ -75,6 +75,26 @@
 
 }
 
+.module__content-folio {
+  position: relative; // for the icon
+  input {
+    margin: 0.2em;
+    padding: 0.5em;
+    width: 80%;
+    @include border-radius(10px);
+    border: 2px solid $module-border-color;
+    padding-right: 2em;
+
+  }
+  .icon {
+    color: $color-folio-button;
+    font-size: 20px;
+    right: 5px;
+    position: absolute;
+    bottom: 8px;
+  }
+}
+
 .module__content-digits {
   @include wrap-words;
   text-align: center;

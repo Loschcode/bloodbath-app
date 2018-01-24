@@ -15,7 +15,10 @@
               </div>
             </div>
             <div class="module__content">
-              HERE VALUES
+              <div class="module__content-folio">
+                <input type="text" v-model="message" placeholder="0.000">
+                <div class="icon icon-pencil"></div>
+              </div>
             </div>
             <div class="module__footer">
             </div>
