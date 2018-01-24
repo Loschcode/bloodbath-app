@@ -16,7 +16,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Current Portfolio
+              Coins
             </div>
           </div>
         </div>

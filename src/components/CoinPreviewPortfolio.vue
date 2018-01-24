@@ -21,9 +21,9 @@
               <coin-preview-content :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoin" />
             </div>
             <div class="module__footer">
-              <div class="module__footer-add">
+              <!-- <div class="module__footer-add">
                 <span class="icon-plus"></span>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
