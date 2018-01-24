@@ -11,6 +11,14 @@ export default {
     Vue.prototype.$user = {
 
       /**
+       * We sign out the user
+       * @return {[type]} [description]
+       */
+      signOut () {
+        return localStorage.clear()
+      },
+
+      /**
        * We set the user and stringify it for storage
        * Because localStorage is limited to string / value pair
        */
@@ -28,6 +36,14 @@ export default {
           return user
         } else {
           return JSON.parse(localStorage.getItem('user'))
+        }
+      },
+
+      isConnected () {
+        if (this.data().role === 'anonymous') {
+          return false
+        } else {
+          return true
         }
       },
 

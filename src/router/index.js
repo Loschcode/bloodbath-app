@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Coins from '@/components/Coins'
 import Coin from '@/components/Coin'
 import Portfolio from '@/components/Portfolio'
+import Connect from '@/components/Connect'
+import Setting from '@/components/Setting'
 
 Vue.use(Router)
 
@@ -33,6 +35,18 @@ Vue.router = new Router({
       meta: {
         layout: 'layoutDefault'
       }
+    },
+
+    {
+      path: '/connect',
+      name: 'connect',
+      component: Connect
+    },
+
+    {
+      path: '/setting',
+      name: 'setting',
+      component: Setting
     }
 
   ]

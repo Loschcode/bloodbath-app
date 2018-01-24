@@ -83,6 +83,14 @@
 
 }
 
+.module__content-connect {
+  text-align: center;
+
+  input[type="submit"] {
+    text-align: center;
+  }
+}
+
 .module__content-folio {
   position: relative; // for the icon
   input {
@@ -98,7 +106,6 @@
     &:focus {
       border-color: $color-folio-button;
     }
-
   }
 }
 

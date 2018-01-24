@@ -1,0 +1,16 @@
+.button {
+  background-color: $default-button-background-color;
+  color: $default-button-text-color;
+  border-width: 0px !important;
+
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  width: 90%;
+  @include border-radius(10px);
+}
+
+.button__danger {
+  background-color: $error-text-color;
+  color: $default-button-text-color;
+  border-width: 0px !important;
+}

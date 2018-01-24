@@ -26,7 +26,9 @@
                     <animated-number :value="currentValue()" :type="`money`" />
                   </div>
                   <div class="module__content-digits --very-small --grey">
-                    <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
+                    <div v-if="portfolioCoin.quantity">
+                      <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
+                      </div>
                   </div>
                 </div>
               </div>

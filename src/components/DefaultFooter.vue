@@ -35,17 +35,25 @@
           </router-link>
         </div>
         <div class="gr-4">
-          <router-link :to="{ name: 'coins' }">
-            <div class="footer__left-border">
-              <div class="footer__title">My account</div>
-              <div class="footer__content">You are not logged-in</div>
-                </div>
+          <div class="footer__left-border">
+            <div v-if="this.$user.isConnected()">
+              <router-link :to="{ name: 'setting' }">
+                <div class="footer__title">My account</div>
+                <div class="footer__content">{{ this.$user.data().email }}</div>
+              </router-link>
+            </div>
+            <div v-else>
+              <router-link :to="{ name: 'connect' }">
+                <div class="footer__title">My account</div>
+                <div class="footer__content">You are not logged-in</div>
               </router-link>
             </div>
           </div>
         </div>
       </div>
-    </template>
+    </div>
+  </div>
+</template>
 
 <script>
 import animatedNumber from '@/components/AnimatedNumber'

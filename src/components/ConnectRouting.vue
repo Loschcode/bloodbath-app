@@ -7,8 +7,12 @@
     </div>
     <div v-else>
 
+      <!-- If everything is valid we route -->
       <div v-if="valid_token">
+        <!-- Load the correct page -->
         <router-view />
+        <!-- Footer is here -->
+        <default-footer />
       </div>
       <div v-else>
         <div class="loader">
@@ -22,6 +26,7 @@
 </template>
 
 <script>
+import DefaultFooter from '@/components/DefaultFooter'
 import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
 import Cable from '@/misc/Cable'
@@ -36,19 +41,6 @@ export default {
   },
 
   created () {
-    // NOTE : we don't use that as it makes more issues than anything else in the system
-    // var vm = this
-    // const keyBack = 8
-    // window.addEventListener('keyup', function (event) {
-    //   // if you press the back key
-    //   if (event.keyCode === keyBack) {
-    //     // if we don't have the focus on any specific element on the page
-    //     if (document.activeElement.tagName.toLowerCase() === 'body') {
-    //       vm.$router.go('/')
-    //     }
-    //   }
-    // })
-
     /**
      * We put a listener to the errorEvent
      */
@@ -71,6 +63,10 @@ export default {
   mixins: [
     ThrowError
   ],
+
+  components: {
+    DefaultFooter
+  },
 
   methods: {
 
@@ -97,7 +93,6 @@ export default {
      */
     connectAnonymous () {
       console.log('connect anonymous ...')
-
       this.$axios
       .post(`connect/anonymous`)
       .then(
@@ -116,7 +111,6 @@ export default {
      */
     connectApi (token) {
       console.log('connection to api ...')
-
       /**
        *  here is the only time we actually force the token beforehand
        */
@@ -124,7 +118,6 @@ export default {
       .get('/user', {params: {token: token}})
       .then(
         (response) => {
-          console.log('we set user local')
           this.$user.set(response.data.user)
           this.valid_token = true
           console.log('api connected.')

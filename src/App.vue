@@ -1,15 +1,10 @@
 <template>
   <div id="app">
-    <div class="content">
-      <connect-routing />
-    </div>
-    <default-footer />
-
+    <connect-routing />
   </div>
 </template>
 
 <script>
-import DefaultFooter from '@/components/DefaultFooter'
 import ConnectRouting from '@/components/ConnectRouting'
 
 export default {
@@ -30,7 +25,6 @@ export default {
   },
 
   components: {
-    DefaultFooter,
     ConnectRouting
   }
 }
