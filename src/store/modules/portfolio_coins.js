@@ -14,6 +14,28 @@ const getters = {
 
 // actions
 const actions = {
+  destroyPortfolioCoin (context, params) {
+    axios
+    .delete(`portfolio_coins/${params.id}`)
+    .then(
+      (response) => {
+        context.dispatch('fetchPortfolioCoins')
+      }
+    )
+  },
+
+  updatePortfolioCoin (context, params) {
+    axios
+    .patch(`portfolio_coins/${params.id}`, { portfolio_coin: params.changeset })
+    .then(
+      (response) => {
+        context.commit('setPortfolioCoin', response.data.portfolio_coin)
+        context.commit('setMarketCoin', response.data.portfolio_coin.market_coin)
+        context.dispatch('fetchPortfolioCoins')
+      }
+    )
+  },
+
   createPortfolioCoin (context, params) {
     axios
     .post(`portfolio_coins/`, { portfolio_coin: params.changeset })

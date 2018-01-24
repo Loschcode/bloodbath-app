@@ -21,7 +21,7 @@ const getters = {
 
 // actions
 const actions = {
-  destroyMarketCoin (context, params) {
+  unsubscribeMarketCoin (context, params) {
     let current = context.state.currentChannels.find(entry => entry.id === params.id)
     if (!_.isNil(current)) {
       current.channel.unsubscribe()
@@ -33,7 +33,7 @@ const actions = {
   /**
    * TODO : use that on "page change" per say
    */
-  destroyMarketCoins (context, params) {
+  unsubscribeMarketCoins (context, params) {
     context.state.currentChannels.forEach(function (current, index, object) {
       current.channel.unsubscribe()
       object.splice(index, 1)

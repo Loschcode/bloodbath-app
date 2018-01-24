@@ -16,11 +16,39 @@
             </div>
             <div class="module__content">
               <div class="module__content-folio">
-                <input type="text" v-model="message" placeholder="0.000">
-                <div class="icon icon-pencil"></div>
+                <div v-if="editQuantity">
+                  <!-- Edit quantity of the coin -->
+                  <input type="text" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
+                </div>
+                <div v-else>
+                  <!-- Display the current value -->
+                  <div class="module__content-digits --medium">
+                    <animated-number :value="currentValue()" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --very-small --grey">
+                    <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
+                  </div>
+                </div>
               </div>
             </div>
             <div class="module__footer">
+              <div v-if="editQuantity">
+                <div class="module__footer-action">
+                  <a @click="destroyPortfolioCoin">
+                    <span class="icon icon-trash"></span>
+                  </a>
+                  <a @click="updateQuantity">
+                    <span class="icon --selected icon-pencil"></span>
+                  </a>
+                </div>
+              </div>
+              <div v-else>
+                <div class="module__footer-action --stick">
+                  <a @click="editQuantity = true">
+                    <span class="icon icon-pencil"></span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -31,7 +59,7 @@
 
 <script>
 import CoinPreviewContent from '@/components/CoinPreviewContent'
-
+import AnimatedNumber from '@/components/AnimatedNumber'
 export default {
   props: [
     'portfolioCoinProp'
@@ -39,6 +67,7 @@ export default {
 
   data () {
     return {
+      editQuantity: false
     }
   },
 
@@ -48,6 +77,13 @@ export default {
   },
 
   watch: {
+    portfolioCoin () {
+      if (this.portfolioCoin.quantity <= 0.0) {
+        this.editQuantity = true
+      } else {
+        this.editQuantity = false
+      }
+    }
   },
 
   computed: {
@@ -61,10 +97,24 @@ export default {
   },
 
   methods: {
+    currentValue () {
+      let quantity = this.portfolioCoin.quantity
+      let price = this.marketCoin.price
+      return quantity * price
+    },
+
+    updateQuantity () {
+      this.$store.dispatch('updatePortfolioCoin', { id: this.portfolioCoin.id, changeset: { quantity: this.portfolioCoin.quantity } })
+    },
+
+    destroyPortfolioCoin () {
+      this.$store.dispatch('destroyPortfolioCoin', { id: this.portfolioCoin.id })
+    }
   },
 
   components: {
-    CoinPreviewContent
+    CoinPreviewContent,
+    AnimatedNumber
   }
 }
 </script>

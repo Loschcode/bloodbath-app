@@ -153,7 +153,7 @@ export default {
   },
 
   destroyed () {
-    this.$store.dispatch('destroyMarketCoin', { id: this.marketCoinId })
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoinId })
   },
 
   computed: {

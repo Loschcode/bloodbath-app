@@ -19,7 +19,6 @@ const actions = {
     .patch(`user_market_coins/${params.id}`, { user_market_coin: params.changeset })
     .then(
       (response) => {
-        console.log(response.data.user_market_coin)
         context.commit('setUserMarketCoin', response.data.user_market_coin)
         context.dispatch('fetchFavoriteCoins')
         context.dispatch('fetchTopCoins')

@@ -105,6 +105,8 @@ export default {
         return numeral(digits).format('$0,0')
       } else if (this.type === 'percent') {
         return numeral(digits).format('0,0.00%')
+      } else if (this.type === 'quantity') {
+        return numeral(digits).format('0,0.00')
       } else {
         return digits
       }
