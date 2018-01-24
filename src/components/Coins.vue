@@ -5,7 +5,7 @@
       </div>
       <div slot="center">
         <div class="header__title">
-          <h1>CryptoScreen</h1>
+          <h1></h1>
         </div>
       </div>
       <div slot="right">
@@ -21,7 +21,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Favorites Coins
+              My favorites coins
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Top Coins
+              Top coins
             </div>
           </div>
         </div>

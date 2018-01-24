@@ -5,7 +5,7 @@
       </div>
       <div slot="center">
         <div class="header__title">
-          <h1>Portfolio</h1>
+          <h1></h1>
         </div>
       </div>
     </default-header>
@@ -16,7 +16,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Coins
+              My coins
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
     <!-- Search -->
     <search-coins contextProp="portfolio">
       <div slot="title">
-        Add new coin
+        Add new coins
       </div>
     </search-coins>
 

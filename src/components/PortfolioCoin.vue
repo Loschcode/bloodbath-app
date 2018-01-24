@@ -40,7 +40,7 @@
                     <span class="icon icon-trash"></span>
                   </a>
                   <a @click="updateQuantity">
-                    <span class="icon --selected icon-pencil"></span>
+                    <span class="icon --selected icon-confirm"></span>
                   </a>
                 </div>
               </div>

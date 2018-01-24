@@ -8,9 +8,10 @@
             <div class="module__title">
               <div class="row">
                 <div class="gr-2">
-                  <div class="module__title-folio">
+                  <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
+                  <!-- <div class="module__title-folio">
                     <span class="icon-folio --off"></span>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="gr-10">
                   <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
