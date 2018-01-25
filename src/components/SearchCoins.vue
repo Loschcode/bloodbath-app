@@ -15,7 +15,7 @@
   <div class="row">
     <div class="gr-12">
       <div class="search">
-        <input type="text" ref="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" />
+        <input type="text" ref="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" placeholder="e.g. Bitcoin, Ethereum ..." />
       </div>
     </div>
   </div>

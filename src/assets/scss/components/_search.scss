@@ -9,6 +9,9 @@
     width: inherit;
     padding: 1em;
     width: -webkit-fill-available;
+    &:focus {
+      border-color: $footer-border-color;
+    }
   }
 }
 
