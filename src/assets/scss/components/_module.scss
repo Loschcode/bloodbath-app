@@ -108,7 +108,7 @@
   text-align: left;
 
   input[type="submit"] {
-    width: 220px;
+    // width: 220px;
     text-align: center;
   }
 }
@@ -178,5 +178,16 @@
 
   .icon {
     cursor: pointer;
+  }
+}
+
+.module__after-footer {
+  text-align: right;
+  a {
+    opacity: 0.5;
+    display: inline-block;
+    &:hover {
+      opacity: 1.0;
+    }
   }
 }

@@ -40,13 +40,12 @@
                 <input type="submit" class="button" value="Create my account" @click="tryRegister">
               </div>
             </div>
-            <div class="module__footer">
-              <div class="module__footer-action --stick --small">
-                <a @click="switchAuthenticate">
-                  Already have an account ? Log in
-                </a>
-              </div>
-            </div>
+          </div>
+
+          <div class="module__after-footer">
+            <a @click="switchAuthenticate">
+              Already have an account ? Log in
+            </a>
           </div>
 
         </div>
@@ -70,13 +69,12 @@
                 <input type="submit" class="button" value="Access my account" @click="tryAuthenticate">
               </div>
             </div>
-            <div class="module__footer">
-              <div class="module__footer-action --stick --small">
-                <a @click="switchRegister">
-                  Don't have an account ? Sign Up
-                </a>
-              </div>
-            </div>
+          </div>
+
+          <div class="module__after-footer">
+            <a @click="switchRegister">
+              Don't have an account ? Sign Up
+            </a>
           </div>
 
         </div>
