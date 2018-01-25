@@ -74,6 +74,8 @@
 <script>
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import AnimatedNumber from '@/components/AnimatedNumber'
+import _ from 'lodash'
+
 export default {
   props: [
     'portfolioCoinProp'
@@ -92,10 +94,6 @@ export default {
   },
 
   mounted () {
-    /**
-     * We auto-focus the search area
-     */
-    this.$nextTick(() => this.$refs.input.focus())
   },
 
   destroyed () {
@@ -103,6 +101,13 @@ export default {
   },
 
   watch: {
+    editQuantity (newValue, oldValue) {
+      this.$nextTick(() => {
+        if (!_.isUndefined(this.$refs.input)) {
+          this.$refs.input.focus()
+        }
+      })
+    },
     portfolioCoin () {
       if (this.portfolioCoin.quantity <= 0.0) {
         this.editQuantity = true

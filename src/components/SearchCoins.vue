@@ -42,12 +42,7 @@
 
           <div v-if="resultCoins.length">
             <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
-              <div v-if="context === `coins`">
-                <coin-preview-default :marketCoinProp="resultCoin.market_coin" :userMarketCoinProp="resultCoin.user_market_coin" />
-              </div>
-              <div v-else-if="context === `portfolio`">
-                <coin-preview-portfolio :marketCoinProp="resultCoin.market_coin" :userMarketCoinProp="resultCoin.user_market_coin" />
-              </div>
+                <coin-preview :contextProp='context' :marketCoinProp="resultCoin.market_coin" :userMarketCoinProp="resultCoin.user_market_coin" />
             </div>
           </div>
           <div v-else>
@@ -66,8 +61,7 @@
 </template>
 
 <script>
-import CoinPreviewDefault from '@/components/CoinPreviewDefault'
-import CoinPreviewPortfolio from '@/components/CoinPreviewPortfolio'
+import CoinPreview from '@/components/CoinPreview'
 import _ from 'lodash'
 
 export default {
@@ -128,8 +122,7 @@ export default {
   },
 
   components: {
-    CoinPreviewDefault,
-    CoinPreviewPortfolio
+    CoinPreview
   }
 }
 </script>

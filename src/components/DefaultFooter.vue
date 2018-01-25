@@ -24,12 +24,7 @@
           <div class="footer__title">Portfolio</div>
           <div class="footer__content">
             <div class="footer__content-digits">
-              <div v-if="currentPortfolio">
-                <animated-number :value="currentPortfolio" :type="`money`" />
-              </div>
-              <div v-else>
-                -
-              </div>
+              <portfolio-capital />
             </div>
           </div>
           </router-link>
@@ -56,10 +51,8 @@
 </template>
 
 <script>
-import animatedNumber from '@/components/AnimatedNumber'
-import _ from 'lodash'
-
-import { mapGetters } from 'vuex'
+import PortfolioCapital from '@/components/PortfolioCapital'
+import AnimatedNumber from '@/components/AnimatedNumber'
 
 export default {
   data () {
@@ -69,8 +62,6 @@ export default {
 
   created () {
     this.$store.dispatch('fetchMarketCoin', { id: this.$user.data().user_setting.default_market_coin_id })
-    // to get total of folio
-    this.$store.dispatch('fetchPortfolioCoins')
   },
 
   destroyed () {
@@ -80,27 +71,12 @@ export default {
   computed: {
     defaultMarketCoin () {
       return this.$store.getters.getMarketCoin(this.$user.data().user_setting.default_market_coin_id)
-    },
-
-    currentPortfolio () {
-      var vm = this
-      var total = 0.0
-      this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
-        let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin.id)
-        if (!_.isNil(marketCoin)) {
-          total += (marketCoin.price * portfolioCoin.quantity)
-        }
-      })
-      return total
-    },
-
-    ...mapGetters({
-      portfolioCoins: 'getPortfolioCoins'
-    })
+    }
   },
 
   components: {
-    animatedNumber
+    PortfolioCapital,
+    AnimatedNumber
   }
 }
 </script>

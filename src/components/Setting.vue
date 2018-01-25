@@ -17,19 +17,45 @@
       <div class="row">
         <div class="gr-12">
           <div class="section__title">
-            My Account
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="gr-4">
-          <input type="submit" class="button button__danger" value="Log-out from my account" @click="tryLogOut">
+        <div class="gr-6 gr-12@mobile gr-centered">
+
+          <div class="module">
+            <div class="module__title">
+              <h2>My preferences</h2>
+            </div>
+            <div class="module__content">
+              HERE
+            </div>
+            <div class="module__footer">
+            </div>
+          </div>
+
         </div>
       </div>
+
+      <div class="row">
+        <div class="gr-6 gr-12@mobile gr-centered">
+
+          <div class="module">
+            <div class="module__title">
+              <h2>My account</h2>
+            </div>
+            <div class="module__content">
+              <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+            </div>
+            <div class="module__footer">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
-
-
   </div>
 </template>
 

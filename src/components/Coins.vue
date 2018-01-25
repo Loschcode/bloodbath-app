@@ -28,7 +28,7 @@
 
         <div class="row">
           <div class="gr-3 gr-12@mobile" v-for="favoriteCoin in favoriteCoins">
-            <coin-preview-default :marketCoinProp="favoriteCoin.market_coin" :userMarketCoinProp="favoriteCoin.user_market_coin" />
+            <coin-preview contextProp="coins" :marketCoinProp="favoriteCoin.market_coin" :userMarketCoinProp="favoriteCoin.user_market_coin" />
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
         <div class="row">
           <div class="gr-3 gr-12@mobile" v-for="topCoin in topCoins">
-            <coin-preview-default :marketCoinProp="topCoin.market_coin" :userMarketCoinProp="topCoin.user_market_coin" />
+            <coin-preview contextProp="coins" :marketCoinProp="topCoin.market_coin" :userMarketCoinProp="topCoin.user_market_coin" />
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
-import CoinPreviewDefault from '@/components/CoinPreviewDefault'
+import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
@@ -90,7 +90,7 @@ export default {
 
   components: {
     DefaultHeader,
-    CoinPreviewDefault,
+    CoinPreview,
     SearchCoins,
     EventBus
   }

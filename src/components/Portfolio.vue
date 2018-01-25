@@ -10,7 +10,40 @@
       </div>
     </default-header>
 
-    <!-- Favorites Coins -->
+    <!-- My capital -->
+    <div v-if="portfolioCoins.length">
+      <div class="section">
+        <div class="row">
+          <div class="gr-12">
+            <div class="section__title">
+              My capital
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="gr-12 gr-centered">
+
+            <div class="gr-12 gr-12@mobile">
+              <div class="module">
+                <div class="module__bubble">
+                  <div class="gr-12">
+
+                    <div class="module__content-digits --extra-big">
+                        <portfolio-capital />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- My coins -->
     <div v-if="portfolioCoins.length">
       <div class="section">
         <div class="row">
@@ -42,6 +75,7 @@
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
 import PortfolioCoin from '@/components/PortfolioCoin'
+import PortfolioCapital from '@/components/PortfolioCapital'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
@@ -71,6 +105,7 @@ export default {
 
   components: {
     DefaultHeader,
+    PortfolioCapital,
     PortfolioCoin,
     SearchCoins,
     EventBus
