@@ -1,15 +1,15 @@
 <template>
   <div class="coin-preview-favorite">
     <div v-if="userMarketCoin">
-      <div class="module__title-favorite">
+      <div class="module__footer-action --stick">
         <div v-if="userMarketCoin.favorited_at">
           <a @click="removeFavorite">
-            <span class="icon-favorite --on"></span>
+            <span class="icon-favorite-on"></span>
           </a>
         </div>
         <div v-else>
           <a @click="addFavorite">
-            <span class="icon-favorite --off"></span>
+            <span class="icon-favorite-off"></span>
           </a>
         </div>
       </div>

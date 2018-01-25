@@ -9,8 +9,8 @@
 
             <div class="module__title">
               <div class="gr-2">
-                <div class="module__title-folio">
-                  <span class="icon-folio --on"></span>
+                <div class="module__title-portfolio">
+                  <span class="icon-portfolio --on"></span>
                 </div>
               </div>
               <div class="gr-10">

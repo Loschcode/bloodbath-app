@@ -22,14 +22,21 @@
       </div>
 
       <div class="row">
-        <div class="gr-6 gr-12@mobile gr-centered">
+        <div class="gr-10 gr-12@mobile gr-centered">
 
           <div class="module">
             <div class="module__title">
               <h2>My preferences</h2>
             </div>
             <div class="module__content">
-              HERE
+
+              <!-- Search -->
+              <search-coins contextProp="primary">
+                <div slot="title">
+                  Change primary coin
+                </div>
+              </search-coins>
+
             </div>
             <div class="module__footer">
             </div>
@@ -39,7 +46,7 @@
       </div>
 
       <div class="row">
-        <div class="gr-6 gr-12@mobile gr-centered">
+        <div class="gr-10 gr-12@mobile gr-centered">
 
           <div class="module">
             <div class="module__title">
@@ -61,6 +68,7 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
+import SearchCoins from '@/components/SearchCoins'
 
 export default {
   data () {
@@ -76,7 +84,8 @@ export default {
   },
 
   components: {
-    DefaultHeader
+    DefaultHeader,
+    SearchCoins
   }
 }
 </script>

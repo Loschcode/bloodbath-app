@@ -7,8 +7,28 @@
             <div class="module__title">
               <div class="row">
                 <div class="gr-2">
-                  <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
+                  <div v-if="isPrimaryCoin()">
+                    <div class="module__title-primary">
+                      <span class="icon-primary"></span>
+                    </div>
+                  </div>
+                  <div v-else-if="isPortfolioCoin()">
+                    <div class="module__title-portfolio">
+                      <span class="icon-portfolio"></span>
+                    </div>
+                  </div>
+                  <div v-else-if="isFavoriteCoin()">
+                    <div class="module__title-favorite">
+                      <span class="icon-favorite-on"></span>
+                    </div>
+                  </div>
+                  <div v-else>
+                    <div class="module__title-default">
+                      <span class="icon-default"></span>
+                    </div>
+                  </div>
                 </div>
+
                   <div class="gr-10">
                     <a @click="clickAction">
                       <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
@@ -26,6 +46,7 @@
 
             </div>
             <div class="module__footer">
+              <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
             </div>
           </div>
         </div>
@@ -43,7 +64,8 @@ export default {
   props: [
     'contextProp',
     'marketCoinProp',
-    'userMarketCoinProp'
+    'userMarketCoinProp',
+    'portfolioCoinProp'
   ],
 
   data () {
@@ -57,6 +79,9 @@ export default {
 
     this.$store.commit('setMarketCoin', this.marketCoinProp)
     this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
+    if (this.portfolioCoinProp) {
+      this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
+    }
     this.$store.dispatch('listenMarketCoin', this.marketCoinProp)
   },
 
@@ -70,6 +95,12 @@ export default {
 
     userMarketCoin () {
       return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
+    },
+
+    portfolioCoin () {
+      if (this.portfolioCoinProp) {
+        return this.$store.getters.getPortfolioCoin(this.portfolioCoinProp.id)
+      }
     }
   },
 
@@ -79,19 +110,47 @@ export default {
 
   methods: {
 
+    isFavoriteCoin () {
+      return this.userMarketCoin.favorited_at
+    },
+
+    isPortfolioCoin () {
+      return this.portfolioCoin
+    },
+
+    isPrimaryCoin () {
+      return this.marketCoin.id === this.$user.data().user_setting.primary_market_coin_id
+    },
+
     clickAction (event) {
+      event.preventDefault()
       if (this.context === 'portfolio') {
-        event.preventDefault()
         this.createPortfolioCoin()
+      } else if (this.context === 'primary') {
+        this.updatePrimaryCoin()
       } else if (this.context === 'coins') {
         router.push({ name: 'coin', params: { coinName: this.marketCoin.symbol } })
       }
     },
 
+    updatePrimaryCoin () {
+      this.$axios
+      .patch(`user_setting`, { user_setting: { primary_market_coin_id: this.marketCoin.id } })
+      .then(
+        (response) => {
+          this.$user.set(response.data.user)
+          window.location.href = '/'
+        },
+
+        (error) => {
+          console.warn(error)
+        }
+      )
+    },
     /**
      * In case of portfolio context, it'll be the action
      */
-    createPortfolioCoin (event) {
+    createPortfolioCoin () {
       this.$store.dispatch('createPortfolioCoin', { changeset: { market_coin_id: this.marketCoin.id } })
     }
   },

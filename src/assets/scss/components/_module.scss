@@ -40,33 +40,34 @@
   font-weight: 200;
 }
 
-.module__title-favorite {
-  font-size: 27px;
-  a {
-    color: $color-favorite-on;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .--on {
-    opacity: 1.0;
-  }
-  .--off {
-    opacity: 0.2;
-  }
+.module__title-primary {
+  font-size: 24px;
+  color: $color-primary-on;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.module__title-folio {
+.module__title-favorite {
+  font-size: 27px;
+  color: $color-favorite-on;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.module__title-portfolio {
   font-size: 24px;
   color: $color-folio-on;
   text-decoration: none;
   display: inline-block;
-  .--on {
-    opacity: 1.0;
-  }
-  .--off {
-    opacity: 0.2;
-  }
 }
+
+.module__title-default {
+  font-size: 27px;
+  color: $color-default-on;
+  text-decoration: none;
+  display: inline-block;
+}
+
 
 .module__logo {
   background-color: $module-title-background-color;
