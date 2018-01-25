@@ -1,22 +1,28 @@
 <template>
   <div class="coin-preview">
     <div v-if="marketCoin">
-      <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
-
         <div class="gr-12 gr-12@mobile">
           <div class="module">
+
+            <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
             <div class="module__title">
               <div class="row">
                 <div class="gr-2">
                   <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
                 </div>
-                <div class="gr-10">
-                  <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
-                </div>
+                  <div class="gr-10">
+                    <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                  </div>
               </div>
             </div>
+            </router-link>
+
             <div class="module__content">
-              <coin-preview-content :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoin" />
+
+              <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
+                <coin-preview-content :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoin" />
+              </router-link>
+
             </div>
             <div class="module__footer">
             </div>

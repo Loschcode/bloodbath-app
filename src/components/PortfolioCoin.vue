@@ -19,7 +19,7 @@
             </div>
 
             </router-link>
-            
+
             <div class="module__content">
               <div class="module__content-folio">
                 <div v-if="editQuantity">
@@ -27,15 +27,21 @@
                   <input type="text" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
                 </div>
                 <div v-if="!editQuantity">
-                  <!-- Display the current value -->
-                  <div class="module__content-digits --medium">
-                      <animated-number :value="currentValue()" :type="`money`" />
-                  </div>
-                  <div class="module__content-digits --very-small --grey">
-                    <div v-if="portfolioCoin.quantity">
-                      <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
-                      </div>
-                  </div>
+
+                  <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
+
+                    <!-- Display the current value -->
+                    <div class="module__content-digits --medium">
+                        <animated-number :value="currentValue()" :type="`money`" />
+                    </div>
+                    <div class="module__content-digits --very-small --grey">
+                      <div v-if="portfolioCoin.quantity">
+                        <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
+                        </div>
+                    </div>
+
+                  </router-link>
+
                 </div>
               </div>
             </div>

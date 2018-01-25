@@ -32,7 +32,7 @@
     <!-- Search -->
     <search-coins contextProp="portfolio">
       <div slot="title">
-        Add new coins
+        Add coins
       </div>
     </search-coins>
 

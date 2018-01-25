@@ -6,7 +6,7 @@
     <div class="gr-12">
       <div class="section__title">
         <slot name="title">
-          Search
+          Search coins
         </slot>
       </div>
     </div>
