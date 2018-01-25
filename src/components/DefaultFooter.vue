@@ -8,8 +8,8 @@
             <div class="footer__title">Coins</div>
             <div class="footer__content">
               <div class="footer__content-digits">
-                <div v-if="defaultMarketCoin">
-                  <animated-number :value="defaultMarketCoin.price" :type="`money`" /> {{ defaultMarketCoin.name }}
+                <div v-if="primaryMarketCoin">
+                  <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
                 </div>
                 <div v-else>
                   -
@@ -61,16 +61,16 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchMarketCoin', { id: this.$user.data().user_setting.default_market_coin_id })
+    this.$store.dispatch('fetchMarketCoin', { id: this.$user.data().user_setting.primary_market_coin_id })
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.$user.data().user_setting.default_market_coin_id })
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.$user.data().user_setting.primary_market_coin_id })
   },
 
   computed: {
-    defaultMarketCoin () {
-      return this.$store.getters.getMarketCoin(this.$user.data().user_setting.default_market_coin_id)
+    primaryMarketCoin () {
+      return this.$store.getters.getMarketCoin(this.$user.data().user_setting.primary_market_coin_id)
     }
   },
 

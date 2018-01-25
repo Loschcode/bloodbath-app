@@ -4,20 +4,19 @@
         <div class="gr-12 gr-12@mobile">
           <div class="module">
 
-            <a @click="clickAction">
-
             <div class="module__title">
               <div class="row">
                 <div class="gr-2">
                   <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
                 </div>
                   <div class="gr-10">
-                    <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                    <a @click="clickAction">
+                      <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                    </a>
                   </div>
               </div>
             </div>
 
-            </a>
 
             <div class="module__content">
 
@@ -81,7 +80,6 @@ export default {
   methods: {
 
     clickAction (event) {
-      console.log(this.context)
       if (this.context === 'portfolio') {
         event.preventDefault()
         this.createPortfolioCoin()
