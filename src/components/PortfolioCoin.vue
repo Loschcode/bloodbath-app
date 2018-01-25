@@ -16,14 +16,14 @@
             </div>
             <div class="module__content">
               <div class="module__content-folio">
-                <div v-if="editQuantity">
+                <div v-show="editQuantity">
                   <!-- Edit quantity of the coin -->
-                  <input type="text" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
+                  <input type="text" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
                 </div>
-                <div v-else>
+                <div v-if="!editQuantity">
                   <!-- Display the current value -->
                   <div class="module__content-digits --medium">
-                    <animated-number :value="currentValue()" :type="`money`" />
+                      <animated-number :value="currentValue()" :type="`money`" />
                   </div>
                   <div class="module__content-digits --very-small --grey">
                     <div v-if="portfolioCoin.quantity">
@@ -77,6 +77,13 @@ export default {
     this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
     this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
     this.$store.dispatch('listenMarketCoin', this.portfolioCoinProp.market_coin)
+  },
+
+  mounted () {
+    /**
+     * We auto-focus the search area
+     */
+    this.$nextTick(() => this.$refs.input.focus())
   },
 
   destroyed () {

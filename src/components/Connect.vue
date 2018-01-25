@@ -74,7 +74,6 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
-import router from '@/router'
 
 export default {
   data () {
