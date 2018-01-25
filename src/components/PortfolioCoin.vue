@@ -4,6 +4,9 @@
 
         <div class="gr-12 gr-12@mobile">
           <div class="module">
+
+            <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
+
             <div class="module__title">
               <div class="gr-2">
                 <div class="module__title-folio">
@@ -14,9 +17,12 @@
                 <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
               </div>
             </div>
+
+            </router-link>
+            
             <div class="module__content">
               <div class="module__content-folio">
-                <div v-show="editQuantity">
+                <div v-if="editQuantity">
                   <!-- Edit quantity of the coin -->
                   <input type="text" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
                 </div>
@@ -46,7 +52,7 @@
               </div>
               <div v-else>
                 <div class="module__footer-action --stick">
-                  <a @click="editQuantity = true">
+                  <a @click="enableEditQuantity">
                     <span class="icon icon-pencil"></span>
                   </a>
                 </div>
@@ -117,11 +123,18 @@ export default {
       return quantity * price
     },
 
-    updateQuantity () {
+    enableEditQuantity (event) {
+      event.preventDefault()
+      this.editQuantity = true
+    },
+
+    updateQuantity (event) {
+      event.preventDefault()
       this.$store.dispatch('updatePortfolioCoin', { id: this.portfolioCoin.id, changeset: { quantity: this.portfolioCoin.quantity } })
     },
 
-    destroyPortfolioCoin () {
+    destroyPortfolioCoin (event) {
+      event.preventDefault()
       this.$store.dispatch('destroyPortfolioCoin', { id: this.portfolioCoin.id })
     }
   },

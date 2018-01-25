@@ -9,9 +9,6 @@
               <div class="row">
                 <div class="gr-2">
                   <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
-                  <!-- <div class="module__title-folio">
-                    <span class="icon-folio --off"></span>
-                  </div> -->
                 </div>
                 <div class="gr-10">
                   <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
@@ -22,9 +19,6 @@
               <coin-preview-content :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoin" />
             </div>
             <div class="module__footer">
-              <!-- <div class="module__footer-add">
-                <span class="icon-plus"></span>
-              </div> -->
             </div>
           </div>
         </div>

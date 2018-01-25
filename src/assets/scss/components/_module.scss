@@ -29,7 +29,7 @@
   a {
     color: $color-favorite-on;
     text-decoration: none;
-    display: block;
+    display: inline-block;
   }
   .--on {
     opacity: 1.0;
@@ -43,7 +43,7 @@
   font-size: 24px;
   color: $color-folio-on;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   .--on {
     opacity: 1.0;
   }
@@ -137,7 +137,7 @@
   font-size: 30px;
   a {
     opacity: 0.5;
-    display: inline;
+    display: inline-block;
     &:hover {
       opacity: 1.0;
     }
