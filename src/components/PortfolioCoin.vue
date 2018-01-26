@@ -5,7 +5,7 @@
         <div class="gr-12 gr-12@mobile">
           <div class="module">
 
-            <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
+            <router-link :to="{ name: 'coin', params: { coinName: marketCoin.code } }">
 
             <div class="module__title">
               <div class="gr-2">
@@ -28,7 +28,7 @@
                 </div>
                 <div v-if="!editQuantity">
 
-                  <router-link :to="{ name: 'coin', params: { coinName: marketCoin.symbol } }">
+                  <router-link :to="{ name: 'coin', params: { coinName: marketCoin.code } }">
 
                     <!-- Display the current value -->
                     <div class="module__content-digits --medium">

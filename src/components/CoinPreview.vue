@@ -132,7 +132,7 @@ export default {
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
       } else if (this.context === 'coins') {
-        router.push({ name: 'coin', params: { coinName: this.marketCoin.symbol } })
+        router.push({ name: 'coin', params: { coinName: this.marketCoin.code } })
       }
     },
 
