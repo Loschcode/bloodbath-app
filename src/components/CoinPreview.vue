@@ -85,7 +85,7 @@ export default {
     if (this.portfolioCoinProp) {
       this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
     }
-    this.$store.dispatch('listenMarketCoin', this.marketCoinProp)
+    this.$store.dispatch('subscribeMarketCoin', this.marketCoinProp)
   },
 
   watch: {

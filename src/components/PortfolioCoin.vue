@@ -90,7 +90,7 @@ export default {
   created () {
     this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
     this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
-    this.$store.dispatch('listenMarketCoin', this.portfolioCoinProp.market_coin)
+    this.$store.dispatch('subscribeMarketCoin', this.portfolioCoinProp.market_coin)
   },
 
   mounted () {

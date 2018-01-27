@@ -15,52 +15,14 @@ const state = {
 const getters = {
   getMarketCoins: (state) => state.marketCoins,
   getMarketCoin: (state) => (id) => state.marketCoins.find((item) => item.id === id),
+
   getFavoriteCoins: (state) => state.favoriteCoins,
   getTopCoins: (state) => state.topCoins
 }
 
 // actions
 const actions = {
-  unsubscribeMarketCoin (context, params) {
-    let current = context.state.currentChannels.find(entry => entry.id === params.id)
-    if (!_.isNil(current)) {
-      current.channel.unsubscribe()
-      context.state.currentChannels.splice(current, 1)
-      console.log('destroy channel ' + params.id)
-    }
-  },
-
-  /**
-   * TODO : use that on "page change" per say
-   */
-  unsubscribeMarketCoins (context, params) {
-    context.state.currentChannels.forEach(function (current, index, object) {
-      current.channel.unsubscribe()
-      object.splice(index, 1)
-    })
-    console.log('unsubscribed all channels')
-  },
-
-  fetchMarketCoin (context, params) {
-    return new Promise((resolve, reject) => {
-      axios
-      .get(`coins/${params.id}`)
-      .then(response => {
-        context.commit('setMarketCoin', response.data.market_coin)
-        context.dispatch('listenMarketCoin', response.data.market_coin)
-
-        /**
-        * We transmit the fixed IDs to the component
-        */
-        resolve({
-          marketCoinId: response.data.market_coin.id,
-          userMarketCoinId: response.data.user_market_coin.id
-        })
-      })
-    })
-  },
-
-  listenMarketCoin (context, params) {
+  subscribeMarketCoin (context, params) {
     /**
     * We start the stream
     */
@@ -82,6 +44,34 @@ const actions = {
       }
     )
     context.state.currentChannels.push({id: channelId, channel: channel})
+  },
+
+  unsubscribeMarketCoin (context, params) {
+    let current = context.state.currentChannels.find(entry => entry.id === params.id)
+    if (!_.isNil(current)) {
+      current.channel.unsubscribe()
+      context.state.currentChannels.splice(current, 1)
+      console.log('destroy channel ' + params.id)
+    }
+  },
+
+  fetchMarketCoin (context, params) {
+    return new Promise((resolve, reject) => {
+      axios
+      .get(`coins/${params.id}`)
+      .then(response => {
+        context.commit('setMarketCoin', response.data.market_coin)
+        context.dispatch('subscribeMarketCoin', response.data.market_coin)
+
+        /**
+        * We transmit the fixed IDs to the component
+        */
+        resolve({
+          marketCoinId: response.data.market_coin.id,
+          userMarketCoinId: response.data.user_market_coin.id
+        })
+      })
+    })
   },
 
   fetchFavoriteCoins (context) {

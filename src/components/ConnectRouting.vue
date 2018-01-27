@@ -75,6 +75,7 @@ export default {
      * and the classic AJAX
      */
     connectAll (token) {
+      console.log('token : ' + token)
       this.connectCable(token)
       this.connectApi(token)
     },
