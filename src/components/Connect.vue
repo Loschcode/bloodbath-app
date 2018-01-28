@@ -108,7 +108,6 @@ export default {
   },
 
   created () {
-    // TODO : get out if this.$user.isConnected()
   },
 
   methods: {
@@ -125,7 +124,7 @@ export default {
       .post(`connect/register`, this.registerData)
       .then(
         (response) => {
-          this.$user.set(response.data.user)
+          this.$store.commit('setCurrentUser', response.data.user)
           window.location.href = '/'
         },
 
@@ -140,7 +139,7 @@ export default {
       .post(`connect/authenticate`, this.authenticateData)
       .then(
         (response) => {
-          this.$user.set(response.data.user)
+          this.$store.commit('setCurrentUser', response.data.user)
           window.location.href = '/'
         },
 

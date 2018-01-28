@@ -31,10 +31,10 @@
         </div>
         <div class="gr-4">
           <div class="footer__left-border">
-            <div v-if="this.$user.isConnected()">
+            <div v-if="isConnected">
               <router-link :to="{ name: 'setting' }">
                 <div class="footer__title">My account</div>
-                <div class="footer__content">{{ this.$user.data().email }}</div>
+                <div class="footer__content">{{ currentUser.email }}</div>
               </router-link>
             </div>
             <div v-else>
@@ -61,16 +61,33 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchMarketCoin', { id: this.$user.data().user_setting.primary_market_coin_id })
+  },
+
+  watch: {
+    userSetting (newValue, oldValue) {
+      this.$store.dispatch('fetchMarketCoin', { id: newValue.primary_market_coin_id })
+    }
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.$user.data().user_setting.primary_market_coin_id })
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.userSetting.primary_market_coin_id })
   },
 
   computed: {
+    userSetting () {
+      return this.$store.getters.getUserSetting()
+    },
+
+    currentUser () {
+      return this.$store.getters.getCurrentUser()
+    },
+
+    isConnected () {
+      return this.currentUser.role !== 'anonymous'
+    },
+
     primaryMarketCoin () {
-      return this.$store.getters.getMarketCoin(this.$user.data().user_setting.primary_market_coin_id)
+      return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
     }
   },
 

@@ -92,6 +92,14 @@ export default {
   },
 
   computed: {
+    userSetting () {
+      return this.$store.getters.getUserSetting()
+    },
+
+    currentUser () {
+      return this.$store.getters.getCurrentUser()
+    },
+
     marketCoin () {
       return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
     },
@@ -122,7 +130,7 @@ export default {
     },
 
     isPrimaryCoin () {
-      return this.marketCoin.id === this.$user.data().user_setting.primary_market_coin_id
+      return this.marketCoin.id === this.userSetting.primary_market_coin_id
     },
 
     clickAction (event) {
@@ -141,8 +149,7 @@ export default {
       .patch(`user_setting`, { user_setting: { primary_market_coin_id: this.marketCoin.id } })
       .then(
         (response) => {
-          this.$user.set(response.data.user)
-          window.location.reload()
+          this.store.commit('setCurrentUser', response.data.user)
         },
 
         (error) => {

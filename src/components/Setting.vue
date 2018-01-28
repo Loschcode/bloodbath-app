@@ -91,8 +91,7 @@ export default {
 
   computed: {
     userSetting () {
-      // TODO : will be turned into a store soon
-      return this.$user.data().user_setting
+      return this.$store.getters.getUserSetting()
     },
 
     primaryMarketCoin () {
@@ -102,7 +101,7 @@ export default {
 
   methods: {
     tryLogOut () {
-      this.$user.signOut()
+      this.$store.dispatch('signOutCurrentUser')
       window.location.href = '/'
     }
   },

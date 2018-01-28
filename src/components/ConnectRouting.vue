@@ -8,7 +8,7 @@
     <div v-else>
 
       <!-- If everything is valid we route -->
-      <div v-if="valid_token">
+      <div v-if="currentUser">
         <!-- Load the correct page -->
         <router-view />
         <!-- Footer is here -->
@@ -35,7 +35,6 @@ export default {
 
   data () {
     return {
-      valid_token: false,
       error: ''
     }
   },
@@ -53,8 +52,8 @@ export default {
     /**
      * We take care of the connection
      */
-    if (this.$user.token()) {
-      this.connectAll(this.$user.token())
+    if (this.userToken) {
+      this.connectAll(this.userToken)
     } else {
       this.connectAnonymous()
     }
@@ -66,6 +65,16 @@ export default {
 
   components: {
     DefaultFooter
+  },
+
+  computed: {
+    userToken () {
+      return this.$store.getters.getUserToken()
+    },
+
+    currentUser () {
+      return this.$store.getters.getCurrentUser()
+    }
   },
 
   methods: {
@@ -94,14 +103,7 @@ export default {
      */
     connectAnonymous () {
       console.log('connect anonymous ...')
-      this.$axios
-      .post(`connect/anonymous`)
-      .then(
-        (response) => {
-          return this.connectAll(response.data.token)
-        },
-        this.throwError.bind(this)
-      )
+      this.$store.dispatch('createAnonymousUser')
     },
 
     /**
@@ -111,21 +113,11 @@ export default {
      * to verify the token validity
      */
     connectApi (token) {
-      console.log('connection to api ...')
       /**
        *  here is the only time we actually force the token beforehand
        */
-      this.$axios
-      .get('/user', {params: {token: token}})
-      .then(
-        (response) => {
-          this.$user.set(response.data.user)
-          this.valid_token = true
-          console.log('api connected.')
-          return true
-        },
-        this.throwError.bind(this)
-      )
+      console.log('connection to api ...')
+      this.$store.dispatch('fetchCurrentUser', {token: token})
     }
   }
 }

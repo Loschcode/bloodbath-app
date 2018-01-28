@@ -16,7 +16,7 @@ import User from '@/plugins/User'
 
 // NOTE : to reset users or memory
 // just uncomment this line
-localStorage.clear()
+// localStorage.clear()
 
 // Global configuration
 Vue.config.productionTip = false
@@ -60,7 +60,7 @@ new Vue({
        * if the token isn't already present we add it up to the system
        * we also keep the other data by merging the objects
        */
-      config.params = _.merge({token: this.$user.token()}, config.params)
+      config.params = _.merge({token: this.$store.getters.getUserToken()}, config.params)
       return config
     })
 
