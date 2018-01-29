@@ -15,6 +15,7 @@ const state = {
 const getters = {
   getMarketCoins: (state) => state.marketCoins,
   getMarketCoin: (state) => (id) => state.marketCoins.find((item) => item.id === id),
+  getMarketCoinByCode: (state) => (code) => state.marketCoins.find((item) => item.code === code),
 
   getFavoriteCoins: (state) => state.favoriteCoins,
   getTopCoins: (state) => state.topCoins
@@ -55,22 +56,28 @@ const actions = {
     }
   },
 
-  fetchMarketCoin (context, params) {
-    return new Promise((resolve, reject) => {
-      axios.get(`coins/${params.id}`)
-      .then(response => {
-        context.commit('setMarketCoin', response.data.market_coin)
-        context.dispatch('subscribeMarketCoin', response.data.market_coin)
+  async fetchMarketCoin (context, params) {
+    let response = await axios.get(`coins/${params.id}`)
 
-        /**
-        * We transmit the fixed IDs to the component
-        */
-        resolve({
-          marketCoinId: response.data.market_coin.id,
-          userMarketCoinId: response.data.user_market_coin.id
-        })
-      })
-    })
+    /**
+     * We set the market coin itself
+     */
+    context.commit('setMarketCoin', response.data.market_coin)
+    context.dispatch('subscribeMarketCoin', response.data.market_coin)
+
+    /**
+     * If possible we set the user market coin too
+     */
+    if (response.data.user_market_coin) {
+      context.commit('setUserMarketCoin', response.data.user_market_coin)
+    }
+
+    /**
+     * And portfolio coin if available
+     */
+    if (response.data.portfolio_coin) {
+      context.commit('setPortfolioCoin', response.data.portfolio_coin)
+    }
   },
 
   async fetchFavoriteCoins (context) {

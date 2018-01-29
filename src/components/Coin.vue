@@ -127,41 +127,39 @@ import CoinHeader from '@/components/CoinHeader'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import ThrowError from '@/mixins/ThrowError'
 import moment from 'moment'
+import _ from 'lodash'
 
 export default {
   data () {
     return {
-      marketCoinId: null,
-      userMarketCoinId: null,
+      coinName: _.upperCase(this.$route.params.coinName),
       variation: 0.0
     }
   },
 
   created () {
-    // var vm = this
-    this.$store.dispatch('fetchMarketCoin', { id: this.$route.params.coinName })
-    .then((response) => {
-      /**
-       * Once we get the response from the server we can set the IDs
-       * So we will be able to call the computed from those fixed data
-       * And refresh any model down there
-       */
-      this.marketCoinId = response.marketCoinId
-      this.userMarketCoinId = response.userMarketCoinId
-    })
+    this.$store.dispatch('fetchMarketCoin', { id: this.coinName })
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoinId })
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
   },
 
   computed: {
     marketCoin () {
-      return this.$store.getters.getMarketCoin(this.marketCoinId)
+      return this.$store.getters.getMarketCoinByCode(this.coinName)
     },
 
     userMarketCoin () {
-      return this.$store.getters.getUserMarketCoin(this.userMarketCoinId)
+      if (this.marketCoin) {
+        return this.$store.getters.getUserMarketCoinByMarketCoin(this.marketCoin.id)
+      }
+    },
+
+    portfolioMarketCoin () {
+      if (this.marketCoin) {
+        return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
+      }
     }
   },
 

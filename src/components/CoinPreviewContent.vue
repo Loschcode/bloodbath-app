@@ -27,8 +27,7 @@ import AnimatedNumber from '@/components/AnimatedNumber'
 
 export default {
   props: [
-    'marketCoinProp',
-    'userMarketCoinProp'
+    'marketCoinProp'
   ],
 
   data () {

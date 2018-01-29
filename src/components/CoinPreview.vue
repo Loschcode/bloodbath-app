@@ -44,7 +44,7 @@
             <div class="module__content">
 
               <a @click="clickAction">
-                <coin-preview-content :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoin" />
+                <coin-preview-content :marketCoinProp="marketCoin" />
               </a>
 
             </div>
@@ -81,23 +81,25 @@ export default {
     this.context = this.contextProp
 
     this.$store.commit('setMarketCoin', this.marketCoinProp)
+    this.$store.dispatch('subscribeMarketCoin', this.marketCoinProp)
+
     this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
+
     if (this.portfolioCoinProp) {
       this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
     }
-    this.$store.dispatch('subscribeMarketCoin', this.marketCoinProp)
   },
 
   watch: {
   },
 
   computed: {
-    userSetting () {
-      return this.$store.getters.getUserSetting()
-    },
-
     currentUser () {
       return this.$store.getters.getCurrentUser()
+    },
+
+    userSetting () {
+      return this.$store.getters.getUserSetting()
     },
 
     marketCoin () {

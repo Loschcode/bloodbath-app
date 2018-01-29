@@ -9,7 +9,8 @@ const state = {
 // getters
 const getters = {
   getUserMarketCoins: (state) => state.userMarketCoins,
-  getUserMarketCoin: (state) => (id) => state.userMarketCoins.find((item) => item.id === id)
+  getUserMarketCoin: (state) => (id) => state.userMarketCoins.find((item) => item.id === id),
+  getUserMarketCoinByMarketCoin: (state) => (marketCoinId) => state.userMarketCoins.find((item) => item.market_coin_id === marketCoinId)
 }
 
 // actions

@@ -9,7 +9,8 @@ const state = {
 // getters
 const getters = {
   getPortfolioCoins: (state) => state.portfolioCoins,
-  getPortfolioCoin: (state) => (id) => state.portfolioCoins.find((item) => item.id === id)
+  getPortfolioCoin: (state) => (id) => state.portfolioCoins.find((item) => item.id === id),
+  getPortfolioCoinByMarketCoin: (state) => (marketCoinId) => state.portfolioCoins.find((item) => item.market_coin_id === marketCoinId)
 }
 
 // actions
@@ -27,7 +28,7 @@ const actions = {
   },
 
   async createPortfolioCoin (context, params) {
-    let response = await axios.post(`portfolio_coins/`, { portfolio_coin: params.changeset })
+    let response = await axios.post(`portfolio_coins`, { portfolio_coin: params.changeset })
     context.commit('setPortfolioCoin', response.data.portfolio_coin)
   },
 
