@@ -30,7 +30,10 @@ const state = {
 
   marketCoins: [],
   favoriteCoins: [],
-  topCoins: []
+  topCoins: [],
+
+  resultCoins: [],
+  resultLoading: false
 }
 
 // getters
@@ -40,7 +43,10 @@ const getters = {
   getMarketCoinByCode: (state) => (code) => state.marketCoins.find((item) => item.code === code),
 
   getFavoriteCoins: (state) => state.favoriteCoins,
-  getTopCoins: (state) => state.topCoins
+  getTopCoins: (state) => state.topCoins,
+
+  getResultCoins: (state) => state.resultCoins,
+  getResultLoading: (state) => state.resultLoading
 }
 
 // actions
@@ -101,7 +107,20 @@ const actions = {
         dispatchAllStores(context, data)
       })
     }
+  },
+
+  async fetchResultCoins (context, query) {
+    context.commit('setResultLoading', true)
+    let response = await axios.get(`coins/search`, { params: { query: query } })
+    context.commit('setResultCoins', response.data.result_coins)
+    context.commit('setResultLoading', false)
+    if (response.data.result_coins) {
+      response.data.result_coins.forEach(function (data, index, object) {
+        dispatchAllStores(context, data)
+      })
+    }
   }
+
 }
 
 // mutations
@@ -122,6 +141,14 @@ const mutations = {
 
   setTopCoins (state, topCoins) {
     state.topCoins = topCoins
+  },
+
+  setResultCoins (state, resultCoins) {
+    state.resultCoins = resultCoins
+  },
+
+  setResultLoading (state, value) {
+    state.resultLoading = value
   }
 }
 

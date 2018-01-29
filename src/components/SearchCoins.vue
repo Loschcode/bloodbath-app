@@ -21,11 +21,11 @@
   </div>
 
   <!-- Results coins -->
-  <div v-if="resultCoins">
+  <div v-if="showResults">
 
     <div class="row">
       <div class="section__title">
-        Results
+        Results ({{ resultCoins.length }})
       </div>
     </div>
 
@@ -38,11 +38,10 @@
       </div>
 
       <div v-else>
-
         <div v-if="resultCoins.length">
           <div class="row">
             <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
-              <coin-preview :contextProp='context' :marketCoinProp="resultCoin.market_coin" />
+              <coin-preview :contextProp='`primary`' :marketCoinProp="resultCoin.market_coin" />
             </div>
           </div>
         </div>
@@ -72,8 +71,7 @@ export default {
 
   data () {
     return {
-      resultCoins: false,
-      resultLoading: false,
+      showResults: false,
       context: null
     }
   },
@@ -89,6 +87,16 @@ export default {
     this.$refs.search.focus()
   },
 
+  computed: {
+    resultLoading () {
+      return this.$store.getters.getResultLoading
+    },
+
+    resultCoins () {
+      return this.$store.getters.getResultCoins
+    }
+  },
+
   methods: {
     /**
      * When we press enter we can quick re-route
@@ -102,23 +110,15 @@ export default {
     },
 
     searchCoins (event) {
+      this.showResults = true
       let query = event.target.value
 
       if (_.isEmpty(query)) {
-        this.resultCoins = false
+        this.showResults = false
         return false
       }
 
-      this.resultCoins = {}
-      this.resultLoading = true
-
-      this.$axios
-      .get(`coins/search`, { params: { query: query } })
-      .then(response => {
-        this.resultCoins = response.data.result_coins
-        this.resultLoading = false
-      })
-      return true
+      this.$store.dispatch('fetchResultCoins', query)
     }
   },
 
