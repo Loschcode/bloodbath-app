@@ -16,8 +16,8 @@ const getters = {
 const actions = {
   async updateUserSetting (context, params) {
     let response = await axios.patch(`user_setting`, { user_setting: params.changeset })
-    this.$store.commit('setCurrentUser', response.data.user)
-    this.$store.commit('setUserSetting', response.data.user.user_setting)
+    context.commit('setCurrentUser', response.data.user)
+    context.commit('setUserSetting', response.data.user.user_setting)
   }
 }
 

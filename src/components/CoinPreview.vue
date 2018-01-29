@@ -120,7 +120,6 @@ export default {
   },
 
   methods: {
-
     isFavoriteCoin () {
       return this.userMarketCoin.favorited_at
     },
@@ -145,7 +144,7 @@ export default {
     },
 
     updatePrimaryCoin () {
-      this.dispatch('updatePrimaryCoin', { changeset: { primary_market_coin_id: this.marketCoin.id } })
+      this.$store.dispatch('updateUserSetting', { changeset: { primary_market_coin_id: this.marketCoin.id } })
     },
     /**
      * In case of portfolio context, it'll be the action
