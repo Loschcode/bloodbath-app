@@ -24,35 +24,36 @@
   <div v-if="resultCoins">
 
     <div class="row">
-      <div class="gr-12">
-        <div class="section__title">
-          Results
-        </div>
+      <div class="section__title">
+        Results
       </div>
     </div>
 
     <div class="row">
-      <div class="gr-12">
-        <div v-if="resultLoading">
-          <div class="search__loading">
-            Loading ...
-          </div>
-        </div>
-        <div v-else>
 
-          <div v-if="resultCoins.length">
-            <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
-                <coin-preview :contextProp='context' :marketCoinProp="resultCoin.market_coin" />
-            </div>
-          </div>
-          <div v-else>
-            <div class="search__no-result">
-              No result
-            </div>
-          </div>
-
+      <div v-if="resultLoading">
+        <div class="search__loading">
+          Loading ...
         </div>
       </div>
+
+      <div v-else>
+
+        <div v-if="resultCoins.length">
+          <div class="row">
+            <div class="gr-3 gr-12@mobile" v-for="resultCoin in resultCoins">
+              <coin-preview :contextProp='context' :marketCoinProp="resultCoin.market_coin" />
+            </div>
+          </div>
+        </div>
+
+        <div v-else>
+          <div class="search__no-result">
+            No result
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
