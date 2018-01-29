@@ -31,15 +31,13 @@
             <div class="module__content">
 
               <div v-if="primaryMarketCoin">
-                <coin-preview contextProp="coins" :marketCoinProp="primaryMarketCoin" :userMarketCoinProp="primaryMarketCoin.user_market_coin" :portfolioCoinProp="primaryMarketCoin.portfolio_coin" />
+                <!-- Search -->
+                <search-coins contextProp="primary">
+                  <div slot="title">
+                    Change primary coin ({{ primaryMarketCoin.name }})
+                  </div>
+                </search-coins>
               </div>
-
-              <!-- Search -->
-              <search-coins contextProp="primary">
-                <div slot="title">
-                  Change primary coin
-                </div>
-              </search-coins>
 
             </div>
             <div class="module__footer">
@@ -82,11 +80,11 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchMarketCoin', { id: this.userSetting.primary_market_coin.id })
+    this.$store.dispatch('fetchMarketCoin', { id: this.userSetting.primary_market_coin_id })
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.userSetting.primary_market_coin.id })
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.userSetting.primary_market_coin_id })
   },
 
   computed: {
@@ -95,7 +93,7 @@ export default {
     },
 
     primaryMarketCoin () {
-      return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin.id)
+      return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
     }
   },
 

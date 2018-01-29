@@ -12,11 +12,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookie from 'vue-cookie'
 import VueMeta from 'vue-meta'
-import User from '@/plugins/User'
 
 // NOTE : to reset users or memory
 // just uncomment this line
-// localStorage.clear()
+localStorage.clear()
 
 // Global configuration
 Vue.config.productionTip = false
@@ -36,9 +35,6 @@ Vue.use(VueCookie)
 
 // VueMeta
 Vue.use(VueMeta)
-
-// User configuration
-Vue.use(User)
 
 // VueRouter
 // Vue.use(Router)

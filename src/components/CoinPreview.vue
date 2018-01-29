@@ -149,7 +149,7 @@ export default {
       .patch(`user_setting`, { user_setting: { primary_market_coin_id: this.marketCoin.id } })
       .then(
         (response) => {
-          this.store.commit('setCurrentUser', response.data.user)
+          this.$store.commit('setCurrentUser', response.data.user)
         },
 
         (error) => {

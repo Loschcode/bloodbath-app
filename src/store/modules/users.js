@@ -2,6 +2,8 @@ import axios from 'axios'
 
 // initial state
 const state = {
+  // the first state is actually the localStorage
+  userToken: localStorage.getItem('userToken'),
   currentUser: {
     email: null,
     role: null
@@ -11,7 +13,7 @@ const state = {
 // getters
 const getters = {
   // we don't use the state for this specific entry so we keep the user throughout pages
-  getUserToken: (state) => () => localStorage.getItem('userToken'),
+  getUserToken: (state) => () => state.userToken,
   getCurrentUser: (state) => () => state.currentUser
 }
 

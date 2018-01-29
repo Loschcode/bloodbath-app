@@ -59,6 +59,12 @@ export default {
     }
   },
 
+  watch: {
+    userToken (newValue, oldValue) {
+      this.connectAll(newValue)
+    }
+  },
+
   mixins: [
     ThrowError
   ],
