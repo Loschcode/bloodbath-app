@@ -2,6 +2,28 @@ import axios from 'axios'
 import _ from 'lodash'
 import Cable from '@/misc/Cable'
 
+function dispatchAllStores (context, data) {
+  /**
+   * We set the market coin itself
+   */
+  context.commit('setMarketCoin', data.market_coin)
+  context.dispatch('subscribeMarketCoin', data.market_coin.id)
+
+  /**
+   * If possible we set the user market coin too
+   */
+  if (data.user_market_coin) {
+    context.commit('setUserMarketCoin', data.user_market_coin)
+  }
+
+  /**
+   * And portfolio coin if available
+   */
+  if (data.portfolio_coin) {
+    context.commit('setPortfolioCoin', data.portfolio_coin)
+  }
+}
+
 // initial state
 const state = {
   currentChannels: [],
@@ -58,36 +80,27 @@ const actions = {
 
   async fetchMarketCoin (context, params) {
     let response = await axios.get(`coins/${params.id}`)
-
-    /**
-     * We set the market coin itself
-     */
-    context.commit('setMarketCoin', response.data.market_coin)
-    context.dispatch('subscribeMarketCoin', response.data.market_coin)
-
-    /**
-     * If possible we set the user market coin too
-     */
-    if (response.data.user_market_coin) {
-      context.commit('setUserMarketCoin', response.data.user_market_coin)
-    }
-
-    /**
-     * And portfolio coin if available
-     */
-    if (response.data.portfolio_coin) {
-      context.commit('setPortfolioCoin', response.data.portfolio_coin)
-    }
+    dispatchAllStores(context, response.data)
   },
 
   async fetchFavoriteCoins (context) {
     let response = await axios.get(`coins/favorite`)
     context.commit('setFavoriteCoins', response.data.favorite_coins)
+    if (response.data.favorte_coins) {
+      response.data.favorites_coins.forEach(function (data, index, object) {
+        dispatchAllStores(context, data)
+      })
+    }
   },
 
   async fetchTopCoins (context) {
     let response = await axios.get(`coins/top`)
     context.commit('setTopCoins', response.data.top_coins)
+    if (response.data.top_coins) {
+      response.data.top_coins.forEach(function (data, index, object) {
+        dispatchAllStores(context, data)
+      })
+    }
   }
 }
 

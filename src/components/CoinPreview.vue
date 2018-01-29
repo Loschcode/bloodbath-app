@@ -1,6 +1,6 @@
 <template>
   <div class="coin-preview">
-    <div v-if="marketCoin">
+    <div v-if="marketCoin && userMarketCoin">
         <div class="gr-12 gr-12@mobile">
           <div class="module">
 
@@ -66,9 +66,7 @@ import router from '@/router'
 export default {
   props: [
     'contextProp',
-    'marketCoinProp',
-    'userMarketCoinProp',
-    'portfolioCoinProp'
+    'marketCoinProp'
   ],
 
   data () {
@@ -82,12 +80,6 @@ export default {
 
     this.$store.commit('setMarketCoin', this.marketCoinProp)
     this.$store.dispatch('subscribeMarketCoin', this.marketCoinProp)
-
-    this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
-
-    if (this.portfolioCoinProp) {
-      this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
-    }
   },
 
   watch: {
@@ -107,18 +99,20 @@ export default {
     },
 
     userMarketCoin () {
-      return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
+      if (this.marketCoin) {
+        return this.$store.getters.getUserMarketCoinByMarketCoin(this.marketCoin.id)
+      }
     },
 
     portfolioCoin () {
-      if (this.portfolioCoinProp) {
-        return this.$store.getters.getPortfolioCoin(this.portfolioCoinProp.id)
+      if (this.marketCoin) {
+        return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
       }
     }
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoinProp.id })
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
   },
 
   methods: {
