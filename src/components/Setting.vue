@@ -29,6 +29,42 @@
               <div class="module__title">
                 <h2>My preferences</h2>
               </div>
+
+              <div class="module__content">
+
+                <div v-if="baseCurrencies">
+
+                  <div class="section">
+                    <div class="row">
+                    <!-- Currency -->
+                    <div class="section__title">
+                      Change Currency
+                    </div>
+
+                    <div class="section__content">
+                      <div class="gr-3 gr-12@mobile" v-for="baseCurrency in baseCurrencies">
+
+                        <a @click="setCurrentCurrency" :id="baseCurrency.id">
+                          <div class="mini-module" v-bind:class="{ '--active': isCurrentCurrency(baseCurrency) }">
+                            <div class="mini-module__title">
+                              <h2>{{ baseCurrency.code }}</h2>
+                            </div>
+                            <div class="mini-module__content">
+                              {{ baseCurrency.full_name }}
+                            </div>
+                            <div class="mini-module__footer">
+                              {{ baseCurrency.exchange_rate }} USD
+                            </div>
+                          </div>
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="module__content">
 
                 <div v-if="primaryMarketCoin">
@@ -41,6 +77,8 @@
                 </div>
 
               </div>
+
+
               <div class="module__footer">
               </div>
             </div>
@@ -82,6 +120,7 @@ export default {
   },
 
   created () {
+    this.$store.dispatch('fetchBaseCurrencies')
   },
 
   destroyed () {
@@ -102,6 +141,14 @@ export default {
   },
 
   methods: {
+    setCurrentCurrency (event) {
+      let baseCurrencyId = event.currentTarget.id
+      this.$store.dispatch('updateUserSetting', { changeset: { base_currency_id: baseCurrencyId } })
+    },
+
+    isCurrentCurrency (baseCurrency) {
+      return baseCurrency.id === this.userSetting.base_currency_id
+    },
     tryLogOut () {
       this.$store.commit('unsetCurrentUser')
       window.location.href = '/'
