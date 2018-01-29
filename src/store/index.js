@@ -1,20 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import baseCurrencies from './modules/baseCurrencies'
+import marketCoins from './modules/marketCoins'
+import portfolioCoins from './modules/portfolioCoins'
+import userMarketCoins from './modules/userMarketCoins'
 import users from './modules/users'
-import userSettings from './modules/user_settings'
-import marketCoins from './modules/market_coins'
-import userMarketCoins from './modules/user_market_coins'
-import portfolioCoins from './modules/portfolio_coins'
+import userSettings from './modules/userSettings'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    users,
-    userSettings,
+    baseCurrencies,
     marketCoins,
+    portfolioCoins,
     userMarketCoins,
-    portfolioCoins
+    userSettings,
+    users
   }
 })
