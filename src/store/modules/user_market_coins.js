@@ -14,16 +14,11 @@ const getters = {
 
 // actions
 const actions = {
-  updateUserMarketCoin (context, params) {
-    axios
-    .patch(`user_market_coins/${params.id}`, { user_market_coin: params.changeset })
-    .then(
-      (response) => {
-        context.commit('setUserMarketCoin', response.data.user_market_coin)
-        context.dispatch('fetchFavoriteCoins')
-        context.dispatch('fetchTopCoins')
-      }
-    )
+  async updateUserMarketCoin (context, params) {
+    let response = await axios.patch(`user_market_coins/${params.id}`, { user_market_coin: params.changeset })
+    context.commit('setUserMarketCoin', response.data.user_market_coin)
+    context.dispatch('fetchFavoriteCoins')
+    context.dispatch('fetchTopCoins')
   }
 }
 

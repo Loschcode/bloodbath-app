@@ -74,21 +74,14 @@ const actions = {
     })
   },
 
-  fetchFavoriteCoins (context) {
-    axios
-    .get(`coins/favorite`)
-    .then(response => {
-      context.commit('setFavoriteCoins', response.data.favorite_coins)
-    })
+  async fetchFavoriteCoins (context) {
+    let response = await axios.get(`coins/favorite`)
+    context.commit('setFavoriteCoins', response.data.favorite_coins)
   },
 
-  fetchTopCoins (context) {
-    console.log('top coin call')
-    axios
-    .get(`coins/top`)
-    .then(response => {
-      context.commit('setTopCoins', response.data.top_coins)
-    })
+  async fetchTopCoins (context) {
+    let response = await axios.get(`coins/top`)
+    context.commit('setTopCoins', response.data.top_coins)
   }
 }
 

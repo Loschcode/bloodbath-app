@@ -14,46 +14,26 @@ const getters = {
 
 // actions
 const actions = {
-  destroyPortfolioCoin (context, params) {
-    axios
-    .delete(`portfolio_coins/${params.id}`)
-    .then(
-      (response) => {
-        context.dispatch('fetchPortfolioCoins')
-      }
-    )
+  async destroyPortfolioCoin (context, params) {
+    await axios.delete(`portfolio_coins/${params.id}`)
+    context.dispatch('fetchPortfolioCoins')
   },
 
-  updatePortfolioCoin (context, params) {
-    axios
-    .patch(`portfolio_coins/${params.id}`, { portfolio_coin: params.changeset })
-    .then(
-      (response) => {
-        context.commit('setPortfolioCoin', response.data.portfolio_coin)
-        context.commit('setMarketCoin', response.data.portfolio_coin.market_coin)
-        context.dispatch('fetchPortfolioCoins')
-      }
-    )
+  async updatePortfolioCoin (context, params) {
+    let response = axios.patch(`portfolio_coins/${params.id}`, { portfolio_coin: params.changeset })
+    context.commit('setPortfolioCoin', response.data.portfolio_coin)
+    context.commit('setMarketCoin', response.data.portfolio_coin.market_coin)
+    context.dispatch('fetchPortfolioCoins')
   },
 
-  createPortfolioCoin (context, params) {
-    axios
-    .post(`portfolio_coins/`, { portfolio_coin: params.changeset })
-    .then(
-      (response) => {
-        context.commit('setPortfolioCoin', response.data.portfolio_coin)
-      }
-    )
+  async createPortfolioCoin (context, params) {
+    let response = axios.post(`portfolio_coins/`, { portfolio_coin: params.changeset })
+    context.commit('setPortfolioCoin', response.data.portfolio_coin)
   },
 
-  fetchPortfolioCoins (context) {
-    axios
-    .get(`portfolio_coins`)
-    .then(
-      (response) => {
-        context.commit('setPortfolioCoins', response.data.portfolio_coins)
-      }
-    )
+  async fetchPortfolioCoins (context) {
+    let response = await axios.get(`portfolio_coins`)
+    context.commit('setPortfolioCoins', response.data.portfolio_coins)
   }
 
 }

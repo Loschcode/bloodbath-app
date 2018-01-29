@@ -20,11 +20,6 @@ const actions = {
 const mutations = {
   setUserSetting (state, userSetting) {
     state.userSetting = userSetting
-  },
-
-  setUserToken (state, token) {
-    // we will keep that in-memory even afte refresh
-    localStorage.setItem('userToken', token)
   }
 }
 

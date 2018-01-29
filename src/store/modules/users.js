@@ -23,28 +23,17 @@ const getters = {
 
 // actions
 const actions = {
-  createAnonymousUser (context) {
-    axios
-    .post(`connect/anonymous`)
-    .then(
-      (response) => {
-        context.commit('setUserToken', response.data.token)
-      }
-    )
+  async createAnonymousUser (context) {
+    let response = await axios.post(`connect/anonymous`)
+    context.commit('setUserToken', response.data.token)
   },
 
-  fetchCurrentUser (context, params) {
-    axios
-    .get(`user`, {params: params})
-    .then(
-      (response) => {
-        console.log('fetch current user')
-        context.commit('setUserToken', response.data.user.token)
-        context.commit('setCurrentUser', response.data.user)
-        context.commit('setUserSetting', response.data.user.user_setting)
-        console.log('current user was set.')
-      }
-    )
+  async fetchCurrentUser (context, params) {
+    let response = await axios.get(`user`, {params: params})
+    context.commit('setUserToken', response.data.user.token)
+    context.commit('setCurrentUser', response.data.user)
+    context.commit('setUserSetting', response.data.user.user_setting)
+    console.log('current user was set.')
   }
 
 }
