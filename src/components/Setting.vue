@@ -99,7 +99,7 @@ export default {
 
   methods: {
     tryLogOut () {
-      this.$store.dispatch('signOutCurrentUser')
+      this.$store.commit('unsetCurrentUser')
       window.location.href = '/'
     }
   },

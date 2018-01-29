@@ -8,7 +8,7 @@
     <div v-else>
 
       <!-- If everything is valid we route -->
-      <div v-if="currentUser">
+      <div v-if="userToken && currentUser">
         <!-- Load the correct page -->
         <router-view />
         <!-- Footer is here -->
@@ -52,16 +52,16 @@ export default {
     /**
      * We take care of the connection
      */
-    if (this.userToken) {
-      this.connectAll(this.userToken)
-    } else {
-      this.connectAnonymous()
-    }
+    this.connectToken(this.userToken)
   },
 
   watch: {
     userToken (newValue, oldValue) {
-      this.connectAll(newValue)
+      /**
+       * If the token is not null we try to connect the modules
+       * Otherwise we log-in as anonymous
+       */
+      this.connectToken(newValue)
     }
   },
 
@@ -84,6 +84,18 @@ export default {
   },
 
   methods: {
+
+    /**
+     * If there's a token or not, we manage to connect the current user
+     * This will be fired when the token change or on startup
+     */
+    connectToken (token) {
+      if (token) {
+        this.connectAll(token)
+      } else {
+        this.connectAnonymous()
+      }
+    },
 
     /**
      * ensure connection on action cable
