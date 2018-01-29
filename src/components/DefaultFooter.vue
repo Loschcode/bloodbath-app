@@ -75,11 +75,11 @@ export default {
 
   computed: {
     userSetting () {
-      return this.$store.getters.getUserSetting()
+      return this.$store.getters.getUserSetting
     },
 
     currentUser () {
-      return this.$store.getters.getCurrentUser()
+      return this.$store.getters.getCurrentUser
     },
 
     isConnected () {

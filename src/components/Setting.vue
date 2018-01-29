@@ -89,11 +89,15 @@ export default {
 
   computed: {
     userSetting () {
-      return this.$store.getters.getUserSetting()
+      return this.$store.getters.getUserSetting
     },
 
     primaryMarketCoin () {
       return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
+    },
+
+    baseCurrencies () {
+      return this.$store.getters.getBaseCurrencies
     }
   },
 

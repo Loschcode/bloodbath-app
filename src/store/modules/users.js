@@ -17,8 +17,8 @@ const initialState = _.clone(state)
 // getters
 const getters = {
   // we don't use the state for this specific entry so we keep the user throughout pages
-  getUserToken: (state) => () => state.userToken,
-  getCurrentUser: (state) => () => state.currentUser
+  getUserToken: (state) => state.userToken,
+  getCurrentUser: (state) => state.currentUser
 }
 
 // actions

@@ -75,11 +75,11 @@ export default {
 
   computed: {
     userToken () {
-      return this.$store.getters.getUserToken()
+      return this.$store.getters.getUserToken
     },
 
     currentUser () {
-      return this.$store.getters.getCurrentUser()
+      return this.$store.getters.getCurrentUser
     }
   },
 

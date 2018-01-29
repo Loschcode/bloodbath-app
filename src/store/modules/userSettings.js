@@ -9,7 +9,7 @@ const state = {
 
 // getters
 const getters = {
-  getUserSetting: (state) => () => state.userSetting
+  getUserSetting: (state) => state.userSetting
 }
 
 // actions

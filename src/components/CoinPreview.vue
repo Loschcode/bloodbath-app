@@ -87,11 +87,11 @@ export default {
 
   computed: {
     currentUser () {
-      return this.$store.getters.getCurrentUser()
+      return this.$store.getters.getCurrentUser
     },
 
     userSetting () {
-      return this.$store.getters.getUserSetting()
+      return this.$store.getters.getUserSetting
     },
 
     marketCoin () {
