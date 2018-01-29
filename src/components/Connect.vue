@@ -120,33 +120,11 @@ export default {
     },
 
     tryRegister () {
-      this.$axios
-      .post(`connect/register`, this.registerData)
-      .then(
-        (response) => {
-          this.$store.commit('setCurrentUser', response.data.user)
-          window.location.href = '/'
-        },
-
-        (error) => {
-          console.warn(error)
-        }
-      )
+      this.$store.dispatch('registerUser', this.registerData)
     },
 
     tryAuthenticate () {
-      this.$axios
-      .post(`connect/authenticate`, this.authenticateData)
-      .then(
-        (response) => {
-          this.$store.commit('setCurrentUser', response.data.user)
-          window.location.href = '/'
-        },
-
-        (error) => {
-          console.warn(error)
-        }
-      )
+      this.$store.dispatch('authenticateUser', this.authenticateData)
     }
   },
 

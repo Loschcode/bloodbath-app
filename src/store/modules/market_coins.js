@@ -57,8 +57,7 @@ const actions = {
 
   fetchMarketCoin (context, params) {
     return new Promise((resolve, reject) => {
-      axios
-      .get(`coins/${params.id}`)
+      axios.get(`coins/${params.id}`)
       .then(response => {
         context.commit('setMarketCoin', response.data.market_coin)
         context.dispatch('subscribeMarketCoin', response.data.market_coin)

@@ -23,6 +23,18 @@ const getters = {
 
 // actions
 const actions = {
+  async registerUser (context, registerData) {
+    let response = await axios.post(`connect/register`, registerData)
+    this.$store.commit('setCurrentUser', response.data.user)
+    window.location.href = '/'
+  },
+
+  async authenticateUser (context, authenticateData) {
+    let response = await axios.post(`connect/authenticate`, authenticateData)
+    this.$store.commit('setCurrentUser', response.data.user)
+    window.location.href = '/'
+  },
+
   async createAnonymousUser (context) {
     let response = await axios.post(`connect/anonymous`)
     context.commit('setUserToken', response.data.token)

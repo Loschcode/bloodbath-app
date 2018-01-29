@@ -88,9 +88,13 @@ export default {
   },
 
   created () {
-    this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
     this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
-    this.$store.dispatch('subscribeMarketCoin', this.portfolioCoinProp.market_coin)
+
+    // TODO : logic should be totally changed
+    if (this.portfolioCoinProp.market_coin) {
+      this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
+      this.$store.dispatch('subscribeMarketCoin', this.portfolioCoinProp.market_coin)
+    }
   },
 
   mounted () {
@@ -123,7 +127,7 @@ export default {
     },
 
     marketCoin () {
-      return this.$store.getters.getMarketCoin(this.portfolioCoinProp.market_coin.id)
+      return this.$store.getters.getMarketCoin(this.portfolioCoinProp.market_coin_id)
     }
   },
 
