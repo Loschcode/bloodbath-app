@@ -9,9 +9,10 @@
   }
 }
 
-.--active {
-  border: 2px solid $footer-border-color !important;
+.mini-module--active {
+  border: 2px solid $footer-border-color;
 }
+
 
 .mini-module__title {
   background-color: $module-title-background-color;

@@ -45,7 +45,7 @@
                       <div class="gr-3 gr-12@mobile" v-for="baseCurrency in baseCurrencies">
 
                         <a @click="setCurrentCurrency" :id="baseCurrency.id">
-                          <div class="mini-module" v-bind:class="{ '--active': isCurrentCurrency(baseCurrency) }">
+                          <div class="mini-module" v-bind:class="{ 'mini-module--active': isCurrentCurrency(baseCurrency) }">
                             <div class="mini-module__title">
                               <h2>{{ baseCurrency.code }}</h2>
                             </div>
@@ -94,7 +94,18 @@
                 <h2>My account</h2>
               </div>
               <div class="module__content">
-                <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+
+                <div class="section">
+                  <div class="row">
+
+                    <div class="section__content">
+                      <div class="gr-5 gr-12@mobile">
+                        <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
               <div class="module__footer">
               </div>
