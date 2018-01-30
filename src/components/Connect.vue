@@ -34,9 +34,10 @@
             </div>
             <div class="module__content">
               <div class="module__content-connect">
-                <div class="module__content-connect-note">In order to keep your data safe and access them when you want, we recommend to register for free to our site.</div>
-                <input type="text" v-model="registerData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryRegister" autofocus>
-                <input type="password" v-model="registerData.password" placeholder="password" v-on:keydown.enter="tryRegister">
+                <div class="row">
+                  <input type="text" v-model="registerData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryRegister" autofocus>
+                  <input type="password" v-model="registerData.password" placeholder="password" v-on:keydown.enter="tryRegister">
+                </div>
                 <input type="submit" class="button" value="Create my account" @click="tryRegister">
               </div>
             </div>
@@ -64,9 +65,14 @@
             </div>
             <div class="module__content">
               <div class="module__content-connect">
-                <input type="text" v-model="authenticateData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryAuthenticate" autofocus>
-                <input type="password" v-model="authenticateData.password" placeholder="password" v-on:keydown.enter="tryAuthenticate">
-                <input type="submit" class="button" value="Access my account" @click="tryAuthenticate">
+                <div class="row">
+                  <input type="text" v-model="authenticateData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryAuthenticate" autofocus>
+                  <input type="password" v-model="authenticateData.password" placeholder="password" v-on:keydown.enter="tryAuthenticate">
+                </div>
+                <div class="row">
+                  <input type="submit" class="button" value="Access my account" @click="tryAuthenticate">
+                </div>
+
               </div>
             </div>
           </div>

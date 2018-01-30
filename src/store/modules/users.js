@@ -31,7 +31,9 @@ const actions = {
 
   async authenticateUser (context, authenticateData) {
     let response = await axios.post(`connect/authenticate`, authenticateData)
+    context.commit('setUserToken', response.data.user.token)
     context.commit('setCurrentUser', response.data.user)
+    context.commit('setUserSetting', response.data.user.user_setting)
     window.location.href = '/'
   },
 
