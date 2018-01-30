@@ -13,7 +13,7 @@
                     <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
                   </div>
                   <div class="+mobile">
-                    <animated-number :value="primaryMarketCoinRawVariation" :type="`percent`" :animatedColors="false" :numberColors="true" /> {{ primaryMarketCoin.name }}
+                    <animated-number :value="primaryMarketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /> {{ primaryMarketCoin.name }}
                   </div>
                 </div>
                 <div v-else>
@@ -91,10 +91,6 @@ export default {
 
     isConnected () {
       return this.currentUser.role !== 'anonymous'
-    },
-
-    primaryMarketCoinRawVariation () {
-      return this.$store.getters.getMarketCoinRawVariation(this.userSetting.primary_market_coin_id)
     },
 
     primaryMarketCoin () {

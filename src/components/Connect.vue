@@ -97,7 +97,6 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
-import _ from 'lodash'
 
 export default {
   data () {
@@ -118,15 +117,15 @@ export default {
   watch: {
     newMember () {
       this.$nextTick(() => {
-        if (!_.isUndefined(this.$refs.input)) {
+        if (this.$refs.input) {
           this.$refs.input.focus()
         }
       })
-    },
+    }
   },
 
   mounted () {
-    if (!_.isUndefined(this.$refs.input)) {
+    if (this.$refs.input) {
       this.$refs.input.focus()
     }
   },

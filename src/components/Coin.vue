@@ -74,8 +74,8 @@
           </div>
           <div class="module__content">
             <div class="module__content-percent">
-              <div v-if="rawVariation">
-                <animated-number :value="rawVariation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+              <div v-if="marketCoin.price_variation">
+                <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
               </div>
               <div v-else>
                 -
@@ -146,12 +146,6 @@ export default {
   },
 
   computed: {
-    rawVariation () {
-      if (this.marketCoin) {
-        return this.$store.getters.getMarketCoinRawVariation(this.marketCoin.id)
-      }
-    },
-
     marketCoin () {
       return this.$store.getters.getMarketCoinByCode(this.coinName)
     },

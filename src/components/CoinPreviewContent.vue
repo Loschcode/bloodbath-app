@@ -12,8 +12,8 @@
       </div>
 
       <div class="module__content-percent --small">
-        <div v-if="rawVariation">
-          <animated-number :value="rawVariation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+        <div v-if="marketCoin.price_variation">
+          <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
         </div>
         <div v-else>
           -
@@ -42,24 +42,9 @@ export default {
     marketCoin () {
       return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
     },
-
-    /**
-     * NOTE : maybe it would just be easier to store it in database ?
-     */
-    rawVariation () {
-      return this.$store.getters.getMarketCoinRawVariation(this.marketCoinProp.id)
-    }
   },
 
   methods: {
-    // rawVariation () {
-    //   let digits = this.marketCoin.price / this.marketCoin.day_open - 1
-    //   if (isNaN(digits)) {
-    //     return 0.0
-    //   } else {
-    //     return digits
-    //   }
-    // }
   },
 
   components: {

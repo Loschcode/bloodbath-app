@@ -27,18 +27,6 @@ function dispatchAllStores (context, data) {
   }
 }
 
-/**
- * Calculate the raw variation of a marketCoin
- */
-function rawVariation (marketCoin) {
-  let digits = marketCoin.price / marketCoin.day_open - 1
-  if (isNaN(digits)) {
-    return 0.0
-  } else {
-    return digits
-  }
-}
-
 // initial state
 const state = {
   currentChannels: [],
@@ -55,7 +43,6 @@ const state = {
 const getters = {
   getMarketCoins: (state) => state.marketCoins,
   getMarketCoin: (state) => (id) => state.marketCoins.find((item) => item.id === id),
-  getMarketCoinRawVariation: (state, getters) => (id) => rawVariation(getters.getMarketCoin(id)),
   getMarketCoinByCode: (state) => (code) => state.marketCoins.find((item) => item.code === code),
 
   getFavoriteCoins: (state) => state.favoriteCoins,
