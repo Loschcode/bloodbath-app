@@ -6,7 +6,7 @@ input {
   @include border-radius(10px);
   border: 2px solid $module-border-color;
   font-size: 20px;
-  width: -webkit-fill-available;
+  // width: -webkit-fill-available;
 
   &:focus {
     border-color: $footer-border-color;
