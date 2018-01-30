@@ -9,7 +9,12 @@
             <div class="footer__content">
               <div class="footer__content-digits">
                 <div v-if="primaryMarketCoin">
-                  <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
+                  <div class="+desktop">
+                    <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
+                  </div>
+                  <div class="+mobile">
+                    <animated-number :value="primaryMarketCoinRawVariation" :type="`percent`" :animatedColors="false" :numberColors="true" /> {{ primaryMarketCoin.name }}
+                  </div>
                 </div>
                 <div v-else>
                   -
@@ -34,13 +39,15 @@
             <div v-if="isConnected">
               <router-link :to="{ name: 'setting' }">
                 <div class="footer__title">My account</div>
-                <div class="footer__content">{{ currentUser.email }}</div>
+                <div class="footer__content +desktop">{{ currentUser.email }}</div>
+                <div class="footer__content +mobile">Logged-in</div>
               </router-link>
             </div>
             <div v-else>
               <router-link :to="{ name: 'connect' }">
                 <div class="footer__title">My account</div>
-                <div class="footer__content">You are not logged-in</div>
+                <div class="footer__content +desktop">You are not logged-in</div>
+                <div class="footer__content +mobile">Sign-up now</div>
               </router-link>
             </div>
           </div>
@@ -84,6 +91,10 @@ export default {
 
     isConnected () {
       return this.currentUser.role !== 'anonymous'
+    },
+
+    primaryMarketCoinRawVariation () {
+      return this.$store.getters.getMarketCoinRawVariation(this.userSetting.primary_market_coin_id)
     },
 
     primaryMarketCoin () {
