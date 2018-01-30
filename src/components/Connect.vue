@@ -66,6 +66,7 @@
             <div class="module__content">
               <div class="module__content-connect">
                 <div class="row">
+                  <!-- Currency -->
                   <input ref="input" type="text" v-model="authenticateData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryAuthenticate" autofocus>
                   <input type="password" v-model="authenticateData.password" placeholder="password" v-on:keydown.enter="tryAuthenticate">
                 </div>
@@ -121,10 +122,13 @@ export default {
           this.$refs.input.focus()
         }
       })
-    }
+    },
   },
 
-  created () {
+  mounted () {
+    if (!_.isUndefined(this.$refs.input)) {
+      this.$refs.input.focus()
+    }
   },
 
   methods: {

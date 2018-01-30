@@ -3,7 +3,7 @@ input {
   padding: 0.5em;
   margin-bottom: 0.5em;
   // width: 90%;
-  @include border-radius(10px);
+  @include border-radius(7px);
   border: 2px solid $module-border-color;
   font-size: 20px;
   // width: -webkit-fill-available;
