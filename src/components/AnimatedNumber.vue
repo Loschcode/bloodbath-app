@@ -59,6 +59,7 @@ export default {
       showValue: true
     }
   },
+
   watch: {
     value: function (newValue, oldValue) {
       // NOTE : this code should be cleaned up and improved
@@ -70,9 +71,28 @@ export default {
     }
   },
 
+  created () {
+    if (!this.currentBaseCurrency) {
+      this.$store.dispatch('fetchBaseCurrency', { id: this.userSetting.base_currency_id })
+    }
+  },
+
+  computed: {
+    userSetting () {
+      return this.$store.getters.getUserSetting
+    },
+
+    currentBaseCurrency () {
+      if (this.userSetting) {
+        return this.$store.getters.getBaseCurrency(this.userSetting.base_currency_id)
+      }
+    }
+  },
+
   mounted: function () {
     this.tween(0, this.value)
   },
+
   methods: {
 
     /**
@@ -98,11 +118,26 @@ export default {
      * We format the value to % / $ and with some precision over the final number
      */
     formattedValue: function () {
+      // TODO : make a currentBaseCurrency in the store for fast access
       let digits = this.changingValue
-      if (this.type === 'money') {
-        return numeral(digits).format('$0,0.000')
-      } else if (this.type === 'big-money') {
-        return numeral(digits).format('$0,0')
+      let symbol = '$'
+      let exchangeRate = 1.0
+
+      if ((this.type === 'money') || (this.type === 'big-money')) {
+        if (this.currentBaseCurrency) {
+          symbol = this.currentBaseCurrency.symbol
+          exchangeRate = this.currentBaseCurrency.exchange_rate
+        }
+
+        let exchangeDigits = (digits / exchangeRate)
+        let finalDigits = digits
+        if (this.type === 'money') {
+          finalDigits = numeral(exchangeDigits).format(`0,0.000`)
+        } else {
+          finalDigits = numeral(exchangeDigits).format(`0,0`)
+        }
+
+        return `${symbol}${finalDigits}`
       } else if (this.type === 'percent') {
         return numeral(digits).format('0,0.00%')
       } else if (this.type === 'quantity') {

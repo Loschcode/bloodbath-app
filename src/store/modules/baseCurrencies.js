@@ -17,6 +17,11 @@ const actions = {
   async fetchBaseCurrencies (context) {
     let response = await axios.get(`base_currencies`)
     context.commit('setBaseCurrencies', response.data.base_currencies)
+  },
+
+  async fetchBaseCurrency (context, params) {
+    let response = await axios.get(`base_currencies/${params.id}`)
+    context.commit('setBaseCurrency', response.data.base_currency)
   }
 }
 
