@@ -44,7 +44,7 @@
                     <div class="section__content">
                       <div class="gr-3 gr-12@mobile" v-for="baseCurrency in baseCurrencies">
 
-                        <a @click="setCurrentCurrency" :id="baseCurrency.id">
+                        <a @click="setCurrentCurrency" :id="baseCurrency.id" class="+pointer">
                           <div class="mini-module" v-bind:class="{ 'mini-module--active': isCurrentCurrency(baseCurrency) }">
                             <div class="mini-module__title">
                               <h2>{{ baseCurrency.code }}</h2>

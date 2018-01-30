@@ -3,12 +3,12 @@
     <div v-if="userMarketCoin">
       <div class="module__footer-action --stick">
         <div v-if="userMarketCoin.favorited_at">
-          <a @click="removeFavorite">
+          <a @click="removeFavorite" class="+pointer">
             <span class="icon-favorite-on"></span>
           </a>
         </div>
         <div v-else>
-          <a @click="addFavorite">
+          <a @click="addFavorite" class="+pointer">
             <span class="icon-favorite-off"></span>
           </a>
         </div>

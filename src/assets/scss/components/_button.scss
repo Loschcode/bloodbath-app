@@ -8,6 +8,7 @@
   padding: 0.75em;
   margin-bottom: 0.5em;
   @include border-radius(5px);
+  cursor: pointer;
 }
 
 .button__danger {

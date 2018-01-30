@@ -4,7 +4,7 @@
         <div class="gr-12 gr-12@mobile">
           <div class="module">
 
-            <a @click="clickAction">
+            <a @click="clickAction" class="+pointer">
 
             <div class="module__title">
               <div class="row">
@@ -43,7 +43,7 @@
 
             <div class="module__content">
 
-              <a @click="clickAction">
+              <a @click="clickAction" class="+pointer">
                 <coin-preview-content :marketCoinProp="marketCoin" />
               </a>
 
