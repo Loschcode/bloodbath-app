@@ -1,5 +1,5 @@
 <template>
-  <div class="row row-full header">
+  <div class="row header"> <!-- row-full header was removed as it made display bugs -->
     <div class="gr-2">
       <slot name="left">
         <!-- By default we have a go back link -->
