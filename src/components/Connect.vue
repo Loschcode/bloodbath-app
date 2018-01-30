@@ -35,7 +35,7 @@
             <div class="module__content">
               <div class="module__content-connect">
                 <div class="row">
-                  <input type="text" v-model="registerData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryRegister" autofocus>
+                  <input ref="input" type="text" v-model="registerData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryRegister" autofocus>
                   <input type="password" v-model="registerData.password" placeholder="password" v-on:keydown.enter="tryRegister">
                 </div>
                 <input type="submit" class="button" value="Create my account" @click="tryRegister">
@@ -66,7 +66,7 @@
             <div class="module__content">
               <div class="module__content-connect">
                 <div class="row">
-                  <input type="text" v-model="authenticateData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryAuthenticate" autofocus>
+                  <input ref="input" type="text" v-model="authenticateData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryAuthenticate" autofocus>
                   <input type="password" v-model="authenticateData.password" placeholder="password" v-on:keydown.enter="tryAuthenticate">
                 </div>
                 <div class="row">
@@ -96,6 +96,7 @@
 
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
+import _ from 'lodash'
 
 export default {
   data () {
@@ -110,6 +111,16 @@ export default {
         email: null,
         password: null
       }
+    }
+  },
+
+  watch: {
+    newMember () {
+      this.$nextTick(() => {
+        if (!_.isUndefined(this.$refs.input)) {
+          this.$refs.input.focus()
+        }
+      })
     }
   },
 
