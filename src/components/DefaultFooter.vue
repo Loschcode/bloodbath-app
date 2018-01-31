@@ -72,7 +72,9 @@ export default {
 
   watch: {
     userSetting (newValue, oldValue) {
-      this.$store.dispatch('fetchMarketCoin', { id: newValue.primary_market_coin_id })
+      if (newValue) {
+        this.$store.dispatch('fetchMarketCoin', { id: newValue.primary_market_coin_id })
+      }
     }
   },
 
@@ -94,7 +96,9 @@ export default {
     },
 
     primaryMarketCoin () {
-      return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
+      if (this.userSetting) {
+        return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
+      }
     }
   },
 
