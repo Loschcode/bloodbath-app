@@ -41,7 +41,7 @@ export default {
   computed: {
     marketCoin () {
       return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
-    },
+    }
   },
 
   methods: {

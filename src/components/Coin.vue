@@ -74,7 +74,7 @@
           </div>
           <div class="module__content">
             <div class="module__content-percent">
-              <div v-if="marketCoin.price_variation">
+              <div v-if="marketCoin">
                 <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
               </div>
               <div v-else>

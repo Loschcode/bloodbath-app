@@ -94,9 +94,9 @@ const actions = {
 
   async fetchFavoriteCoins (context) {
     let response = await axios.get(`coins/favorite`)
-    context.commit('setFavoriteCoins', response.data.favorite_coins)
-    if (response.data.favorte_coins) {
-      response.data.favorites_coins.forEach(function (data, index, object) {
+    context.commit('setFavoriteCoins', response.data)
+    if (response.data) {
+      response.data.forEach(function (data, index, object) {
         dispatchAllStores(context, data)
       })
     }
@@ -104,9 +104,9 @@ const actions = {
 
   async fetchTopCoins (context) {
     let response = await axios.get(`coins/top`)
-    context.commit('setTopCoins', response.data.top_coins)
-    if (response.data.top_coins) {
-      response.data.top_coins.forEach(function (data, index, object) {
+    context.commit('setTopCoins', response.data)
+    if (response.data) {
+      response.data.forEach(function (data, index, object) {
         dispatchAllStores(context, data)
       })
     }
@@ -115,10 +115,10 @@ const actions = {
   async fetchResultCoins (context, query) {
     context.commit('setResultLoading', true)
     let response = await axios.get(`coins/search`, { params: { query: query } })
-    context.commit('setResultCoins', response.data.result_coins)
+    context.commit('setResultCoins', response.data)
     context.commit('setResultLoading', false)
-    if (response.data.result_coins) {
-      response.data.result_coins.forEach(function (data, index, object) {
+    if (response.data) {
+      response.data.forEach(function (data, index, object) {
         dispatchAllStores(context, data)
       })
     }

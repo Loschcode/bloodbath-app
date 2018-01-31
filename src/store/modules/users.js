@@ -25,15 +25,15 @@ const getters = {
 const actions = {
   async registerUser (context, registerData) {
     let response = await axios.post(`connect/register`, registerData)
-    context.commit('setCurrentUser', response.data.user)
+    context.commit('setCurrentUser', response.data)
     window.location.href = '/'
   },
 
   async authenticateUser (context, authenticateData) {
     let response = await axios.post(`connect/authenticate`, authenticateData)
-    context.commit('setUserToken', response.data.user.token)
-    context.commit('setCurrentUser', response.data.user)
-    context.commit('setUserSetting', response.data.user.user_setting)
+    context.commit('setUserToken', response.data.token)
+    context.commit('setCurrentUser', response.data)
+    context.commit('setUserSetting', response.data.user_setting)
     window.location.href = '/'
   },
 
@@ -44,9 +44,9 @@ const actions = {
 
   async fetchCurrentUser (context, params) {
     let response = await axios.get(`user`, {params: params})
-    context.commit('setUserToken', response.data.user.token)
-    context.commit('setCurrentUser', response.data.user)
-    context.commit('setUserSetting', response.data.user.user_setting)
+    context.commit('setUserToken', response.data.token)
+    context.commit('setCurrentUser', response.data)
+    context.commit('setUserSetting', response.data.user_setting)
     console.log('current user was set.')
   }
 
