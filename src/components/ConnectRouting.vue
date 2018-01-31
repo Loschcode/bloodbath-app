@@ -30,6 +30,7 @@ import DefaultFooter from '@/components/DefaultFooter'
 import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
 import Cable from '@/misc/Cable'
+import _ from 'lodash'
 
 export default {
 
@@ -90,7 +91,7 @@ export default {
      * This will be fired when the token change or on startup
      */
     connectToken (token) {
-      if (token) {
+      if (!_.isNil(token)) {
         this.connectAll(token)
       } else {
         this.connectAnonymous()
