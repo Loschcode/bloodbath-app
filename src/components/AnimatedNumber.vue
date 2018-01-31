@@ -72,7 +72,7 @@ export default {
   },
 
   created () {
-    if ((!this.currentBaseCurrency) && (this.userSetting)) {
+    if ((!this.currentBaseCurrency) && (this.userSetting) && (this.userSetting.base_currency_id)) {
       this.$store.dispatch('fetchBaseCurrency', { id: this.userSetting.base_currency_id })
     }
   },

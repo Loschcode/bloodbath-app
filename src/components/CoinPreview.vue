@@ -93,9 +93,14 @@ export default {
       if (matchingCoin && matchingContext) {
         // TODO : this is not workign, make it work.
         console.log('multiple response')
-        // this.clickAction()
+        this.clickAction()
       }
     })
+  },
+
+  destroyed () {
+    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
+    EventBus.$off('CoinPreviewClick')
   },
 
   watch: {
@@ -125,10 +130,6 @@ export default {
         return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
       }
     }
-  },
-
-  destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
   },
 
   methods: {
