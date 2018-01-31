@@ -13,7 +13,13 @@
 
       <div class="module__content-percent --small">
         <div v-if="marketCoin.price_variation">
+          <!-- <span class="module__content-percent-small">
+            <animated-number :value="marketCoin.day_low_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+          </span> -->
           <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+          <!-- <span class="module__content-percent-small">
+            <animated-number :value="marketCoin.day_high_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+          </span> -->
         </div>
         <div v-else>
           -

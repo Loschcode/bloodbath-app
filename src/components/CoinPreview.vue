@@ -49,7 +49,7 @@
 
             </div>
             <div class="module__footer">
-              <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
+                <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
             </div>
           </div>
         </div>

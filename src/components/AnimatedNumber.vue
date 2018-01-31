@@ -118,10 +118,10 @@ export default {
      * We format the value to % / $ and with some precision over the final number
      */
     formattedValue: function () {
-      // TODO : make a currentBaseCurrency in the store for fast access
       let digits = this.changingValue
       let symbol = '$'
       let exchangeRate = 1.0
+      let displayDigits = ''
 
       if ((this.type === 'money') || (this.type === 'big-money')) {
         if (this.currentBaseCurrency) {
@@ -131,20 +131,23 @@ export default {
 
         let exchangeDigits = (digits / exchangeRate)
         let finalDigits = digits
+
         if (this.type === 'money') {
           finalDigits = numeral(exchangeDigits).format(`0,0.000`)
         } else {
           finalDigits = numeral(exchangeDigits).format(`0,0`)
         }
 
-        return `${symbol}${finalDigits}`
+        displayDigits = `${symbol}${finalDigits}`
       } else if (this.type === 'percent') {
-        return numeral(digits).format('0,0.00%')
+        displayDigits = numeral(digits).format('0,0.00%')
       } else if (this.type === 'quantity') {
-        return numeral(digits).format('0,0.00')
+        displayDigits = numeral(digits).format('0,0.00')
       } else {
-        return digits
+        displayDigits = digits
       }
+
+      return displayDigits
     },
 
     /**

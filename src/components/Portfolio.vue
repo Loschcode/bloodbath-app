@@ -16,7 +16,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              My capital
+              Total value
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
                   <div class="gr-12">
 
                     <div class="module__content-digits --extra-big">
-                        <portfolio-capital />
+                      <portfolio-capital />
                     </div>
 
                   </div>
