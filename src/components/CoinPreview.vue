@@ -61,6 +61,7 @@
 <script>
 import CoinPreviewFavorite from '@/components/CoinPreviewFavorite'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
+import EventBus from '@/misc/EventBus'
 import router from '@/router'
 
 export default {
@@ -75,11 +76,26 @@ export default {
     }
   },
 
+  replace: true,
+
   created () {
     this.context = this.contextProp
 
     this.$store.commit('setMarketCoin', this.marketCoinProp)
     this.$store.dispatch('subscribeMarketCoin', this.marketCoinProp)
+  },
+
+  mounted () {
+    EventBus.$on('CoinPreviewClick', event => {
+      let matchingCoin = event.marketCoin.id === this.marketCoinProp.id
+      let matchingContext = event.context === this.context
+      console.log(matchingCoin && matchingContext)
+      if (matchingCoin && matchingContext) {
+        // TODO : this is not workign, make it work.
+        console.log('multiple response')
+        // this.clickAction()
+      }
+    })
   },
 
   watch: {
@@ -129,7 +145,10 @@ export default {
     },
 
     clickAction (event) {
-      event.preventDefault()
+      console.log('dispatch click action')
+      if (event) {
+        event.preventDefault()
+      }
       if (this.context === 'portfolio') {
         this.createPortfolioCoin()
       } else if (this.context === 'primary') {

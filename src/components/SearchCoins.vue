@@ -58,6 +58,7 @@
 
 <script>
 import CoinPreview from '@/components/CoinPreview'
+import EventBus from '@/misc/EventBus'
 import _ from 'lodash'
 
 export default {
@@ -101,7 +102,7 @@ export default {
     firstResultCoins (event) {
       if (_.size(this.resultCoins) > 0) {
         let firstCoin = this.resultCoins[0]
-        this.$router.push({ name: 'coin', params: { coinName: firstCoin.market_coin.code } })
+        EventBus.$emit('CoinPreviewClick', {context: this.context, marketCoin: firstCoin.market_coin})
       }
     },
 
