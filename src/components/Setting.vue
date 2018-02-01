@@ -23,7 +23,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-10 gr-12@mobile gr-centered">
+          <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
 
             <div class="module">
               <div class="module__title">
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="section__content">
-                      <div class="gr-3 gr-12@mobile" v-for="baseCurrency in baseCurrencies">
+                      <div class="gr-3 gr-12@mobile gr-12@tablet" v-for="baseCurrency in baseCurrencies">
 
                         <a @click="setCurrentCurrency" :id="baseCurrency.id" class="+pointer">
                           <div class="mini-module" v-bind:class="{ 'mini-module--active': isCurrentCurrency(baseCurrency) }">
@@ -87,7 +87,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-10 gr-12@mobile gr-centered">
+          <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
 
             <div v-if="isConnected()">
 
@@ -99,7 +99,7 @@
                   <div class="section">
                     <div class="row">
                       <div class="section__content">
-                        <div class="gr-5 gr-12@mobile">
+                        <div class="gr-5 gr-12@mobile gr-12@tablet">
                           <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
                         </div>
                       </div>

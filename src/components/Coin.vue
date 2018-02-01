@@ -17,7 +17,7 @@
 
     <div class="row">
 
-      <div class="gr-2 gr-12@mobile">
+      <div class="gr-2 gr-12@mobile gr-12@tablet">
         <div class="module +desktop">
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-logo">
@@ -28,7 +28,7 @@
       </div>
 
 
-      <div class="gr-8 gr-12@mobile">
+      <div class="gr-8 gr-12@mobile gr-12@tablet">
         <div class="module">
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-title">
@@ -39,7 +39,7 @@
       </div>
 
 
-      <div class="gr-2 gr-12@mobile">
+      <div class="gr-2 gr-12@mobile gr-12@tablet">
         <div class="module +desktop">
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-action">
@@ -70,7 +70,7 @@
           <div class="row">
             <div class="gr-12 gr-centered">
 
-              <div class="gr-12 gr-12@mobile">
+              <div class="gr-12 gr-12@mobile gr-12@tablet">
                 <div class="module">
                   <div class="module__bubble">
 
@@ -93,7 +93,7 @@
             </div>
           </div>
 
-          <div class="gr-4 gr-12@mobile">
+          <div class="gr-4 gr-12@mobile gr-12@tablet">
             <div class="module">
               <div class="module__title +centered">
                 <div class="row">
@@ -120,7 +120,7 @@
             </div>
           </div>
 
-          <div class="gr-4 gr-12@mobile">
+          <div class="gr-4 gr-12@mobile gr-12@tablet">
             <div class="module">
               <div class="module__title +centered">
                 <div class="row">
@@ -147,7 +147,7 @@
             </div>
           </div>
 
-          <div class="gr-4 gr-12@mobile">
+          <div class="gr-4 gr-12@mobile gr-12@tablet">
             <div class="module">
               <div class="module__title +centered">
                 <div class="row">
@@ -194,7 +194,7 @@
       <div class="row">
 
         <!-- Low 24 Price -->
-        <div class="gr-3 gr-12@mobile">
+        <div class="gr-3 gr-12@mobile gr-12@tablet">
           <div class="module">
             <div class="module__title +centered">
               <h2>Lowest 24 hours price</h2>
@@ -220,7 +220,7 @@
         </div>
 
         <!-- Current Price -->
-        <div class="gr-6 gr-12@mobile">
+        <div class="gr-6 gr-12@mobile gr-12@tablet">
           <div class="module">
             <div class="module__title +centered">
               <h2>Current Price</h2>
@@ -247,7 +247,7 @@
 
 
         <!-- High Price -->
-        <div class="gr-3 gr-12@mobile">
+        <div class="gr-3 gr-12@mobile gr-12@tablet">
           <div class="module">
             <div class="module__title +centered">
               <h2>Highest 24 hours price</h2>
@@ -274,7 +274,7 @@
 
 
         <!-- Open Price -->
-        <div class="gr-12 gr-centered gr-12@mobile">
+        <div class="gr-12 gr-centered gr-12@mobile gr-12@tablet">
           <div class="module">
             <div class="module__title +centered">
               <h2>Open Price</h2>
@@ -422,6 +422,3 @@ export default {
 
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

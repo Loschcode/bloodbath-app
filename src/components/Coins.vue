@@ -27,7 +27,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-3 gr-12@mobile" v-for="favoriteCoin in favoriteCoins">
+          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="favoriteCoin in favoriteCoins">
             <coin-preview contextProp="coins" :marketCoinProp="favoriteCoin.market_coin" />
           </div>
         </div>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-3 gr-12@mobile" v-for="topCoin in topCoins">
+          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="topCoin in topCoins">
             <coin-preview contextProp="coins" :marketCoinProp="topCoin.market_coin" />
           </div>
         </div>

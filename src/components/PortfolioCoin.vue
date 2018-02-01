@@ -2,7 +2,7 @@
   <div class="portfolio-coin">
     <div v-if="portfolioCoin">
 
-        <div class="gr-12 gr-12@mobile">
+        <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
 
             <router-link :to="{ name: 'coin', params: { coinName: marketCoin.code } }">

@@ -24,12 +24,12 @@
         <div class="row">
           <div class="gr-12 gr-centered">
 
-            <div class="gr-12 gr-12@mobile">
+            <div class="gr-12 gr-12@mobile gr-12@tablet">
               <div class="module">
                 <div class="module__bubble">
 
                   <div class="row">
-                    <div class="gr-4 gr-centered gr-12@mobile">
+                    <div class="gr-4 gr-centered gr-12@mobile gr-6@tablet">
 
                       <div class="module__content-digits --extra-big">
                         <portfolio-capital />
@@ -79,7 +79,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-3 gr-12@mobile" v-for="portfolioCoin in portfolioCoins">
+          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="portfolioCoin in portfolioCoins">
             <portfolio-coin :portfolioCoinProp="portfolioCoin" />
           </div>
         </div>

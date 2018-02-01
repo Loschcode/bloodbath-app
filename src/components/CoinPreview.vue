@@ -1,7 +1,7 @@
 <template>
   <div class="coin-preview">
     <div v-if="marketCoin && userMarketCoin">
-        <div class="gr-12 gr-12@mobile">
+        <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
 
             <a @click="clickAction" class="+pointer">
