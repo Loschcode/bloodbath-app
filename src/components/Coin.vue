@@ -13,11 +13,13 @@
     </default-header>
 
 
+    <div class="section">
+
     <div class="row">
 
-      <div class="gr-2">
-        <div class="module">
-          <div class="module__bubble">
+      <div class="gr-2 gr-12@mobile">
+        <div class="module +desktop">
+          <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-logo">
               <img :src="marketCoin.logo_url" />
             </div>
@@ -26,9 +28,9 @@
       </div>
 
 
-      <div class="gr-8">
+      <div class="gr-8 gr-12@mobile">
         <div class="module">
-          <div class="module__bubble">
+          <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-title">
               <span>{{ marketCoin.full_name }}</span>
             </div>
@@ -37,16 +39,19 @@
       </div>
 
 
-      <div class="gr-2">
-        <div class="module">
-          <div class="module__bubble">
+      <div class="gr-2 gr-12@mobile">
+        <div class="module +desktop">
+          <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-action">
-              <coin-action-favorite :userMarketCoinProp="userMarketCoin" />
+              <div v-if="userMarketCoin">
+                <coin-action-favorite :userMarketCoinProp="userMarketCoin" />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+    </div>
 
     </div>
 
@@ -72,12 +77,12 @@
                     <div class="row">
                       <div class="+desktop">
                       <div class="gr-12 gr-centered">
-                          <h2 class="+centered">You currently own <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}} valued at <animated-number :value="marketCoin.price" :type="`money`" /></h2>
+                          <h2 class="+centered">You currently own <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}} valued at <animated-number :value="marketCoin.price" :type="`money`" /> per unit</h2>
                       </div>
                     </div>
                     <div class="+mobile">
                       <div class="gr-12 gr-centered">
-                          <h2 class="+centered">You currently own <br /><animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}}<br /> valued at <br /><animated-number :value="marketCoin.price" :type="`money`" /></h2>
+                          <h2 class="+centered">You currently own <br /><animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}}<br /> valued at <br /><animated-number :value="marketCoin.price" :type="`money`" /> per unit</h2>
                       </div>
                     </div>
                   </div>
@@ -330,7 +335,7 @@ import CoinHeader from '@/components/CoinHeader'
 import CoinActionFavorite from '@/components/CoinActionFavorite'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import ThrowError from '@/mixins/ThrowError'
-import moment from 'moment'
+// import moment from 'moment'
 import _ from 'lodash'
 
 export default {

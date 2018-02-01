@@ -12,6 +12,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookie from 'vue-cookie'
 import VueMeta from 'vue-meta'
+import VueNoty from 'vuejs-noty'
 
 // NOTE : to reset users or memory
 // just uncomment this line
@@ -35,6 +36,14 @@ Vue.use(VueCookie)
 
 // VueMeta
 Vue.use(VueMeta)
+
+// NotyJS
+Vue.use(VueNoty, {
+  theme: 'semanticui',
+  timeout: 1500,
+  progressBar: true,
+  layout: 'topCenter'
+})
 
 // VueRouter
 // Vue.use(Router)

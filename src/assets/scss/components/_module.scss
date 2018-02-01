@@ -14,13 +14,16 @@
   color: $module-title-color;
   padding: 1em;
   text-align: left;
-  height: 100px;
   @include border-radius(10px);
   @include wrap-words;
     h2 {
       @include wrap-words;
     }
 
+}
+
+.module__bubble--fixed {
+  height: 100px;
 }
 
 .module__bubble-logo {

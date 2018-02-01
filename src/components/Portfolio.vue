@@ -158,16 +158,13 @@ export default {
       var vm = this
       var variations = []
       var quantities = 0
-      var prices = 0
 
       this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
         let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
         if (!_.isNil(marketCoin)) {
-
           let variation = marketCoin.price_variation * (portfolioCoin.quantity * marketCoin.price)
           variations.push(variation)
           quantities += (portfolioCoin.quantity * marketCoin.price)
-
         }
       })
       return (_.sum(variations) / quantities)
