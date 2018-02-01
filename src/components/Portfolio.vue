@@ -27,12 +27,37 @@
             <div class="gr-12 gr-12@mobile">
               <div class="module">
                 <div class="module__bubble">
-                  <div class="gr-12">
 
-                    <div class="module__content-digits --extra-big">
-                      <portfolio-capital />
+                  <div class="row">
+                    <div class="gr-4 gr-centered gr-12@mobile">
+
+                      <div class="module__content-digits --extra-big">
+                        <portfolio-capital />
+                      </div>
+
+                      <div class="+small-spacer"></div>
+
+                      <div class="module__content-details">
+                        <div class="row">
+                          <div class="gr-6">
+                            <div class="module__footer-low">
+                              <div>LOW</div>
+                              <div><animated-number :value="currentTotalLow()" :type="`money`" /></div>
+                              <!-- Variation is the same than the day low / high of the coin itself -->
+                              <div><animated-number :value="currentTotalLowVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
+                            </div>
+                          </div>
+                          <div class="gr-6">
+                            <div class="module__footer-high">
+                              <div>HIGH</div>
+                              <div><animated-number :value="currentTotalHigh()" :type="`money`" /></div>
+                              <!-- Variation is the same than the day low / high of the coin itself -->
+                              <div><animated-number :value="currentTotalHighVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -73,6 +98,7 @@
 </template>
 
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultHeader from '@/components/DefaultHeader'
 import PortfolioCoin from '@/components/PortfolioCoin'
 import PortfolioCapital from '@/components/PortfolioCapital'
@@ -101,9 +127,25 @@ export default {
   },
 
   methods: {
+    currentTotalLow () {
+      return 0
+    },
+
+    currentTotalHigh () {
+      return 0
+    },
+
+    currentTotalLowVariation () {
+      return 0
+    },
+
+    currentTotalHighVariation () {
+      return 0
+    }
   },
 
   components: {
+    AnimatedNumber,
     DefaultHeader,
     PortfolioCapital,
     PortfolioCoin,
