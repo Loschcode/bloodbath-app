@@ -80,7 +80,6 @@
 
 .module__content {
   padding: 1em;
-  background-color: $main-background-color;
 
   .--very-small {
     font-size: 16px;
@@ -143,6 +142,7 @@
 }
 
 .module__content-details {
+  opacity: 0.5;
   margin-top: -0.5em;
 }
 
@@ -161,12 +161,10 @@
 }
 
 .module__footer-low {
-  opacity: 0.6;
   text-align: left;
 }
 
 .module__footer-high {
-  opacity: 0.6;
   text-align: right;
 }
 
