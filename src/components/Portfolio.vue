@@ -33,9 +33,8 @@
 
                       <div class="module__content-digits --extra-big">
                         <portfolio-capital />
+                        <div><animated-number :value="currentTotalVariation()" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
                       </div>
-
-                      <div class="+small-spacer"></div>
 
                       <div class="module__content-details">
                         <div class="row">
@@ -104,6 +103,7 @@ import PortfolioCoin from '@/components/PortfolioCoin'
 import PortfolioCapital from '@/components/PortfolioCapital'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
+import _ from 'lodash'
 
 import { mapGetters } from 'vuex'
 
@@ -128,10 +128,30 @@ export default {
 
   methods: {
     currentTotalLow () {
-      return 0
+      var vm = this
+      var total = 0.0
+      this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+        let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
+        if (!_.isNil(marketCoin)) {
+          total += (marketCoin.day_low * portfolioCoin.quantity)
+        }
+      })
+      return total
     },
 
     currentTotalHigh () {
+      var vm = this
+      var total = 0.0
+      this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+        let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
+        if (!_.isNil(marketCoin)) {
+          total += (marketCoin.day_high * portfolioCoin.quantity)
+        }
+      })
+      return total
+    },
+
+    currentTotalVariation () {
       return 0
     },
 
