@@ -1,122 +1,325 @@
 <template>
   <div class="coin">
     <default-header>
+      <div slot="left">
+      </div>
       <div slot="center">
         <div class="header__title">
-          <div v-if="marketCoin">
-            <coin-header :marketCoin="marketCoin" />
-          </div>
+          <h1></h1>
         </div>
+      </div>
+      <div slot="right">
       </div>
     </default-header>
 
+
+    <div class="row">
+
+      <div class="gr-2">
+        <div class="module">
+          <div class="module__bubble">
+            <div class="module__bubble-logo">
+              <img :src="marketCoin.logo_url" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="gr-8">
+        <div class="module">
+          <div class="module__bubble">
+            <div class="module__bubble-title">
+              <span>{{ marketCoin.full_name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="gr-2">
+        <div class="module">
+          <div class="module__bubble">
+            <div class="module__bubble-action">
+              <coin-action-favorite :userMarketCoinProp="userMarketCoin" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div v-if="portfolioCoin">
+
+      <div class="section">
+        <!-- Market -->
+        <div class="row">
+          <div class="gr-12">
+            <div class="section__title">
+              My investment
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="gr-12 gr-centered">
+
+              <div class="gr-12 gr-12@mobile">
+                <div class="module">
+                  <div class="module__bubble">
+
+                    <div class="row">
+                      <div class="+desktop">
+                      <div class="gr-12 gr-centered">
+                          <h2 class="+centered">You currently own <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}} valued at <animated-number :value="marketCoin.price" :type="`money`" /></h2>
+                      </div>
+                    </div>
+                    <div class="+mobile">
+                      <div class="gr-12 gr-centered">
+                          <h2 class="+centered">You currently own <br /><animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}}<br /> valued at <br /><animated-number :value="marketCoin.price" :type="`money`" /></h2>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="gr-4 gr-12@mobile">
+            <div class="module">
+              <div class="module__title +centered">
+                <div class="row">
+                  <div class="gr-1">
+                    <div class="module__title-portfolio">
+                      <span class="icon-portfolio"></span>
+                    </div>
+                  </div>
+                  <div class="gr-11">
+                    <h2>Lowest 24 hours capital</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="module__content">
+                <div class="module__content-digits">
+                  <div>
+                    <animated-number :value="currentLow()" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --small">
+                    <animated-number :value="marketCoin.day_low_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gr-4 gr-12@mobile">
+            <div class="module">
+              <div class="module__title +centered">
+                <div class="row">
+                  <div class="gr-1">
+                    <div class="module__title-portfolio">
+                      <span class="icon-portfolio"></span>
+                    </div>
+                  </div>
+                  <div class="gr-11">
+                    <h2>Current Capital</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="module__content">
+                <div class="module__content-digits">
+                  <div>
+                    <animated-number :value="currentValue()" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --small">
+                    <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gr-4 gr-12@mobile">
+            <div class="module">
+              <div class="module__title +centered">
+                <div class="row">
+                  <div class="gr-1">
+                    <div class="module__title-portfolio">
+                      <span class="icon-portfolio"></span>
+                    </div>
+                  </div>
+                  <div class="gr-11">
+                    <h2>Highest 24 hours capital</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="module__content">
+                <div class="module__content-digits">
+                  <div>
+                    <animated-number :value="currentHigh()" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --small">
+                    <animated-number :value="marketCoin.day_high_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
     <div class="section">
 
-    <!-- Units -->
-    <div class="row">
-      <div class="gr-12">
-        <div class="section__title">
-          Units
+      <!-- Units -->
+      <div class="row">
+        <div class="gr-12">
+          <div class="section__title">
+            Units
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
+      <div class="row">
 
-      <!-- Base Price -->
-      <div class="gr-6 gr-12@mobile">
-        <div class="module">
-          <div class="module__title">
-            <h2>Open Price</h2>
-          </div>
-          <div class="module__content">
-            <div class="module__content-digits">
-              <div v-if="marketCoin">
-                <animated-number :value="marketCoin.day_open" :type="`money`" />
-              </div>
-              <div v-else>
-                -
+        <!-- Low 24 Price -->
+        <div class="gr-3 gr-12@mobile">
+          <div class="module">
+            <div class="module__title +centered">
+              <h2>Lowest 24 hours price</h2>
+            </div>
+            <div class="module__content">
+              <div class="module__content-digits">
+                <div v-if="marketCoin">
+                  <div>
+                    <animated-number :value="marketCoin.day_low" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --small">
+                    <animated-number :value="marketCoin.day_low_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                  </div>
+                </div>
+                <div v-else>
+                  -
+                </div>
               </div>
             </div>
-          </div>
-          <div class="module__footer">
-            {{ solveDayOpenTime() }}
-          </div>
-        </div>
-      </div>
-
-      <!-- Current Price -->
-      <div class="gr-6 gr-12@mobile">
-        <div class="module">
-          <div class="module__title">
-            <h2>Current Price</h2>
-          </div>
-          <div class="module__content">
-            <div class="module__content-digits">
-              <div v-if="marketCoin">
-                  <animated-number :value="marketCoin.price" :type="`money`" />
-              </div>
-              <div v-else>
-                -
-              </div>
-            </div>
-          </div>
-          <div class="module__footer">
-            {{ solvePriceTime() }}
-          </div>
-        </div>
-      </div>
-
-      <div class="gr-12">
-        <div class="module">
-          <div class="module__title">
-            <h2>Variation</h2>
-          </div>
-          <div class="module__content">
-            <div class="module__content-percent">
-              <div v-if="marketCoin">
-                <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
-              </div>
-              <div v-else>
-                -
-              </div>
+            <div class="module__footer">
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
-
-    <!-- Tracker -->
-    <div class="row">
-      <div class="gr-12">
-        <div class="section__title">
-          Market
-        </div>
-      </div>
-
-      <div class="gr-12">
-        <div class="module">
-          <div class="module__title">
-            <h2>Market Capitalization</h2>
-          </div>
-          <div class="module__content">
-            <div class="module__content-digits">
-              <div v-if="marketCoin">
-                <animated-number :value="marketCoin.market_cap" :type="`big-money`" />
+        <!-- Current Price -->
+        <div class="gr-6 gr-12@mobile">
+          <div class="module">
+            <div class="module__title +centered">
+              <h2>Current Price</h2>
+            </div>
+            <div class="module__content">
+              <div class="module__content-digits">
+                <div v-if="marketCoin">
+                  <div>
+                    <animated-number :value="marketCoin.price" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --small">
+                    <animated-number :value="marketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                  </div>
+                </div>
+                <div v-else>
+                  -
+                </div>
               </div>
-              <div v-else>
-                -
+            </div>
+            <div class="module__footer">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- High Price -->
+        <div class="gr-3 gr-12@mobile">
+          <div class="module">
+            <div class="module__title +centered">
+              <h2>Highest 24 hours price</h2>
+            </div>
+            <div class="module__content">
+              <div class="module__content-digits">
+                <div v-if="marketCoin">
+                  <div>
+                    <animated-number :value="marketCoin.day_high" :type="`money`" />
+                  </div>
+                  <div class="module__content-digits --small">
+                    <animated-number :value="marketCoin.day_high_variation" :type="`percent`" :animatedColors="false" :numberColors="true" />
+                  </div>
+                </div>
+                <div v-else>
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="module__footer">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Open Price -->
+        <div class="gr-12 gr-centered gr-12@mobile">
+          <div class="module">
+            <div class="module__title +centered">
+              <h2>Open Price</h2>
+            </div>
+            <div class="module__content">
+              <div class="module__content-digits">
+                <div v-if="marketCoin">
+                  <animated-number :value="marketCoin.day_open" :type="`money`" />
+                </div>
+                <div v-else>
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="module__footer">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Market -->
+      <div class="row">
+        <div class="gr-12">
+          <div class="section__title">
+            Market
+          </div>
+        </div>
+
+        <div class="gr-12">
+          <div class="module">
+            <div class="module__title +centered">
+              <h2>Market Capitalization</h2>
+            </div>
+            <div class="module__content">
+              <div class="module__content-digits">
+                <div v-if="marketCoin">
+                  <animated-number :value="marketCoin.market_cap" :type="`big-money`" />
+                </div>
+                <div v-else>
+                  -
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
-
-    </div>
-
 
   </div>
 </template>
@@ -124,6 +327,7 @@
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinHeader from '@/components/CoinHeader'
+import CoinActionFavorite from '@/components/CoinActionFavorite'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import ThrowError from '@/mixins/ThrowError'
 import moment from 'moment'
@@ -156,7 +360,7 @@ export default {
       }
     },
 
-    portfolioMarketCoin () {
+    portfolioCoin () {
       if (this.marketCoin) {
         return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
       }
@@ -164,26 +368,46 @@ export default {
   },
 
   methods: {
-    solveDayOpenTime () {
-      if (!this.marketCoin) {
-        return null
-      }
-      let date = moment().subtract(24, 'hour').fromNow()
-      return `From ${date}`
+
+    currentValue () {
+      let quantity = this.portfolioCoin.quantity
+      let price = this.marketCoin.price
+      return quantity * price
     },
 
-    solvePriceTime () {
-      if (!this.marketCoin) {
-        return null
-      }
-      let date = moment(this.marketCoin.updated_at).fromNow()
-      return `From ${date}`
+    currentLow () {
+      let quantity = this.portfolioCoin.quantity
+      let price = this.marketCoin.day_low
+      return quantity * price
+    },
+
+    currentHigh () {
+      let quantity = this.portfolioCoin.quantity
+      let price = this.marketCoin.day_high
+      return quantity * price
     }
+
+    // solveDayOpenTime () {
+    //   if (!this.marketCoin) {
+    //     return null
+    //   }
+    //   let date = moment().subtract(24, 'hour').fromNow()
+    //   return `From ${date}`
+    // },
+    //
+    // solvePriceTime () {
+    //   if (!this.marketCoin) {
+    //     return null
+    //   }
+    //   let date = moment(this.marketCoin.updated_at).fromNow()
+    //   return `From ${date}`
+    // }
   },
 
   components: {
     DefaultHeader,
     CoinHeader,
+    CoinActionFavorite,
     AnimatedNumber
   },
 

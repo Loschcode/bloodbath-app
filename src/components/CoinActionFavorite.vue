@@ -1,21 +1,15 @@
 <template>
-  <div class="coin-preview-favorite">
+  <div class="coin-action-favorite">
     <div v-if="userMarketCoin">
-      <div class="module__footer-action">
-        <div class="row">
-          <div class="gr-12">
-            <div v-if="userMarketCoin.favorited_at">
-              <a @click="removeFavorite" class="+pointer">
-                <span class="icon-favorite-on"></span>
-              </a>
-            </div>
-            <div v-else>
-              <a @click="addFavorite" class="+pointer">
-                <span class="icon-favorite-off"></span>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div v-if="userMarketCoin.favorited_at">
+        <a @click="removeFavorite" class="+pointer">
+          <span class="icon-favorite-on"></span>
+        </a>
+      </div>
+      <div v-else>
+        <a @click="addFavorite" class="+pointer">
+          <span class="icon-favorite-off"></span>
+        </a>
       </div>
     </div>
   </div>
