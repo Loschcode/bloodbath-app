@@ -1,0 +1,9 @@
+.input {
+
+}
+
+.input__important {
+  &:focus {
+    border-color: $import-input-border-color;
+  }
+}

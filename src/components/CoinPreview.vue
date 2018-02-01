@@ -57,7 +57,7 @@
                   <div class="module__footer-action">
                     <div class="row">
                       <div class="gr-12">
-                        <coin-action-favorite :userMarketCoinProp="userMarketCoin" />
+                        <coin-action-favorite :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoinProp" />
                       </div>
                     </div>
                   </div>
@@ -166,8 +166,10 @@ export default {
       }
       if (this.context === 'portfolio') {
         this.createPortfolioCoin()
+        this.$noty.success(`${this.marketCoin.code} is now part of your portfolio !`)
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
+        this.$noty.success(`${this.marketCoin.coin_name} is now your primary coin ! Look at the footer ...`)
       } else if (this.context === 'coins') {
         router.push({ name: 'coin', params: { coinName: this.marketCoin.code } })
       }

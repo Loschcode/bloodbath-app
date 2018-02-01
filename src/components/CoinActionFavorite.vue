@@ -21,11 +21,11 @@ import EventBus from '@/misc/EventBus'
 
 export default {
   props: [
-    'userMarketCoinProp'
+    'userMarketCoinProp',
+    'marketCoinProp'
   ],
 
   created () {
-    this.$store.commit('setUserMarketCoin', this.userMarketCoinProp)
   },
 
   data () {
@@ -37,17 +37,23 @@ export default {
     removeFavorite (event) {
       event.preventDefault()
       this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: null } })
+      this.$noty.success(`${this.marketCoin.coin_name} removed from your favorites !`)
     },
 
     addFavorite (event) {
       event.preventDefault()
       this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: true } })
+      this.$noty.success(`${this.marketCoin.coin_name} added to your favorites !`)
     }
   },
 
   computed: {
     userMarketCoin () {
       return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
+    },
+
+    marketCoin () {
+      return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
     }
   },
 

@@ -44,7 +44,7 @@
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-action">
               <div v-if="userMarketCoin">
-                <coin-action-favorite :userMarketCoinProp="userMarketCoin" />
+                <coin-action-favorite :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoinProp" />
               </div>
             </div>
           </div>

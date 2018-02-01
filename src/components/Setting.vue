@@ -13,7 +13,7 @@
     </default-header>
 
     <!--Preferences  -->
-    <div v-if="userSetting">
+    <div v-if="currentUser && userSetting">
       <div class="section">
         <div class="row">
           <div class="gr-12">
@@ -32,7 +32,7 @@
 
               <div class="module__content">
 
-                <div v-if="baseCurrencies">
+                <div v-if="baseCurrencies && currentBaseCurrency">
 
                   <div class="section">
                     <div class="row">
@@ -89,26 +89,32 @@
         <div class="row">
           <div class="gr-10 gr-12@mobile gr-centered">
 
-            <div class="module">
-              <div class="module__title">
-                <h2>My account</h2>
-              </div>
-              <div class="module__content">
+            <div v-if="isConnected()">
 
-                <div class="section">
-                  <div class="row">
-
-                    <div class="section__content">
-                      <div class="gr-5 gr-12@mobile">
-                        <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+              <div class="module">
+                <div class="module__title">
+                  <h2>My account</h2>
+                </div>
+                <div class="module__content">
+                  <div class="section">
+                    <div class="row">
+                      <div class="section__content">
+                        <div class="gr-5 gr-12@mobile">
+                          <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+                        </div>
                       </div>
                     </div>
                   </div>
-
+                </div>
+                <div class="module__footer">
                 </div>
               </div>
-              <div class="module__footer">
-              </div>
+
+            </div>
+            <div v-else>
+
+              <connect />
+
             </div>
 
           </div>
@@ -123,6 +129,7 @@
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
+import Connect from '@/components/Connect'
 
 export default {
   data () {
@@ -138,6 +145,10 @@ export default {
   },
 
   computed: {
+    currentUser () {
+      return this.$store.getters.getCurrentUser
+    },
+
     userSetting () {
       return this.$store.getters.getUserSetting
     },
@@ -148,17 +159,26 @@ export default {
 
     baseCurrencies () {
       return this.$store.getters.getBaseCurrencies
+    },
+
+    currentBaseCurrency () {
+      return this.$store.getters.getBaseCurrency(this.userSetting.base_currency_id)
     }
   },
 
   methods: {
+    isConnected () {
+      return this.currentUser.role !== 'anonymous'
+    },
+
     setCurrentCurrency (event) {
       let baseCurrencyId = event.currentTarget.id
       this.$store.dispatch('updateUserSetting', { changeset: { base_currency_id: baseCurrencyId } })
+      this.$noty.success(`The application will show everything in ${this.$store.getters.getBaseCurrency(parseInt(baseCurrencyId)).full_name}`)
     },
 
     isCurrentCurrency (baseCurrency) {
-      return baseCurrency.id === this.userSetting.base_currency_id
+      return baseCurrency.id === this.currentBaseCurrency.id
     },
     tryLogOut () {
       this.$store.commit('unsetCurrentUser')
@@ -169,7 +189,8 @@ export default {
   components: {
     DefaultHeader,
     CoinPreview,
-    SearchCoins
+    SearchCoins,
+    Connect
   }
 }
 </script>

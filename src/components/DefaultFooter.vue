@@ -44,7 +44,7 @@
               </router-link>
             </div>
             <div v-else>
-              <router-link :to="{ name: 'connect' }">
+              <router-link :to="{ name: 'setting' }">
                 <div class="footer__title">My account</div>
                 <div class="footer__content +desktop">You are not logged-in</div>
                 <div class="footer__content +mobile">Sign-up now</div>
