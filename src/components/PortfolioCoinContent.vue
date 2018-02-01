@@ -24,8 +24,6 @@
           </div>
         </div>
 
-      </router-link>
-
       <div class="module__content-details">
         <div class="row">
           <div class="gr-6">
@@ -46,6 +44,8 @@
           </div>
         </div>
       </div>
+
+      </router-link>
 
     </div>
   </div>

@@ -141,6 +141,9 @@ export default {
         displayDigits = `${symbol}${finalDigits}`
       } else if (this.type === 'percent') {
         displayDigits = numeral(digits).format('0,0.00%')
+        if (digits > 0.00) {
+          displayDigits = `+${displayDigits}`
+        }
       } else if (this.type === 'quantity') {
         displayDigits = numeral(digits).format('0,0.00')
       } else {
