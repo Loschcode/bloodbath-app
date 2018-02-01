@@ -16,7 +16,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Total value
+              My capital
             </div>
           </div>
         </div>
@@ -151,16 +151,56 @@ export default {
       return total
     },
 
+    // TODO : the total variation doesn't take into consideration the WEIGHT OF EACH COIN
+    // FIX IT AND MAKE THE CONSIDERATION
+
     currentTotalVariation () {
-      return 0
+      var vm = this
+      var variations = []
+      var quantities = 0
+      var prices = 0
+
+      this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+        let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
+        if (!_.isNil(marketCoin)) {
+
+          let variation = marketCoin.price_variation * (portfolioCoin.quantity * marketCoin.price)
+          variations.push(variation)
+          quantities += (portfolioCoin.quantity * marketCoin.price)
+
+        }
+      })
+      return (_.sum(variations) / quantities)
     },
 
     currentTotalLowVariation () {
-      return 0
+      var vm = this
+      var variations = []
+      var quantities = 0
+      this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+        let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
+        if (!_.isNil(marketCoin)) {
+          let variation = marketCoin.day_low_variation * (portfolioCoin.quantity * marketCoin.day_low)
+          variations.push(variation)
+          quantities += (portfolioCoin.quantity * marketCoin.day_low)
+        }
+      })
+      return (_.sum(variations) / quantities)
     },
 
     currentTotalHighVariation () {
-      return 0
+      var vm = this
+      var variations = []
+      var quantities = 0
+      this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+        let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
+        if (!_.isNil(marketCoin)) {
+          let variation = marketCoin.day_high_variation * (portfolioCoin.quantity * marketCoin.day_high)
+          variations.push(variation)
+          quantities += (portfolioCoin.quantity * marketCoin.day_high)
+        }
+      })
+      return (_.sum(variations) / quantities)
     }
   },
 

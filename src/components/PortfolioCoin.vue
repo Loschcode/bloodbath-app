@@ -82,8 +82,6 @@ export default {
 
   created () {
     this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
-
-    // TODO : logic should be totally changed
     if (this.portfolioCoinProp.market_coin) {
       this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
       this.$store.dispatch('subscribeMarketCoin', this.portfolioCoinProp.market_coin)
