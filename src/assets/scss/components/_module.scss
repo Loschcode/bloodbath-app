@@ -81,12 +81,16 @@
 .module__content {
   padding: 1em;
 
-  .--very-small {
+  .--ultra-small {
     font-size: 16px;
   }
 
   .--small {
     font-size: 25px;
+  }
+
+  .--very-small {
+    font-size: 22px;
   }
 
   .--medium {
@@ -97,8 +101,8 @@
     font-size: 45px;
   }
 
-  .--grey {
-    color: $module-title-color;
+  .--opacity {
+    opacity: 0.5;
   }
 
 }

@@ -22,26 +22,15 @@
 
             <div class="module__content">
               <div class="module__content-folio">
+
                 <div v-if="editQuantity">
                   <!-- Edit quantity of the coin -->
                   <input type="text" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
                 </div>
-                <div v-if="!editQuantity">
 
-                  <router-link :to="{ name: 'coin', params: { coinName: marketCoin.code } }">
-
-                    <!-- Display the current value -->
-                    <div class="module__content-digits --medium">
-                        <animated-number :value="currentValue()" :type="`money`" />
-                    </div>
-                    <div class="module__content-digits --very-small --grey">
-                      <div v-if="portfolioCoin.quantity">
-                        <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
-                        </div>
-                    </div>
-
-                  </router-link>
-
+                <div v-else>
+                  <!-- Portfolio coin content -->
+                  <portfolio-coin-content :marketCoinProp="marketCoin" :portfolioCoinProp="portfolioCoin" />
                 </div>
               </div>
             </div>
@@ -57,10 +46,14 @@
                 </div>
               </div>
               <div v-else>
-                <div class="module__footer-action --stick">
-                  <a @click="enableEditQuantity">
-                    <span class="icon icon-pencil"></span>
-                  </a>
+                <div class="module__footer-action">
+                  <div class="row">
+                    <div class="gr-12">
+                      <a @click="enableEditQuantity">
+                        <span class="icon icon-pencil"></span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -72,8 +65,8 @@
 </template>
 
 <script>
-import CoinPreviewContent from '@/components/CoinPreviewContent'
 import AnimatedNumber from '@/components/AnimatedNumber'
+import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import _ from 'lodash'
 
 export default {
@@ -132,12 +125,6 @@ export default {
   },
 
   methods: {
-    currentValue () {
-      let quantity = this.portfolioCoin.quantity
-      let price = this.marketCoin.price
-      return quantity * price
-    },
-
     enableEditQuantity (event) {
       event.preventDefault()
       this.editQuantity = true
@@ -155,8 +142,8 @@ export default {
   },
 
   components: {
-    CoinPreviewContent,
-    AnimatedNumber
+    AnimatedNumber,
+    PortfolioCoinContent
   }
 }
 </script>
