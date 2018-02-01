@@ -49,7 +49,14 @@
 
             </div>
             <div class="module__footer">
-                <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
+              <div class="row">
+                <div class="gr-10">
+                  <!-- Was moved for now -->
+                </div>
+                <div class="gr-2">
+                  <coin-preview-favorite :userMarketCoinProp="userMarketCoin" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -59,6 +66,7 @@
 </template>
 
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinPreviewFavorite from '@/components/CoinPreviewFavorite'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import EventBus from '@/misc/EventBus'
@@ -171,6 +179,7 @@ export default {
   },
 
   components: {
+    AnimatedNumber,
     CoinPreviewContent,
     CoinPreviewFavorite
   }
