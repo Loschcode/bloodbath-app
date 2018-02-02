@@ -1,5 +1,6 @@
 import axios from 'axios'
 import _ from 'lodash'
+import EventBus from '@/misc/EventBus'
 
 // initial state
 const state = {
@@ -24,17 +25,25 @@ const getters = {
 // actions
 const actions = {
   async registerUser (context, registerData) {
-    let response = await axios.post(`connect/register`, registerData)
-    context.commit('setCurrentUser', response.data)
-    window.location.href = '/'
+    try {
+      let response = await axios.post(`connect/register`, registerData)
+      context.commit('setCurrentUser', response.data)
+      window.location.href = '/'
+    } catch (error) {
+      EventBus.$emit('errorEvent', error.response.data.error)
+    }
   },
 
   async authenticateUser (context, authenticateData) {
-    let response = await axios.post(`connect/authenticate`, authenticateData)
-    context.commit('setUserToken', response.data.token)
-    context.commit('setCurrentUser', response.data)
-    context.commit('setUserSetting', response.data.user_setting)
-    window.location.href = '/'
+    try {
+      let response = await axios.post(`connect/authenticate`, authenticateData)
+      context.commit('setUserToken', response.data.token)
+      context.commit('setCurrentUser', response.data)
+      context.commit('setUserSetting', response.data.user_setting)
+      window.location.href = '/'
+    } catch (error) {
+      EventBus.$emit('errorEvent', error.response.data.error)
+    }
   },
 
   async createAnonymousUser (context) {

@@ -42,12 +42,22 @@ export default {
 
   created () {
     /**
-     * We put a listener to the errorEvent
+     * We put a listener to the crashEvent
+     * This kind of error is major and lock the application itself
+     * until the person refreshes the page entirely
      */
-    EventBus.$on('errorEvent', error => {
+    EventBus.$on('crashEvent', error => {
       if (error.message === 'Network Error') {
         this.error = 'Oh snap ! There is a network error, please refresh the page.'
       }
+    })
+
+    /**
+     * We put a listener to the errorEvent
+     * This kind of errors is minor and dispatch an error message
+     */
+    EventBus.$on('errorEvent', error => {
+      this.$noty.error(error)
     })
 
     /**

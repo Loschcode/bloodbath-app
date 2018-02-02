@@ -13,7 +13,7 @@ export default {
     throwError (error) {
       if (_.isEmpty(error.response)) {
         console.warn(error)
-        EventBus.$emit('errorEvent', error)
+        EventBus.$emit('crashEvent', error)
       } else {
         console.warn(error.response.data)
       }
