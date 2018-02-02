@@ -18,7 +18,7 @@
     <div class="row">
 
       <div class="gr-2 gr-12@mobile gr-12@tablet">
-        <div class="module +desktop">
+        <div class="+desktop">
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-logo">
               <img :src="marketCoin.logo_url" />
@@ -29,7 +29,7 @@
 
 
       <div class="gr-8 gr-12@mobile gr-12@tablet">
-        <div class="module">
+        <div class="">
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-title">
               <span>{{ marketCoin.full_name }}</span>
@@ -40,7 +40,7 @@
 
 
       <div class="gr-2 gr-12@mobile gr-12@tablet">
-        <div class="module +desktop">
+        <div class="+desktop">
           <div class="module__bubble module__bubble--fixed">
             <div class="module__bubble-action">
               <div v-if="userMarketCoin">
@@ -66,38 +66,42 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="gr-12">
+              <div class="module">
 
           <div class="row">
-
-
 
             <div class="gr-12 gr-centered">
 
               <div class="gr-12 gr-12@mobile gr-12@tablet">
-                <div class="module">
-                  <div class="module__bubble">
 
-                    <div class="row">
-                      <div class="+desktop">
-                      <div class="gr-12 gr-centered">
-                          <h2 class="+centered">You currently own <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}} valued at <animated-number :value="marketCoin.price" :type="`money`" /> per unit</h2>
-                      </div>
-                    </div>
-                    <div class="+mobile">
-                      <div class="gr-12 gr-centered">
-                          <h2 class="+centered">You currently own <br /><animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}}<br /> valued at <br /><animated-number :value="marketCoin.price" :type="`money`" /> per unit</h2>
+                <div class="row">
+
+                  <div class="+desktop">
+                    <div class="gr-12 gr-centered">
+                      <div class="module__title +centered">
+                        <h2>You currently own <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}} valued at <animated-number :value="marketCoin.price" :type="`money`" /> per unit</h2>
                       </div>
                     </div>
                   </div>
+                  <div class="+mobile">
+                    <div class="gr-12 gr-centered">
+                      <div class="module__title +centered">
+                        <h2>You currently own <br /><animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> {{marketCoin.code}}<br /> valued at <br /><animated-number :value="marketCoin.price" :type="`money`" /> per unit</h2>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
 
             </div>
           </div>
 
+          <div class="row">
+
           <div class="gr-4 gr-12@mobile gr-12@tablet">
-            <div class="module">
               <div class="module__content">
 
                 <div class="module__content-digits --ultra-small --opacity">
@@ -113,11 +117,9 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
 
           <div class="gr-4 gr-12@mobile gr-12@tablet">
-            <div class="module">
               <div class="module__content">
 
                 <div class="module__content-digits --ultra-small --opacity">
@@ -133,11 +135,9 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
 
           <div class="gr-4 gr-12@mobile gr-12@tablet">
-            <div class="module">
               <div class="module__content">
                 <div class="module__content-digits --ultra-small --opacity">
                   Highest 24 hours capital
@@ -151,10 +151,15 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
 
         </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 
       </div>
 
