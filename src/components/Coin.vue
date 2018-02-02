@@ -68,6 +68,9 @@
 
 
           <div class="row">
+
+
+
             <div class="gr-12 gr-centered">
 
               <div class="gr-12 gr-12@mobile gr-12@tablet">
@@ -95,19 +98,12 @@
 
           <div class="gr-4 gr-12@mobile gr-12@tablet">
             <div class="module">
-              <div class="module__title +centered">
-                <div class="row">
-                  <div class="gr-1">
-                    <div class="module__title-portfolio">
-                      <span class="icon-portfolio"></span>
-                    </div>
-                  </div>
-                  <div class="gr-11">
-                    <h2>Lowest 24 hours capital</h2>
-                  </div>
-                </div>
-              </div>
               <div class="module__content">
+
+                <div class="module__content-digits --ultra-small --opacity">
+                  Lowest 24 hours capital
+                </div>
+
                 <div class="module__content-digits">
                   <div>
                     <animated-number :value="currentLow()" :type="`money`" />
@@ -122,19 +118,12 @@
 
           <div class="gr-4 gr-12@mobile gr-12@tablet">
             <div class="module">
-              <div class="module__title +centered">
-                <div class="row">
-                  <div class="gr-1">
-                    <div class="module__title-portfolio">
-                      <span class="icon-portfolio"></span>
-                    </div>
-                  </div>
-                  <div class="gr-11">
-                    <h2>Current Capital</h2>
-                  </div>
-                </div>
-              </div>
               <div class="module__content">
+
+                <div class="module__content-digits --ultra-small --opacity">
+                  Current capital
+                </div>
+
                 <div class="module__content-digits">
                   <div>
                     <animated-number :value="currentValue()" :type="`money`" />
@@ -149,19 +138,10 @@
 
           <div class="gr-4 gr-12@mobile gr-12@tablet">
             <div class="module">
-              <div class="module__title +centered">
-                <div class="row">
-                  <div class="gr-1">
-                    <div class="module__title-portfolio">
-                      <span class="icon-portfolio"></span>
-                    </div>
-                  </div>
-                  <div class="gr-11">
-                    <h2>Highest 24 hours capital</h2>
-                  </div>
-                </div>
-              </div>
               <div class="module__content">
+                <div class="module__content-digits --ultra-small --opacity">
+                  Highest 24 hours capital
+                </div>
                 <div class="module__content-digits">
                   <div>
                     <animated-number :value="currentHigh()" :type="`money`" />
