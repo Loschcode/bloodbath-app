@@ -2,7 +2,7 @@ $main-background-color: #F3F5F6;
 
 
 $module-background-color: #fdfdfd; // yellowish #FFFFF7; // original #F3F5F6
-$module-border-color: #F3F5F6; // #E0E5ED;
+$module-border-color: #F3F5F6; // #F3F5F6; // #E0E5ED;
 $module-title-background-color: #FFF;
 $module-title-color: #465261;
 
@@ -23,7 +23,7 @@ $footer-background-color: #FFF;
 $footer-text-color: #465261;
 $footer-border-color: #65CAE2;
 
-$loader-text-color: $header-background-color;
+$loader-text-color: #65CAE2;
 
 $text-red-color: #FF9595;
 $error-text-color: $text-red-color;

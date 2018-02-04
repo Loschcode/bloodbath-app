@@ -20,7 +20,7 @@ export default {
     title: 'CryptoScreen',
     link: [
       { rel: 'stylesheet', href: 'https://file.myfontastic.com/mLeXuFUMRFSYfxjxh5UTTd/icons.css' },
-      { rel: 'favicon', href: 'favicon.ico' }
+      { rel: 'favicon', href: '/static/images/favicon.ico' }
     ]
   },
 

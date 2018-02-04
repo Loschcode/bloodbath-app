@@ -52,11 +52,15 @@ const actions = {
   },
 
   async fetchCurrentUser (context, params) {
-    let response = await axios.get(`user`, {params: params})
-    context.commit('setUserToken', response.data.token)
-    context.commit('setCurrentUser', response.data)
-    context.commit('setUserSetting', response.data.user_setting)
-    console.log('current user was set.')
+    try {
+      let response = await axios.get(`user`, {params: params})
+      context.commit('setUserToken', response.data.token)
+      context.commit('setCurrentUser', response.data)
+      context.commit('setUserSetting', response.data.user_setting)
+      console.log('current user was set.')
+    } catch (error) {
+      EventBus.$emit('rebootEvent', error.response.data.error)
+    }
   }
 
 }

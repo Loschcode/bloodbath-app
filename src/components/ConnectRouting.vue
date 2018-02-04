@@ -42,6 +42,17 @@ export default {
 
   created () {
     /**
+     * We put a listener to the rebootEvent
+     * when a crash needs a reboot and clear cache / session
+     * we use this command
+     */
+    EventBus.$on('rebootEvent', error => {
+      console.log(error)
+      localStorage.clear()
+      window.location.href = '/'
+    })
+
+    /**
      * We put a listener to the crashEvent
      * This kind of error is major and lock the application itself
      * until the person refreshes the page entirely
