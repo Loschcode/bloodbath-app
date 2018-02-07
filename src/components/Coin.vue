@@ -336,7 +336,7 @@ export default {
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
+    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoin.id })
   },
 
   computed: {

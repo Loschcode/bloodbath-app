@@ -82,17 +82,13 @@ export default {
 
   created () {
     this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
-    if (this.portfolioCoinProp.market_coin) {
-      this.$store.commit('setMarketCoin', this.portfolioCoinProp.market_coin)
-      this.$store.dispatch('subscribeMarketCoin', this.portfolioCoinProp.market_coin)
+    if (this.marketCoin) {
+      this.$store.dispatch('subscribeMarketCoinChannel', this.marketCoin)
     }
   },
 
-  mounted () {
-  },
-
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
+    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoin.id })
   },
 
   watch: {

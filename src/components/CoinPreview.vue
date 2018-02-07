@@ -96,7 +96,7 @@ export default {
     this.context = this.contextProp
 
     this.$store.commit('setMarketCoin', this.marketCoinProp)
-    this.$store.dispatch('subscribeMarketCoin', this.marketCoinProp)
+    this.$store.dispatch('subscribeMarketCoinChannel', this.marketCoinProp)
   },
 
   mounted () {
@@ -113,7 +113,7 @@ export default {
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.marketCoin.id })
+    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoin.id })
     EventBus.$off('CoinPreviewClick')
   },
 

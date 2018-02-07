@@ -1,6 +1,5 @@
 import axios from 'axios'
 import _ from 'lodash'
-import Cable from '@/misc/Cable'
 
 /**
  * We dispatch the data to all important stores
@@ -10,7 +9,6 @@ function dispatchAllStores (context, data) {
    * We set the market coin itself
    */
   context.commit('setMarketCoin', data.market_coin)
-  context.dispatch('subscribeMarketCoin', data.market_coin.id)
 
   /**
    * If possible we set the user market coin too
@@ -29,8 +27,6 @@ function dispatchAllStores (context, data) {
 
 // initial state
 const state = {
-  currentChannels: [],
-
   marketCoins: [],
   favoriteCoins: [],
   topCoins: [],
@@ -54,39 +50,6 @@ const getters = {
 
 // actions
 const actions = {
-  subscribeMarketCoin (context, params) {
-    /**
-    * We start the stream
-    */
-    var channelName = 'MarketCoinChannel'
-    var channelId = params.id
-    var channel = Cable.cable.subscriptions
-    .create(
-      { channel: channelName, id: channelId },
-      {
-        connected (data) {
-          console.log(`connected to ${channelName}.${channelId}`)
-        },
-        received (data) {
-          if (data.action === 'show') {
-            console.log(`received data from ${channelName}.${channelId}`)
-            context.commit('setMarketCoin', data.market_coin)
-          }
-        }
-      }
-    )
-    context.state.currentChannels.push({id: channelId, channel: channel})
-  },
-
-  unsubscribeMarketCoin (context, params) {
-    let current = context.state.currentChannels.find(entry => entry.id === params.id)
-    if (!_.isNil(current)) {
-      current.channel.unsubscribe()
-      context.state.currentChannels.splice(current, 1)
-      console.log('destroy channel ' + params.id)
-    }
-  },
-
   async fetchMarketCoin (context, params) {
     let response = await axios.get(`coins/${params.id}`)
     dispatchAllStores(context, response.data)

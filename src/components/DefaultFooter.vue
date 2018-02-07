@@ -79,7 +79,7 @@ export default {
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoin', { id: this.userSetting.primary_market_coin_id })
+    // this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.userSetting.primary_market_coin_id })
   },
 
   computed: {
