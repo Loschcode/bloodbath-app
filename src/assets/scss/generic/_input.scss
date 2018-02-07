@@ -14,6 +14,10 @@ input {
 }
 
 ::placeholder {
-   color: $module-border-color;
+   color: $input-placeholder-color;
    opacity: 0.8;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

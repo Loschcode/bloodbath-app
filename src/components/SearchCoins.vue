@@ -108,7 +108,7 @@ export default {
 
     searchCoins (event) {
       this.showResults = true
-      let query = event.target.value
+      let query = event.currentTarget.value
 
       if (_.isEmpty(query)) {
         this.showResults = false

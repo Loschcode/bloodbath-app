@@ -25,7 +25,7 @@
 
                 <div v-if="editQuantity">
                   <!-- Edit quantity of the coin -->
-                  <input type="text" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
+                  <input type="number" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
                 </div>
 
                 <div v-else>
