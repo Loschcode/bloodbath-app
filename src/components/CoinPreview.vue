@@ -103,7 +103,6 @@ export default {
     EventBus.$on('CoinPreviewClick', event => {
       let matchingCoin = event.marketCoin.id === this.marketCoinProp.id
       let matchingContext = event.context === this.context
-      console.log(matchingCoin && matchingContext)
       if (matchingCoin && matchingContext) {
         this.clickAction()
       }
@@ -113,9 +112,6 @@ export default {
   destroyed () {
     this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoinProp.id })
     EventBus.$off('CoinPreviewClick')
-  },
-
-  watch: {
   },
 
   computed: {
