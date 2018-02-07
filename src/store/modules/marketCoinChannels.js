@@ -57,7 +57,7 @@ const actions = {
     if (marketCoinChannel) {
       context.commit('unsetMarketCoinChannel', marketCoinChannel)
 
-      let left = context.state.marketCoinChannels.find(entry => entry.id === params.id)
+      let left = context.getters.getMarketCoinChannel(params.id)
 
       if (left) {
         console.log('we cannot unsubscribe, there are other listeners.')

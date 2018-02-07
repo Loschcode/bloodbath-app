@@ -75,11 +75,26 @@ export default {
       if (newValue) {
         this.$store.dispatch('fetchMarketCoin', { id: newValue.primary_market_coin_id })
       }
+    },
+
+    /**
+     * If the primary coin is changed we change the listener to the channel
+     * We also use this entry to listen to first channels
+     */
+    primaryMarketCoin (newValue, oldValue) {
+      if (oldValue) {
+        if (oldValue.id !== newValue.id) {
+          this.$store.dispatch('unsubscribeMarketCoinChannel', { id: oldValue.id })
+          this.$store.dispatch('subscribeMarketCoinChannel', newValue)
+        }
+      } else {
+        this.$store.dispatch('subscribeMarketCoinChannel', newValue)
+      }
     }
   },
 
   destroyed () {
-    // this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.userSetting.primary_market_coin_id })
+    this.$store.dispatch('subscribeMarketCoinChannel', this.primaryMarketCoin)
   },
 
   computed: {

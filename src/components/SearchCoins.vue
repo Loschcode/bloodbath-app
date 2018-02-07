@@ -1,6 +1,6 @@
 <template>
 <div class="section">
-  
+
   <!-- Search -->
   <div class="row">
     <div class="section__title">

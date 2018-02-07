@@ -105,15 +105,13 @@ export default {
       let matchingContext = event.context === this.context
       console.log(matchingCoin && matchingContext)
       if (matchingCoin && matchingContext) {
-        // TODO : this is not workign, make it work.
-        console.log('multiple response')
         this.clickAction()
       }
     })
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoin.id })
+    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoinProp.id })
     EventBus.$off('CoinPreviewClick')
   },
 
