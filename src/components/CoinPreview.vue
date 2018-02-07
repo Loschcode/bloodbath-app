@@ -44,10 +44,19 @@
             <div class="module__content">
 
               <a @click="clickAction" class="+pointer">
-                <coin-preview-content :marketCoinProp="marketCoin" />
+
+                <div v-if="flipped">
+                  <coin-preview-flipped :marketCoinProp="marketCoin" />
+                </div>
+                <div v-else>
+                  <coin-preview-content :marketCoinProp="marketCoin" />
+                </div>
+
+
               </a>
 
             </div>
+
             <div class="module__footer">
               <div class="row">
                 <div class="gr-10">
@@ -75,8 +84,8 @@
 import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinActionFavorite from '@/components/CoinActionFavorite'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
+import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import EventBus from '@/misc/EventBus'
-import router from '@/router'
 
 export default {
   props: [
@@ -86,7 +95,8 @@ export default {
 
   data () {
     return {
-      context: null
+      context: null,
+      flipped: false
     }
   },
 
@@ -153,8 +163,15 @@ export default {
       return this.marketCoin.id === this.userSetting.primary_market_coin_id
     },
 
+    flipCoin () {
+      if (this.flipped) {
+        this.flipped = false
+      } else {
+        this.flipped = true
+      }
+    },
+
     clickAction (event) {
-      console.log('dispatch click action')
       if (event) {
         event.preventDefault()
       }
@@ -165,7 +182,7 @@ export default {
         this.updatePrimaryCoin()
         this.$noty.success(`${this.marketCoin.coin_name} is now your primary coin ! Look at the footer ...`)
       } else if (this.context === 'coins') {
-        router.push({ name: 'coin', params: { coinName: this.marketCoin.code } })
+        this.flipCoin()
       }
     },
 
@@ -182,6 +199,7 @@ export default {
 
   components: {
     AnimatedNumber,
+    CoinPreviewFlipped,
     CoinPreviewContent,
     CoinActionFavorite
   }

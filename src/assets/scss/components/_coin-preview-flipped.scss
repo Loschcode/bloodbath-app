@@ -1,0 +1,19 @@
+.coin-preview-flipped {
+  height: 110px;
+}
+
+.coin-preview-flipped__image {
+  img {
+    max-width: 200px;
+    max-height: 50px;
+  }
+  margin: 0.2em;
+  text-align: center;
+}
+
+.coin-preview-flipped__title {
+  color: $module-title-color;
+  text-align: center;
+  opacity: 0.53;
+  text-transform: uppercase;
+}

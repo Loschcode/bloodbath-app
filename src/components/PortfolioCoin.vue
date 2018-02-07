@@ -5,7 +5,7 @@
         <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
 
-            <router-link :to="{ name: 'coin', params: { coinName: marketCoin.code } }">
+            <a @click="clickAction" class="+pointer">
 
             <div class="module__title">
               <div class="gr-2">
@@ -18,7 +18,7 @@
               </div>
             </div>
 
-            </router-link>
+            </a>
 
             <div class="module__content">
               <div class="module__content-folio">
@@ -29,8 +29,16 @@
                 </div>
 
                 <div v-else>
-                  <!-- Portfolio coin content -->
-                  <portfolio-coin-content :marketCoinProp="marketCoin" :portfolioCoinProp="portfolioCoin" />
+
+                  <a @click="clickAction" class="+pointer">
+                    <div v-if="flipped">
+                      <coin-preview-flipped :marketCoinProp="marketCoin" />
+                    </div>
+                    <div v-else>
+                      <portfolio-coin-content :marketCoinProp="marketCoin" :portfolioCoinProp="portfolioCoin" />
+                    </div>
+                  </a>
+                  
                 </div>
               </div>
             </div>
@@ -67,6 +75,7 @@
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
+import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import _ from 'lodash'
 
 export default {
@@ -76,7 +85,8 @@ export default {
 
   data () {
     return {
-      editQuantity: false
+      editQuantity: false,
+      flipped: false
     }
   },
 
@@ -119,6 +129,18 @@ export default {
   },
 
   methods: {
+    flipCoin () {
+      if (this.flipped) {
+        this.flipped = false
+      } else {
+        this.flipped = true
+      }
+    },
+
+    clickAction () {
+      this.flipCoin()
+    },
+
     enableEditQuantity (event) {
       event.preventDefault()
       this.editQuantity = true
@@ -139,7 +161,8 @@ export default {
 
   components: {
     AnimatedNumber,
-    PortfolioCoinContent
+    PortfolioCoinContent,
+    CoinPreviewFlipped
   }
 }
 </script>
