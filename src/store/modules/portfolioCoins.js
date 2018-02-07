@@ -34,6 +34,8 @@ const actions = {
 
   async fetchPortfolioCoins (context) {
     let response = await axios.get(`portfolio_coins`)
+
+    context.commit('cleanPortfolioCoins')
     response.data.forEach(function (portfolioCoin) {
       context.commit('setPortfolioCoin', portfolioCoin)
       context.commit('setMarketCoin', portfolioCoin.market_coin)
@@ -44,10 +46,9 @@ const actions = {
 
 // mutations
 const mutations = {
-  // DEPRECATED AS WE USE THE SET PORTFOLIO COIN FOR EACH ENTRY FOUND
-  // setPortfolioCoins (state, portfolioCoins) {
-  //   state.portfolioCoins = portfolioCoins
-  // },
+  cleanPortfolioCoins (state) {
+    state.portfolioCoins = []
+  },
 
   setPortfolioCoin (state, portfolioCoin) {
     let current = state.portfolioCoins.find(entry => entry.id === portfolioCoin.id)
