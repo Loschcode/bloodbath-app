@@ -1,5 +1,5 @@
 <template>
-  <span v-if="baseValue && currentBaseCurrency">
+  <span v-if="currentBaseCurrency">
     <span v-if="animatedColors">
       <span v-if="showValue">
         <span v-if="valueUp">
@@ -109,6 +109,7 @@ export default {
   },
 
   mounted: function () {
+    // this.loopValue()
     this.tween(0, this.value)
   },
 
