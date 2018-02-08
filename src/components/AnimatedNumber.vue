@@ -1,26 +1,26 @@
 <template>
-  <span>
+  <span v-if="baseValue && currentBaseCurrency">
     <span v-if="animatedColors">
       <span v-if="showValue">
         <span v-if="valueUp">
-          <span class="number__up">{{ formattedValue() }}</span>
+          <span class="number__up">{{ endValue }}</span>
         </span>
         <span v-else>
-          <span class="number__down">{{ formattedValue() }}</span>
+          <span class="number__down">{{ endValue }}</span>
         </span>
       </span>
     </span>
     <span v-else>
       <span v-if="numberColors">
         <span v-if="value > 0">
-          <span class="number__positive">{{ formattedValue() }}</span>
+          <span class="number__positive">{{ endValue }}</span>
         </span>
         <span v-else>
-          <span class="number__negative">{{ formattedValue() }}</span>
+          <span class="number__negative">{{ endValue }}</span>
         </span>
       </span>
       <span v-else>
-        <span>{{ formattedValue() }}</span>
+        <span>{{ endValue }}</span>
       </span>
     </span>
   </span>
@@ -54,7 +54,7 @@ export default {
   },
   data: function () {
     return {
-      changingValue: 0,
+      baseValue: 0,
       valueUp: true,
       showValue: true
     }
@@ -78,6 +78,25 @@ export default {
   },
 
   computed: {
+    /**
+     * We format the value to % / $ and with some precision over the final number
+     */
+    endValue () {
+      if ((this.type === 'money') || (this.type === 'big-money')) {
+        return this.processMoney(this.baseValue)
+      }
+
+      if (this.type === 'percent') {
+        return this.processPercent(this.baseValue)
+      }
+
+      if (this.type === 'quantity') {
+        return this.processQuantity(this.baseValue)
+      }
+
+      return currentValue
+    },
+
     userSetting () {
       return this.$store.getters.getUserSetting
     },
@@ -94,11 +113,38 @@ export default {
   },
 
   methods: {
+    processQuantity (value) {
+      return numeral(value).format('0,0.00')
+    },
+
+    processPercent (value) {
+      let end = numeral(value).format('0,0.00%')
+      if (value > 0.00) {
+        end = `+${end}`
+      }
+      return end
+    },
+
+    processMoney (value) {
+      let symbol = this.currentBaseCurrency.symbol
+      let exchangeRate = this.currentBaseCurrency.exchange_rate
+
+      let exchangeDigits = (value / exchangeRate)
+      let end = value
+
+      if (this.type === 'money') {
+        end = numeral(exchangeDigits).format(`0,0.000`)
+      } else {
+        end = numeral(exchangeDigits).format(`0,0`)
+      }
+
+      return `${symbol}${end}`
+    },
 
     /**
      * We loop the value to have a cool animated effect on the numbers
      */
-    loopValue: function (newValue, oldValue) {
+    loopValue (newValue, oldValue) {
       this.refreshValueColor(newValue, oldValue)
       this.tween(oldValue, newValue)
     },
@@ -106,7 +152,7 @@ export default {
     /**
      * We refresh the color if needed (it will highlight in red or green with the SCSS)
      */
-    refreshValueColor: function (newValue, oldValue) {
+    refreshValueColor (newValue, oldValue) {
       if (oldValue > newValue) {
         this.valueUp = false
       } else if (oldValue < newValue) {
@@ -115,48 +161,9 @@ export default {
     },
 
     /**
-     * We format the value to % / $ and with some precision over the final number
-     */
-    formattedValue: function () {
-      let digits = this.changingValue
-      let symbol = '$'
-      let exchangeRate = 1.0
-      let displayDigits = ''
-
-      if ((this.type === 'money') || (this.type === 'big-money')) {
-        if (this.currentBaseCurrency) {
-          symbol = this.currentBaseCurrency.symbol
-          exchangeRate = this.currentBaseCurrency.exchange_rate
-        }
-
-        let exchangeDigits = (digits / exchangeRate)
-        let finalDigits = digits
-
-        if (this.type === 'money') {
-          finalDigits = numeral(exchangeDigits).format(`0,0.000`)
-        } else {
-          finalDigits = numeral(exchangeDigits).format(`0,0`)
-        }
-
-        displayDigits = `${symbol}${finalDigits}`
-      } else if (this.type === 'percent') {
-        displayDigits = numeral(digits).format('0,0.00%')
-        if (digits > 0.00) {
-          displayDigits = `+${displayDigits}`
-        }
-      } else if (this.type === 'quantity') {
-        displayDigits = numeral(digits).format('0,0.00')
-      } else {
-        displayDigits = digits
-      }
-
-      return displayDigits
-    },
-
-    /**
      * Animation tweak to go from 0,1,2,3 progressively
      */
-    tween: function (startValue, endValue) {
+    tween (startValue, endValue) {
       var vm = this
       function animate () {
         if (TWEEN.update()) {
@@ -164,10 +171,10 @@ export default {
         }
       }
 
-      new TWEEN.Tween({ changingValue: startValue })
-        .to({ changingValue: endValue }, 500)
+      new TWEEN.Tween({ baseValue: startValue })
+        .to({ baseValue: endValue }, 500)
         .onUpdate(function (object) {
-          vm.changingValue = object.changingValue.toFixed(6)
+          vm.baseValue = object.baseValue.toFixed(6)
         })
         .start()
 
