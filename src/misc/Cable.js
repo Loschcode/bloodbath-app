@@ -2,7 +2,7 @@ import Vue from 'vue'
 import ActionCable from 'actioncable'
 import DryCable from '@/plugins/DryCable'
 
-export default {
+var cable = {
   cable: null,
 
   config: {
@@ -20,3 +20,9 @@ export default {
     console.log('action cable connected.')
   }
 }
+
+if (process.env.NODE_ENV === 'production') {
+  cable.config.cableDomain = 'ws://cryptoscreen-api.laurent.tech'
+}
+
+export default cable

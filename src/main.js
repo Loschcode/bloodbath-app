@@ -29,7 +29,14 @@ Vue.config.productionTip = false
 // Axios configuration
 Vue.prototype.$axios = axios
 Vue.use(VueAxios, axios)
-Vue.axios.defaults.baseURL = 'http://localhost:8000'
+
+console.log('Environment : ' + process.env.NODE_ENV)
+
+if (process.env.NODE_ENV === 'production') {
+  Vue.axios.defaults.baseURL = 'http://cryptoscreen-api.laurent.tech'
+} else {
+  Vue.axios.defaults.baseURL = 'http://localhost:8000'
+}
 
 // VueCookie configuration
 Vue.use(VueCookie)
