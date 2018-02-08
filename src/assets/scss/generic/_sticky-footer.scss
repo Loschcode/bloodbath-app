@@ -1,8 +1,14 @@
 .footer-placeholder {
-  min-height: 8vh;
+  @include breakpoint(mobile) {
+    min-height: 10vh;
+  }
 }
 
 .footer {
+  @include breakpoint(mobile) {
+    min-height: 10vh;
+    top: 90%;
+  }
   min-height: 8vh;
   top: 92%;
 }
