@@ -6,12 +6,16 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+
+    "start": "node server.js",
+    "build": "node build/build.js",
+
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "build": "node build/build.js"
+
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.1.1",
@@ -19,6 +23,7 @@
     "actioncable": "^5.1.4",
     "axios": "^0.17.1",
     "coffeekraken-gridle": "^3.0.0-rc.4",
+    "express": "^4.16.2",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "normalize.css": "^7.0.0",

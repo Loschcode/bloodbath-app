@@ -1,1 +1,1 @@
-web: npm run-script build
+web: npm install --only=dev --no-shrinkwrap && npm run build && npm start
