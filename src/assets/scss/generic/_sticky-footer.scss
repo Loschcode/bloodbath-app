@@ -6,10 +6,12 @@
 }
 
 .footer {
+  position: fixed;
   @include breakpoint(mobile) {
     min-height: 10vh;
     top: 90%;
   }
   min-height: 8vh;
   top: 92%;
+  z-index: 10;
 }

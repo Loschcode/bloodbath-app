@@ -94,7 +94,7 @@ export default {
         return this.processQuantity(this.baseValue)
       }
 
-      return currentValue
+      return this.baseValue
     },
 
     userSetting () {
