@@ -22,7 +22,7 @@ var cable = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  cable.config.cableDomain = 'ws://api.bloodbath.io'
+  cable.config.cableDomain = 'wss://api.bloodbath.io'
 }
 
 export default cable
