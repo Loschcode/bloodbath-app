@@ -17,7 +17,7 @@ export default {
   },
 
   metaInfo: {
-    title: 'CryptoScreen',
+    title: 'Bloodbath',
     link: [
       { rel: 'stylesheet', href: 'https://file.myfontastic.com/mLeXuFUMRFSYfxjxh5UTTd/icons.css' },
       { rel: 'icon', href: '/static/images/favicon.ico' } // type: 'image/png'
