@@ -22,7 +22,7 @@ var cable = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  cable.config.cableDomain = 'ws://cryptoscreen-api.laurent.tech'
+  cable.config.cableDomain = 'ws://api.bloodbath.io'
 }
 
 export default cable

@@ -33,7 +33,7 @@ Vue.use(VueAxios, axios)
 console.log('Environment : ' + process.env.NODE_ENV)
 
 if (process.env.NODE_ENV === 'production') {
-  Vue.axios.defaults.baseURL = 'http://cryptoscreen-api.laurent.tech'
+  Vue.axios.defaults.baseURL = 'http://api.bloodbath.io'
 } else {
   Vue.axios.defaults.baseURL = 'http://localhost:8000'
 }
