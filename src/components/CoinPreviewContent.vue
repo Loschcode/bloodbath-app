@@ -24,16 +24,20 @@
         <div class="row">
           <div class="gr-6">
             <div class="module__footer-low">
+              <div v-if="marketCoin.day_low">
               <div>LOW</div>
-              <div><animated-number :value="marketCoin.day_low" :type="`money`" /></div>
-              <div><animated-number :value="marketCoin.day_low_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
+                <div><animated-number :value="marketCoin.day_low" :type="`money`" /></div>
+                <div><animated-number :value="marketCoin.day_low_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
+              </div>
             </div>
           </div>
           <div class="gr-6">
             <div class="module__footer-high">
               <div>HIGH</div>
-              <div><animated-number :value="marketCoin.day_high" :type="`money`" /></div>
-              <div><animated-number :value="marketCoin.day_high_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
+              <div v-if="marketCoin.day_high">
+                <div><animated-number :value="marketCoin.day_high" :type="`money`" /></div>
+                <div><animated-number :value="marketCoin.day_high_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
+              </div>
             </div>
           </div>
         </div>

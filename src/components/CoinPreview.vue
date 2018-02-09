@@ -81,7 +81,6 @@
 </template>
 
 <script>
-import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinActionFavorite from '@/components/CoinActionFavorite'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
@@ -198,7 +197,6 @@ export default {
   },
 
   components: {
-    AnimatedNumber,
     CoinPreviewFlipped,
     CoinPreviewContent,
     CoinActionFavorite
