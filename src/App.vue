@@ -17,10 +17,10 @@ export default {
   },
 
   metaInfo: {
-    title: 'Bloodbath',
+    title: 'Bloodbath - Cryptocurrencies',
     link: [
       { rel: 'stylesheet', href: 'https://file.myfontastic.com/mLeXuFUMRFSYfxjxh5UTTd/icons.css' },
-      { rel: 'icon', href: '/static/images/favicon.ico' } // type: 'image/png'
+      { rel: 'icon', href: '/static/images/favicon5.png', type: 'image/png' } // type: 'image/png'
     ]
   },
 

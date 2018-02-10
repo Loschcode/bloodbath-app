@@ -33,8 +33,8 @@
           </div>
           <div class="gr-6">
             <div class="module__footer-high">
-              <div>HIGH</div>
               <div v-if="marketCoin.day_high">
+              <div>HIGH</div>
                 <div><animated-number :value="marketCoin.day_high" :type="`money`" /></div>
                 <div><animated-number :value="marketCoin.day_high_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /></div>
               </div>
