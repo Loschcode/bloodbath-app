@@ -86,11 +86,15 @@
     </div>
 
     <!-- Search -->
-    <search-coins contextProp="portfolio">
-      <div slot="title">
-        Add coins
+    <div class="row">
+      <div class="gr-12">
+        <search-coins contextProp="portfolio">
+          <div slot="title">
+            Add coins
+          </div>
+        </search-coins>
       </div>
-    </search-coins>
+    </div>
 
   </div>
 </template>

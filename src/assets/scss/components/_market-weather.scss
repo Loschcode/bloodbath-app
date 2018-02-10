@@ -1,0 +1,24 @@
+.market-weather {
+  color: $module-title-color;
+}
+
+.market-weather__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 50px;
+}
+
+.market-weather__info {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  opacity: 0.4;
+  span {
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+.market__weather__title--bloody {
+  color: $bloody-color;
+}
