@@ -11,42 +11,8 @@
       </div>
     </default-header>
 
-    <div class="market-weather">
-      <div class="section">
-        <div class="row">
-          <div class="gr-12">
-            <div class="section__title">
-              Market weather
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="gr-12 gr-12@mobile gr-12@tablet">
-
-              <div class="module">
-                <div class="module__bubble">
-
-                  <div class="row">
-                    <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
-                      <div class="market-weather__title">
-                        <span class="market__weather__title--bloody">Bloody</span>
-                      </div>
-                      <div class="market-weather__info">
-                        <span>based on the biggest market captializations</span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-          </div>
-        </div>
-
-
-      </div>
-    </div>
+    <!-- Market Weather -->
+    <market-weather />
 
     <!-- Search -->
     <div class="row">
@@ -99,6 +65,7 @@
 <script>
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
+import MarketWeather from '@/components/MarketWeather'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
@@ -131,6 +98,7 @@ export default {
   components: {
     DefaultHeader,
     CoinPreview,
+    MarketWeather,
     SearchCoins,
     EventBus
   }
