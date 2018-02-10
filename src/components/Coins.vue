@@ -12,7 +12,9 @@
     </default-header>
 
     <!-- Market Weather -->
-    <market-weather />
+    <div v-if="topCoins.length">
+      <market-weather :coinsProp="topCoins" />
+    </div>
 
     <!-- Search -->
     <div class="row">

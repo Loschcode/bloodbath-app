@@ -1,15 +1,16 @@
 <template>
   <div class="market-weather">
-    <div class="section">
-      <div class="row">
-        <div class="gr-12">
-          <div class="section__title">
-            Market weather
+    <div v-if="coins.length">
+      <div class="section">
+        <div class="row">
+          <div class="gr-12">
+            <div class="section__title">
+              Market weather {{ currentAverage() }}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
+        <div class="row">
           <div class="gr-12 gr-12@mobile gr-12@tablet">
 
             <div class="module">
@@ -29,23 +30,27 @@
               </div>
             </div>
 
+          </div>
         </div>
+
+
       </div>
-
-
     </div>
   </div>
 </template>
 
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
+import _ from 'lodash'
 
 export default {
   props: [
+    'coinsProp'
   ],
 
   data () {
     return {
+      coins: this.coinsProp
     }
   },
 
@@ -53,6 +58,17 @@ export default {
   },
 
   methods: {
+
+    currentWeather () {
+
+    },
+
+    currentAverage () {
+      let priceVariations = _.map(this.coins, 'market_coin.price_variation')
+      let average = _.sum(priceVariations) / priceVariations.length
+      return average
+    }
+
   },
 
   components: {
