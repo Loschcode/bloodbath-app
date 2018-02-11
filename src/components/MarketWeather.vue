@@ -5,7 +5,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Market weather {{ currentAverage() }}
+              Market weather
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default {
        * @type {[type]}
        */
       if (average < -20) {
-        return 'Hell on earth'
+        return 'Apocalypse'
       } else if (average < -10) {
         return 'Very bloody'
       } else if (average < -5) {

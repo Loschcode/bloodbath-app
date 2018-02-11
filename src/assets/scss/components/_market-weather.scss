@@ -6,6 +6,8 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 50px;
+  @include breakpoint(mobile)
+    font-size: 40px;
 }
 
 .market-weather__info {
@@ -19,6 +21,50 @@
   }
 }
 
+.market__weather__title--apocalypse {
+  color: $apocalypse-color;
+  opacity: 1;
+  animation: fade 1s infinite;
+}
+
+.market__weather__title--very_bloody {
+  color: $very-bloody-color;
+  opacity: 1;
+  animation: fade 1s infinite;
+}
 .market__weather__title--bloody {
   color: $bloody-color;
+}
+
+.market__weather__title--cloudy {
+  color: $cloudy-color;
+}
+
+.market__weather__title--boring {
+  color: $boring-color;
+}
+
+.market__weather__title--sunny {
+  color: $sunny-color;
+}
+
+.market__weather__title--very_sunny {
+  color: $very-sunny-color;
+}
+
+@keyframes fade {
+  0%,100% { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+.market__weather__title--to_the_moon {
+  color: $to-the-moon-color;
+  opacity: 1;
+  animation: fade 1s infinite;
+}
+
+.market__weather__title--to_andromeda_galaxy {
+  color: $to-andromeda-galaxy-color;
+  opacity: 1;
+  animation: fade 1s infinite;
 }
