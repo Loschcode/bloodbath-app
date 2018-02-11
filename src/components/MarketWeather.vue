@@ -10,30 +10,45 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="gr-12 gr-12@mobile gr-12@tablet">
 
-            <div class="module">
-              <div class="module__bubble">
+        <div @click="flipWeather" class="+pointer">
+          <div class="row">
+            <div class="gr-12 gr-12@mobile gr-12@tablet">
 
-                <div class="row">
-                  <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
-                    <div class="market-weather__title">
-                      <span class="market__weather__title--bloody">Bloody</span>
+              <div class="module">
+                <div class="module__bubble">
+
+                  <div class="row">
+                    <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
+
+                      <div v-if="flipped">
+                        <div class="market-weather__title">
+                          <span><animated-number :value="currentAverage()" :type="`percent`" :animatedColors="false" :numberColors="true" /></span>
+                        </div>
+                        <div class="market-weather__info">
+                          <span>Average variation of the top coins</span>
+                        </div>
+                      </div>
+                      <div v-else>
+                        <div class="market-weather__title">
+                          <span :class="`market__weather__title--${currentStyle()}`">{{ currentWeather() }}</span>
+                        </div>
+
+                        <div class="market-weather__info">
+                          <span>based on the biggest market captializations</span>
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="market-weather__info">
-                      <span>based on the biggest market captializations</span>
-                    </div>
+
                   </div>
+                </div>
                 </div>
 
               </div>
             </div>
 
-          </div>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -50,6 +65,7 @@ export default {
 
   data () {
     return {
+      flipped: false,
       coins: this.coinsProp
     }
   },
@@ -59,8 +75,56 @@ export default {
 
   methods: {
 
-    currentWeather () {
+    flipWeather () {
+      if (this.flipped) {
+        this.flipped = false
+      } else {
+        this.flipped = true
+      }
+    },
 
+    currentStyle () {
+      return _.snakeCase(this.currentWeather())
+    },
+
+    currentWeather () {
+      let average = this.currentAverage() * 100
+
+      /**
+       * Positive
+       */
+      if (average > 20) {
+        return 'To andromeda galaxy'
+      } else if (average > 10) {
+        return 'To the moon'
+      } else if (average > 5) {
+        return 'Very sunny'
+      } else if (average > 2) {
+        return 'Sunny'
+      }
+
+      /**
+       * Neutral
+       */
+      if (average >= -2) {
+        return 'Boring'
+      }
+
+      /**
+       * Negative
+       * @type {[type]}
+       */
+      if (average < -20) {
+        return 'Hell on earth'
+      } else if (average < -10) {
+        return 'Very bloody'
+      } else if (average < -5) {
+        return 'Bloody'
+      } else if (average < -2) {
+        return 'Cloudy'
+      }
+
+      return ''
     },
 
     currentAverage () {
