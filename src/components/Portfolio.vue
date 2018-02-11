@@ -9,6 +9,44 @@
       </div>
     </default-header>
 
+    <!-- Capital weather -->
+    <div v-if="portfolioCoins.length">
+      <div class="section">
+        <div class="row">
+          <div class="gr-12">
+            <div class="section__title">
+              Capital Weather
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="gr-12 gr-12@mobile gr-12@tablet">
+
+            <div class="module">
+
+              <div class="module__bubble">
+
+                <div class="market-weather__title">
+                  <span><coin-weather :variationProp="currentTotalVariation()" /></span>
+                </div>
+
+                <div class="market-weather__info">
+                  <span>based on your total capital</span>
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- My capital -->
     <div v-if="portfolioCoins.length">
       <div class="section">
@@ -102,6 +140,7 @@
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultHeader from '@/components/DefaultHeader'
+import CoinWeather from '@/components/CoinWeather'
 import PortfolioCoin from '@/components/PortfolioCoin'
 import PortfolioCapital from '@/components/PortfolioCapital'
 import SearchCoins from '@/components/SearchCoins'
@@ -207,6 +246,7 @@ export default {
   components: {
     AnimatedNumber,
     DefaultHeader,
+    CoinWeather,
     PortfolioCapital,
     PortfolioCoin,
     SearchCoins,
