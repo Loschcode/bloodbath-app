@@ -38,7 +38,7 @@
                       <portfolio-coin-content :marketCoinProp="marketCoin" :portfolioCoinProp="portfolioCoin" />
                     </div>
                   </a>
-                  
+
                 </div>
               </div>
             </div>
@@ -54,9 +54,16 @@
                 </div>
               </div>
               <div v-else>
-                <div class="module__footer-action">
-                  <div class="row">
-                    <div class="gr-12">
+                <div class="row">
+                  <div class="gr-10">
+                    <div class="module__footer-details">
+                      <div v-if="marketCoin.price_variation">
+                        <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="gr-2">
+                    <div class="module__footer-action">
                       <a @click="enableEditQuantity">
                         <span class="icon icon-pencil"></span>
                       </a>
@@ -64,6 +71,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -76,6 +84,7 @@
 import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
+import CoinWeather from '@/components/CoinWeather'
 import _ from 'lodash'
 
 export default {
@@ -162,7 +171,8 @@ export default {
   components: {
     AnimatedNumber,
     PortfolioCoinContent,
-    CoinPreviewFlipped
+    CoinPreviewFlipped,
+    CoinWeather
   }
 }
 </script>
