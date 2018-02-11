@@ -1,4 +1,5 @@
-$main-background-color: #F3F5F6;
+$main-color: #ebebeb; // #8870FF
+$main-background-color: #F3F5F6; // #EDF9FF
 
 $module-background-color: #fdfdfd;
 $module-border-color: #F3F5F6;
@@ -17,7 +18,7 @@ $to-andromeda-galaxy-color: #8870FF;
 
 $section-title-color: #465261;
 
-$default-button-background-color: #65CAE2;
+$default-button-background-color: #465261;
 $default-button-text-color: #FFF;
 
 $danger-button-background-color: #d0342c;
@@ -25,14 +26,14 @@ $important-button-background-color: #8e44ad;
 
 $important-input-border-color: #8e44ad;
 
-$header-background-color: #65CAE2;
+$header-background-color: $main-color;
 $header-text-color: #FFF;
 
 $footer-background-color: #FFF;
 $footer-text-color: #465261;
-$footer-border-color: #65CAE2;
+$footer-border-color: $main-color;
 
-$loader-text-color: #65CAE2;
+$loader-text-color: $main-color;
 
 $text-red-color: #FF9595;
 $error-text-color: $text-red-color;

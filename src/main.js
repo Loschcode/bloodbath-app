@@ -46,7 +46,7 @@ Vue.use(VueMeta)
 
 // NotyJS
 Vue.use(VueNoty, {
-  theme: 'semanticui',
+  theme: 'mint',
   timeout: 1000,
   progressBar: true,
   layout: 'topCenter'
