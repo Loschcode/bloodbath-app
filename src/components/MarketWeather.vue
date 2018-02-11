@@ -31,7 +31,7 @@
                       </div>
                       <div v-else>
                         <div class="market-weather__title">
-                          <span :class="`market__weather__title--${currentStyle()}`">{{ currentWeather() }}</span>
+                          <span><coin-weather :variationProp="currentAverage()" /></span>
                         </div>
 
                         <div class="market-weather__info">
@@ -56,6 +56,7 @@
 
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
+import CoinWeather from '@/components/CoinWeather'
 import _ from 'lodash'
 
 export default {
@@ -74,57 +75,12 @@ export default {
   },
 
   methods: {
-
     flipWeather () {
       if (this.flipped) {
         this.flipped = false
       } else {
         this.flipped = true
       }
-    },
-
-    currentStyle () {
-      return _.snakeCase(this.currentWeather())
-    },
-
-    currentWeather () {
-      let average = this.currentAverage() * 100
-
-      /**
-       * Positive
-       */
-      if (average > 20) {
-        return 'To andromeda galaxy'
-      } else if (average > 10) {
-        return 'To the moon'
-      } else if (average > 5) {
-        return 'Very sunny'
-      } else if (average > 2) {
-        return 'Sunny'
-      }
-
-      /**
-       * Neutral
-       */
-      if (average >= -2) {
-        return 'Boring'
-      }
-
-      /**
-       * Negative
-       * @type {[type]}
-       */
-      if (average < -20) {
-        return 'Apocalypse'
-      } else if (average < -10) {
-        return 'Very bloody'
-      } else if (average < -5) {
-        return 'Bloody'
-      } else if (average < -2) {
-        return 'Cloudy'
-      }
-
-      return ''
     },
 
     currentAverage () {
@@ -144,7 +100,8 @@ export default {
   },
 
   components: {
-    AnimatedNumber
+    AnimatedNumber,
+    CoinWeather
   }
 }
 </script>
