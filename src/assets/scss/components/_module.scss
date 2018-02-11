@@ -103,7 +103,10 @@
 }
 
 .module__content {
-  padding: 1em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+  padding-bottom: 0.2em;
+  padding-top: 0.3em;
 
   .--ultra-small {
     font-size: 16px;
@@ -196,10 +199,19 @@
 
 .module__footer-low {
   text-align: left;
+  text-transform: uppercase;
 }
 
 .module__footer-high {
   text-align: right;
+  text-trasnform: uppercase;
+}
+
+.module__footer-details {
+  font-size: 14px;
+  margin-left: 0.5em;
+  margin-top: -0.3em;
+  opacity: 0.7;
 }
 
 .module__footer-action {

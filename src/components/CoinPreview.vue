@@ -52,7 +52,6 @@
                   <coin-preview-content :marketCoinProp="marketCoin" />
                 </div>
 
-
               </a>
 
             </div>
@@ -60,7 +59,11 @@
             <div class="module__footer">
               <div class="row">
                 <div class="gr-10">
-                  <!-- Was moved for now -->
+                  <div class="module__footer-details">
+                    <div v-if="marketCoin.price_variation">
+                      <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
+                    </div>
+                  </div>
                 </div>
                 <div class="gr-2">
                   <div class="module__footer-action">
@@ -84,6 +87,7 @@
 import CoinActionFavorite from '@/components/CoinActionFavorite'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
+import CoinWeather from '@/components/CoinWeather'
 import EventBus from '@/misc/EventBus'
 
 export default {
@@ -199,7 +203,8 @@ export default {
   components: {
     CoinPreviewFlipped,
     CoinPreviewContent,
-    CoinActionFavorite
+    CoinActionFavorite,
+    CoinWeather
   }
 }
 </script>
