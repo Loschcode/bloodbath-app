@@ -128,7 +128,15 @@ export default {
     },
 
     currentAverage () {
-      let priceVariations = _.map(this.coins, 'market_coin.price_variation')
+      var vm = this
+      var priceVariations = []
+      this.coins.forEach(function (coin, index, object) {
+        let marketCoin = vm.$store.getters.getMarketCoin(coin.market_coin.id)
+        if (!_.isNil(marketCoin)) {
+          priceVariations.push(marketCoin.price_variation)
+        }
+      })
+
       let average = _.sum(priceVariations) / priceVariations.length
       return average
     }

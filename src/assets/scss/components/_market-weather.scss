@@ -52,11 +52,6 @@
   color: $very-sunny-color;
 }
 
-@keyframes fade {
-  0%,100% { opacity: 0 }
-  50% { opacity: 1 }
-}
-
 .market__weather__title--to_the_moon {
   color: $to-the-moon-color;
   opacity: 1;
