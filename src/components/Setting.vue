@@ -53,7 +53,7 @@
                               {{ baseCurrency.full_name }}
                             </div>
                             <div class="mini-module__footer">
-                              {{ baseCurrency.exchange_rate }} USD
+                              {{ baseCurrency.exchange_rate }} BTC
                             </div>
                           </div>
                         </a>

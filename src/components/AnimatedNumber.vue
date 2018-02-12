@@ -130,7 +130,7 @@ export default {
       let symbol = this.currentBaseCurrency.symbol
       let exchangeRate = this.currentBaseCurrency.exchange_rate
 
-      let exchangeDigits = (value / exchangeRate)
+      let exchangeDigits = (value * exchangeRate)
       let end = value
 
       if (this.type === 'money') {
