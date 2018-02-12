@@ -66,12 +66,14 @@ export default {
 
   data () {
     return {
-      flipped: false,
-      coins: this.coinsProp
+      flipped: false
     }
   },
 
   computed: {
+    coins () {
+      return this.coinsProp
+    }
   },
 
   methods: {

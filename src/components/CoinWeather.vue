@@ -1,6 +1,6 @@
 <template>
   <div class="coin-weather">
-    <span :class="`coin-weather__${currentStyle()}`">{{ currentWeather() }}</span>
+    <span :class="`coin-weather__${currentStyle}`">{{ currentWeather }}</span>
   </div>
 </template>
 
@@ -8,19 +8,25 @@
 import _ from 'lodash'
 
 export default {
-  props: [
-    'variationProp'
-  ],
-
-  data () {
-    return {
-      variation: this.variationProp
+  props: {
+    variationProp: {
+      type: Number,
+      required: true
     }
   },
 
-  methods: {
+  data () {
+    return {
+    }
+  },
+
+  computed: {
+    variation () {
+      return this.variationProp
+    },
+
     currentStyle () {
-      return _.snakeCase(this.currentWeather())
+      return _.snakeCase(this.currentWeather)
     },
 
     currentWeather () {
@@ -62,7 +68,9 @@ export default {
 
       return ''
     }
+  },
 
+  methods: {
   }
 }
 </script>
