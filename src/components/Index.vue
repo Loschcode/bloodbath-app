@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import router from '@/router'
+// import router from '@/router'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -18,11 +18,11 @@ export default {
 
   watch: {
     portfolioCoins (newValue, oldValue) {
-      if (newValue.length === 0) {
-        router.push({ name: 'coins', params: { } })
-      } else {
-        router.push({ name: 'portfolio', params: { } })
-      }
+      // if (newValue.length === 0) {
+      //   router.push({ name: 'coins', params: { } })
+      // } else {
+      //   router.push({ name: 'portfolio', params: { } })
+      // }
     }
   },
 
