@@ -134,8 +134,22 @@
 .module__content-connect {
   text-align: left;
 
+  input {
+    margin: 1em;
+  }
+
+  input {
+    border: 2px solid $module-border-color;
+
+    &:focus {
+      border-color: $main-highlight-color;
+    }
+  }
+
   input[type="submit"] {
+    margin-left: 1.2em;
     text-align: center;
+    background-color: $main-highlight-color;
   }
 }
 
@@ -154,7 +168,7 @@
     font-size: 20px;
 
     &:focus {
-      border-color: $color-folio-button;
+      border-color: $main-highlight-color;
     }
   }
 }
