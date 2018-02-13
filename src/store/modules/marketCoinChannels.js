@@ -42,6 +42,8 @@ const actions = {
           if (data.action === 'show') {
             console.log(`received data from ${channelName}.${channelId}`)
             context.commit('setMarketCoin', data.market_coin)
+            console.log(data.base_currencies)
+            context.commit('setBaseCurrencies', data.base_currencies)
           }
         }
       }
