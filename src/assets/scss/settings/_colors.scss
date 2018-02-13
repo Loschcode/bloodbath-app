@@ -1,25 +1,27 @@
 $main-color: #ebebeb; // #8870FF
+$main-black: #465261;
 $main-background-color: #F3F5F6; // #EDF9FF
 $main-red-color: #CF000F;
+$main-white: #FFF;
 
 $module-background-color: #fdfdfd;
 $module-border-color: #F3F5F6;
 $module-title-background-color: #FFF;
-$module-title-color: #465261;
+$module-title-color: $main-black;
 
 $apocalypse-color: #E22211;
 $very-bloody-color: #CF000F;
 $bloody-color: #CF000F;
 $cloudy-color: #9E9D9B;
-$boring-color: #465261;
+$boring-color: $main-black;
 $sunny-color: #98be62;
 $very-sunny-color: #98be62;
 $to-the-moon-color: #8870FF;
 $to-andromeda-galaxy-color: #8870FF;
 
-$section-title-color: #465261;
+$section-title-color: $main-black;
 
-$default-button-background-color: #465261;
+$default-button-background-color: $main-black;
 $default-button-text-color: #FFF;
 
 $danger-button-background-color: #d0342c;
@@ -27,11 +29,12 @@ $important-button-background-color: #8e44ad;
 
 $important-input-border-color: #8e44ad;
 
-$header-background-color: $main-color;
-$header-text-color: #465261;
+$header-background-color: $main-white;
+$header-border-color: $main-color;
+$header-text-color: $main-black;
 
-$footer-background-color: #FFF;
-$footer-text-color: #465261;
+$footer-background-color: $main-white;
+$footer-text-color: $main-black;
 $footer-border-color: $main-color;
 
 $loader-text-color: $main-color;

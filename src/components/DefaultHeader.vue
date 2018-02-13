@@ -2,26 +2,27 @@
   <div class="row header"> <!-- row-full header was removed as it made display bugs -->
     <div class="gr-4">
       <div class="header__title">
-        <slot name="left">
-        </slot>
+        <slot name="left"></slot>
       </div>
     </div>
     <div class="gr-4">
       <slot name="center">
+        <div class="header__site +desktop">
+        </div>
       </slot>
     </div>
     <div class="gr-4">
-      <div class="header__buttons">
+      <div class="header__actions">
         <slot name="right">
 
           <div v-if="userSetting.weather">
-            <div @click="weatherOff" class="header__buttons--selected +pointer">
-              <span class="icon-weather"></span>
+            <div @click="weatherOff" class="header__actions--selected +pointer">
+              <span>Weather : On</span>
             </div>
           </div>
           <div v-else>
-            <div @click="weatherOn" class="header__buttons--unselected +pointer">
-              <span class="icon-weather"></span>
+            <div @click="weatherOn" class="header__actions--unselected +pointer">
+              <span>Weather : Off</span>
             </div>
           </div>
 
