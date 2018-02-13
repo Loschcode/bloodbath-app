@@ -6,5 +6,6 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   PORT: '8080',
   HOST: '"localhost"',
-  API: '"http://localhost:8000"'
+  API: '"http://localhost:8000"',
+  CABLE: '"ws://localhost:8000"'
 })

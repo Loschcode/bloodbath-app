@@ -6,7 +6,7 @@ var cable = {
   cable: null,
 
   config: {
-    cableDomain: 'ws://localhost:8000'
+    cableDomain: process.env.CABLE
   },
 
   connect (token) {
@@ -21,8 +21,6 @@ var cable = {
   }
 }
 
-if (process.env.NODE_ENV === 'production') {
-  cable.config.cableDomain = 'wss://api.bloodbath.io'
-}
+console.log('Cable : ' + cable.config.cableDomain)
 
 export default cable
