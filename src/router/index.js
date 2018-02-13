@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Coins from '@/components/Coins'
 import Portfolio from '@/components/Portfolio'
 import Setting from '@/components/Setting'
+import Index from '@/components/Index'
 
 Vue.use(Router)
 
@@ -11,7 +12,7 @@ Vue.router = new Router({
 
     {
       path: '/',
-      redirect: { name: 'coins' }
+      component: Index
     },
 
     {
