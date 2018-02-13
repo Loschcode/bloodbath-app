@@ -64,9 +64,6 @@
   padding: 1em;
   @include border-radius-top(7px);
   @include wrap-words;
-    h2 {
-      @include wrap-words;
-    }
 }
 
 .module__subtitle {
