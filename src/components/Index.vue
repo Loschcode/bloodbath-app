@@ -18,11 +18,11 @@ export default {
 
   watch: {
     portfolioCoins (newValue, oldValue) {
-      // if (newValue.length === 0) {
-      //   router.push({ name: 'coins', params: { } })
-      // } else {
-      //   router.push({ name: 'portfolio', params: { } })
-      // }
+      if (newValue.length === 0) {
+        router.push({ name: 'coins', params: { } })
+      } else {
+        router.push({ name: 'portfolio', params: { } })
+      }
     }
   },
 
