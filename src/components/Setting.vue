@@ -174,7 +174,7 @@ export default {
     setCurrentCurrency (event) {
       let baseCurrencyId = event.currentTarget.id
       this.$store.dispatch('updateUserSetting', { changeset: { base_currency_id: baseCurrencyId } })
-      this.$noty.success(`The application will show everything in ${this.$store.getters.getBaseCurrency(parseInt(baseCurrencyId)).full_name}`)
+      this.$noty.info(`The application will show everything in ${this.$store.getters.getBaseCurrency(parseInt(baseCurrencyId)).full_name}`)
     },
 
     isCurrentCurrency (baseCurrency) {

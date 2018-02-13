@@ -37,13 +37,13 @@ export default {
     removeFavorite (event) {
       event.preventDefault()
       this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: null } })
-      this.$noty.success(`${this.marketCoin.coin_name} removed from your favorites !`)
+      this.$noty.info(`${this.marketCoin.coin_name} removed from your favorites !`)
     },
 
     addFavorite (event) {
       event.preventDefault()
       this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: true } })
-      this.$noty.success(`${this.marketCoin.coin_name} added to your favorites !`)
+      this.$noty.info(`${this.marketCoin.coin_name} added to your favorites !`)
     }
   },
 

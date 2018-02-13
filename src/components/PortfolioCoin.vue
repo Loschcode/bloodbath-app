@@ -158,13 +158,13 @@ export default {
     updateQuantity (event) {
       event.preventDefault()
       this.$store.dispatch('updatePortfolioCoin', { id: this.portfolioCoin.id, changeset: { quantity: this.portfolioCoin.quantity } })
-      this.$noty.success(`Your portfolio now contains ${this.portfolioCoin.quantity} ${this.marketCoin.code} !`)
+      this.$noty.info(`Your portfolio now contains ${this.portfolioCoin.quantity} ${this.marketCoin.code} !`)
     },
 
     destroyPortfolioCoin (event) {
       event.preventDefault()
       this.$store.dispatch('destroyPortfolioCoin', { id: this.portfolioCoin.id })
-      this.$noty.success(`You removed ${this.marketCoin.code} from your portfolio !`)
+      this.$noty.info(`You removed ${this.marketCoin.code} from your portfolio !`)
     }
   },
 

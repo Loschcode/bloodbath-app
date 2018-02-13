@@ -47,7 +47,7 @@ Vue.use(VueNoty, {
   theme: 'mint',
   timeout: 1000,
   progressBar: true,
-  layout: 'topCenter'
+  layout: 'topRight'
 })
 
 // VueRouter

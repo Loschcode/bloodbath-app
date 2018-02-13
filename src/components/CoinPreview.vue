@@ -181,10 +181,10 @@ export default {
       }
       if (this.context === 'portfolio') {
         this.createPortfolioCoin()
-        this.$noty.success(`${this.marketCoin.code} is now part of your portfolio !`)
+        this.$noty.info(`${this.marketCoin.code} is now part of your portfolio !`)
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
-        this.$noty.success(`${this.marketCoin.coin_name} is now your primary coin ! Look at the footer ...`)
+        this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the footer ...`)
       } else if (this.context === 'coins') {
         this.flipCoin()
       }
