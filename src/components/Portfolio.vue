@@ -2,7 +2,7 @@
   <div class="coins">
     <default-header>
       <div slot="left">
-        Portfolio
+        <span>Portfolio</span>
       </div>
     </default-header>
 

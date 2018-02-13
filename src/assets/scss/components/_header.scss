@@ -15,14 +15,18 @@
   margin-left: 1.2em;
   font-weight: 600;
   font-size: 20px;
+  span {
+    border-bottom: solid 2px $main-red-color;
+  }
 }
 
 .header__buttons {
+  color: $main-red-color;
   text-align: right;
   text-transform: uppercase;
   margin-right: 1.2em;
   font-size: 23px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .header__buttons--selected {
