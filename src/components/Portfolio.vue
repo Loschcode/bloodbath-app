@@ -2,49 +2,13 @@
   <div class="coins">
     <default-header>
       <div slot="left">
-      </div>
-      <div slot="center">
-        <div class="header__title">
-        </div>
+        Portfolio
       </div>
     </default-header>
 
     <!-- Capital weather -->
-    <div v-if="portfolioCoins.length">
-      <div class="section">
-        <div class="row">
-          <div class="gr-12">
-            <div class="section__title">
-              Capital Weather
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="gr-12 gr-12@mobile gr-12@tablet">
-
-            <div class="module">
-
-              <div class="module__bubble">
-
-                <div class="market-weather__title">
-                  <span><coin-weather :variationProp="currentTotalVariation()" /></span>
-                </div>
-
-                <div class="market-weather__info">
-                  <span>based on your total capital</span>
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-          </div>
-
-        </div>
-      </div>
+    <div v-if="userSetting.weather && portfolioCoins.length">
+      <portfolio-weather :variationProp="currentTotalVariation()" />
     </div>
 
     <!-- My capital -->
@@ -53,7 +17,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              My capital
+              Current capital
             </div>
           </div>
         </div>
@@ -140,9 +104,9 @@
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultHeader from '@/components/DefaultHeader'
-import CoinWeather from '@/components/CoinWeather'
 import PortfolioCoin from '@/components/PortfolioCoin'
 import PortfolioCapital from '@/components/PortfolioCapital'
+import PortfolioWeather from '@/components/PortfolioWeather'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 import _ from 'lodash'
@@ -161,7 +125,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      portfolioCoins: 'getPortfolioCoins'
+      portfolioCoins: 'getPortfolioCoins',
+      userSetting: 'getUserSetting'
     })
   },
 
@@ -192,9 +157,6 @@ export default {
       })
       return total
     },
-
-    // TODO : the total variation doesn't take into consideration the WEIGHT OF EACH COIN
-    // FIX IT AND MAKE THE CONSIDERATION
 
     currentTotalVariation () {
       var vm = this
@@ -246,9 +208,9 @@ export default {
   components: {
     AnimatedNumber,
     DefaultHeader,
-    CoinWeather,
     PortfolioCapital,
     PortfolioCoin,
+    PortfolioWeather,
     SearchCoins,
     EventBus
   }

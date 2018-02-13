@@ -1,8 +1,8 @@
 .header {
   background-color: $header-background-color;
   background-image: $diagonal-stripes-pattern-in-white;
-  height: 3px;
   color: $header-text-color;
+  padding: 1em;
 
   a {
     text-decoration: none;
@@ -12,15 +12,23 @@
 
 .header__title {
   text-transform: uppercase;
-  text-align: center;
-  margin-left: 0.7em;
-  h1 {
-    font-weight: 300;
-  }
+  margin-left: 1.2em;
+  font-weight: 600;
+  font-size: 20px;
 }
 
-.header__back {
-  font-size: 2.5em;
-  vertical-align: middle;
-  margin-top: 0.64em
+.header__buttons {
+  text-align: right;
+  text-transform: uppercase;
+  margin-right: 1.2em;
+  font-size: 23px;
+  opacity: 0.5;
+}
+
+.header__buttons--selected {
+  opacity: 1;
+}
+
+.header__buttons--unselected {
+  opacity: 0.5;
 }

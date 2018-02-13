@@ -2,17 +2,12 @@
   <div class="coins">
     <default-header>
       <div slot="left">
-      </div>
-      <div slot="center">
-        <div class="header__title">
-        </div>
-      </div>
-      <div slot="right">
+        Coins
       </div>
     </default-header>
 
     <!-- Market Weather -->
-    <div v-if="topCoins.length">
+    <div v-if="userSetting.weather && topCoins.length">
       <market-weather :coinsProp="topCoins" />
     </div>
 
@@ -87,7 +82,8 @@ export default {
   computed: {
     ...mapGetters({
       favoriteCoins: 'getFavoriteCoins',
-      topCoins: 'getTopCoins'
+      topCoins: 'getTopCoins',
+      userSetting: 'getUserSetting'
     })
   },
 

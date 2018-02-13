@@ -60,7 +60,7 @@
               <div class="row">
                 <div class="gr-10">
                   <div class="module__footer-details">
-                    <div v-if="marketCoin.price_variation">
+                    <div v-if="userSetting.weather && marketCoin.price_variation">
                       <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
                     </div>
                   </div>

@@ -1,33 +1,56 @@
 <template>
   <div class="row header"> <!-- row-full header was removed as it made display bugs -->
-    <div class="gr-2">
-      <slot name="left">
-        <!-- By default we have a go back link -->
-        <div class="header__back">
-          <a href="#" @click="backLink">
-            <span class="icon-back"></span>
-          </a>
-        </div>
+    <div class="gr-4">
+      <div class="header__title">
+        <slot name="left">
+        </slot>
+      </div>
+    </div>
+    <div class="gr-4">
+      <slot name="center">
       </slot>
     </div>
-    <div class="gr-8">
-      <slot name="center"></slot>
-    </div>
-    <div class="gr-2">
-      <slot name="right"></slot>
+    <div class="gr-4">
+      <div class="header__buttons">
+        <slot name="right">
+
+          <div v-if="userSetting.weather">
+            <div @click="weatherOff" class="header__buttons--selected +pointer">
+              <span class="icon-weather"></span>
+            </div>
+          </div>
+          <div v-else>
+            <div @click="weatherOn" class="header__buttons--unselected +pointer">
+              <span class="icon-weather"></span>
+            </div>
+          </div>
+
+        </slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import router from '@/router'
-
 export default {
   props: [],
 
+  computed: {
+    userSetting () {
+      return this.$store.getters.getUserSetting
+    }
+  },
+
   methods: {
-    backLink () {
-      return router.go(-1)
+    weatherOn () {
+      console.log(this.userSetting.weather)
+      console.log('set weather on')
+      this.$store.dispatch('updateUserSetting', { changeset: { weather: true } })
+    },
+
+    weatherOff () {
+      console.log('set weather off')
+      this.$store.dispatch('updateUserSetting', { changeset: { weather: false } })
     }
   }
 }

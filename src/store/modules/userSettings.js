@@ -3,7 +3,8 @@ import axios from 'axios'
 // initial state
 const state = {
   userSetting: {
-    primary_market_coin_id: null
+    primary_market_coin_id: null,
+    weather: false
   }
 }
 

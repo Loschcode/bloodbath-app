@@ -57,7 +57,7 @@
                 <div class="row">
                   <div class="gr-10">
                     <div class="module__footer-details">
-                      <div v-if="marketCoin.price_variation">
+                      <div v-if="userSetting.weather && marketCoin.price_variation">
                         <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
                       </div>
                     </div>
@@ -86,6 +86,8 @@ import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import CoinWeather from '@/components/CoinWeather'
 import _ from 'lodash'
+
+import { mapGetters } from 'vuex'
 
 export default {
   props: [
@@ -134,7 +136,11 @@ export default {
 
     marketCoin () {
       return this.$store.getters.getMarketCoin(this.portfolioCoinProp.market_coin_id)
-    }
+    },
+
+    ...mapGetters({
+      userSetting: 'getUserSetting'
+    })
   },
 
   methods: {

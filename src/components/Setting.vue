@@ -2,13 +2,7 @@
   <div class="coins">
     <default-header>
       <div slot="left">
-      </div>
-      <div slot="center">
-        <div class="header__title">
-          <h1></h1>
-        </div>
-      </div>
-      <div slot="right">
+        Settings
       </div>
     </default-header>
 
