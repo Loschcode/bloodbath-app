@@ -31,12 +31,10 @@ Vue.prototype.$axios = axios
 Vue.use(VueAxios, axios)
 
 console.log('Environment : ' + process.env.NODE_ENV)
+console.log('Api : ' + process.env.API)
 
-if (process.env.NODE_ENV === 'production') {
-  Vue.axios.defaults.baseURL = 'https://api.bloodbath.io'
-} else {
-  Vue.axios.defaults.baseURL = 'http://localhost:8000'
-}
+// Api end point
+Vue.axios.defaults.baseURL = process.env.API
 
 // VueCookie configuration
 Vue.use(VueCookie)
