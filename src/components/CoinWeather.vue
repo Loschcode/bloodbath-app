@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import Weather from '@/misc/Weather'
 
 export default {
   props: {
@@ -26,47 +26,11 @@ export default {
     },
 
     currentStyle () {
-      return _.snakeCase(this.currentWeather)
+      return Weather.style(this.variation)
     },
 
     currentWeather () {
-      let variation = this.variation * 100
-
-      /**
-      * Positive
-      */
-      if (variation > 20) {
-        return 'To andromeda galaxy'
-      } else if (variation > 10) {
-        return 'To the moon'
-      } else if (variation > 5) {
-        return 'Very sunny'
-      } else if (variation > 2) {
-        return 'Sunny'
-      }
-
-      /**
-      * Neutral
-      */
-      if (variation >= -2) {
-        return 'Boring'
-      }
-
-      /**
-      * Negative
-      * @type {[type]}
-      */
-      if (variation < -20) {
-        return 'Apocalypse'
-      } else if (variation < -10) {
-        return 'Very bloody'
-      } else if (variation < -5) {
-        return 'Bloody'
-      } else if (variation < -2) {
-        return 'Cloudy'
-      }
-
-      return ''
+      return Weather.current(this.variation)
     }
   },
 

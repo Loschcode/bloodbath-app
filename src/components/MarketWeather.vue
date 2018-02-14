@@ -21,22 +21,23 @@
                   <div class="row">
                     <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
 
+                      <div class="market-weather__icon">
+                        <span :class="`icon-${currentStyle()} coin-weather__${currentStyle()} coin-weather--static`"></span>
+                      </div>
+
                       <div v-if="flipped">
                         <div class="market-weather__title">
-                          <span><animated-number :value="currentAverage()" :type="`percent`" :animatedColors="false" :numberColors="true" /></span>
-                        </div>
-                        <div class="market-weather__info">
-                          <span>Average variation of the top coins</span>
+                          <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="currentAverage()" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                         </div>
                       </div>
                       <div v-else>
                         <div class="market-weather__title">
                           <span><coin-weather :variationProp="currentAverage()" /></span>
                         </div>
+                      </div>
 
-                        <div class="market-weather__info">
-                          <span>based on the biggest market captializations</span>
-                        </div>
+                      <div class="market-weather__info">
+                        <span>based on the biggest market captializations</span>
                       </div>
 
                     </div>
@@ -57,6 +58,8 @@
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
+import Weather from '@/misc/Weather'
+
 import _ from 'lodash'
 
 export default {
@@ -83,6 +86,10 @@ export default {
       } else {
         this.flipped = true
       }
+    },
+
+    currentStyle () {
+      return Weather.style(this.currentAverage())
     },
 
     currentAverage () {

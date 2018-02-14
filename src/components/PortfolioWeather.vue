@@ -16,6 +16,10 @@
 
             <div class="module__bubble">
 
+              <div class="market-weather__icon">
+                <span :class="`icon-${currentStyle()} coin-weather__${currentStyle()} coin-weather--static`"></span>
+              </div>
+
               <div class="market-weather__title">
                 <span><coin-weather :variationProp="variationProp" /></span>
               </div>
@@ -36,6 +40,7 @@
 
 <script>
 import CoinWeather from '@/components/CoinWeather'
+import Weather from '@/misc/Weather'
 
 export default {
   props: [
@@ -48,6 +53,9 @@ export default {
   },
 
   methods: {
+    currentStyle () {
+      return Weather.style(this.variationProp)
+    }
   },
 
   components: {
