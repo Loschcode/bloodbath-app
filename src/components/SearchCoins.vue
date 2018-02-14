@@ -29,7 +29,9 @@
 
       <div v-if="resultLoading">
         <div class="search__loading">
-          Loading ...
+          <loader-wave>
+            <span slot="text"></span>
+          </loader-wave>
         </div>
       </div>
 
@@ -58,6 +60,7 @@
 
 <script>
 import CoinPreview from '@/components/CoinPreview'
+import LoaderWave from '@/components/LoaderWave'
 import EventBus from '@/misc/EventBus'
 import _ from 'lodash'
 
@@ -120,7 +123,8 @@ export default {
   },
 
   components: {
-    CoinPreview
+    CoinPreview,
+    LoaderWave
   }
 }
 </script>
