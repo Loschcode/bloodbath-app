@@ -13,20 +13,20 @@
     </div>
     <div class="gr-4">
       <div class="header__actions">
-        <slot name="right">
-
-          <div v-if="userSetting.weather">
-            <div @click="weatherOff" class="header__actions--selected +pointer">
-              <span>Weather : On</span>
+        <div v-if="userSetting">
+          <slot name="right">
+            <div v-if="userSetting.weather">
+              <div @click="weatherOff" class="header__actions--selected +pointer">
+                <span>Weather : On</span>
+              </div>
             </div>
-          </div>
-          <div v-else>
-            <div @click="weatherOn" class="header__actions--unselected +pointer">
-              <span>Weather : Off</span>
+            <div v-else>
+              <div @click="weatherOn" class="header__actions--unselected +pointer">
+                <span>Weather : Off</span>
+              </div>
             </div>
-          </div>
-
-        </slot>
+          </slot>
+        </div>
       </div>
     </div>
   </div>
@@ -44,7 +44,6 @@ export default {
 
   methods: {
     weatherOn () {
-      console.log(this.userSetting.weather)
       console.log('set weather on')
       this.$store.dispatch('updateUserSetting', { changeset: { weather: true } })
     },

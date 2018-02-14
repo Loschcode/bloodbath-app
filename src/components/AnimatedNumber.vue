@@ -1,5 +1,5 @@
 <template>
-  <span v-if="currentBaseCurrency">
+  <span v-if="currentBaseCurrency" class="animated-number">
     <span v-if="animatedColors">
       <span v-if="showValue">
         <span v-if="valueUp">
