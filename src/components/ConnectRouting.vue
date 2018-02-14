@@ -15,11 +15,15 @@
         <default-footer />
       </div>
       <div v-else>
-        <loader-cube>
-          <span slot="text">
-            Recovering history
-          </span>
-        </loader-cube>
+
+        <div class="loader__full-page">
+          <loader-cube>
+            <span slot="text">
+              Recovering history
+            </span>
+          </loader-cube>
+        </div>
+        
       </div>
 
     </div>

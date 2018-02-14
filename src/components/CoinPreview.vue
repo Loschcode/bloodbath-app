@@ -43,16 +43,23 @@
 
             <div class="module__content">
 
-              <a @click="clickAction" class="+pointer">
+              <div v-if="marketCoin.price">
 
+              <a @click="clickAction" class="+pointer">
                 <div v-if="flipped">
                   <coin-preview-flipped :marketCoinProp="marketCoin" />
                 </div>
                 <div v-else>
                   <coin-preview-content :marketCoinProp="marketCoin" />
                 </div>
-
               </a>
+
+              </div>
+              <div v-else>
+                <loader-wave>
+                  <span slot="text"></span>
+                </loader-wave>
+              </div>
 
             </div>
 
@@ -88,6 +95,7 @@
 import CoinActionFavorite from '@/components/CoinActionFavorite'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
+import LoaderWave from '@/components/LoaderWave'
 import CoinWeather from '@/components/CoinWeather'
 import EventBus from '@/misc/EventBus'
 
@@ -205,7 +213,8 @@ export default {
     CoinPreviewFlipped,
     CoinPreviewContent,
     CoinActionFavorite,
-    CoinWeather
+    CoinWeather,
+    LoaderWave
   }
 }
 </script>

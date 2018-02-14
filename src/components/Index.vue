@@ -1,10 +1,12 @@
 <template>
   <div class="index">
-    <loader-cube>
-      <span slot="text">
-        Recovering information
-      </span>
-    </loader-cube>
+    <div class="loader__full-page">
+      <loader-cube>
+        <span slot="text">
+          Recovering information
+        </span>
+      </loader-cube>
+    </div>
   </div>
 </template>
 

@@ -1,9 +1,12 @@
 .loader {
   font-size: 30px;
   text-align: center;
-  margin-top: 30vh;
   color: $loader-text-color;
   opacity: 0.53;
+}
+
+.loader__full-page {
+  margin-top: 30vh;
 }
 
 .loader__text {
@@ -12,4 +15,9 @@
 
 .sk-cube {
   background-color: $loader-text-color !important;
+}
+
+.sk-wave .sk-rect {
+  background-color: $main-black;
+  opacity: 0.3;
 }
