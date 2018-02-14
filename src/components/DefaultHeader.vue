@@ -1,17 +1,17 @@
 <template>
   <div class="row header"> <!-- row-full header was removed as it made display bugs -->
-    <div class="gr-4">
+    <div class="gr-5">
       <div class="header__title">
         <slot name="left"></slot>
       </div>
     </div>
-    <div class="gr-4">
+    <div class="gr-2">
       <slot name="center">
         <div class="header__site +desktop">
         </div>
       </slot>
     </div>
-    <div class="gr-4">
+    <div class="gr-5">
       <div class="header__actions">
         <div v-if="userSetting">
           <slot name="right">
