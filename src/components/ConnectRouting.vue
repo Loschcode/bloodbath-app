@@ -15,9 +15,11 @@
         <default-footer />
       </div>
       <div v-else>
-        <div class="loader">
-          Recovering history ...
-        </div>
+        <loader-cube>
+          <span slot="text">
+            Recovering history
+          </span>
+        </loader-cube>
       </div>
 
     </div>
@@ -27,6 +29,7 @@
 
 <script>
 import DefaultFooter from '@/components/DefaultFooter'
+import LoaderCube from '@/components/LoaderCube'
 import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
 import Cable from '@/misc/Cable'
@@ -92,7 +95,8 @@ export default {
   ],
 
   components: {
-    DefaultFooter
+    DefaultFooter,
+    LoaderCube
   },
 
   computed: {
