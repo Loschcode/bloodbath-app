@@ -38,6 +38,7 @@ export default {
 
   computed: {
     userSetting () {
+      console.log(this.$store.getters.getUserSetting.weather)
       return this.$store.getters.getUserSetting
     }
   },
