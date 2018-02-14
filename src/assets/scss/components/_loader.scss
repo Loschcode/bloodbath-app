@@ -1,7 +1,15 @@
 .loader {
-  font-size: 7vh;
+  font-size: 30px;
   text-align: center;
-  margin-top: 5em;
+  margin-top: 30vh;
   color: $loader-text-color;
   opacity: 0.53;
+}
+
+.loader__text {
+  animation: fade 1s infinite;
+}
+
+.sk-cube {
+  background-color: $loader-text-color !important;
 }
