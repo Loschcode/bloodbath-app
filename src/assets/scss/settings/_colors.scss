@@ -37,7 +37,7 @@ $footer-background-color: $main-white;
 $footer-text-color: $main-black;
 $footer-border-color: $main-color;
 
-$loader-text-color: $main-color;
+$loader-text-color: $main-red-color;
 
 $text-red-color: #FF9595;
 $error-text-color: $text-red-color;
@@ -45,7 +45,7 @@ $error-text-color: $text-red-color;
 $positive-number: #98be62;
 $negative-number: #d0342c;
 
-$color-favorite-on: #FFAE4F;
+$color-favorite-on: $main-highlight-color; // #FFAE4F;
 $color-primary-on: #98be62;
 $color-folio-on: $main-highlight-color;
 $color-default-on: $module-border-color;

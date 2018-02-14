@@ -2,7 +2,7 @@
   <div class="coin-preview-content">
     <div v-if="marketCoin && portfolioCoin">
 
-        <div class="module__content-digits --ultra-small --opacity">
+        <div class="module__content-digits--portfolio-units">
           <div v-if="portfolioCoin.quantity">
             <animated-number :value="portfolioCoin.quantity" :type="`quantity`" /> at <animated-number :value="marketCoin.price" :type="`money`" />
           </div>

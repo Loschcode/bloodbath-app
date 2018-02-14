@@ -10,7 +10,7 @@
 }
 
 .module__bubble {
-  background-color: $module-title-background-color;
+  // background-color: $main-background-color; // $module-title-background-color;
   color: $module-title-color;
   padding: 1em;
   text-align: left;
@@ -178,6 +178,16 @@
   text-align: center;
   font-size: 43px;
   word-wrap: break-word;
+  line-height: 40px;
+}
+
+.module__content-digits--portfolio-units {
+  @include wrap-words;
+  text-align: center;
+  margin-top: 0.5em;
+  font-size: 16px;
+  word-wrap: break-word;
+  opacity: 0.5;
 }
 
 .module__content-percent {
@@ -193,7 +203,8 @@
 .module__bubble-footer {
   font-size: 12px;
   color: $module-title-color;
-  margin: 0.5em;
+  margin-left: 0.7em;
+  margin-right: 0.7em;
 }
 
 .module__footer {
@@ -211,11 +222,13 @@
 }
 
 .module__footer-low {
+  line-height: 20px;
   text-align: left;
   text-transform: uppercase;
 }
 
 .module__footer-high {
+  line-height: 20px;
   text-align: right;
   text-transform: uppercase;
 }

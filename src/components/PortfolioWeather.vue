@@ -4,7 +4,7 @@
       <div class="row">
         <div class="gr-12">
           <div class="section__title">
-            Weather
+            Investment Weather
           </div>
         </div>
       </div>

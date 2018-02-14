@@ -17,7 +17,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              Current capital
+              Current investment
             </div>
           </div>
         </div>
