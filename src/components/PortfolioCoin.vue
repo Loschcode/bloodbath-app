@@ -23,6 +23,9 @@
             <div class="module__content">
               <div class="module__content-folio">
 
+                <!-- Preloader to make sure we have the informations -->
+                <div v-if="marketCoin.price && portfolioCoin.quantity">
+
                 <div v-if="editQuantity">
                   <!-- Edit quantity of the coin -->
                   <input type="number" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
@@ -40,7 +43,16 @@
                   </a>
 
                 </div>
+
+                </div>
+                <div v-else>
+                  <loader-wave>
+                    <span slot="text"></span>
+                  </loader-wave>
+                </div>
+
               </div>
+
             </div>
             <div class="module__footer">
               <div v-if="editQuantity">
