@@ -1,6 +1,6 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API: '"https://api.bloodbath.io"',
-  CABLE: '"wss://api.bloodbath.io"'
+  API: '"https://api.marketweather.io"',
+  CABLE: '"wss://api.marketweather.io"'
 }
