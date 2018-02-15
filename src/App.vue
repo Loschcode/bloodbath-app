@@ -17,7 +17,7 @@ export default {
   },
 
   metaInfo: {
-    title: 'Marketweather - Cryptocurrencies',
+    title: 'Bloodbath - Cryptocurrencies',
     link: [
       { rel: 'stylesheet', href: 'https://file.myfontastic.com/mLeXuFUMRFSYfxjxh5UTTd/icons.css' },
       { rel: 'icon', href: '/static/images/icons/favicon.png', type: 'image/png' } // type: 'image/png'
