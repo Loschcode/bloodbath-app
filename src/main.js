@@ -14,6 +14,8 @@ import VueCookie from 'vue-cookie'
 import VueMeta from 'vue-meta'
 import VueNoty from 'vuejs-noty'
 
+import Idle from '@/misc/Idle'
+
 // NOTE : to reset users or memory
 // just uncomment this line
 // localStorage.clear()
@@ -49,6 +51,9 @@ Vue.use(VueNoty, {
   progressBar: true,
   layout: 'topRight'
 })
+
+// Idle management
+Idle.start()
 
 // VueRouter
 // Vue.use(Router)

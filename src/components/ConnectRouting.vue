@@ -23,7 +23,7 @@
             </span>
           </loader-cube>
         </div>
-        
+
       </div>
 
     </div>
@@ -54,8 +54,10 @@ export default {
      * we use this command
      */
     EventBus.$on('rebootEvent', error => {
-      console.log(error)
-      localStorage.clear()
+      if (error) {
+        console.log(error)
+        localStorage.clear()
+      }
       window.location.href = '/'
     })
 

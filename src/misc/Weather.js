@@ -40,7 +40,7 @@ var weather = {
     } else if (variation <= -20) {
       return 'Apocalypse'
     } else if (variation <= -10) {
-      return 'Very bloody'
+      return 'Bloodbath'
     } else if (variation <= -5) {
       return 'Bloody'
     } else if (variation < -1.5) {
