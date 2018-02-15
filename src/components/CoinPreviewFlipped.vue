@@ -3,7 +3,9 @@
     <div class="row">
       <div class="gr-12">
         <div class="coin-preview-flipped__image">
-          <img :src="marketCoin.logo_url" />
+          <div v-if="marketCoin.logo_url">
+            <img :src="marketCoin.logo_url" />
+          </div>
         </div>
 
         <div class="module__content-percent --small">
