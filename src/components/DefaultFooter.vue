@@ -1,5 +1,5 @@
 <template>
-  <div class="default-footer" v-on:scroll="scrollFunction()">
+  <div class="default-footer">
     <div class="row row-full footer-placeholder"></div>
     <div class="row row-full footer" ref="footer">
       <div class="gr-4">
@@ -91,21 +91,13 @@ export default {
   },
 
   methods: {
-    handleScroll () {
-      console.log(window.scrollY)
-      let footer = this.$refs.footer
-      footer.style.position = 'absolute'
-      footer.style.top = (window.scrollY + window.innerHeight - footer.offsetHeight) + 'px'
-    }
   },
 
   created () {
-    window.addEventListener('scroll', this.handleScroll)
   },
 
   destroyed () {
     this.$store.dispatch('subscribeMarketCoinChannel', this.primaryMarketCoin)
-    window.removeEventListener('scroll', this.handleScroll)
   },
 
   computed: {
