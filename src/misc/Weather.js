@@ -12,22 +12,22 @@ var weather = {
     /**
     * Positive
     */
-    if (variation > 30) {
+    if (variation >= 30) {
       return 'Infinity and beyond'
-    } else if (variation > 20) {
+    } else if (variation >= 20) {
       return 'To andromeda galaxy'
-    } else if (variation > 10) {
+    } else if (variation >= 10) {
       return 'To the moon'
-    } else if (variation > 5) {
+    } else if (variation >= 5) {
       return 'Very sunny'
-    } else if (variation > 2) {
+    } else if (variation > 1.5) {
       return 'Sunny'
     }
 
     /**
     * Neutral
     */
-    if (variation >= -2) {
+    if (variation >= -1.5) {
       return 'Boring'
     }
 
@@ -35,15 +35,15 @@ var weather = {
     * Negative
     * @type {[type]}
     */
-    if (variation < -30) {
+    if (variation <= -30) {
       return 'Death'
-    } else if (variation < -20) {
+    } else if (variation <= -20) {
       return 'Apocalypse'
-    } else if (variation < -10) {
+    } else if (variation <= -10) {
       return 'Very bloody'
-    } else if (variation < -5) {
+    } else if (variation <= -5) {
       return 'Bloody'
-    } else if (variation < -2) {
+    } else if (variation < -1.5) {
       return 'Cloudy'
     }
 
