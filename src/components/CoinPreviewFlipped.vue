@@ -5,8 +5,9 @@
         <div class="coin-preview-flipped__image">
           <img :src="marketCoin.logo_url" />
         </div>
+
         <div class="module__content-percent --small">
-          <div v-if="marketCoin.price_variation">
+          <div v-if="marketCoin.market_cap">
             <animated-number :value="marketCoin.market_cap" :type="`big-money`" :animatedColors="true" :numberColors="false" />
           </div>
           <div v-else>

@@ -24,8 +24,6 @@
               <div class="module__content-folio">
 
                 <!-- Preloader to make sure we have the informations -->
-                <div v-if="marketCoin.price && portfolioCoin.quantity">
-
                 <div v-if="editQuantity">
                   <!-- Edit quantity of the coin -->
                   <input type="number" ref="input" v-model="portfolioCoin.quantity" placeholder="0.000" v-on:keydown.enter="updateQuantity">
@@ -33,22 +31,24 @@
 
                 <div v-else>
 
-                  <a @click="clickAction" class="+pointer">
-                    <div v-if="flipped">
-                      <coin-preview-flipped :marketCoinProp="marketCoin" />
-                    </div>
-                    <div v-else>
-                      <portfolio-coin-content :marketCoinProp="marketCoin" :portfolioCoinProp="portfolioCoin" />
-                    </div>
-                  </a>
+                  <div v-if="marketCoin.price && portfolioCoin.quantity">
 
-                </div>
+                    <a @click="clickAction" class="+pointer">
+                      <div v-if="flipped">
+                        <coin-preview-flipped :marketCoinProp="marketCoin" />
+                      </div>
+                      <div v-else>
+                        <portfolio-coin-content :marketCoinProp="marketCoin" :portfolioCoinProp="portfolioCoin" />
+                      </div>
+                    </a>
 
-                </div>
-                <div v-else>
-                  <loader-wave>
-                    <span slot="text"></span>
-                  </loader-wave>
+                  </div>
+                  <div v-else>
+                    <loader-wave>
+                      <span slot="text"></span>
+                    </loader-wave>
+                  </div>
+
                 </div>
 
               </div>
