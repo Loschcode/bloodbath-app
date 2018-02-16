@@ -12,7 +12,10 @@
 
   <div class="row">
     <div class="search">
-      <input type="text" ref="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" placeholder="e.g. Bitcoin, Ethereum ..." />
+      <input type="search" ref="search" v-model="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" placeholder="e.g. Bitcoin, Ethereum ..." />
+      <div v-if="search">
+        <span class="icon-remove search__remove" @click="cleanSearch"></span>
+      </div>
     </div>
   </div>
 
@@ -72,7 +75,8 @@ export default {
   data () {
     return {
       showResults: false,
-      context: null
+      context: null,
+      search: ''
     }
   },
 
@@ -109,7 +113,15 @@ export default {
       }
     },
 
+    cleanSearch (event) {
+      this.search = ''
+      this.$refs.search.focus()
+    },
+
     searchCoins (event) {
+      /**
+       * NOTE : this couldbe totally refactored with the data search made for that.
+       */
       this.showResults = true
       let query = event.currentTarget.value
 
