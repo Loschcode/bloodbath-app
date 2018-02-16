@@ -3,7 +3,7 @@
     <div class="loader__full-page">
       <loader-cube>
         <span slot="text">
-          Recovering information
+          Collecting basic information
         </span>
       </loader-cube>
     </div>
@@ -21,6 +21,10 @@ export default {
     }
   },
 
+  created () {
+    this.$store.dispatch('fetchPortfolioCoins')
+  },
+
   watch: {
     portfolioCoins (newValue, oldValue) {
       if (newValue.length === 0) {
@@ -35,9 +39,6 @@ export default {
     ...mapGetters({
       portfolioCoins: 'getPortfolioCoins'
     })
-  },
-
-  created () {
   },
 
   components: {
