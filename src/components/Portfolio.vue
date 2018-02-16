@@ -134,6 +134,10 @@ export default {
   },
 
   methods: {
+    fullyLoaded () {
+      return (this.userSetting.id && this.portfolioCoins.length > 0)
+    },
+
     currentTotalLow () {
       var vm = this
       var total = 0.0

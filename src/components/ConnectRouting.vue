@@ -1,34 +1,40 @@
 <template>
   <div class="connect-routing">
+
+    <!-- Crash error -->
     <div v-if="error">
       <div class="error">
         {{ error }}
       </div>
     </div>
+
     <div v-else>
 
-      <!-- If everything is valid we route -->
-      <div v-if="userToken && currentUser">
-        <!-- Load the correct page -->
-        <router-view />
-        <!-- Footer is here -->
-        <default-footer />
-      </div>
-      <div v-else>
-
+      <!-- Loading -->
+      <div v-if="!fullyLoaded()">
         <div class="loader__full-page">
           <loader-cube>
             <span slot="text">
-              Recovering history
+              Recovering account details
             </span>
           </loader-cube>
         </div>
 
       </div>
 
+      <div v-else>
+
+        <!-- Load the correct page -->
+        <router-view />
+        <!-- Footer is here -->
+        <default-footer />
+
+      </div>
+
     </div>
 
   </div>
+</div>
 </template>
 
 <script>
@@ -116,6 +122,12 @@ export default {
   },
 
   methods: {
+    /**
+     * Preloader management
+     */
+    fullyLoaded () {
+      return (this.userToken.length > 0 && this.currentUser.id)
+    },
 
     /**
      * If there's a token or not, we manage to connect the current user

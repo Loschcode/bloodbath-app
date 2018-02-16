@@ -38,19 +38,16 @@ export default {
 
   computed: {
     userSetting () {
-      console.log(this.$store.getters.getUserSetting.weather)
       return this.$store.getters.getUserSetting
     }
   },
 
   methods: {
     weatherOn () {
-      console.log('set weather on')
       this.$store.dispatch('updateUserSetting', { changeset: { weather: true } })
     },
 
     weatherOff () {
-      console.log('set weather off')
       this.$store.dispatch('updateUserSetting', { changeset: { weather: false } })
     }
   }
