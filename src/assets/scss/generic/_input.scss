@@ -2,12 +2,14 @@ input {
   -webkit-appearance: none;
   text-align: left;
   padding: 0.2em;
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
+  padding: 0.4em;
   // width: 90%;
   @include border-radius(7px);
   border: 2px solid $module-border-color;
   font-size: 18px;
-  // width: -webkit-fill-available;
+  width: -webkit-fill-available;
 
   &:focus {
     border-color: $footer-border-color;
