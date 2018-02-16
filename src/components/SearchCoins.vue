@@ -115,6 +115,7 @@ export default {
 
     cleanSearch (event) {
       this.search = ''
+      this.showResults = false
       this.$refs.search.focus()
     },
 
