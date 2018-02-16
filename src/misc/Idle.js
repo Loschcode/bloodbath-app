@@ -2,7 +2,7 @@ import EventBus from '@/misc/EventBus'
 
 var idle = {
   interval: 60000,
-  timeout: 1, // 1 minute total
+  timeout: 5, // 1 minute total
   idleCounter: 0,
   expirationConfirmed: false,
 
