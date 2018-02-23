@@ -12,7 +12,7 @@
 
   <div class="row">
     <div class="search">
-      <input type="search" ref="search" v-model="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" placeholder="e.g. Bitcoin, Ethereum ..." />
+      <input ref="search" v-model="search" v-on:keyup="searchCoins" v-on:keydown.enter="firstResultCoins" placeholder="e.g. Bitcoin, Ethereum ..." />
       <div v-if="search">
         <span class="icon-remove search__remove" @click="cleanSearch"></span>
       </div>
