@@ -97,6 +97,7 @@ import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import CoinWeather from '@/components/CoinWeather'
+import LoaderWave from '@/components/LoaderWave'
 import _ from 'lodash'
 
 import { mapGetters } from 'vuex'
@@ -190,7 +191,8 @@ export default {
     AnimatedNumber,
     PortfolioCoinContent,
     CoinPreviewFlipped,
-    CoinWeather
+    CoinWeather,
+    LoaderWave
   }
 }
 </script>
