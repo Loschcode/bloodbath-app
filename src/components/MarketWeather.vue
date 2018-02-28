@@ -69,6 +69,11 @@ export default {
 
   created () {
     this.$store.dispatch('fetchMarketWeather')
+    this.$store.dispatch('subscribeMarketWeatherChannel')
+  },
+
+  destroyed () {
+    this.$store.dispatch('unsubscribeMarketWeatherChannel')
   },
 
   computed: {
