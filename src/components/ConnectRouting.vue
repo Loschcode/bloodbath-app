@@ -75,6 +75,8 @@ export default {
     EventBus.$on('crashEvent', error => {
       if (error.message === 'Network Error') {
         this.error = 'Oh snap ! There is a network error, please refresh the page.'
+      } else {
+        this.error = 'Oh snap ! Something went wrong, please refresh the page.'
       }
     })
 

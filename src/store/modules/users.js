@@ -59,7 +59,12 @@ const actions = {
       context.commit('setUserSetting', response.data.user_setting)
       console.log('current user was set.')
     } catch (error) {
-      EventBus.$emit('rebootEvent', error.response.data.error)
+      if (error.response.status === 500) {
+        // if it's a server crash we don't attempt anything anymore
+        EventBus.$emit('crashEvent', {})
+      } else {
+        EventBus.$emit('rebootEvent', error.response.data.error)
+      }
     }
   }
 
