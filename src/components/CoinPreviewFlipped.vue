@@ -1,5 +1,19 @@
 <template>
   <div class="coin-preview-flipped">
+
+    <div class="row">
+      <div clas="gr-12">
+        <div class="coin-preview-flipped__rank">
+          <div v-if="marketCoin.rank">
+            Rank #{{marketCoin.rank}}
+          </div>
+          <div v-else>
+            Rank >100
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="gr-12">
         <div class="coin-preview-flipped__image">
