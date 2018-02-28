@@ -1,6 +1,6 @@
 <template>
   <div class="market-weather">
-    <div v-if="coins.length">
+    <div v-if="this.marketWeather">
       <div class="section">
         <div class="row">
           <div class="gr-12">
@@ -27,12 +27,12 @@
 
                       <div v-if="flipped">
                         <div class="market-weather__title">
-                          <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="currentAverage()" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                          <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="marketWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                         </div>
                       </div>
                       <div v-else>
                         <div class="market-weather__title">
-                          <span><coin-weather :variationProp="currentAverage()" /></span>
+                          <span><coin-weather :variationProp="marketWeather" /></span>
                         </div>
                       </div>
 
@@ -60,22 +60,20 @@ import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
 import Weather from '@/misc/Weather'
 
-import _ from 'lodash'
-
 export default {
-  props: [
-    'coinsProp'
-  ],
-
   data () {
     return {
       flipped: false
     }
   },
 
+  created () {
+    this.$store.dispatch('fetchMarketWeather')
+  },
+
   computed: {
-    coins () {
-      return this.coinsProp
+    marketWeather () {
+      return this.$store.getters.getMarketWeather
     }
   },
 
@@ -89,23 +87,8 @@ export default {
     },
 
     currentStyle () {
-      return Weather.style(this.currentAverage())
-    },
-
-    currentAverage () {
-      var vm = this
-      var priceVariations = []
-      this.coins.forEach(function (coin, index, object) {
-        let marketCoin = vm.$store.getters.getMarketCoin(coin.market_coin.id)
-        if (!_.isNil(marketCoin)) {
-          priceVariations.push(marketCoin.price_variation)
-        }
-      })
-
-      let average = _.sum(priceVariations) / priceVariations.length
-      return average
+      return Weather.style(this.marketWeather)
     }
-
   },
 
   components: {

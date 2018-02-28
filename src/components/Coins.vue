@@ -21,7 +21,7 @@
 
       <!-- Market Weather -->
       <div v-if="userSetting.weather && topCoins.length">
-        <market-weather :coinsProp="topCoins" />
+        <market-weather />
       </div>
 
       <!-- Search -->

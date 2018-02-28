@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import baseCurrencies from './modules/baseCurrencies'
 import marketCoinChannels from './modules/marketCoinChannels'
 import marketCoins from './modules/marketCoins'
+import marketWeather from './modules/marketWeather'
 import portfolioCoins from './modules/portfolioCoins'
 import userMarketCoins from './modules/userMarketCoins'
 import users from './modules/users'
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     baseCurrencies,
     marketCoinChannels,
     marketCoins,
+    marketWeather,
     portfolioCoins,
     userMarketCoins,
     userSettings,
