@@ -39,7 +39,6 @@ const actions = {
         received (data) {
           if (data.action === 'show') {
             console.log(`received data from ${channelName}`)
-            console.log(data.market_weather)
             context.commit('setMarketWeather', data.market_weather)
           }
         }
@@ -56,7 +55,7 @@ const actions = {
     if (marketWeatherChannel) {
       context.commit('unsetMarketWeatherChannel')
       marketWeatherChannel.channel.unsubscribe()
-      console.log('destroy channel ' + params.id)
+      console.log('destroy channel market-weather')
     }
   }
 }

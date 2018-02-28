@@ -94,10 +94,15 @@ export default {
   },
 
   created () {
+    if (this.userSetting) {
+      this.$store.dispatch('fetchMarketCoin', { id: this.userSetting.primary_market_coin_id })
+    }
   },
 
   destroyed () {
-    this.$store.dispatch('subscribeMarketCoinChannel', this.primaryMarketCoin)
+    if (this.primaryMarketCoin) {
+      this.$store.dispatch('unsubscribeMarketCoinChannel', this.primaryMarketCoin)
+    }
   },
 
   computed: {
