@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -21,6 +22,16 @@ const createLintingRule = () => ({
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
+
+  plugins: [
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '../dist'),
+      // List of routes to prerender
+      ['/', '/coins', '/portfolio', '/setting']
+    )
+  ],
+
   entry: {
     app: './src/main.js'
   },

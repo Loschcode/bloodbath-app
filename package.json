@@ -25,6 +25,7 @@
     "moment": "^2.20.1",
     "normalize.css": "^7.0.0",
     "numeral": "^2.0.6",
+    "prerender-spa-plugin": "^2.0.2",
     "spinkit": "^1.2.5",
     "vue": "2.5.9",
     "vue-analytics": "^5.9.1",
