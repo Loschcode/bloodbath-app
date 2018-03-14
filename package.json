@@ -27,6 +27,7 @@
     "numeral": "^2.0.6",
     "spinkit": "^1.2.5",
     "vue": "2.5.9",
+    "vue-analytics": "^5.9.1",
     "vue-axios": "^2.0.2",
     "vue-cookie": "^1.1.4",
     "vue-meta": "^1.4.2",

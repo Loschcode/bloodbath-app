@@ -13,6 +13,7 @@ import VueAxios from 'vue-axios'
 import VueCookie from 'vue-cookie'
 import VueMeta from 'vue-meta'
 import VueNoty from 'vuejs-noty'
+import VueAnalytics from 'vue-analytics'
 
 import Idle from '@/misc/Idle'
 
@@ -50,6 +51,10 @@ Vue.use(VueNoty, {
   timeout: 1000,
   progressBar: true,
   layout: 'topRight'
+})
+
+Vue.use(VueAnalytics, {
+  id: 'UA-115751020-1'
 })
 
 // Idle management
