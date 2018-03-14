@@ -69,13 +69,13 @@
         </div>
       </div>
 
-    </div>
+      <!-- Suggestion -->
+      <div class="inner-footer">
+        <a href="mailto:laurent.schaffner.code@gmail.com">
+          <span class="icon-contact"></span> Any suggestion or bug report ? Please let me know
+        </a>
+      </div>
 
-    <!-- Suggestion -->
-    <div class="inner-footer">
-      <a href="mailto:laurent.schaffner.code@gmail.com">
-        <span class="icon-contact"></span> Any suggestion or bug report ? Please let me know
-      </a>
     </div>
 
   </div>
