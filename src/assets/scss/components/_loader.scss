@@ -6,7 +6,19 @@
 }
 
 .loader__full-page {
-  margin-top: 30vh;
+  margin-top: 28vh;
+}
+
+.loader__quote {
+  font-size: 20px;
+  text-align: center;
+  color: $main-black;
+  padding-bottom: 2em;
+  font-style: italic;
+}
+
+.loader__quote-outside {
+  font-size: 30px;
 }
 
 .loader__text {
