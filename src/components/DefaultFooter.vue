@@ -1,5 +1,15 @@
 <template>
   <div class="default-footer">
+  <!-- Suggestion -->
+  <div class="row">
+    <div class="gr-12">
+      <div class="inner-footer">
+        <a href="mailto:laurent.schaffner.code@gmail.com">
+          Any suggestion or bug report ? Please let me know
+        </a>
+      </div>
+    </div>
+  </div>
     <div class="row row-full footer-placeholder"></div>
     <div class="row row-full footer" ref="footer">
       <div class="gr-4">

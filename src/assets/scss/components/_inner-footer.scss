@@ -1,0 +1,15 @@
+.inner-footer {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  margin-bottom: 2em;
+
+  a {
+    color: $main-black;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $main-highlight-color;
+    opacity: 1;
+  }
+}
