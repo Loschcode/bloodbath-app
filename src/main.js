@@ -24,6 +24,8 @@ import Idle from '@/misc/Idle'
 // Global configuration
 Vue.config.productionTip = false
 
+const isProd = process.env.NODE_ENV === 'production'
+
 // ActionCable configuration
 // Configuration is made on connection
 // Because for this project we don't
@@ -54,7 +56,12 @@ Vue.use(VueNoty, {
 })
 
 Vue.use(VueAnalytics, {
-  id: 'UA-115751020-1'
+  id: 'UA-115751020-1',
+  router,
+  debug: {
+    enabled: !isProd,
+    sendHitTask: isProd
+  }
 })
 
 // Idle management
