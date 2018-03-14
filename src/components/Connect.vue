@@ -104,6 +104,13 @@ export default {
 
     tryRegister () {
       this.$store.dispatch('registerUser', this.registerData)
+
+      // Google Analytics Action
+      this.$ga.event({
+        eventCategory: 'connect',
+        eventAction: 'tryRegister',
+        eventValue: ''
+      })
     },
 
     tryAuthenticate () {
