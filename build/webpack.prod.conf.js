@@ -32,14 +32,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-
-    new PrerenderSpaPlugin(
-      // Absolute path to compiled SPA
-      path.join(__dirname, '../dist'),
-      // List of routes to prerender
-      ['/', '/coins', '/portfolio', '/setting']
-    ),
-
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
@@ -53,6 +45,14 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
+
+    // new PrerenderSpaPlugin(
+    //   // Absolute path to compiled SPA
+    //   path.join(__dirname, '../dist'),
+    //   // List of routes to prerender
+    //   ['/coins']
+    // ),
+
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css'),
