@@ -42,9 +42,9 @@ var weather = {
     } else if (variation <= -10) {
       return 'Bloodbath'
     } else if (variation <= -5) {
-      return 'Bloody'
+      return 'Very Bloody'
     } else if (variation < -1.5) {
-      return 'Cloudy'
+      return 'Bloody'
     }
 
     return ''
