@@ -15,10 +15,6 @@
   color: $main-black;
   padding-bottom: 2em;
   font-style: italic;
-
-  @include breakpoint(mobile) {
-    max-width: 80%;
-  }
 }
 
 .loader__quote-outside {

@@ -11,7 +11,7 @@
     <div v-else>
 
       <!-- Loading -->
-      <div v-if="!fullyLoaded()">
+      <div v-if="fullyLoaded()">
         <div class="loader__full-page">
           <loader-cube>
             <span slot="text">
