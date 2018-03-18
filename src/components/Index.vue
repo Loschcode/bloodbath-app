@@ -1,5 +1,12 @@
 <template>
   <div class="index">
+    <!-- TODO HERE :
+      - collect if the weather is on on the basic profile
+      on full page with reversed color
+      - show portfolio weather
+      - or show coin weather
+      - add buttons (white borders) depending the section to "see more" or "go to portfolio"
+    -->
     <div class="loader__full-page">
       <loader-cube>
         <span slot="text">
@@ -18,6 +25,7 @@ import LoaderCube from '@/components/LoaderCube'
 export default {
   data () {
     return {
+      hasPortfolio: null
     }
   },
 
@@ -28,9 +36,11 @@ export default {
   watch: {
     portfolioCoins (newValue, oldValue) {
       if (newValue.length === 0) {
-        router.push({ name: 'coins', params: { } })
+        this.hasPortfolio = false;
+        // router.push({ name: 'coins', params: { } })
       } else {
-        router.push({ name: 'portfolio', params: { } })
+        this.hasPortfolio = true;
+        // router.push({ name: 'portfolio', params: { } })
       }
     }
   },
