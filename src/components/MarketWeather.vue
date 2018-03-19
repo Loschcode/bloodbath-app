@@ -11,14 +11,14 @@
         </div>
 
 
-        <div @click="flipWeather" class="+pointer">
-          <div class="row">
-            <div class="gr-12 gr-12@mobile gr-12@tablet">
+        <div class="row">
+          <div class="gr-12 gr-12@mobile gr-12@tablet">
 
-              <div class="module">
-                <div class="module__bubble">
+            <div class="module">
+              <div class="module__bubble">
 
-                  <div class="row">
+                <div class="row">
+                  <div @click="flipWeather" class="+pointer">
                     <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
 
                       <div class="market-weather__icon">
@@ -44,7 +44,20 @@
 
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="gr-10">
+                    <div class="module__footer-details">
+                    </div>
+                  </div>
+                  <div class="gr-2">
+                    <div class="module__footer-action">
+                      <a @click="goCoinsFullWeather"><span class="icon icon-fullscreen"></span></a>
+                    </div>
+                  </div>
                 </div>
+
+              </div>
 
               </div>
             </div>
@@ -59,6 +72,8 @@
 import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
 import Weather from '@/misc/Weather'
+
+import router from '@/router'
 
 export default {
   data () {
@@ -83,6 +98,10 @@ export default {
   },
 
   methods: {
+    goCoinsFullWeather () {
+      router.push({ name: 'coins-full-weather', params: { } })
+    },
+
     flipWeather () {
       if (this.flipped) {
         this.flipped = false
