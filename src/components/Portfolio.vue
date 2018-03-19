@@ -88,9 +88,9 @@
     </div>
 
     <!-- Search -->
-    <div class="row">
+    <div v-if="portfolioCoins" class="row">
       <div class="gr-12">
-        <search-coins contextProp="portfolio">
+        <search-coins contextProp="portfolio" :focusProp="false">
           <div slot="title">
             Add coins
           </div>
@@ -153,9 +153,6 @@ export default {
   },
 
   methods: {
-    fullyLoaded () {
-      return (this.userSetting.id && this.portfolioCoins.length > 0)
-    }
   },
 
   components: {

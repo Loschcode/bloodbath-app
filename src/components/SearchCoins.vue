@@ -69,13 +69,15 @@ import _ from 'lodash'
 
 export default {
   props: [
-    'contextProp'
+    'contextProp',
+    'focusProp'
   ],
 
   data () {
     return {
       showResults: false,
       context: null,
+      focus: this.focusProp,
       search: ''
     }
   },
@@ -85,10 +87,13 @@ export default {
   },
 
   mounted () {
+    console.log(this.focusProp)
     /**
      * We auto-focus the search area
      */
-    this.$refs.search.focus()
+    if (this.focus) {
+      this.$refs.search.focus()
+    }
   },
 
   computed: {
