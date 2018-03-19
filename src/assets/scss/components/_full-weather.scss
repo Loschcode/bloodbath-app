@@ -16,7 +16,7 @@
 
   a {
     display: inline-block;
-    color: $main-white;
+    color: $main-white !important;
     text-decoration: none;
     &:hover {
       color: $main-white !important;
@@ -29,17 +29,18 @@
   margin-top: 3em;
   margin-bottom: 0.8em;
   text-align: center;
+
   a {
     display: inline-block;
-    color: $main-white;
     text-decoration: none;
     text-transform: uppercase;
     border: 2px solid $main-white;
     border-radius: 5px;
     padding: 1em;
-    &:hover {
-      background-color: $main-white;
-      transition: 0.3s;
+    background-color: $main-white;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    &:active {
+      box-shadow: none;
     }
   }
 }
@@ -80,75 +81,75 @@
 
 .full-weather__death {
   background-color: $death-color;
-  a:hover {
+  a {
     color: $death-color;
   }
 }
 
 .full-weather__apocalypse {
   background-color: $apocalypse-color;
-  a:hover {
+  a {
     color: $apocalypse-color;
   }
 }
 
 .full-weather__bloodbath {
   background-color: $bloodbath-color;
-  a:hover {
+  a {
     color: $bloodbath-color;
   }
 }
 .full-weather__very-bloody {
   background-color: $very-bloody-color;
-  a:hover {
+  a {
     color: $very-bloody-color;
   }
 }
 
 .full-weather__bloody {
   background-color: $bloody-color;
-  a:hover {
+  a {
     color: $bloody-color;
   }
 }
 
 .full-weather__boring {
   background-color: $boring-color;
-  a:hover {
+  a {
     color: $boring-color;
   }
 }
 
 .full-weather__sunny {
   background-color: $sunny-color;
-  a:hover {
+  a {
     color: $sunny-color;
   }
 }
 
 .full-weather__very-sunny {
   background-color: $very-sunny-color;
-  a:hover {
+  a {
     color: $very-sunny-color;
   }
 }
 
 .full-weather__to-the-moon {
   background-color: $to-the-moon-color;
-  a:hover {
+  a {
     color: $to-the-moon-color;
   }
 }
 
 .full-weather__to-andromeda-galaxy {
   background-color: $to-andromeda-galaxy-color;
-  a:hover {
+  a {
     color: $to-andromeda-galaxy-color;
   }
 }
 .full-weather__infinity-and-beyond {
   background-color: $infinity-and-beyond-color;
-  a:hover {
+  a {
     color: $infinity-and-beyond-color;
   }
 }
