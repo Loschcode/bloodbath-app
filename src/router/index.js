@@ -24,7 +24,7 @@ Vue.router = new Router({
     },
 
     {
-      path: '/coins-full-weather',
+      path: '/coins/weather',
       name: 'coins-full-weather',
       component: CoinsFullWeather
     },
@@ -36,7 +36,7 @@ Vue.router = new Router({
     },
 
     {
-      path: '/portfolio-full-weather',
+      path: '/portfolio/weather',
       name: 'portfolio-full-weather',
       component: PortfolioFullWeather
     },
