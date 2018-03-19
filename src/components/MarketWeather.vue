@@ -52,7 +52,7 @@
                   </div>
                   <div class="gr-2">
                     <div class="module__footer-action">
-                      <a @click="goCoinsFullWeather"><span class="icon icon-fullscreen"></span></a>
+                      <a><span @click="goCoinsFullWeather" class="icon icon-fullscreen"></span></a>
                     </div>
                   </div>
                 </div>

@@ -15,34 +15,35 @@
           <div class="module">
             <div class="module__bubble">
               <div class="row">
-
-              <div class="market-weather__icon">
-                <span :class="`icon-${currentStyle()} coin-weather__${currentStyle()} coin-weather--static`"></span>
-              </div>
-
-              <div class="market-weather__title">
-                <span><coin-weather :variationProp="variationProp" /></span>
-              </div>
-
-              <div class="market-weather__info">
-                <span>based on your total capital</span>
-              </div>
-
-              </div>
-
-              <div class="row">
-                <div class="gr-10">
-                  <div class="module__footer-details">
+                <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
+                  <div class="market-weather__icon">
+                    <span :class="`icon-${currentStyle()} coin-weather__${currentStyle()} coin-weather--static`"></span>
                   </div>
-                </div>
-                <div class="gr-2">
-                  <div class="module__footer-action">
-                    <a @click="goPortfolioFullWeather"><span class="icon icon-fullscreen"></span></a>
+
+                  <div class="market-weather__title">
+                    <span><coin-weather :variationProp="variationProp" /></span>
                   </div>
+
+                  <div class="market-weather__info">
+                    <span>based on your total capital</span>
+                  </div>
+
                 </div>
               </div>
 
+            <div class="row">
+              <div class="gr-10">
+                <div class="module__footer-details">
+                </div>
+              </div>
+              <div class="gr-2">
+                <div class="module__footer-action">
+                  <a><span @click="goPortfolioFullWeather" class="icon icon-fullscreen"></span></a>
+                </div>
+              </div>
             </div>
+          </div>
+
           </div>
 
         </div>
