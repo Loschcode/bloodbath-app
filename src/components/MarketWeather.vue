@@ -1,6 +1,6 @@
 <template>
   <div class="market-weather">
-    <div v-if="this.marketWeather">
+    <div v-if="marketWeather">
       <div class="section">
         <div class="row">
           <div class="gr-12">

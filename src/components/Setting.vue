@@ -122,13 +122,17 @@
           <span class="icon-contact"></span> Any suggestion or bug report ? Please let me know
         </a>
       </div>
-      
+
+      <!-- Footer is here -->
+      <default-footer />
+
     </div>
 
   </div>
 </template>
 
 <script>
+import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
@@ -190,6 +194,7 @@ export default {
   },
 
   components: {
+    DefaultFooter,
     DefaultHeader,
     CoinPreview,
     SearchCoins,

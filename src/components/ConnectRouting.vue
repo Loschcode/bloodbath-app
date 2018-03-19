@@ -26,9 +26,7 @@
 
         <!-- Load the correct page -->
         <router-view />
-        <!-- Footer is here -->
-        <default-footer />
-
+        
       </div>
 
     </div>

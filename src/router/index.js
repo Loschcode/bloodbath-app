@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Coins from '@/components/Coins'
+import CoinsFullWeather from '@/components/CoinsFullWeather'
 import Portfolio from '@/components/Portfolio'
+import PortfolioFullWeather from '@/components/PortfolioFullWeather'
 import Setting from '@/components/Setting'
 import Index from '@/components/Index'
 
@@ -22,9 +24,21 @@ Vue.router = new Router({
     },
 
     {
+      path: '/coins-full-weather',
+      name: 'coins-full-weather',
+      component: CoinsFullWeather
+    },
+
+    {
       path: '/portfolio',
       name: 'portfolio',
       component: Portfolio
+    },
+
+    {
+      path: '/portfolio-full-weather',
+      name: 'portfolio-full-weather',
+      component: PortfolioFullWeather
     },
 
     {

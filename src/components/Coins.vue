@@ -76,12 +76,16 @@
         </a>
       </div>
 
+      <!-- Footer is here -->
+      <default-footer />
+
     </div>
 
   </div>
 </template>
 
 <script>
+import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
 import MarketWeather from '@/components/MarketWeather'
@@ -121,6 +125,7 @@ export default {
   },
 
   components: {
+    DefaultFooter,
     DefaultHeader,
     CoinPreview,
     MarketWeather,

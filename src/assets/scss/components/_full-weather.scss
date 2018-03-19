@@ -1,0 +1,154 @@
+.full-weather {
+  padding-top: 15vh;
+  height: 85vh;
+
+  div {
+    opacity: 1 !important;
+  }
+
+  span {
+    color: $main-white !important;
+  }
+}
+
+.full-weather__links {
+  text-align: center;
+
+  a {
+    display: inline-block;
+    color: $main-white;
+    text-decoration: none;
+    &:hover {
+      color: $main-white !important;
+      border-bottom: 1px solid $main-white;
+    }
+  }
+}
+
+.full-weather__buttons {
+  margin-top: 3em;
+  margin-bottom: 0.8em;
+  text-align: center;
+  a {
+    display: inline-block;
+    color: $main-white;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 2px solid $main-white;
+    border-radius: 5px;
+    padding: 1em;
+    &:hover {
+      background-color: $main-white;
+      transition: 0.3s;
+    }
+  }
+}
+
+.full-weather__percent {
+  margin-top: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 50px;
+  @include breakpoint(mobile) {
+    font-size: 40px;
+  }
+}
+
+
+.full-weather__icon {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 140px;
+}
+
+.full-weather__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 80px;
+}
+
+.full-weather__info {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  opacity: 0.4;
+  span {
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+.full-weather__death {
+  background-color: $death-color;
+  a:hover {
+    color: $death-color;
+  }
+}
+
+.full-weather__apocalypse {
+  background-color: $apocalypse-color;
+  a:hover {
+    color: $apocalypse-color;
+  }
+}
+
+.full-weather__bloodbath {
+  background-color: $bloodbath-color;
+  a:hover {
+    color: $bloodbath-color;
+  }
+}
+.full-weather__very-bloody {
+  background-color: $very-bloody-color;
+  a:hover {
+    color: $very-bloody-color;
+  }
+}
+
+.full-weather__bloody {
+  background-color: $bloody-color;
+  a:hover {
+    color: $bloody-color;
+  }
+}
+
+.full-weather__boring {
+  background-color: $boring-color;
+  a:hover {
+    color: $boring-color;
+  }
+}
+
+.full-weather__sunny {
+  background-color: $sunny-color;
+  a:hover {
+    color: $sunny-color;
+  }
+}
+
+.full-weather__very-sunny {
+  background-color: $very-sunny-color;
+  a:hover {
+    color: $very-sunny-color;
+  }
+}
+
+.full-weather__to-the-moon {
+  background-color: $to-the-moon-color;
+  a:hover {
+    color: $to-the-moon-color;
+  }
+}
+
+.full-weather__to-andromeda-galaxy {
+  background-color: $to-andromeda-galaxy-color;
+  a:hover {
+    color: $to-andromeda-galaxy-color;
+  }
+}
+.full-weather__infinity-and-beyond {
+  background-color: $infinity-and-beyond-color;
+  a:hover {
+    color: $infinity-and-beyond-color;
+  }
+}

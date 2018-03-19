@@ -11,7 +11,7 @@
 }
 
 .coin-weather__death {
-  color: $apocalypse-color;
+  color: $death-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
@@ -32,7 +32,7 @@
 }
 
 .coin-weather__bloody {
-  color: $bloody-color;
+  color: $very-bloody-color;
 }
 
 .coin-weather__boring {
@@ -60,7 +60,7 @@
 }
 
 .coin-weather__infinity-and-beyond {
-  color: $to-andromeda-galaxy-color;
+  color: $infinity-and-beyond-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
