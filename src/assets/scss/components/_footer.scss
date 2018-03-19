@@ -2,7 +2,7 @@
   background-color: $footer-background-color;
   color: $footer-text-color;
   padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  // padding-bottom: 0.5em;
   border-top: 3px solid $footer-border-color;
   text-align: center;
   a {
@@ -20,8 +20,8 @@
 }
 
 .footer__highlight {
-  border-top: 2px solid $header-border-color;
-  margin-bottom: -2em;
+  border-bottom: 3px solid $main-red-color;
+  padding-top: 0.5em;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
