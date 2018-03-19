@@ -2,28 +2,35 @@
   <div class="default-footer">
     <div class="row row-full footer-placeholder"></div>
     <div class="row row-full footer" ref="footer">
+
+      <!-- Coin Section -->
       <div class="gr-4">
-        <div class="footer__right-border">
-          <router-link :to="{ name: 'coins' }">
-            <div class="footer__title">Coins</div>
-            <div class="footer__content">
-              <div class="footer__content-digits">
-                <div v-if="primaryMarketCoin">
-                  <div class="+desktop">
-                    <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
+          <div class="footer__right-border">
+            <router-link :to="{ name: 'coins' }">
+              <div class="footer__title">Coins</div>
+              <div class="footer__content">
+                <div class="footer__content-digits">
+                  <div v-if="primaryMarketCoin">
+                    <div class="+desktop">
+                      <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
+                    </div>
+                    <div class="+mobile">
+                      <animated-number :value="primaryMarketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /> {{ primaryMarketCoin.name }}
+                    </div>
                   </div>
-                  <div class="+mobile">
-                    <animated-number :value="primaryMarketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /> {{ primaryMarketCoin.name }}
+                  <div v-else>
+                    -
                   </div>
-                </div>
-                <div v-else>
-                  -
-                </div>
-              </diV>
-            </div>
-          </router-link>
-        </div>
+                </diV>
+              </div>
+            </router-link>
+          </div>
+
+          <div v-show="isCoinsSection()" class="footer__highlight">
+          </div>
       </div>
+
+      <!-- Portfolio Section -->
       <div class="gr-4">
         <router-link :to="{ name: 'portfolio' }">
           <div class="footer__title">Portfolio</div>
@@ -33,7 +40,11 @@
             </div>
           </div>
           </router-link>
+          <div v-show="isPortfolioSection()" class="footer__highlight">
+          </div>
         </div>
+
+        <!-- Setting Section -->
         <div class="gr-4">
           <div class="footer__left-border">
             <div v-if="isConnected">
@@ -51,7 +62,11 @@
               </router-link>
             </div>
           </div>
+
+          <div v-show="isSettingSection()" class="footer__highlight">
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -93,6 +108,18 @@ export default {
   methods: {
     fullyLoaded () {
       return this.currentUser
+    },
+
+    isCoinsSection () {
+      return this.$route.name === 'coins'
+    },
+
+    isPortfolioSection () {
+      return this.$route.name === 'portfolio'
+    },
+
+    isSettingSection () {
+      return this.$route.name === 'setting'
     }
   },
 

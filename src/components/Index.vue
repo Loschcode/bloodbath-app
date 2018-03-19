@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import router from '@/router'
+// import router from '@/router'
 import { mapGetters } from 'vuex'
 import LoaderCube from '@/components/LoaderCube'
 
@@ -36,10 +36,10 @@ export default {
   watch: {
     portfolioCoins (newValue, oldValue) {
       if (newValue.length === 0) {
-        this.hasPortfolio = false;
+        this.hasPortfolio = false
         // router.push({ name: 'coins', params: { } })
       } else {
-        this.hasPortfolio = true;
+        this.hasPortfolio = true
         // router.push({ name: 'portfolio', params: { } })
       }
     }
