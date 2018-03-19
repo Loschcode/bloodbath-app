@@ -5,6 +5,9 @@
 
       <!-- Coin Section -->
       <div class="gr-4">
+        <div v-show="isCoinsSection()" class="footer__highlight">
+        </div>
+
           <div class="footer__right-border">
             <router-link :to="{ name: 'coins' }">
               <div class="footer__title">Coins</div>
@@ -26,12 +29,13 @@
             </router-link>
           </div>
 
-          <div v-show="isCoinsSection()" class="footer__highlight">
-          </div>
       </div>
 
       <!-- Portfolio Section -->
       <div class="gr-4">
+        <div v-show="isPortfolioSection()" class="footer__highlight">
+        </div>
+        
         <router-link :to="{ name: 'portfolio' }">
           <div class="footer__title">Portfolio</div>
           <div class="footer__content">
@@ -40,12 +44,13 @@
             </div>
           </div>
           </router-link>
-          <div v-show="isPortfolioSection()" class="footer__highlight">
-          </div>
         </div>
 
         <!-- Setting Section -->
         <div class="gr-4">
+          <div v-show="isSettingSection()" class="footer__highlight">
+          </div>
+
           <div class="footer__left-border">
             <div v-if="isConnected">
               <router-link :to="{ name: 'setting' }">
@@ -63,8 +68,6 @@
             </div>
           </div>
 
-          <div v-show="isSettingSection()" class="footer__highlight">
-          </div>
         </div>
 
       </div>
