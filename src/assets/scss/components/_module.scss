@@ -12,7 +12,7 @@
 .module__bubble {
   // background-color: $main-background-color; // $module-title-background-color;
   color: $module-title-color;
-  padding: 1em;
+  padding: 0.5em;
   text-align: left;
   @include border-radius(7px);
   @include wrap-words;

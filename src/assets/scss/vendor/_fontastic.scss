@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "bloodbath";
+  src:url("fonts/bloodbath.eot");
+  src:url("fonts/bloodbath.eot?#iefix") format("embedded-opentype"),
+    url("fonts/bloodbath.woff") format("woff"),
+    url("fonts/bloodbath.ttf") format("truetype"),
+    url("fonts/bloodbath.svg#bloodbath") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "bloodbath" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "bloodbath" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-back:before {
+  content: "\62";
+}
+.icon-stats:before {
+  content: "\68";
+}
+.icon-list:before {
+  content: "\6f";
+}
+.icon-square:before {
+  content: "\71";
+}
+.icon-portfolio:before {
+  content: "\78";
+}
+.icon-primary:before {
+  content: "\61";
+}
+.icon-default:before {
+  content: "\63";
+}
+.icon-right:before {
+  content: "\64";
+}
+.icon-pencil:before {
+  content: "\69";
+}
+.icon-trash:before {
+  content: "\67";
+}
+.icon-confirm:before {
+  content: "\6a";
+}
+.icon-check:before {
+  content: "\6b";
+}
+.icon-favorite-off:before {
+  content: "\65";
+}
+.icon-favorite-on:before {
+  content: "\66";
+}
+.icon-sunny:before {
+  content: "\6e";
+}
+.icon-to-andromeda-galaxy:before {
+  content: "\6c";
+}
+.icon-to-the-moon:before {
+  content: "\70";
+}
+.icon-cloudy:before {
+  content: "\73";
+}
+.icon-apocalypse:before {
+  content: "\75";
+}
+.icon-bloodbath:before {
+  content: "\77";
+}
+.icon-death:before {
+  content: "\7a";
+}
+.icon-bloody:before {
+  content: "\74";
+}
+.icon-infinity-and-beyond:before {
+  content: "\76";
+}
+.icon-very-sunny:before {
+  content: "\79";
+}
+.icon-boring:before {
+  content: "\72";
+}
+.icon-remove:before {
+  content: "\6d";
+}
+.icon-contact:before {
+  content: "\41";
+}
+.icon-very-bloody:before {
+  content: "\42";
+}
+.icon-fullscreen:before {
+  content: "\44";
+}
