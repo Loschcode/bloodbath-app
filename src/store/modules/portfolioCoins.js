@@ -24,6 +24,7 @@ const actions = {
     let response = await axios.patch(`portfolio_coins/${params.id}`, { portfolio_coin: params.changeset })
     context.commit('setPortfolioCoin', response.data)
     context.commit('setMarketCoin', response.data.market_coin)
+    context.dispatch('subscribeMarketCoinChannel', response.data.market_coin)
     context.dispatch('fetchPortfolioCoins')
   },
 
@@ -39,6 +40,7 @@ const actions = {
     response.data.forEach(function (portfolioCoin) {
       context.commit('setPortfolioCoin', portfolioCoin)
       context.commit('setMarketCoin', portfolioCoin.market_coin)
+      context.dispatch('subscribeMarketCoinChannel', portfolioCoin.market_coin)
     })
   }
 
