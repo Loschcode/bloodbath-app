@@ -51,7 +51,7 @@
                     </div>
                   </div>
                   <div class="gr-2">
-                    <div class="module__footer-action">
+                    <div class="module__footer-action +no-margin-top">
                       <a><span @click="goCoinsFullWeather" class="icon icon-fullscreen"></span></a>
                     </div>
                   </div>
