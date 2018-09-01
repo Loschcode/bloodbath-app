@@ -1,6 +1,6 @@
 <template>
   <div class="default-header">
-    <div class="row row-full header" ref="header">
+    <div class="row header" ref="header">
 
       <!-- Coin Section -->
       <div class="gr-4">
