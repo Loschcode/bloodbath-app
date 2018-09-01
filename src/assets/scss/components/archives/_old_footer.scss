@@ -1,8 +1,9 @@
-.header {
-  background-color: $header-background-color;
-  color: $header-text-color;
-  padding-top: 0.2em;
-  border-bottom: 3px solid $header-border-color;
+.footer {
+  background-color: $footer-background-color;
+  color: $footer-text-color;
+  padding-top: 0.5em;
+  // padding-bottom: 0.5em;
+  border-top: 3px solid $footer-border-color;
   text-align: center;
   a {
     text-decoration: none;
@@ -10,16 +11,15 @@
   }
 }
 
-.header__right-border {
+.footer__right-border {
   border-right: 1px solid $module-border-color;
 }
 
-.header__left-border {
+.footer__left-border {
   border-left: 1px solid $module-border-color;
 }
 
-.header__highlight {
-  background-color: red;
+.footer__highlight {
   border-top: 3px solid $main-black;
   opacity: 0.2;
   margin-top: -0.7em;
@@ -29,18 +29,18 @@
   margin-right: auto;
 }
 
-.header__title {
+.footer__title {
   text-transform: uppercase;
   padding-top: 0.5em;
   font-weight: 600;
 }
 
-.header__content {
+.footer__content {
   @include wrap-words;
   font-size: 18px;
   padding-bottom: 0.5em;
   font-weight: 400;
 }
 
-.header__content-digits {
+.footer__content-digits {
 }

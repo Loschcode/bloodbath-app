@@ -1,17 +1,18 @@
 <template>
-  <div class="default-header">
-    <div class="row row-full header" ref="header">
+  <div class="default-footer">
+    <div class="row row-full footer-placeholder"></div>
+    <div class="row row-full footer" ref="footer">
 
       <!-- Coin Section -->
       <div class="gr-4">
-        <div v-show="isCoinsSection()" class="header__highlight">
+        <div v-show="isCoinsSection()" class="footer__highlight">
         </div>
 
-          <div class="header__right-border">
+          <div class="footer__right-border">
             <router-link :to="{ name: 'coins' }">
-              <div class="header__title">Coins</div>
-              <div class="header__content">
-                <div class="header__content-digits">
+              <div class="footer__title">Coins</div>
+              <div class="footer__content">
+                <div class="footer__content-digits">
                   <div v-if="primaryMarketCoin">
                     <div class="+desktop">
                       <animated-number :value="primaryMarketCoin.price" :type="`money`" /> {{ primaryMarketCoin.name }}
@@ -32,13 +33,13 @@
 
       <!-- Portfolio Section -->
       <div class="gr-4">
-        <div v-show="isPortfolioSection()" class="header__highlight">
+        <div v-show="isPortfolioSection()" class="footer__highlight">
         </div>
-
+        
         <router-link :to="{ name: 'portfolio' }">
-          <div class="header__title">Portfolio</div>
-          <div class="header__content">
-            <div class="header__content-digits">
+          <div class="footer__title">Portfolio</div>
+          <div class="footer__content">
+            <div class="footer__content-digits">
               <portfolio-capital />
             </div>
           </div>
@@ -47,22 +48,22 @@
 
         <!-- Setting Section -->
         <div class="gr-4">
-          <div v-show="isSettingSection()" class="header__highlight">
+          <div v-show="isSettingSection()" class="footer__highlight">
           </div>
 
-          <div class="header__left-border">
+          <div class="footer__left-border">
             <div v-if="isConnected">
               <router-link :to="{ name: 'setting' }">
-                <div class="header__title">My account</div>
-                <div class="header__content +desktop">{{ currentUser.email }}</div>
-                <div class="header__content +mobile">Logged-in</div>
+                <div class="footer__title">My account</div>
+                <div class="footer__content +desktop">{{ currentUser.email }}</div>
+                <div class="footer__content +mobile">Logged-in</div>
               </router-link>
             </div>
             <div v-else>
               <router-link :to="{ name: 'setting' }">
-                <div class="header__title">My account</div>
-                <div class="header__content +desktop">You are not logged-in</div>
-                <div class="header__content +mobile">Sign-up now</div>
+                <div class="footer__title">My account</div>
+                <div class="footer__content +desktop">You are not logged-in</div>
+                <div class="footer__content +mobile">Sign-up now</div>
               </router-link>
             </div>
           </div>
