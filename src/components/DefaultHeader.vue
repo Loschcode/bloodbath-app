@@ -58,7 +58,7 @@
               <router-link :to="{ name: 'setting' }">
                 <div class="header__title">My account</div>
                 <div class="header__content +desktop">You are not logged-in</div>
-                <div class="header__content +mobile">Sign-up now</div>
+                <div class="header__content +mobile">Sign-up for free</div>
               </router-link>
             </div>
           </div>

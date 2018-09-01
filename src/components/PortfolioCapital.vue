@@ -4,7 +4,7 @@
       <animated-number :value="totalCapital" :type="`money`" />
     </div>
     <div v-else>
-      -
+      Make one now !
     </div>
   </div>
 </template>
