@@ -4,9 +4,7 @@
 
       <!-- Coin Section -->
       <div class="gr-4">
-        <div v-show="isCoinsSection()" class="header__highlight">
-        </div>
-
+        <div :class="isCoinSectionClass()">
           <div class="header__right-border">
             <router-link :to="{ name: 'coins' }">
               <div class="header__title">Coins</div>
@@ -27,29 +25,27 @@
               </div>
             </router-link>
           </div>
+        </div>
 
       </div>
 
       <!-- Portfolio Section -->
       <div class="gr-4">
-        <div v-show="isPortfolioSection()" class="header__highlight">
-        </div>
-
-        <router-link :to="{ name: 'portfolio' }">
-          <div class="header__title">Portfolio</div>
-          <div class="header__content">
-            <div class="header__content-digits">
-              <portfolio-capital />
+        <div :class="isPortfolioSectionClass()">
+          <router-link :to="{ name: 'portfolio' }">
+            <div class="header__title">Portfolio</div>
+            <div class="header__content">
+              <div class="header__content-digits">
+                <portfolio-capital />
+              </div>
             </div>
-          </div>
           </router-link>
         </div>
+      </div>
 
-        <!-- Setting Section -->
-        <div class="gr-4">
-          <div v-show="isSettingSection()" class="header__highlight">
-          </div>
-
+      <!-- Setting Section -->
+      <div class="gr-4">
+        <div :class="isSettingSectionClass()">
           <div class="header__left-border">
             <div v-if="isConnected">
               <router-link :to="{ name: 'setting' }">
@@ -66,12 +62,13 @@
               </router-link>
             </div>
           </div>
-
         </div>
 
       </div>
+
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -110,6 +107,24 @@ export default {
   methods: {
     fullyLoaded () {
       return this.currentUser
+    },
+
+    isCoinSectionClass () {
+      if (this.isCoinsSection()) {
+        return 'header__highlight'
+      }
+    },
+
+    isPortfolioSectionClass () {
+      if (this.isPortfolioSection()) {
+        return 'header__highlight'
+      }
+    },
+
+    isSettingSectionClass () {
+      if (this.isSettingSection()) {
+        return 'header__highlight'
+      }
     },
 
     isCoinsSection () {

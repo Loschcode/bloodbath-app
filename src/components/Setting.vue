@@ -19,6 +19,40 @@
         <div class="row">
           <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
 
+            <div v-if="isConnected()">
+
+              <div class="module">
+                <div class="module__title">
+                  <h2>My account</h2>
+                </div>
+                <div class="module__content">
+                  <div class="section">
+                    <div class="row">
+                      <div class="section__content">
+                        <div class="gr-5 gr-12@mobile gr-12@tablet">
+                          <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module__footer">
+                </div>
+              </div>
+
+            </div>
+            <div v-else>
+
+              <connect />
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
+
             <div class="module">
               <div class="module__title">
                 <h2>My preferences</h2>
@@ -79,41 +113,7 @@
 
           </div>
         </div>
-
-        <div class="row">
-          <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
-
-            <div v-if="isConnected()">
-
-              <div class="module">
-                <div class="module__title">
-                  <h2>My account</h2>
-                </div>
-                <div class="module__content">
-                  <div class="section">
-                    <div class="row">
-                      <div class="section__content">
-                        <div class="gr-5 gr-12@mobile gr-12@tablet">
-                          <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="module__footer">
-                </div>
-              </div>
-
-            </div>
-            <div v-else>
-
-              <connect />
-
-            </div>
-
-          </div>
-        </div>
-
+        
       </div>
 
       <!-- Footer is here -->

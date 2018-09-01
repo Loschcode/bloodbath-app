@@ -1,6 +1,6 @@
 <template>
   <div class="default-footer">
-    <div class="row row-full">
+    <div class="row">
       <!-- For all suggestions -->
       <div class="gr-12">
         <!-- Suggestion -->
