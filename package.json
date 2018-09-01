@@ -1,7 +1,7 @@
 {
   "name": "bloodbath-app",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Bloodbath",
   "author": "Laurent Schaffner <laurent.schaffner.code@gmail.com>",
   "private": true,
   "scripts": {
