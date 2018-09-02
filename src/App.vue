@@ -23,7 +23,8 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'description', content: 'Cryptocurrencies market weather and portfolio management' }
+      { name: 'description', content: 'Cryptocurrencies market weather and portfolio management' },
+      { name: 'google-site-verification', content: 'jwlzD4a4HK4i4TTWtFEI3hR96-bRhb802uqIqOZ0tgo' }
     ],
     link: [
       { rel: 'icon', href: '/static/images/icons/favicon.png', type: 'image/png' }
