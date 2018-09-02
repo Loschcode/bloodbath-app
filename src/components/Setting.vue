@@ -17,7 +17,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
+          <div class="gr-12 gr-12@mobile gr-12@tablet gr-centered">
 
             <div v-if="isConnected()">
 
@@ -51,7 +51,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-10 gr-12@mobile gr-12@tablet gr-centered">
+          <div class="gr-12 gr-12@mobile gr-12@tablet gr-centered">
 
             <div class="module">
               <div class="module__title">
@@ -113,7 +113,7 @@
 
           </div>
         </div>
-        
+
       </div>
 
       <!-- Footer is here -->

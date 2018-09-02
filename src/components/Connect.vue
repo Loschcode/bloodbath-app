@@ -18,9 +18,9 @@
         </div>
       </div>
 
-      <div class="module__after-footer">
+      <div class="outside-link">
         <a @click="switchAuthenticate">
-          Already have an account ? Log in
+          <span class="icon-log-in"></span> Already have an account ? Log in
         </a>
       </div>
 
@@ -48,12 +48,11 @@
         </div>
       </div>
 
-      <div class="module__after-footer">
+      <div class="outside-link">
         <a @click="switchRegister">
-          Don't have an account ? Sign Up
+          <span class="icon-log-in"></span> No account ? Sign up now !
         </a>
       </div>
-
     </div>
   </div>
 </template>
