@@ -1,3 +1,20 @@
 .footer {
-  
+}
+
+.footer__actions {
+  text-align: right;
+  text-transform: uppercase;
+  margin-right: 1.2em;
+  font-size: 16px;
+  opacity: 1;
+  margin-top: 0.3em;
+}
+
+.footer__actions--selected {
+  color: $main-highlight-color;
+  opacity: 1;
+}
+
+.footer__actions--unselected {
+  opacity: 0.3;
 }
