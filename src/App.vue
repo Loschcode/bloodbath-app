@@ -18,6 +18,13 @@ export default {
 
   metaInfo: {
     title: 'Bloodbath - Crypto Weather & Portfolio',
+    htmlAttrs: {
+      lang: 'en'
+    },
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'description', content: 'Cryptocurrencies market weather and portfolio management' }
+    ],
     link: [
       { rel: 'icon', href: '/static/images/icons/favicon.png', type: 'image/png' }
     ]

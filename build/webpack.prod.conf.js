@@ -46,12 +46,12 @@ const webpackConfig = merge(baseWebpackConfig, {
       parallel: true
     }),
 
-    // new PrerenderSpaPlugin(
-    //   // Absolute path to compiled SPA
-    //   path.join(__dirname, '../dist'),
-    //   // List of routes to prerender
-    //   ['/coins']
-    // ),
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '../dist'),
+      // List of routes to prerender
+      ['/', '/coins', '/coins/weather', '/settings']
+    ),
 
     // extract css into its own file
     new ExtractTextPlugin({

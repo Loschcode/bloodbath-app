@@ -41,7 +41,7 @@
               <input type="password" v-model="authenticateData.password" placeholder="password" v-on:keydown.enter="tryAuthenticate">
             </div>
             <div class="row">
-              <input type="submit" class="button" value="Access my account" @click="tryAuthenticate">
+              <input type="submit" class="button" value="Log-in" @click="tryAuthenticate">
             </div>
 
           </div>
