@@ -4,7 +4,7 @@
 
       <!-- Coin Section -->
       <div class="gr-4">
-        <div :class="isCoinSectionClass()">
+        <div :class="isCoinsSectionClass()">
           <div class="header__right-border">
             <router-link :to="{ name: 'coins' }">
               <div class="header__title">Coins</div>
@@ -67,12 +67,28 @@
       </div>
 
     </div>
+
+    <div class="row">
+
+      <div v-if="isCoinsSection()">
+        <coins-header />
+      </div>
+      <div v-else-if="isPortfolioSection()">
+        <portfolio-header />
+      </div>
+      <div v-else-if="isSettingSection()">
+      </div>
+
+    </div>
+
   </div>
 </div>
 </template>
 
 <script>
+import CoinsHeader from '@/components/CoinsHeader'
 import PortfolioCapital from '@/components/PortfolioCapital'
+import PortfolioHeader from '@/components/PortfolioHeader'
 import AnimatedNumber from '@/components/AnimatedNumber'
 
 export default {
@@ -109,7 +125,7 @@ export default {
       return this.currentUser
     },
 
-    isCoinSectionClass () {
+    isCoinsSectionClass () {
       if (this.isCoinsSection()) {
         return 'header__highlight'
       }
@@ -173,7 +189,9 @@ export default {
   },
 
   components: {
+    CoinsHeader,
     PortfolioCapital,
+    PortfolioHeader,
     AnimatedNumber
   }
 }

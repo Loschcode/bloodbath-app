@@ -19,11 +19,6 @@
         </div>
       </default-header>
 
-      <!-- Market Weather -->
-      <div v-if="userSetting.weather && topCoins.length">
-        <market-weather />
-      </div>
-
       <!-- Search -->
       <div class="row">
         <div class="gr-12">
