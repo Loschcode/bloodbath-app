@@ -1,0 +1,13 @@
+.outside-text {
+  margin-left: 0.4em;
+  text-align: right;
+
+  span {
+    color: $main-highlight-color;
+    font-size: 18px;
+  }
+
+  color: $main-black;
+  opacity: 0.5;
+  text-decoration: none;
+}

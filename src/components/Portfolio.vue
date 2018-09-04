@@ -8,6 +8,17 @@
 
     <!-- My coins -->
     <div v-if="portfolioCoins.length">
+
+      <div class="section">
+        <div class="row">
+          <div class="gr-12">
+            <div class="outside-text">
+              Your investment was worth <span><animated-number :value="totalAllTimeHigh" :type="`money`" /></span> at its highest point
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="section">
         <div class="row">
           <div class="gr-12">
@@ -67,6 +78,7 @@ export default {
 
   computed: {
     ...mapGetters({
+      totalAllTimeHigh: 'getTotalAllTimeHigh',
       portfolioCoins: 'getPortfolioCoins',
       userSetting: 'getUserSetting'
     })

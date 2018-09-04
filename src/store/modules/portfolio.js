@@ -7,6 +7,19 @@ const state = {
 
 // getters
 const getters = {
+  getTotalAllTimeHigh (state, getters) {
+    var allTimeHigh = 0.0
+    let portfolioCoins = getters.getPortfolioCoins
+
+    portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
+      if (!_.isNil(marketCoin)) {
+        allTimeHigh += (marketCoin.all_time_high * portfolioCoin.quantity)
+      }
+    })
+
+    return allTimeHigh
+  },
 
   getTotalCapital (state, getters) {
     var total = 0.0
