@@ -6,7 +6,7 @@
       </div>
     </default-header>
 
-    <!-- My coins -->
+    <!-- My portfolio -->
     <div v-if="portfolioCoins.length">
 
       <div class="section">
@@ -22,7 +22,7 @@
         <div class="row">
           <div class="gr-12">
             <div class="section__title">
-              My coins
+              My portfolio
             </div>
           </div>
         </div>
