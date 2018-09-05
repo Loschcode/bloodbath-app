@@ -13,11 +13,14 @@
       <!-- Loading -->
       <div v-if="!fullyLoaded()">
         <div class="loader__full-page">
-          <loader-cube>
+          <loader-wave>
+            <span slot="quote">
+              Bloodbath : n.m. In financial terms: refers to an investment resulting in massive and unexpected loss.
+            </span>
             <span slot="text">
               Recovering account details
             </span>
-          </loader-cube>
+          </loader-wave>
         </div>
 
       </div>
@@ -26,7 +29,7 @@
 
         <!-- Load the correct page -->
         <router-view />
-        
+
       </div>
 
     </div>
@@ -37,7 +40,7 @@
 
 <script>
 import DefaultFooter from '@/components/DefaultFooter'
-import LoaderCube from '@/components/LoaderCube'
+import LoaderWave from '@/components/LoaderWave'
 import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
 import Cable from '@/misc/Cable'
@@ -108,7 +111,7 @@ export default {
 
   components: {
     DefaultFooter,
-    LoaderCube
+    LoaderWave
   },
 
   computed: {

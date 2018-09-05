@@ -3,11 +3,14 @@
     <div v-if="!fullyLoaded()">
 
       <div class="loader__full-page">
-        <loader-cube>
+        <loader-wave>
+          <span slot="quote">
+            Coin : n.m. A small, round piece of metal, usually silver or copper coloured, that is used as money.
+          </span>
           <span slot="text">
             Recovering coins history
           </span>
-        </loader-cube>
+        </loader-wave>
       </div>
 
     </div>
@@ -78,7 +81,7 @@ import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
 import MarketWeather from '@/components/MarketWeather'
 import SearchCoins from '@/components/SearchCoins'
-import LoaderCube from '@/components/LoaderCube'
+import LoaderWave from '@/components/LoaderWave'
 
 import EventBus from '@/misc/EventBus'
 
@@ -118,7 +121,7 @@ export default {
     CoinPreview,
     MarketWeather,
     SearchCoins,
-    LoaderCube,
+    LoaderWave,
     EventBus
   }
 }

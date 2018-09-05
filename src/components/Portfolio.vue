@@ -13,7 +13,6 @@
         <div class="row">
           <div class="gr-12">
             <div class="outside-text">
-              Your investment was worth <span><animated-number :value="totalAllTimeHigh" :type="`money`" /></span> at its highest point
             </div>
           </div>
         </div>

@@ -1,6 +1,13 @@
 <template>
   <div class="loader-wave">
     <div class="loader">
+
+      <div class="loader__quote">
+        <span class="loader__quote-outside">“</span>
+        <slot name="quote"></slot>
+        <span class="loader__quote-outside">”</span>
+      </div>
+
       <span class="loader__text">
         <slot name="text"></slot>
       </span>

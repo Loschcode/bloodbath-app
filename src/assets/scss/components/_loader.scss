@@ -2,18 +2,27 @@
   font-size: 30px;
   text-align: center;
   color: $loader-text-color;
-  opacity: 0.53;
+  opacity: 0.90;
 }
 
 .loader__full-page {
-  margin-top: 28vh;
+  margin-top: 26vh;
+
+  .sk-wave {
+
+  }
+  .sk-wave .sk-rect {
+    background-color: $loader-text-color !important;
+    opacity: 1.0 !important;
+  }
 }
 
 .loader__quote {
   font-size: 20px;
   text-align: center;
   color: $main-black;
-  padding-bottom: 2em;
+  padding: 2em;
+  opacity: 0.50;
   font-style: italic;
 }
 
@@ -22,7 +31,7 @@
 }
 
 .loader__text {
-  animation: fade 1s infinite;
+  // animation: fade 1s infinite;
 }
 
 .sk-cube {
