@@ -1,6 +1,6 @@
 <template>
   <div class="market-weather">
-    <div v-if="marketWeather">
+    <div v-if="watchlistWeather">
       <div class="row">
         <div class="gr-12 gr-12@mobile gr-12@tablet +pointer" @click="goCoinsFullWeather">
 
@@ -15,15 +15,15 @@
                     </div>
 
                     <div class="market-weather__title">
-                      <span><coin-weather :variationProp="marketWeather" /></span>
+                      <span><coin-weather :variationProp="watchlistWeather" /></span>
                     </div>
 
                     <div class="market-weather__info">
-                      <span>based on the biggest market captializations</span>
+                      <span>based on your watchlist</span>
                     </div>
 
                     <div class="market-weather__title">
-                      <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="marketWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                      <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                     </div>
                   </div>
 
@@ -53,17 +53,14 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchMarketWeather')
-    this.$store.dispatch('subscribeMarketWeatherChannel')
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketWeatherChannel')
   },
 
   computed: {
-    marketWeather () {
-      return this.$store.getters.getMarketWeather
+    watchlistWeather () {
+      return this.$store.getters.getWatchlistWeather
     }
   },
 
@@ -73,7 +70,7 @@ export default {
     },
 
     currentStyle () {
-      return Weather.style(this.marketWeather)
+      return Weather.style(this.watchlistWeather)
     }
   },
 

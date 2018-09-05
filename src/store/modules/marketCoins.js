@@ -45,7 +45,27 @@ const getters = {
   getTopCoins: (state) => state.topCoins,
 
   getResultCoins: (state) => state.resultCoins,
-  getResultLoading: (state) => state.resultLoading
+  getResultLoading: (state) => state.resultLoading,
+
+  getWatchlistWeather (state, getters) {
+    var total = 0.0
+    var quantity = 0
+    let favoriteCoins = getters.getFavoriteCoins
+
+    favoriteCoins.forEach(function (favoriteCoin, index, object) {
+      let marketCoin = getters.getMarketCoin(favoriteCoin.market_coin.id)
+      if (!_.isNil(marketCoin)) {
+        total += marketCoin.price_variation
+        quantity++
+      }
+    })
+
+    if (total === 0.0) {
+      return 0
+    }
+
+    return total / quantity
+  }
 }
 
 // actions
@@ -86,7 +106,6 @@ const actions = {
       })
     }
   }
-
 }
 
 // mutations

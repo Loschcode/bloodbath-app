@@ -44,10 +44,10 @@
       <!-- Search -->
       <div class="row">
         <div class="gr-12">
-          <search-coins contextProp="coins" />
+          <search-coins contextProp="watchlist" />
         </div>
       </div>
-      
+
       <!-- Footer is here -->
       <default-footer />
 
@@ -60,7 +60,6 @@
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
-import MarketWeather from '@/components/MarketWeather'
 import SearchCoins from '@/components/SearchCoins'
 import LoaderWave from '@/components/LoaderWave'
 
@@ -98,7 +97,6 @@ export default {
     DefaultFooter,
     DefaultHeader,
     CoinPreview,
-    MarketWeather,
     SearchCoins,
     LoaderWave,
     EventBus

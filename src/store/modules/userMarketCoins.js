@@ -19,7 +19,6 @@ const actions = {
     let response = await axios.patch(`user_market_coins/${params.id}`, { user_market_coin: params.changeset })
     context.commit('setUserMarketCoin', response.data)
     context.dispatch('fetchFavoriteCoins')
-    context.dispatch('fetchTopCoins')
   }
 }
 

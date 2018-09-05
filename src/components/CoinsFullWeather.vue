@@ -19,7 +19,7 @@
 
 
                 <div class="full-weather__info">
-                  <span>based on the biggest market captializations</span>
+                  <span>based on the weather</span>
                 </div>
 
                 <div class="full-weather__percent">
@@ -61,17 +61,15 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchMarketWeather')
-    this.$store.dispatch('subscribeMarketWeatherChannel')
+    this.$store.dispatch('fetchFavoriteCoins')
   },
 
   destroyed () {
-    this.$store.dispatch('unsubscribeMarketWeatherChannel')
   },
 
   computed: {
     marketWeather () {
-      return this.$store.getters.getMarketWeather
+      return this.$store.getters.getWatchlistWeather
     },
 
     currentStyle () {
