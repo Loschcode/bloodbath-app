@@ -42,7 +42,7 @@
         <div v-if="resultCoins.length">
           <div class="row">
             <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="resultCoin in resultCoins">
-              <coin-preview :contextProp='`watchlist`' :marketCoinProp="resultCoin.market_coin" />
+              <coin-preview :contextProp='context' :marketCoinProp="resultCoin.market_coin" />
             </div>
           </div>
         </div>

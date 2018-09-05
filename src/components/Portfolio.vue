@@ -40,7 +40,7 @@
       <div class="gr-12">
         <search-coins contextProp="portfolio" :focusProp="false">
           <div slot="title">
-            Add coins
+            Add to portfolio
           </div>
         </search-coins>
       </div>
