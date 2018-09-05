@@ -1,11 +1,14 @@
 <template>
   <div class="index">
     <div class="loader__full-page">
-      <loader-cube>
+      <loader-wave>
+        <span slot="quote">
+          Coin : n.m. A small, round piece of metal, usually silver or copper coloured, that is used as money.
+        </span>
         <span slot="text">
           Collecting basic information
         </span>
-      </loader-cube>
+      </loader-wave>
     </div>
   </div>
 </template>
