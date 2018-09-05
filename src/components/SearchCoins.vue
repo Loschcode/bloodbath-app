@@ -5,7 +5,7 @@
   <div class="row">
     <div class="section__title">
       <slot name="title">
-        Search coins
+        Add to watchlist
       </slot>
     </div>
   </div>

@@ -7,7 +7,7 @@
         <div :class="isCoinsSectionClass()">
           <div class="header__right-border">
             <router-link :to="{ name: 'coins' }">
-              <div class="header__title">Coins</div>
+              <div class="header__title">Watchlist</div>
               <div class="header__content">
                 <div class="header__content-digits">
                   <div v-if="primaryMarketCoin">

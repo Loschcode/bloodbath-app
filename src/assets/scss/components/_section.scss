@@ -1,9 +1,10 @@
 .section {
-  margin: 1em
+  margin: 1em;
 }
 
 .section__title {
   padding-left: 0.3em;
+  padding-bottom: 0.5em;
   color: $section-title-color;
   opacity: 0.53;
   text-transform: uppercase;

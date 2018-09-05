@@ -21,7 +21,7 @@
                   </div>
                   <div v-else-if="isFavoriteCoin()">
                     <div class="module__title-favorite">
-                      <span class="icon-favorite-on"></span>
+                      <span class="icon-watch-on"></span>
                     </div>
                   </div>
                   <div v-else>
