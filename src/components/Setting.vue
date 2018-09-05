@@ -30,14 +30,18 @@
                     <div class="row">
                       <div class="section__content">
                         <div class="gr-5 gr-12@mobile gr-12@tablet">
-                          <input type="submit" class="button button__danger" value="Log out from my account" @click="tryLogOut">
+                          Email : {{currentUser.email}}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="module__footer">
-                </div>
+              </div>
+
+              <div class="outside-link outside-link__red">
+                <a @click="tryLogOut()">
+                  <span class="icon-log-out"></span> Log-out from my account
+                </a>
               </div>
 
             </div>
@@ -104,10 +108,6 @@
                   </search-coins>
                 </div>
 
-              </div>
-
-
-              <div class="module__footer">
               </div>
             </div>
 

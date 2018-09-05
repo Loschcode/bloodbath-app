@@ -16,7 +16,7 @@
 <script>
 import router from '@/router'
 import { mapGetters } from 'vuex'
-import LoaderCube from '@/components/LoaderCube'
+import LoaderWave from '@/components/LoaderWave'
 
 export default {
   data () {
@@ -57,7 +57,7 @@ export default {
   },
 
   components: {
-    LoaderCube
+    LoaderWave
   }
 }
 </script>
