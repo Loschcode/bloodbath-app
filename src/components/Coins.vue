@@ -22,14 +22,7 @@
         </div>
       </default-header>
 
-      <!-- Search -->
-      <div class="row">
-        <div class="gr-12">
-          <search-coins contextProp="coins" />
-        </div>
-      </div>
-
-      <!-- Favorites Coins -->
+      <!-- Watchlist Coins -->
       <div v-if="favoriteCoins.length">
         <div class="section">
           <div class="row">
@@ -48,25 +41,13 @@
         </div>
       </div>
 
-      <!-- Top Coins -->
-      <div v-if="topCoins.length">
-        <div class="section">
-          <div class="row">
-            <div class="gr-12">
-              <div class="section__title">
-                Top coins
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="topCoin in topCoins">
-              <coin-preview contextProp="coins" :marketCoinProp="topCoin.market_coin" />
-            </div>
-          </div>
+      <!-- Search -->
+      <div class="row">
+        <div class="gr-12">
+          <search-coins contextProp="coins" />
         </div>
       </div>
-
+      
       <!-- Footer is here -->
       <default-footer />
 
@@ -95,13 +76,11 @@ export default {
 
   created () {
     this.$store.dispatch('fetchFavoriteCoins')
-    this.$store.dispatch('fetchTopCoins')
   },
 
   computed: {
     ...mapGetters({
       favoriteCoins: 'getFavoriteCoins',
-      topCoins: 'getTopCoins',
       userSetting: 'getUserSetting'
     })
   },
@@ -111,7 +90,7 @@ export default {
 
   methods: {
     fullyLoaded () {
-      return (this.userSetting.id && this.topCoins.length > 0)
+      return this.userSetting.id !== null
     }
   },
 

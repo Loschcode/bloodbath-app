@@ -193,9 +193,16 @@ export default {
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
         this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the footer ...`)
+      } else if (this.context === 'watchlist') {
+        this.addToWatchlist()
+        this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
       } else if (this.context === 'coins') {
         this.flipCoin()
       }
+    },
+
+    addToWatchlist () {
+      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: true } })
     },
 
     updatePrimaryCoin () {
