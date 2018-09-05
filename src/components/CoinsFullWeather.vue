@@ -19,7 +19,7 @@
 
 
                 <div class="full-weather__info">
-                  <span>based on the weather</span>
+                  <span>based on your watchlist</span>
                 </div>
 
                 <div class="full-weather__percent">

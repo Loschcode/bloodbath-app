@@ -192,7 +192,7 @@ export default {
         this.$noty.info(`${this.marketCoin.code} is now part of your portfolio !`)
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
-        this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the footer ...`)
+        this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the header ...`)
       } else if (this.context === 'watchlist') {
         this.addToWatchlist()
         this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
