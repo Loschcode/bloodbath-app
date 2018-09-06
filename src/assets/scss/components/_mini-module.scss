@@ -1,7 +1,7 @@
 .mini-module {
   background-color: $module-background-color;
   border: 2px solid $module-border-color;
-  @include border-radius(7px);
+  @include border-radius(2px);
   a {
     text-decoration: none;
   }
