@@ -5,6 +5,7 @@
     <div v-if="error">
       <div class="error">
         {{ error }}
+        <div class="error__icon icon-bloody"></div>
       </div>
     </div>
 

@@ -47,8 +47,12 @@ const actions = {
   },
 
   async createAnonymousUser (context) {
-    let response = await axios.post(`connect/anonymous`)
-    context.commit('setUserToken', response.data.token)
+    try {
+      let response = await axios.post(`connect/anonymous`)
+      context.commit('setUserToken', response.data.token)
+    } catch (error) {
+      EventBus.$emit('errorEvent', error.response.data.error)
+    }
   },
 
   async fetchCurrentUser (context, params) {

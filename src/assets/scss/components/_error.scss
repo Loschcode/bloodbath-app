@@ -1,7 +1,12 @@
 .error {
-  font-size: 7vh;
+  font-size: 5vh;
   text-align: center;
   margin-top: 5em;
-  color: $error-text-color;
-  opacity: 0.53;
+  color: $main-red-color;
+  opacity: 0.8;
+}
+
+.error__icon {
+  margin-top: 0.3em;
+  font-size: 20vh;
 }
