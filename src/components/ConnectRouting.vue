@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import DefaultFooter from '@/components/DefaultFooter'
 import LoaderWave from '@/components/LoaderWave'
 import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
@@ -111,7 +110,6 @@ export default {
   ],
 
   components: {
-    DefaultFooter,
     LoaderWave
   },
 

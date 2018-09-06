@@ -1,0 +1,23 @@
+.connect-module {
+  margin-top: 20vh;
+}
+
+.connect-module__links {
+  margin-top: 1em;
+  text-align: left;
+
+  span {
+    color: $main-highlight-color;
+    vertical-align: sub;
+    font-size: 18px;
+  }
+  a {
+    color: $main-black;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $main-highlight-color;
+    opacity: 1;
+  }
+}

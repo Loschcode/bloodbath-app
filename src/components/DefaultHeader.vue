@@ -49,14 +49,14 @@
           <div class="header__left-border">
             <div v-if="isConnected">
               <router-link :to="{ name: 'setting' }">
-                <div class="header__title">My account</div>
+                <div class="header__title">Settings</div>
                 <div class="header__content +desktop">{{ currentUser.email }}</div>
                 <div class="header__content +mobile">Logged-in</div>
               </router-link>
             </div>
             <div v-else>
               <router-link :to="{ name: 'setting' }">
-                <div class="header__title">My account</div>
+                <div class="header__title">Settings</div>
                 <div class="header__content +desktop">You are not logged-in</div>
                 <div class="header__content +mobile">Sign-up for free</div>
               </router-link>
@@ -185,6 +185,10 @@ export default {
       if (this.userSetting) {
         return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
       }
+    },
+
+    currentBaseCurrency () {
+      return this.$store.getters.getBaseCurrency(this.userSetting.base_currency_id)
     }
   },
 

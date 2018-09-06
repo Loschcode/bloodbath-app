@@ -1,10 +1,6 @@
 <template>
   <div class="coins">
-    <default-header>
-      <div slot="left">
-        <span class="icon-right"></span> <span>Portfolio</span>
-      </div>
-    </default-header>
+    <default-header />
 
     <!-- My portfolio -->
     <div v-if="portfolioCoins.length">

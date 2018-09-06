@@ -16,11 +16,7 @@
     </div>
     <div v-else>
 
-      <default-header>
-        <div slot="left">
-          <span class="icon-right"></span>  <span>Coins</span>
-        </div>
-      </default-header>
+      <default-header />
 
       <!-- Watchlist Coins -->
       <div v-if="favoriteCoins.length">

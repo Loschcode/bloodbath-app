@@ -1,58 +1,29 @@
 <template>
   <div class="coins">
     <default-header>
-      <div slot="left">
-        <span class="icon-right"></span>  <span>Settings</span>
-      </div>
     </default-header>
 
     <!--Preferences  -->
     <div v-if="currentUser && userSetting">
-      <div class="section">
-        <div class="row">
-          <div class="gr-12">
-            <div class="section__title">
-            </div>
-          </div>
-        </div>
 
+      <div v-if="!isConnected()" class="section">
         <div class="row">
           <div class="gr-12 gr-12@mobile gr-12@tablet gr-centered">
-
-            <div v-if="isConnected()">
-
-              <div class="module">
-                <div class="module__title">
-                  <h2>My account</h2>
-                </div>
-                <div class="module__content">
-                  <div class="section">
-                    <div class="row">
-                      <div class="section__content">
-                        <div class="gr-5 gr-12@mobile gr-12@tablet">
-                          Email : {{currentUser.email}}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="module-alert +pointer" @click="goConnect()">
+              <div class="module-alert__title">
+                Welcome to Bloodbath !
               </div>
-
-              <div class="outside-link outside-link__red">
-                <a @click="tryLogOut()">
-                  <span class="icon-log-out"></span> Log-out from my account
-                </a>
+              <div class="module-alert__content">
+                This small project was made to get simple data about the cyrpto market variation. Flashy colors show you the degree of variation of your portfolio or watchlist 🤘 is it all bloody ? See red and go away. Going to the moon ? See purple and check your cash grow in live and full details 👍
+                <br /><br />
+                Feel free to sign up if you like it 😄
               </div>
-
             </div>
-            <div v-else>
-
-              <connect />
-
-            </div>
-
           </div>
         </div>
+      </div>
+
+      <div class="section">
 
         <div class="row">
           <div class="gr-12 gr-12@mobile gr-12@tablet gr-centered">
@@ -125,6 +96,8 @@
 </template>
 
 <script>
+import router from '@/router'
+
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import CoinPreview from '@/components/CoinPreview'
@@ -167,6 +140,10 @@ export default {
   },
 
   methods: {
+    goConnect () {
+      router.push({ name: 'connect', params: { } })
+    },
+
     isConnected () {
       return this.currentUser.role !== 'anonymous'
     },
@@ -179,10 +156,6 @@ export default {
 
     isCurrentCurrency (baseCurrency) {
       return baseCurrency.id === this.currentBaseCurrency.id
-    },
-    tryLogOut () {
-      this.$store.commit('unsetCurrentUser')
-      window.location.href = '/'
     }
   },
 

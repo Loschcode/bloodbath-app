@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Coins from '@/components/Coins'
 import CoinsFullWeather from '@/components/CoinsFullWeather'
+import Connect from '@/components/Connect'
 import Portfolio from '@/components/Portfolio'
 import PortfolioFullWeather from '@/components/PortfolioFullWeather'
 import Setting from '@/components/Setting'
@@ -45,6 +46,12 @@ Vue.router = new Router({
       path: '/setting',
       name: 'setting',
       component: Setting
+    },
+
+    {
+      path: '/connect',
+      name: 'connect',
+      component: Connect
     }
 
   ]
