@@ -21,7 +21,7 @@
         <!-- Suggestion -->
         <div class="inner-footer inner-footer__right">
           <a href="mailto:laurent.schaffner.code@gmail.com">
-            <span class="icon-contact"></span> Any suggestion or bug report ? Please let me know
+            <span class="icon-contact"></span> Any suggestion or bug report ?
           </a>
         </div>
       </div>

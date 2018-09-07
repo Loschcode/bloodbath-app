@@ -14,7 +14,7 @@
                 Welcome to Bloodbath !
               </div>
               <div class="module-alert__content">
-                This small project was made to get simple data about the cyrpto market variation. Flashy colors show you the degree of variation of your portfolio or watchlist 🤘 is it all bloody ? See red and go away. Going to the moon ? See purple and check your cash grow in live and full details 👍
+                This small project was made to get simple data about the cyrpto market trends. Flashy colors show you the degree of variation of your portfolio or watchlist 🤘 is it all bloody ? See red and go away. Numbers going to the moon ? See purple and check your cash grow in live and full details 👍
                 <br /><br />
                 Feel free to sign up if you like it 😄
               </div>

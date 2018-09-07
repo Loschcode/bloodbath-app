@@ -33,7 +33,7 @@
             <div class="row">
               <div class="gr-3 gr-centered gr-12@mobile gr-12@tablet">
                 <div class="full-weather__buttons">
-                  <a @click="goCoins" class="+pointer">Check market details</a>
+                  <a @click="goCoins" class="+pointer">Check watchlist details</a>
                 </div>
               </div>
 
