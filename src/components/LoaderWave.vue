@@ -2,7 +2,7 @@
   <div class="loader-wave">
     <div class="loader">
 
-      <div class="loader__quote">
+      <div class="loader__quote" v-if="hasQuote">
         <span class="loader__quote-outside">“</span>
         <slot name="quote"></slot>
         <span class="loader__quote-outside">”</span>
@@ -29,6 +29,12 @@
 export default {
   data () {
     return {
+    }
+  },
+
+  computed: {
+    hasQuote () {
+      return !!this.$slots['quote']
     }
   },
 
