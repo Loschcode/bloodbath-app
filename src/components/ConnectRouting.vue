@@ -65,7 +65,7 @@ export default {
         console.log(error)
         localStorage.clear()
       }
-      window.location.href = '/'
+      window.location.reload()
     })
 
     /**
