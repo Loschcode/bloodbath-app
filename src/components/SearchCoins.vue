@@ -42,7 +42,7 @@
         <div v-if="resultCoins.length">
           <div class="row">
             <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="resultCoin in resultCoins">
-              <coin-preview :contextProp='context' :marketCoinProp="resultCoin.market_coin" />
+              <coin-preview :contextProp='context' :searchedProp='true' :marketCoinProp="resultCoin.market_coin" />
             </div>
           </div>
         </div>
@@ -87,7 +87,6 @@ export default {
   },
 
   mounted () {
-    console.log(this.focusProp)
     /**
      * We auto-focus the search area
      */
@@ -114,7 +113,7 @@ export default {
     firstResultCoins (event) {
       if (_.size(this.resultCoins) > 0) {
         let firstCoin = this.resultCoins[0]
-        EventBus.$emit('CoinPreviewClick', {context: this.context, marketCoin: firstCoin.market_coin})
+        EventBus.$emit('CoinPreviewClick', {context: this.context, searched: true, marketCoin: firstCoin.market_coin})
       }
     },
 

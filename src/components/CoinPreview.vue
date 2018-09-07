@@ -76,7 +76,14 @@
                   <div class="module__footer-action">
                     <div class="row">
                       <div class="gr-12">
-                        <coin-action-favorite :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoinProp" />
+                        <div v-if="searched">
+                          <a class="+pointer" @click="clickAction">
+                            <span class="icon-add"></span>
+                          </a>
+                        </div>
+                        <div v-else>
+                          <coin-action-favorite :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoinProp" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -102,6 +109,7 @@ import EventBus from '@/misc/EventBus'
 export default {
   props: [
     'contextProp',
+    'searchedProp',
     'marketCoinProp'
   ],
 
@@ -116,6 +124,7 @@ export default {
 
   created () {
     this.context = this.contextProp
+    this.searched = this.searchedProp
 
     this.$store.commit('setMarketCoin', this.marketCoinProp)
     this.$store.dispatch('subscribeMarketCoinChannel', this.marketCoinProp)
@@ -123,9 +132,7 @@ export default {
 
   mounted () {
     EventBus.$on('CoinPreviewClick', event => {
-      let matchingCoin = event.marketCoin.id === this.marketCoinProp.id
-      let matchingContext = event.context === this.context
-      if (matchingCoin && matchingContext) {
+      if (this.isMatchingCoin(event)) {
         this.clickAction()
       }
     })
@@ -163,6 +170,17 @@ export default {
   },
 
   methods: {
+
+    // we focus on the correct coin in-between all of the displayed one
+    // it has to get the exact same arguments, then it's considered a match.
+    isMatchingCoin (event) {
+      let matchingCoin = event.marketCoin.id === this.marketCoinProp.id
+      let matchingContext = event.context === this.context
+      let matchingSearched = event.searched === this.searched
+
+      return (matchingCoin && matchingContext && matchingSearched)
+    },
+
     isFavoriteCoin () {
       return this.userMarketCoin.favorited_at
     },
@@ -190,11 +208,11 @@ export default {
       if (this.context === 'portfolio') {
         this.createPortfolioCoin()
         this.$noty.info(`${this.marketCoin.code} is now part of your portfolio !`)
-      } else if (this.context === 'primary') {
-        this.updatePrimaryCoin()
         this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the header ...`)
       } else if (this.context === 'watchlist') {
         this.addToWatchlist()
+      } else if (this.context === 'primary') {
+        this.updatePrimaryCoin()
         this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
       } else if (this.context === 'coins') {
         this.flipCoin()

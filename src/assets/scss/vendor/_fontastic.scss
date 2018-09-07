@@ -59,9 +59,6 @@
 .icon-default:before {
   content: "\63";
 }
-.icon-right:before {
-  content: "\64";
-}
 .icon-pencil:before {
   content: "\69";
 }
@@ -73,12 +70,6 @@
 }
 .icon-check:before {
   content: "\6b";
-}
-.icon-favorite-off:before {
-  content: "\65";
-}
-.icon-favorite-on:before {
-  content: "\66";
 }
 .icon-sunny:before {
   content: "\6e";
@@ -133,4 +124,7 @@
 }
 .icon-log-in:before {
   content: "\43";
+}
+.icon-add:before {
+  content: "\64";
 }
