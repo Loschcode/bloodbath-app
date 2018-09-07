@@ -20,14 +20,14 @@
                     <input ref="input" class="input__important" type="text" v-model="registerData.email" placeholder="my-email@gmail.com" v-on:keydown.enter="tryRegister" autofocus>
                     <input type="password" class="input__important" v-model="registerData.password" placeholder="password" v-on:keydown.enter="tryRegister">
                   </div>
-                  <input type="submit" class="button button__important" value="Create a new account" @click="tryRegister">
+                  <input type="submit" class="button button__important" value="Sign up" @click="tryRegister">
                 </div>
               </div>
             </div>
 
             <div class="connect-module__links">
               <a @click="switchAuthenticate">
-                <span class="icon-log-in"></span> Already have an account ? Log in
+                <span class="icon-log-in"></span> Already have an account ? Sign in
               </a>
             </div>
 
@@ -48,7 +48,7 @@
                     <input type="password" v-model="authenticateData.password" placeholder="password" v-on:keydown.enter="tryAuthenticate">
                   </div>
                   <div class="row">
-                    <input type="submit" class="button" value="Log-in" @click="tryAuthenticate">
+                    <input type="submit" class="button" value="Sign in" @click="tryAuthenticate">
                   </div>
 
                 </div>
