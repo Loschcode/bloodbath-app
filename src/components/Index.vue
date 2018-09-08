@@ -32,13 +32,13 @@ export default {
     portfolioCoins (newValue, oldValue) {
       if (newValue.length === 0) {
         if (this.userSetting.weather) {
-          router.push({ name: 'coins-full-weather', params: { } })
+          router.push({ name: 'watchlist-weather', params: { } })
         } else {
-          router.push({ name: 'coins', params: { } })
+          router.push({ name: 'watchlist', params: { } })
         }
       } else {
         if (this.userSetting.weather) {
-          router.push({ name: 'portfolio-full-weather', params: { } })
+          router.push({ name: 'portfolio-weather', params: { } })
         } else {
           router.push({ name: 'portfolio', params: { } })
         }

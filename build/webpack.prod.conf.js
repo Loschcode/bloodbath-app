@@ -50,7 +50,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     //   // Absolute path to compiled SPA
     //   path.join(__dirname, '../dist'),
     //   // List of routes to prerender
-    //   ['/', '/coins', '/coins/weather', '/settings']
+    //   ['/', '/watchlist', '/watchlist/weather', '/settings']
     // ),
 
     // extract css into its own file

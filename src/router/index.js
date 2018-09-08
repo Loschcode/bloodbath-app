@@ -19,14 +19,14 @@ Vue.router = new Router({
     },
 
     {
-      path: '/coins',
-      name: 'coins',
+      path: '/watchlist',
+      name: 'watchlist',
       component: Coins
     },
 
     {
-      path: '/coins/weather',
-      name: 'coins-full-weather',
+      path: '/watchlist/weather',
+      name: 'watchlist-weather',
       component: CoinsFullWeather
     },
 
@@ -38,7 +38,7 @@ Vue.router = new Router({
 
     {
       path: '/portfolio/weather',
-      name: 'portfolio-full-weather',
+      name: 'portfolio-weather',
       component: PortfolioFullWeather
     },
 

@@ -19,7 +19,7 @@
       <default-header />
 
       <!-- Watchlist Coins -->
-      <div v-if="favoriteCoins.length">
+      <div v-if="watchlistCoins.length">
         <div class="section">
           <div class="row">
             <div class="gr-12">
@@ -30,8 +30,8 @@
           </div>
 
           <div class="row">
-            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="favoriteCoin in favoriteCoins">
-              <coin-preview contextProp="coins" :marketCoinProp="favoriteCoin.market_coin" />
+            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="watchlistCoin in watchlistCoins">
+              <coin-preview contextProp="coins" :marketCoinProp="watchlistCoin.market_coin" />
             </div>
           </div>
         </div>
@@ -70,12 +70,12 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchFavoriteCoins')
+    this.$store.dispatch('fetchwatchlistCoins')
   },
 
   computed: {
     ...mapGetters({
-      favoriteCoins: 'getFavoriteCoins',
+      watchlistCoins: 'getWatchlistCoins',
       userSetting: 'getUserSetting'
     })
   },

@@ -61,7 +61,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchFavoriteCoins')
+    this.$store.dispatch('fetchwatchlistCoins')
   },
 
   destroyed () {
@@ -79,7 +79,7 @@ export default {
 
   methods: {
     goCoins () {
-      router.push({ name: 'coins', params: { } })
+      router.push({ name: 'watchlist', params: { } })
     }
   },
 

@@ -66,7 +66,7 @@ export default {
 
   methods: {
     goCoinsFullWeather () {
-      router.push({ name: 'coins-full-weather', params: { } })
+      router.push({ name: 'watchlist-weather', params: { } })
     },
 
     currentStyle () {

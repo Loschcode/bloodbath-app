@@ -109,7 +109,7 @@ export default {
 
   methods: {
     goPortfolioFullWeather () {
-      router.push({ name: 'portfolio-full-weather', params: { } })
+      router.push({ name: 'portfolio-weather', params: { } })
     },
 
     currentStyle () {

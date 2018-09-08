@@ -9,6 +9,7 @@ import portfolioCoins from './modules/portfolioCoins'
 import userMarketCoins from './modules/userMarketCoins'
 import users from './modules/users'
 import userSettings from './modules/userSettings'
+import userWatchlistCoins from './modules/userWatchlistCoins'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     portfolioCoins,
     userMarketCoins,
     userSettings,
-    users
+    users,
+    userWatchlistCoins
   }
 })

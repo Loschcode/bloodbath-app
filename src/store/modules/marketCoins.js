@@ -28,7 +28,7 @@ function dispatchAllStores (context, data) {
 // initial state
 const state = {
   marketCoins: [],
-  favoriteCoins: [],
+  watchlistCoins: [],
   topCoins: [],
 
   resultCoins: [],
@@ -40,32 +40,8 @@ const getters = {
   getMarketCoins: (state) => state.marketCoins,
   getMarketCoin: (state) => (id) => state.marketCoins.find((item) => item.id === id),
   getMarketCoinByCode: (state) => (code) => state.marketCoins.find((item) => item.code === code),
-
-  getFavoriteCoins: (state) => state.favoriteCoins,
-  getTopCoins: (state) => state.topCoins,
-
   getResultCoins: (state) => state.resultCoins,
-  getResultLoading: (state) => state.resultLoading,
-
-  getWatchlistWeather (state, getters) {
-    var total = 0.0
-    var quantity = 0
-    let favoriteCoins = getters.getFavoriteCoins
-
-    favoriteCoins.forEach(function (favoriteCoin, index, object) {
-      let marketCoin = getters.getMarketCoin(favoriteCoin.market_coin.id)
-      if (!_.isNil(marketCoin)) {
-        total += marketCoin.price_variation
-        quantity++
-      }
-    })
-
-    if (total === 0.0) {
-      return 0
-    }
-
-    return total / quantity
-  }
+  getResultLoading: (state) => state.resultLoading
 }
 
 // actions
@@ -75,26 +51,7 @@ const actions = {
     dispatchAllStores(context, response.data)
   },
 
-  async fetchFavoriteCoins (context) {
-    let response = await axios.get(`coins/favorite`)
-    context.commit('setFavoriteCoins', response.data)
-    if (response.data) {
-      response.data.forEach(function (data, index, object) {
-        dispatchAllStores(context, data)
-      })
-    }
-  },
-
-  async fetchTopCoins (context) {
-    let response = await axios.get(`coins/top`)
-    context.commit('setTopCoins', response.data)
-    if (response.data) {
-      response.data.forEach(function (data, index, object) {
-        dispatchAllStores(context, data)
-      })
-    }
-  },
-
+  // TODO : this should be 'SearchCoins'
   async fetchResultCoins (context, query) {
     context.commit('setResultLoading', true)
     let response = await axios.get(`coins/search`, { params: { query: query } })
@@ -118,10 +75,6 @@ const mutations = {
       let index = state.marketCoins.indexOf(current)
       state.marketCoins.splice(index, 1, marketCoin)
     }
-  },
-
-  setFavoriteCoins (state, favoriteCoins) {
-    state.favoriteCoins = favoriteCoins
   },
 
   setTopCoins (state, topCoins) {

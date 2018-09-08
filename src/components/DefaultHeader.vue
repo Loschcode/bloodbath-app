@@ -6,7 +6,7 @@
       <div class="gr-4">
         <div :class="isCoinsSectionClass()">
           <div class="header__right-border">
-            <router-link :to="{ name: 'coins' }">
+            <router-link :to="{ name: 'watchlist' }">
               <div class="header__title">Watchlist</div>
               <div class="header__content">
                 <div class="header__content-digits">
@@ -144,7 +144,7 @@ export default {
     },
 
     isCoinsSection () {
-      return this.$route.name === 'coins'
+      return this.$route.name === 'watchlist'
     },
 
     isPortfolioSection () {

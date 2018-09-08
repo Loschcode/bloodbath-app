@@ -19,7 +19,7 @@
                       <span class="icon-portfolio"></span>
                     </div>
                   </div>
-                  <div v-else-if="isFavoriteCoin()">
+                  <div v-else-if="iswatchlistCoin()">
                     <div class="module__title-favorite">
                       <span class="icon-watch-on"></span>
                     </div>
@@ -181,7 +181,7 @@ export default {
       return (matchingCoin && matchingContext && matchingSearched)
     },
 
-    isFavoriteCoin () {
+    iswatchlistCoin () {
       return this.userMarketCoin.favorited_at
     },
 
@@ -214,7 +214,7 @@ export default {
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
         this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
-      } else if (this.context === 'coins') {
+      } else {
         this.flipCoin()
       }
     },
