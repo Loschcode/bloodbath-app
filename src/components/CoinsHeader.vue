@@ -15,7 +15,9 @@
                     </div>
 
                     <div class="market-weather__title">
-                      <span><coin-weather :variationProp="watchlistWeather" /></span>
+                      <span>
+                        <coin-weather :variationProp="watchlistWeather" />
+                      </span>
                     </div>
 
                     <div class="market-weather__info">

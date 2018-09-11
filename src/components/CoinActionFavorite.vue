@@ -1,14 +1,12 @@
 <template>
   <div class="coin-action-favorite">
-    <div v-if="userMarketCoin">
-      <div v-if="userMarketCoin.favorited_at">
-        <a @click="removeFavorite" class="+pointer">
-          <span class="icon-trash"></span>
-        </a>
-      </div>
-      </div>
+    <div v-if="watchlistCoin">
+      <a @click="removeWatchlist" class="+pointer">
+        <span class="icon-trash"></span>
+      </a>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -17,7 +15,7 @@ import EventBus from '@/misc/EventBus'
 
 export default {
   props: [
-    'userMarketCoinProp',
+    'watchlistCoinProp',
     'marketCoinProp'
   ],
 
@@ -30,22 +28,22 @@ export default {
   },
 
   methods: {
-    removeFavorite (event) {
+    addWatchlist (event) {
       event.preventDefault()
-      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: null } })
-      this.$noty.info(`${this.marketCoin.coin_name} removed from your watchlist !`)
+      this.$store.dispatch('createWatchlistCoin', { market_coin_id: this.marketCoin.id })
+      this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
     },
 
-    addFavorite (event) {
+    removeWatchlist (event) {
       event.preventDefault()
-      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: true } })
-      this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
+      this.$store.dispatch('destroyWatchlistCoin', { market_coin_id: this.marketCoin.id })
+      this.$noty.info(`${this.marketCoin.coin_name} removed from your watchlist !`)
     }
   },
 
   computed: {
-    userMarketCoin () {
-      return this.$store.getters.getUserMarketCoin(this.userMarketCoinProp.id)
+    watchlistCoin () {
+      return this.$store.getters.getUserMarketCoin(this.watchlistCoinProp.id)
     },
 
     marketCoin () {

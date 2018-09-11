@@ -61,7 +61,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchwatchlistCoins')
+    this.$store.dispatch('fetchWatchlistCoins')
   },
 
   destroyed () {

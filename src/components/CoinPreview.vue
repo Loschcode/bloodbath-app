@@ -1,6 +1,6 @@
 <template>
   <div class="coin-preview">
-    <div v-if="marketCoin && userMarketCoin">
+    <div v-if="marketCoin">
         <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
 
@@ -19,7 +19,7 @@
                       <span class="icon-portfolio"></span>
                     </div>
                   </div>
-                  <div v-else-if="iswatchlistCoin()">
+                  <div v-else-if="isWatchlistCoin()">
                     <div class="module__title-favorite">
                       <span class="icon-watch-on"></span>
                     </div>
@@ -82,7 +82,7 @@
                           </a>
                         </div>
                         <div v-else>
-                          <coin-action-favorite :userMarketCoinProp="userMarketCoin" :marketCoinProp="marketCoinProp" />
+                          <coin-action-favorite :watchlistCoinProp="watchlistCoin" :marketCoinProp="marketCoinProp" />
                         </div>
                       </div>
                     </div>
@@ -94,6 +94,15 @@
           </div>
         </div>
 
+    </div>
+    <div v-else>
+      <div class="gr-12 gr-12@mobile gr-12@tablet">
+        <div class="module">
+          <loader-wave>
+            <span slot="text"></span>
+          </loader-wave>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -162,6 +171,12 @@ export default {
       }
     },
 
+    watchlistCoin () {
+      if (this.marketCoin) {
+        return this.$store.getters.getWatchlistCoinByMarketCoin(this.marketCoin.id)
+      }
+    },
+
     portfolioCoin () {
       if (this.marketCoin) {
         return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
@@ -181,12 +196,12 @@ export default {
       return (matchingCoin && matchingContext && matchingSearched)
     },
 
-    iswatchlistCoin () {
-      return this.userMarketCoin.favorited_at
+    isWatchlistCoin () {
+      return !!this.watchlistCoin
     },
 
     isPortfolioCoin () {
-      return this.portfolioCoin
+      return !!this.portfolioCoin
     },
 
     isPrimaryCoin () {
@@ -210,7 +225,7 @@ export default {
         this.$noty.info(`${this.marketCoin.code} is now part of your portfolio !`)
         this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the header ...`)
       } else if (this.context === 'watchlist') {
-        this.addToWatchlist()
+        this.addWatchlist()
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
         this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
@@ -219,8 +234,10 @@ export default {
       }
     },
 
-    addToWatchlist () {
-      this.$store.dispatch('updateUserMarketCoin', { id: this.userMarketCoin.id, changeset: { favorited_at: true } })
+    addWatchlist () {
+      // event.preventDefault()
+      this.$store.dispatch('createWatchlistCoin', { market_coin_id: this.marketCoin.id })
+      this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
     },
 
     updatePrimaryCoin () {

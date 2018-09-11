@@ -1,25 +1,19 @@
 import axios from 'axios'
 import _ from 'lodash'
 
-/**
- * We dispatch the data to all important stores
- */
 function dispatchAllStores (context, data) {
-  /**
-   * We set the market coin itself
-   */
-  context.commit('setMarketCoin', data.market_coin)
+  if (data.market_coin) {
+    context.commit('setMarketCoin', data.market_coin)
+  }
 
-  /**
-   * If possible we set the user market coin too
-   */
   if (data.user_market_coin) {
     context.commit('setUserMarketCoin', data.user_market_coin)
   }
 
-  /**
-   * And portfolio coin if available
-   */
+  if (data.watchlist_coin) {
+    context.commit('setWatchlistCoin', data.watchlist_coin)
+  }
+
   if (data.portfolio_coin) {
     context.commit('setPortfolioCoin', data.portfolio_coin)
   }

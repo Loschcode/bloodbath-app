@@ -2,10 +2,19 @@
   <div class="connect-routing">
 
     <!-- Crash error -->
-    <div v-if="error">
+    <div v-if="error" @click="refreshPage()" class="+pointer">
       <div class="error">
-        {{ error }}
-        <div class="error__icon icon-bloody"></div>
+        <div class="row">
+          <div class="gr-12 gr-centered">
+            <div class="error__message">{{ error.message }}</div>
+            <div class="error__icon icon-bloody"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="gr-6 gr-10@tablet gr-12@mobile gr-centered">
+            <div class="error__raw">{{ error.raw }}</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -65,7 +74,7 @@ export default {
         console.log(error)
         localStorage.clear()
       }
-      window.location.reload()
+      this.refreshPage()
     })
 
     /**
@@ -75,9 +84,15 @@ export default {
      */
     EventBus.$on('crashEvent', error => {
       if (error.message === 'Network Error') {
-        this.error = 'Oh snap ! There is a network error, please refresh the page.'
+        this.error = {
+          message: 'Oh snap ! There is a network error, please refresh the page.',
+          raw: error
+        }
       } else {
-        this.error = 'Oh snap ! Something went wrong, please refresh the page.'
+        this.error = {
+          message: 'Oh snap ! Something went wrong, please refresh the page.',
+          raw: error
+        }
       }
     })
 
@@ -124,6 +139,10 @@ export default {
   },
 
   methods: {
+    refreshPage () {
+      window.location.reload()
+    },
+
     /**
      * Preloader management
      */
