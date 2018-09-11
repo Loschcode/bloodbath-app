@@ -56,9 +56,11 @@
 
               </div>
               <div v-else>
-                <loader-wave>
-                  <span slot="text"></span>
-                </loader-wave>
+                <div class="module__loading">
+                  <loader-wave>
+                    <span slot="text"></span>
+                  </loader-wave>
+                </div>
               </div>
 
             </div>
