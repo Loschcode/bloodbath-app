@@ -2,7 +2,7 @@
   <div v-if="watchlistWeather">
     <div :class="`full-weather full-weather__${currentStyle}`">
 
-      <div @click="goCoins" class="+pointer">
+      <div @click="goWatchlist" class="+pointer">
         <div class="row">
           <div class="gr-12 gr-12@mobile gr-12@tablet">
 
@@ -33,7 +33,7 @@
             <div class="row">
               <div class="gr-3 gr-centered gr-12@mobile gr-12@tablet">
                 <div class="full-weather__buttons">
-                  <a @click="goCoins" class="+pointer">Check watchlist details</a>
+                  <a @click="goWatchlist" class="+pointer">Check watchlist details</a>
                 </div>
               </div>
 
@@ -90,7 +90,7 @@ export default {
   },
 
   methods: {
-    goCoins () {
+    goWatchlist () {
       router.push({ name: 'watchlist', params: { } })
     }
   },

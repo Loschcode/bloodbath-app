@@ -1,5 +1,5 @@
 <template>
-  <div class="coin-action-favorite">
+  <div class="watchlist-coin-remove">
     <div v-if="watchlistCoin">
       <a @click="removeWatchlist" class="+pointer">
         <span class="icon-trash"></span>

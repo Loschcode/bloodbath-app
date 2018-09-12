@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Coins from '@/components/Coins'
-import CoinsFullWeather from '@/components/CoinsFullWeather'
+import Watchlist from '@/components/Watchlist'
+import WatchlistWeather from '@/components/WatchlistWeather'
 import Connect from '@/components/Connect'
 import Portfolio from '@/components/Portfolio'
-import PortfolioFullWeather from '@/components/PortfolioFullWeather'
+import PortfolioWeather from '@/components/PortfolioWeather'
 import Setting from '@/components/Setting'
 import Index from '@/components/Index'
 
@@ -21,13 +21,13 @@ Vue.router = new Router({
     {
       path: '/watchlist',
       name: 'watchlist',
-      component: Coins
+      component: Watchlist
     },
 
     {
       path: '/watchlist/weather',
       name: 'watchlist-weather',
-      component: CoinsFullWeather
+      component: WatchlistWeather
     },
 
     {
@@ -39,7 +39,7 @@ Vue.router = new Router({
     {
       path: '/portfolio/weather',
       name: 'portfolio-weather',
-      component: PortfolioFullWeather
+      component: PortfolioWeather
     },
 
     {

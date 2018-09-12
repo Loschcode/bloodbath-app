@@ -9,11 +9,11 @@
               <div @click="goPortfolio" class="gr-8 gr-centered gr-12@mobile gr-6@tablet +pointer">
 
                 <div class="full-weather__icon">
-                  <span :class="`icon-${currentStyle} coin-weather__${currentStyle} coin-weather--static`"></span>
+                  <span :class="`icon-${currentStyle} watchlist-weather__${currentStyle} watchlist-weather--static`"></span>
                 </div>
 
                 <div class="full-weather__title">
-                  <span><coin-weather :variationProp="totalVariation" /></span>
+                  <span><watchlist-weather :variationProp="totalVariation" /></span>
                 </div>
 
 
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="full-weather__percent">
-                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="totalVariation" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                  <span :class="`watchlist-weather__${currentStyle}`"><animated-number :value="totalVariation" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                 </div>
 
                 <div class="full-weather__title">
@@ -39,7 +39,7 @@
                   <a @click="goPortfolio" class="+pointer">Check portfolio details</a>
                 </div>
                 <div class="full-weather__links">
-                  <a @click="goCoinsFullWeather">... Or continue to watchlist</a>
+                  <a @click="goWatchlistWeather">... Or continue to watchlist</a>
                 </div>
               </div>
 
@@ -109,7 +109,7 @@ export default {
       router.push({ name: 'portfolio', params: { } })
     },
 
-    goCoinsFullWeather () {
+    goWatchlistWeather () {
       router.push({ name: 'watchlist-weather', params: { } })
     }
   },

@@ -70,7 +70,7 @@
                 <div class="gr-10">
                   <div class="module__footer-details">
                     <div v-if="userSetting.weather && marketCoin.price_variation">
-                      <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
+                      <span><watchlist-weather :variationProp="marketCoin.price_variation" /></span>
                     </div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@
                           </a>
                         </div>
                         <div v-else>
-                          <coin-action-favorite :watchlistCoinProp="watchlistCoin" :marketCoinProp="marketCoinProp" />
+                          <watchlist-coin-remove :watchlistCoinProp="watchlistCoin" :marketCoinProp="marketCoinProp" />
                         </div>
                       </div>
                     </div>
@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import CoinActionFavorite from '@/components/CoinActionFavorite'
+import WatchlistCoinRemove from '@/components/WatchlistCoinRemove'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import LoaderWave from '@/components/LoaderWave'
@@ -256,7 +256,7 @@ export default {
   components: {
     CoinPreviewFlipped,
     CoinPreviewContent,
-    CoinActionFavorite,
+    WatchlistCoinRemove,
     CoinWeather,
     LoaderWave
   }

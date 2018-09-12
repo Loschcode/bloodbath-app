@@ -2,18 +2,18 @@
   <div class="portfolio-header">
     <div v-if="portfolioCoins.length">
       <div class="row">
-        <div class="gr-12 gr-centered +pointer" @click="goPortfolioFullWeather">
+        <div class="gr-12 gr-centered +pointer" @click="goPortfolioWeather">
           <div class="gr-12 gr-12@mobile gr-12@tablet">
             <div class="module +no-margin">
               <div class="module__bubble">
                 <div class="row">
                   <div class="gr-6 gr-centered gr-12@mobile gr-6@tablet">
                     <div class="market-weather__icon">
-                      <span :class="`icon-${currentStyle()} coin-weather__${currentStyle()} coin-weather--static`"></span>
+                      <span :class="`icon-${currentStyle()} watchlist-weather__${currentStyle()} watchlist-weather--static`"></span>
                     </div>
 
                     <div class="market-weather__title">
-                      <span><coin-weather :variationProp="totalVariation" /></span>
+                      <span><watchlist-weather :variationProp="totalVariation" /></span>
                     </div>
 
                     <div class="market-weather__info">
@@ -108,7 +108,7 @@ export default {
   },
 
   methods: {
-    goPortfolioFullWeather () {
+    goPortfolioWeather () {
       router.push({ name: 'portfolio-weather', params: { } })
     },
 

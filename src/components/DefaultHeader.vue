@@ -2,9 +2,9 @@
   <div class="default-header">
     <div class="row header" ref="header">
 
-      <!-- Coin Section -->
+      <!-- Watchlist Section -->
       <div class="gr-4">
-        <div :class="isCoinsSectionClass()">
+        <div :class="isWatchlistSectionClass()">
           <div class="header__right-border">
             <router-link :to="{ name: 'watchlist' }">
               <div class="header__title">Watchlist</div>
@@ -70,8 +70,8 @@
 
     <div class="row">
 
-      <div v-if="isCoinsSection()">
-        <coins-header />
+      <div v-if="isWatchlistSection()">
+        <watchlist-header />
       </div>
       <div v-else-if="isPortfolioSection()">
         <portfolio-header />
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import CoinsHeader from '@/components/CoinsHeader'
+import WatchlistHeader from '@/components/WatchlistHeader'
 import PortfolioCapital from '@/components/PortfolioCapital'
 import PortfolioHeader from '@/components/PortfolioHeader'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -125,8 +125,8 @@ export default {
       return this.currentUser
     },
 
-    isCoinsSectionClass () {
-      if (this.isCoinsSection()) {
+    isWatchlistSectionClass () {
+      if (this.isWatchlistSection()) {
         return 'header__highlight'
       }
     },
@@ -143,7 +143,7 @@ export default {
       }
     },
 
-    isCoinsSection () {
+    isWatchlistSection () {
       return this.$route.name === 'watchlist'
     },
 
@@ -193,7 +193,7 @@ export default {
   },
 
   components: {
-    CoinsHeader,
+    WatchlistHeader,
     PortfolioCapital,
     PortfolioHeader,
     AnimatedNumber

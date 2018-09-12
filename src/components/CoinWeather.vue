@@ -1,6 +1,6 @@
 <template>
-  <div class="coin-weather">
-    <span :class="`coin-weather__${currentStyle}`">{{ currentWeather }}</span>
+  <div class="watchlist-weather">
+    <span :class="`watchlist-weather__${currentStyle}`">{{ currentWeather }}</span>
   </div>
 </template>
 

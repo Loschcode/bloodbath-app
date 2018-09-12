@@ -1,8 +1,8 @@
 <template>
-  <div class="market-weather">
+  <div class="watchlist-weather">
     <div v-if="watchlistWeather">
       <div class="row">
-        <div class="gr-12 gr-12@mobile gr-12@tablet +pointer" @click="goCoinsFullWeather">
+        <div class="gr-12 gr-12@mobile gr-12@tablet +pointer" @click="goWatchlistWeather">
 
           <div class="module +no-margin">
             <div class="module__bubble">
@@ -67,7 +67,7 @@ export default {
   },
 
   methods: {
-    goCoinsFullWeather () {
+    goWatchlistWeather () {
       router.push({ name: 'watchlist-weather', params: { } })
     },
 
