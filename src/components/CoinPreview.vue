@@ -238,7 +238,7 @@ export default {
 
     addWatchlist () {
       // event.preventDefault()
-      this.$store.dispatch('createWatchlistCoin', { market_coin_id: this.marketCoin.id })
+      this.$store.dispatch('createWatchlistCoin', { changeset: { market_coin_id: this.marketCoin.id } })
       this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
     },
 

@@ -30,20 +30,20 @@ export default {
   methods: {
     addWatchlist (event) {
       event.preventDefault()
-      this.$store.dispatch('createWatchlistCoin', { market_coin_id: this.marketCoin.id })
+      this.$store.dispatch('createWatchlistCoin', { changeset: { market_coin_id: this.marketCoin.id } })
       this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
     },
 
     removeWatchlist (event) {
       event.preventDefault()
-      this.$store.dispatch('destroyWatchlistCoin', { market_coin_id: this.marketCoin.id })
+      this.$store.dispatch('destroyWatchlistCoin', this.watchlistCoin)
       this.$noty.info(`${this.marketCoin.coin_name} removed from your watchlist !`)
     }
   },
 
   computed: {
     watchlistCoin () {
-      return this.$store.getters.getUserMarketCoin(this.watchlistCoinProp.id)
+      return this.$store.getters.getWatchlistCoin(this.watchlistCoinProp.id)
     },
 
     marketCoin () {

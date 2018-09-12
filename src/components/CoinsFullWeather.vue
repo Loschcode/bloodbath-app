@@ -1,5 +1,5 @@
 <template>
-  <div v-if="marketWeather">
+  <div v-if="watchlistWeather">
     <div :class="`full-weather full-weather__${currentStyle}`">
 
       <div @click="goCoins" class="+pointer">
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="full-weather__title">
-                  <span><coin-weather :variationProp="marketWeather" /></span>
+                  <span><coin-weather :variationProp="watchlistWeather" /></span>
                 </div>
 
 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="full-weather__percent">
-                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="marketWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                 </div>
 
               </div>
@@ -64,16 +64,28 @@ export default {
     this.$store.dispatch('fetchWatchlistCoins')
   },
 
+  watch: {
+    watchlistCoins (newValue, oldValue) {
+      if (newValue.length === 0) {
+        router.push({ name: 'watchlist', params: { } })
+      }
+    }
+  },
+
   destroyed () {
   },
 
   computed: {
-    marketWeather () {
+    watchlistCoins () {
+      return this.$store.getters.getWatchlistCoins
+    },
+
+    watchlistWeather () {
       return this.$store.getters.getWatchlistWeather
     },
 
     currentStyle () {
-      return Weather.style(this.marketWeather)
+      return Weather.style(this.watchlistWeather)
     }
   },
 
