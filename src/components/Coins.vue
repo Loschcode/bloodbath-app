@@ -31,7 +31,7 @@
 
           <div class="row">
             <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="watchlistCoin in watchlistCoins">
-              <coin-preview contextProp="coins" :marketCoinProp="watchlistCoin.market_coin" />
+              <watchlist-coin :watchlistCoinProp="watchlistCoin" />
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@
 <script>
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
-import CoinPreview from '@/components/CoinPreview'
+import WatchlistCoin from '@/components/WatchlistCoin'
 import SearchCoins from '@/components/SearchCoins'
 import LoaderWave from '@/components/LoaderWave'
 
@@ -92,7 +92,7 @@ export default {
   components: {
     DefaultFooter,
     DefaultHeader,
-    CoinPreview,
+    WatchlistCoin,
     SearchCoins,
     LoaderWave,
     EventBus
