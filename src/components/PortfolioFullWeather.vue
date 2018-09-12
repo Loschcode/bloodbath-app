@@ -39,7 +39,7 @@
                   <a @click="goPortfolio" class="+pointer">Check portfolio details</a>
                 </div>
                 <div class="full-weather__links">
-                  <a @click="goCoinsFullWeather">... Or continue to market weather</a>
+                  <a @click="goCoinsFullWeather">... Or continue to watchlist</a>
                 </div>
               </div>
 
