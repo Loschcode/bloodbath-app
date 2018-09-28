@@ -70,7 +70,7 @@
                 <div class="gr-10">
                   <div class="module__footer-details">
                     <div v-if="userSetting.weather && marketCoin.price_variation">
-                      <span><watchlist-weather :variationProp="marketCoin.price_variation" /></span>
+                      <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
                     </div>
                   </div>
                 </div>

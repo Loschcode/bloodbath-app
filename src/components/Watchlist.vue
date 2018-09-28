@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { WATCHLIST_COINS_QUERY } from '@/constants/graphql'
+
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import WatchlistCoin from '@/components/WatchlistCoin'
@@ -66,16 +68,16 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      watchlistCoins: []
     }
   },
 
   created () {
-    this.$store.dispatch('fetchWatchlistCoins')
   },
 
   computed: {
+    // TODO TO REMOVE
     ...mapGetters({
-      watchlistCoins: 'getWatchlistCoins',
       userSetting: 'getUserSetting'
     })
   },
@@ -96,6 +98,26 @@ export default {
     SearchCoins,
     LoaderWave,
     EventBus
+  },
+
+  apollo: {
+    // getCoin: {
+    //   query: GET_COIN_QUERY,
+    //   result({ data }) {
+    //     this.coin = data.coin
+    //   },
+    //   variables() {
+    //     return {
+    //       id: this.id,
+    //     }
+    //   },
+    // },
+    getWatchlistCoins: {
+      query: WATCHLIST_COINS_QUERY,
+      result ({ data }) {
+        this.watchlistCoins = Object.assign({}, data.watchlist_coins)
+      }
+    }
   }
 }
 </script>
