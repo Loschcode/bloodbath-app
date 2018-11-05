@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { WATCHLIST_COINS_QUERY } from '@/constants/graphql'
+import { GET_WATCHLIST_COINS_QUERY } from '@/constants/graphql'
 
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
@@ -101,21 +101,10 @@ export default {
   },
 
   apollo: {
-    // getCoin: {
-    //   query: GET_COIN_QUERY,
-    //   result({ data }) {
-    //     this.coin = data.coin
-    //   },
-    //   variables() {
-    //     return {
-    //       id: this.id,
-    //     }
-    //   },
-    // },
     getWatchlistCoins: {
-      query: WATCHLIST_COINS_QUERY,
+      query: GET_WATCHLIST_COINS_QUERY,
       result ({ data }) {
-        this.watchlistCoins = Object.assign({}, data.watchlist_coins)
+        this.watchlistCoins = data.getWatchlistCoins
       }
     }
   }

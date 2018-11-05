@@ -2,7 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
+import { ApolloLink, concat } from 'apollo-link'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+// import { WebSocketLink } from 'apollo-link-ws';
+// import { getMainDefinition } from 'apollo-utilities'
+
 import Vue from 'vue'
 
 import VueApollo from 'vue-apollo'
@@ -30,12 +34,28 @@ Vue.config.productionTip = false
 
 const isProd = process.env.NODE_ENV === 'production'
 
+// const wsLink = new WebSocketLink({
+//   uri: `wss://subscriptions.us-west-2.graph.cool/v1/xxxxxxxx`,
+//   options: {
+//     reconnect: true
+//   }
+// })
+
 const httpLink = new HttpLink({
   uri: process.env.GRAPHQL_ENDPOINT
 })
 
+const authMiddleware = new ApolloLink((operation, forward) => {
+  operation.setContext({
+    headers: {
+      token: localStorage.getItem('userToken') || null
+    }
+  })
+  return forward(operation)
+})
+
 const apolloClient = new ApolloClient({
-  link: httpLink,
+  link: concat(authMiddleware, httpLink),
   cache: new InMemoryCache(),
   connectToDevTools: true
 })
@@ -99,6 +119,7 @@ Idle.start()
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  // apolloProvider,
   provide: apolloProvider.provide(),
   router,
   store,

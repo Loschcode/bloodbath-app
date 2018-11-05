@@ -163,21 +163,15 @@ export default {
       return this.$store.getters.getUserSetting
     },
 
-    marketCoin () {
-      return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
-    },
+    // marketCoin () {
+    //   return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
+    // },
 
-    userMarketCoin () {
-      if (this.marketCoin) {
-        return this.$store.getters.getUserMarketCoinByMarketCoin(this.marketCoin.id)
-      }
-    },
-
-    watchlistCoin () {
-      if (this.marketCoin) {
-        return this.$store.getters.getWatchlistCoinByMarketCoin(this.marketCoin.id)
-      }
-    },
+    // watchlistCoin () {
+    //   if (this.marketCoin) {
+    //     return this.$store.getters.getWatchlistCoinByMarketCoin(this.marketCoin.id)
+    //   }
+    // },
 
     portfolioCoin () {
       if (this.marketCoin) {
