@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="gr-10">
-                  <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                  <h2>{{ marketCoin.coinName }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
                 </div>
 
               </div>
@@ -40,9 +40,7 @@
 
             </a>
 
-
             <div class="module__content">
-
               <div v-if="marketCoin.price">
 
               <a @click="clickAction" class="+pointer">
@@ -110,6 +108,8 @@
 </template>
 
 <script>
+import { GET_USER_SETTING_QUERY } from '@/constants/graphql'
+
 import WatchlistCoinRemove from '@/components/WatchlistCoinRemove'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
@@ -121,11 +121,15 @@ export default {
   props: [
     'contextProp',
     'searchedProp',
-    'marketCoinProp'
+    'marketCoinProp',
+    'watchlistCoinProp'
   ],
 
   data () {
     return {
+      marketCoin: null,
+      watchlistCoin: null,
+      userSetting: null,
       context: null,
       flipped: false
     }
@@ -137,8 +141,8 @@ export default {
     this.context = this.contextProp
     this.searched = this.searchedProp
 
-    this.$store.commit('setMarketCoin', this.marketCoinProp)
-    this.$store.dispatch('subscribeMarketCoinChannel', this.marketCoinProp)
+    this.watchlistCoin = this.watchlistCoinProp
+    this.marketCoin = this.marketCoinProp
   },
 
   mounted () {
@@ -159,20 +163,6 @@ export default {
       return this.$store.getters.getCurrentUser
     },
 
-    userSetting () {
-      return this.$store.getters.getUserSetting
-    },
-
-    // marketCoin () {
-    //   return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
-    // },
-
-    // watchlistCoin () {
-    //   if (this.marketCoin) {
-    //     return this.$store.getters.getWatchlistCoinByMarketCoin(this.marketCoin.id)
-    //   }
-    // },
-
     portfolioCoin () {
       if (this.marketCoin) {
         return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
@@ -181,7 +171,6 @@ export default {
   },
 
   methods: {
-
     // we focus on the correct coin in-between all of the displayed one
     // it has to get the exact same arguments, then it's considered a match.
     isMatchingCoin (event) {
@@ -244,6 +233,16 @@ export default {
      */
     createPortfolioCoin () {
       this.$store.dispatch('createPortfolioCoin', { changeset: { market_coin_id: this.marketCoin.id } })
+    }
+  },
+
+  apollo: {
+    getUserSetting: {
+      query: GET_USER_SETTING_QUERY,
+
+      result ({ data }) {
+        this.userSetting = data.getUserSetting
+      }
     }
   },
 

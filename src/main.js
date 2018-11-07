@@ -2,8 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
-import { ApolloLink, concat } from 'apollo-link'
+import { ApolloLink } from 'apollo-link' // concat
 import { InMemoryCache } from 'apollo-cache-inmemory'
+// import { withClientState } from 'apollo-link-state'
 // import { WebSocketLink } from 'apollo-link-ws';
 // import { getMainDefinition } from 'apollo-utilities'
 
@@ -54,9 +55,11 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
+const cache = new InMemoryCache()
+
 const apolloClient = new ApolloClient({
-  link: concat(authMiddleware, httpLink),
-  cache: new InMemoryCache(),
+  cache,
+  link: ApolloLink.from([authMiddleware, httpLink]),
   connectToDevTools: true
 })
 

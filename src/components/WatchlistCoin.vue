@@ -4,8 +4,7 @@
 
       <div class="gr-12 gr-12@mobile gr-12@tablet">
         <div>
-          <!-- TODO: this -->
-          coin-preview contextProp="coins" :marketCoinProp="marketCoin" /
+          <coin-preview contextProp="coins" :marketCoinProp="marketCoin" :watchlistCoinProp="watchlistCoin" />
         </div>
 
       </div>
