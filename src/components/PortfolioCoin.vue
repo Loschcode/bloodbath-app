@@ -93,6 +93,9 @@
 </template>
 
 <script>
+// TODO : should be renamed i guess ?
+import WatchlistWeather from '@/components/WatchlistWeather'
+
 import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
@@ -188,6 +191,7 @@ export default {
   },
 
   components: {
+    WatchlistWeather,
     AnimatedNumber,
     PortfolioCoinContent,
     CoinPreviewFlipped,

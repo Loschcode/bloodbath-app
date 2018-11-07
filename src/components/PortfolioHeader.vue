@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="market-weather__title">
-                      <span><watchlist-weather :variationProp="totalVariation" /></span>
+                      <span><coin-weather :variationProp="totalVariation" /></span>
                     </div>
 
                     <div class="market-weather__info">
