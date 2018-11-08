@@ -1,6 +1,6 @@
 <template>
   <div class="watchlist-weather">
-    <div v-if="watchlistWeather">
+    <div v-if="watchlistCoins.length">
       <div class="row">
         <div class="gr-12 gr-12@mobile gr-12@tablet +pointer" @click="goWatchlistWeather">
 
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { GET_WATCHLIST_COINS_QUERY, GET_WATCHLIST_QUERY } from '@/constants/graphql'
+
 import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
 import Weather from '@/misc/Weather'
@@ -51,6 +53,8 @@ import router from '@/router'
 export default {
   data () {
     return {
+      watchlistCoins: [],
+      watchlistWeather: 0.0
     }
   },
 
@@ -61,9 +65,6 @@ export default {
   },
 
   computed: {
-    watchlistWeather () {
-      return this.$store.getters.getWatchlistWeather
-    }
   },
 
   methods: {
@@ -73,6 +74,33 @@ export default {
 
     currentStyle () {
       return Weather.style(this.watchlistWeather)
+    }
+  },
+
+  apollo: {
+    getWatchlist: {
+      query: GET_WATCHLIST_QUERY,
+
+      result ({ data }) {
+        this.watchlistWeather = data.getWatchlist.watchlistWeather
+      },
+
+      variables () {
+        return {
+        }
+      }
+    },
+    getWatchlistCoins: {
+      query: GET_WATCHLIST_COINS_QUERY,
+
+      result ({ data }) {
+        this.watchlistCoins = data.getWatchlistCoins
+      },
+
+      variables () {
+        return {
+        }
+      }
     }
   },
 

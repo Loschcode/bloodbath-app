@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import { GET_WATCHLIST_COINS_QUERY, GET_WATCHLIST_QUERY } from '@/constants/graphql'
+
 import router from '@/router'
 
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -57,6 +59,7 @@ import Weather from '@/misc/Weather'
 export default {
   data () {
     return {
+      watchlistWeather: 0.0
     }
   },
 
@@ -76,16 +79,36 @@ export default {
   },
 
   computed: {
-    watchlistCoins () {
-      return this.$store.getters.getWatchlistCoins
-    },
-
-    watchlistWeather () {
-      return this.$store.getters.getWatchlistWeather
-    },
-
     currentStyle () {
       return Weather.style(this.watchlistWeather)
+    }
+  },
+
+  apollo: {
+    getWatchlist: {
+      query: GET_WATCHLIST_QUERY,
+
+      result ({ data }) {
+        this.watchlistWeather = data.getWatchlist.watchlistWeather
+      },
+
+      variables () {
+        return {
+        }
+      }
+    },
+
+    getWatchlistCoins: {
+      query: GET_WATCHLIST_COINS_QUERY,
+
+      result ({ data }) {
+        this.watchlistCoins = data.getWatchlistCoins
+      },
+
+      variables () {
+        return {
+        }
+      }
     }
   },
 

@@ -61,6 +61,15 @@ query WatchlistCoinsQuery {
 }
 `
 
+export const GET_WATCHLIST_QUERY = gql`
+query WatchlistQuery {
+  getWatchlist {
+    id
+    watchlistWeather
+  }
+}
+`
+
 export const GET_MARKET_COIN_QUERY = gql`
 query MarketCoinQuery ($id: ID!) {
   getMarketCoin(id: $id) {
