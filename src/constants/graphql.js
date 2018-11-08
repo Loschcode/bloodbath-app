@@ -16,8 +16,8 @@ query UserSettingQuery {
 `
 
 export const GET_PORTFOLIO_COINS_QUERY = gql`
-query WatchlistCoinQuery ($id: ID!) {
-  getWatchlistCoin(id: $id) {
+query PortfolioCoinQuery {
+  getPortfolioCoins {
     id
     quantity
     marketCoin {

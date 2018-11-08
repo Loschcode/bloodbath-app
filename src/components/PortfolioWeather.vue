@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="full-weather__title">
-                  <span><watchlist-weather :variationProp="totalVariation" /></span>
+                  <span><coin-weather :variationProp="totalVariation" /></span>
                 </div>
 
 

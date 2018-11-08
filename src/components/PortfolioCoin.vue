@@ -1,6 +1,6 @@
 <template>
   <div class="portfolio-coin">
-    <div v-if="portfolioCoin">
+    <div v-if="portfolioCoin && marketCoin">
 
         <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
@@ -14,7 +14,7 @@
                 </div>
               </div>
               <div class="gr-10">
-                <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                <h2>{{ marketCoin.coinName }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
               </div>
             </div>
 
@@ -69,8 +69,8 @@
                 <div class="row">
                   <div class="gr-10">
                     <div class="module__footer-details">
-                      <div v-if="userSetting.weather && marketCoin.price_variation">
-                        <span><watchlist-weather :variationProp="marketCoin.price_variation" /></span>
+                      <div v-if="userSetting.weather && marketCoin.priceVariation">
+                        <span><coin-weather :variationProp="marketCoin.priceVariation" /></span>
                       </div>
                     </div>
                   </div>
@@ -93,8 +93,7 @@
 </template>
 
 <script>
-// TODO : should be renamed i guess ?
-import WatchlistWeather from '@/components/WatchlistWeather'
+import { GET_USER_SETTING_QUERY, GET_MARKET_COIN_QUERY } from '@/constants/graphql'
 
 import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
@@ -103,8 +102,6 @@ import CoinWeather from '@/components/CoinWeather'
 import LoaderWave from '@/components/LoaderWave'
 import _ from 'lodash'
 
-import { mapGetters } from 'vuex'
-
 export default {
   props: [
     'portfolioCoinProp'
@@ -112,20 +109,15 @@ export default {
 
   data () {
     return {
+      marketCoin: null,
+      portfolioCoin: null,
       editQuantity: false,
       flipped: false
     }
   },
 
   created () {
-    this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
-    if (this.marketCoin) {
-      this.$store.dispatch('subscribeMarketCoinChannel', this.marketCoin)
-    }
-  },
-
-  destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoin.id })
+    this.portfolioCoin = this.portfolioCoinProp
   },
 
   watch: {
@@ -146,17 +138,34 @@ export default {
   },
 
   computed: {
-    portfolioCoin () {
-      return this.$store.getters.getPortfolioCoin(this.portfolioCoinProp.id)
+  },
+
+  apollo: {
+    getMarketCoin: {
+      query: GET_MARKET_COIN_QUERY,
+
+      result ({ data }) {
+        this.marketCoin = data.getMarketCoin
+      },
+
+      variables () {
+        return {
+          id: this.portfolioCoin.marketCoin.id
+        }
+      },
+
+      skip () {
+        return !this.portfolioCoin
+      }
     },
 
-    marketCoin () {
-      return this.$store.getters.getMarketCoin(this.portfolioCoinProp.market_coin_id)
-    },
+    getUserSetting: {
+      query: GET_USER_SETTING_QUERY,
 
-    ...mapGetters({
-      userSetting: 'getUserSetting'
-    })
+      result ({ data }) {
+        this.userSetting = data.getUserSetting
+      }
+    }
   },
 
   methods: {
@@ -191,7 +200,6 @@ export default {
   },
 
   components: {
-    WatchlistWeather,
     AnimatedNumber,
     PortfolioCoinContent,
     CoinPreviewFlipped,

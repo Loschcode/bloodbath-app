@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { GET_PORTFOLIO_COINS_QUERY, GET_USER_SETTING_QUERY } from '@/constants/graphql'
+
 import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
@@ -56,33 +58,29 @@ import PortfolioCoin from '@/components/PortfolioCoin'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
-import { mapGetters } from 'vuex'
-
 export default {
   data () {
     return {
+      portfolioCoins: []
     }
   },
 
-  created () {
-    this.$store.dispatch('fetchPortfolioCoins')
-  },
+  apollo: {
+    getPortfolioCoins: {
+      query: GET_PORTFOLIO_COINS_QUERY,
 
-  watch: {
-  },
+      result ({ data }) {
+        this.portfolioCoins = data.getPortfolioCoins
+      }
+    },
 
-  computed: {
-    ...mapGetters({
-      totalAllTimeHigh: 'getTotalAllTimeHigh',
-      portfolioCoins: 'getPortfolioCoins',
-      userSetting: 'getUserSetting'
-    })
-  },
+    getUserSetting: {
+      query: GET_USER_SETTING_QUERY,
 
-  mounted () {
-  },
-
-  methods: {
+      result ({ data }) {
+        this.userSetting = data.getUserSetting
+      }
+    }
   },
 
   components: {

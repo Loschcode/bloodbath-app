@@ -90,6 +90,7 @@ export default {
         }
       }
     },
+
     getWatchlistCoins: {
       query: GET_WATCHLIST_COINS_QUERY,
 
