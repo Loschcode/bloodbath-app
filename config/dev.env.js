@@ -8,5 +8,6 @@ module.exports = merge(prodEnv, {
   HOST: '"localhost"',
   API: '"http://localhost:8000"',
   CABLE: '"ws://localhost:8000"',
-  GRAPHQL_ENDPOINT: '"http://localhost:8000/graphql"'
+  GRAPHQL_ENDPOINT: '"http://localhost:8000/graphql"',
+  DEBUG: true
 })

@@ -50,7 +50,6 @@
 
 <script>
 import LoaderWave from '@/components/LoaderWave'
-import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
 import Cable from '@/misc/Cable'
 import _ from 'lodash'
@@ -120,21 +119,13 @@ export default {
     }
   },
 
-  mixins: [
-    ThrowError
-  ],
-
   components: {
     LoaderWave
   },
 
   computed: {
     userToken () {
-      return this.$store.getters.getUserToken
-    },
-
-    currentUser () {
-      return this.$store.getters.getCurrentUser
+      return localStorage.getItem('userToken')
     }
   },
 

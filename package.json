@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.1.1",
+    "@vuex-orm/core": "^0.30.0",
+    "@vuex-orm/plugin-graphql": "^1.0.0-rc.21",
     "@websanova/vue-auth": "^2.21.0-beta",
     "actioncable": "^5.1.4",
     "apollo-boost": "^0.1.20",
@@ -35,7 +37,7 @@
     "npm": "^6.4.1",
     "numeral": "^2.0.6",
     "spinkit": "^1.2.5",
-    "vue": "2.5.9",
+    "vue": "^2.5.9",
     "vue-analytics": "^5.9.1",
     "vue-apollo": "^3.0.0-beta.25",
     "vue-axios": "^2.0.2",

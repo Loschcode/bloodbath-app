@@ -7,11 +7,16 @@ import Portfolio from '@/components/Portfolio'
 import PortfolioWeather from '@/components/PortfolioWeather'
 import Setting from '@/components/Setting'
 import Index from '@/components/Index'
+import Test from '@/components/Test'
 
 Vue.use(Router)
 
 Vue.router = new Router({
   routes: [
+    {
+      path: '/test',
+      component: Test
+    },
 
     {
       path: '/',
@@ -53,7 +58,6 @@ Vue.router = new Router({
       name: 'connect',
       component: Connect
     }
-
   ]
 })
 

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import ThrowError from '@/mixins/ThrowError'
 import EventBus from '@/misc/EventBus'
 
 export default {
@@ -41,22 +40,11 @@ export default {
     }
   },
 
-  computed: {
-    watchlistCoin () {
-      return this.$store.getters.getWatchlistCoin(this.watchlistCoinProp.id)
-    },
-
-    marketCoin () {
-      return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
-    }
-  },
-
   components: {
     EventBus
   },
 
   mixins: [
-    ThrowError
   ]
 }
 </script>

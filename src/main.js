@@ -35,13 +35,6 @@ Vue.config.productionTip = false
 
 const isProd = process.env.NODE_ENV === 'production'
 
-// const wsLink = new WebSocketLink({
-//   uri: `wss://subscriptions.us-west-2.graph.cool/v1/xxxxxxxx`,
-//   options: {
-//     reconnect: true
-//   }
-// })
-
 const httpLink = new HttpLink({
   uri: process.env.GRAPHQL_ENDPOINT
 })

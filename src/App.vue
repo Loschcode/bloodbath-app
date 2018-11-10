@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <connect-routing />
+    <div v-if="isRawRoute()">
+      <router-view />
+    </div>
+    <div v-else>
+      <connect-routing />
+    </div>
   </div>
 </template>
 
@@ -9,11 +14,22 @@ import ConnectRouting from '@/components/ConnectRouting'
 
 export default {
   name: 'app',
+
+  props: [
+    'rawRoute'
+  ],
+
   data () {
     return {}
   },
 
   created () {
+  },
+
+  methods: {
+    isRawRoute () {
+      return this.$router.currentRoute.query.raw_route
+    }
   },
 
   metaInfo: {
