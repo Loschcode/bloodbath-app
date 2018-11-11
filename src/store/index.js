@@ -12,16 +12,17 @@ Vue.use(Vuex)
 // Create new instance of Database.
 const database = new VuexORM.Database()
 const debug = process.env.NODE_ENV !== 'production'
-const url = process.env.DEBUG
+const url = process.env.GRAPHQL_ENDPOINT
 const headers = {
   token: localStorage.getItem('userToken')
 }
+const connectionQueryMode = 'plain'
 
 // Register Model and Module. The First argument is the Model, and
 // second is the Module.
 database.register(MarketCoin, marketCoins)
 
-VuexORM.use(VuexORMGraphQL, { database, url, debug, headers })
+VuexORM.use(VuexORMGraphQL, { database, url, debug, headers, connectionQueryMode })
 
 // Create Vuex Store and register database through Vuex ORM.
 const store = new Vuex.Store({
