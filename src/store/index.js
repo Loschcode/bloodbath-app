@@ -7,6 +7,9 @@ import VuexORMGraphQL from '@vuex-orm/plugin-graphql'
 import MarketCoin from './models/MarketCoin'
 import marketCoins from './modules/marketCoins'
 
+import User from './models/User'
+import users from './modules/users'
+
 Vue.use(Vuex)
 
 // Create new instance of Database.
@@ -21,6 +24,7 @@ const connectionQueryMode = 'plain'
 // Register Model and Module. The First argument is the Model, and
 // second is the Module.
 database.register(MarketCoin, marketCoins)
+database.register(User, users)
 
 VuexORM.use(VuexORMGraphQL, { database, url, debug, headers, connectionQueryMode })
 

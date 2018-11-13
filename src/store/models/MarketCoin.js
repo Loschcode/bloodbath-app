@@ -1,4 +1,3 @@
-// User Model
 import { Model } from '@vuex-orm/core'
 
 export default class MarketCoin extends Model {
