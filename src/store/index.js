@@ -10,6 +10,9 @@ import marketCoins from './modules/marketCoins'
 import User from './models/User'
 import users from './modules/users'
 
+import CurrentUser from './models/CurrentUser'
+import currentUsers from './modules/currentUsers'
+
 Vue.use(Vuex)
 
 // Create new instance of Database.
@@ -25,6 +28,7 @@ const connectionQueryMode = 'plain'
 // second is the Module.
 database.register(MarketCoin, marketCoins)
 database.register(User, users)
+database.register(CurrentUser, currentUsers)
 
 VuexORM.use(VuexORMGraphQL, { database, url, debug, headers, connectionQueryMode })
 

@@ -1,15 +1,15 @@
 <template>
   <div class="test">
-    {{users}}
+    {{currentUsers}}
   </div>
 </template>
 
 <script>
-import User from '@/store/models/User'
+import CurrentUser from '@/store/models/CurrentUser'
 
 export default {
   computed: {
-    users: () => User.all()
+    currentUsers: () => CurrentUser.all()
   },
 
   created () {
@@ -18,7 +18,7 @@ export default {
 
   methods: {
     async fetchData () {
-      await User.fetch()
+      await CurrentUser.fetch()
     }
   }
 }
