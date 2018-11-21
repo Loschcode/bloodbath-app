@@ -1,0 +1,21 @@
+## Queries
+
+query GetCurrentUser {
+  currentUser {
+    id
+    email
+    ...PrivateAttributes
+    ...Timestamps
+  }
+}
+
+## Fragments
+
+fragment PrivateAttributes on User {
+  token
+}
+
+fragment Timestamps on User {
+  updatedAt
+  createdAt
+}

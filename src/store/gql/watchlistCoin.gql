@@ -1,0 +1,17 @@
+query GetWatchlistCoins {
+  watchlistCoins {
+    id
+    marketCoin {
+      id
+    }
+  }
+}
+
+query GetWatchlistCoinQuery ($id: ID!) {
+  watchlistCoin(id: $id) {
+    id
+    marketCoin {
+      id
+    }
+  }
+}
