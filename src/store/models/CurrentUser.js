@@ -8,6 +8,5 @@ export const currentUser = {
     }
   }`,
   result ({ data }) {
-    this.currentUser = data.currentUser
   }
 }
