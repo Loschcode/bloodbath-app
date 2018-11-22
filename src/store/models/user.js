@@ -1,4 +1,4 @@
-import GetCurrentUser from '@/store/schemas/user.gql'
+import GetCurrentUser from '../schemas/user.gql'
 
 export const currentUser = {
   query: GetCurrentUser,

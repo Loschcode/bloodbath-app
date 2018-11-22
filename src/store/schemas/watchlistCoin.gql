@@ -1,3 +1,5 @@
+## Queries
+
 query GetWatchlistCoins {
   watchlistCoins {
     id

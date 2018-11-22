@@ -1,4 +1,4 @@
-import { GetWatchlistCoin, GetWatchlistCoins } from '@/store/schemas/watchlistCoin.gql'
+import { GetWatchlistCoin, GetWatchlistCoins } from '../schemas/watchlistCoin.gql'
 
 export const watchlistCoins = {
   query () {
