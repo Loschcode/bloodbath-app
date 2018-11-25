@@ -9,6 +9,32 @@ query GetCurrentUser {
   }
 }
 
+## Mutations
+
+#mutation Authenticate($idToken: String!) {
+#  authenticate(idToken: $idToken) {
+#    name
+#    email
+#  }
+#}
+
+mutation CreateAnonymousUser {
+  createAnonymousUser {
+    token
+  }
+}
+
+# signinUser(email: {
+#    email: $email,
+#    password: $password
+#  }) {
+#    token
+#    user {
+#      id
+#    }
+#  }
+#}
+
 ## Fragments
 
 fragment PrivateAttributes on User {

@@ -1,15 +1,19 @@
 <template>
   <div class="test">
-    {{currentUser}}
+    {{createAnonymousUser}}
   </div>
 </template>
 
 <script>
-import { currentUser } from '@/store/models/user'
+import { createAnonymousUser } from '@/store/models/user'
 
 export default {
-  apollo: {
-    currentUser
+  created () {
+    this.createAnonymousUser()
+  },
+
+  methods: {
+    createAnonymousUser
   }
 }
 </script>
