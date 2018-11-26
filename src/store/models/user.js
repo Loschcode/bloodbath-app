@@ -6,9 +6,14 @@ export const currentUser = {
   }
 }
 
-export const createAnonymousUser = async () => {
-  await this.$apollo.mutate({
+export const createAnonymousUser = async (vm) => {
+  await vm.$apollo.mutate({
     mutation: CreateAnonymousUser,
-    variables: {}
+    variables: {},
+    update: (store, { data: { createAnonymousUser } }) => {
+      vm.createAnonymousUser = createAnonymousUser
+    }
+  }).then((data) => {
+    return data
   })
 }

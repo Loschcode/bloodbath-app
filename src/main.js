@@ -115,8 +115,7 @@ Idle.start()
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  // apolloProvider,
-  provide: apolloProvider.provide(),
+  apolloProvider,
   router,
   store,
   template: '<App/>',

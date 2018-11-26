@@ -1,25 +1,25 @@
 <template>
   <div class="test">
-    {{watchlistCoin}}
+    {{createAnonymousUser}}
   </div>
 </template>
 
 <script>
-import { watchlistCoin } from '@/store/models/watchlistCoin'
+import { createAnonymousUser } from '@/store/models/User'
 
 export default {
   data () {
     return {
-      watchlistCoinId: null
+      createAnonymousUser: {}
     }
   },
 
   created () {
-    this.watchlistCoinId = 108
-  },
-
-  apollo: {
-    watchlistCoin
+    createAnonymousUser(this)
   }
+
+  // apollo: {
+  //   createAnonymousUser
+  // }
 }
 </script>
