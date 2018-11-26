@@ -65,17 +65,18 @@ export default {
   },
 
   created () {
-    const events = new EventsService(this)
-    events.setup()
+    Object.assign(this, {
+      eventsService: new EventsService(this),
+      connectService: new ConnectService(this, this.userToken)
+    })
 
-    const connect = new ConnectService(this, this.userToken)
-    connect.perform()
+    this.eventsService.setup()
+    this.connectService.perform()
   },
 
   watch: {
     userToken (newValue, oldValue) {
-      const connect = new ConnectService(this)
-      connect.connectWith(newValue)
+      new ConnectService(this, newValue).perform()
     }
   },
 

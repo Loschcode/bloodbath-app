@@ -3,6 +3,12 @@ import EventBus from '@/misc/EventBus'
 class EventsService {
   constructor (vm) {
     this.vm = vm
+    this.a = 0
+  }
+
+  test () {
+    this.a++
+    return this.a
   }
 
   /**
