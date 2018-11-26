@@ -1,12 +1,12 @@
 ## Queries
 
-query IndexWatchlistCoins {
+query IndexPortfolioCoins {
   watchlistCoins {
     id
   }
 }
 
-query ShowWatchlistCoin ($id: ID!) {
+query ShowPortfolioCoin ($id: ID!) {
   watchlistCoin(id: $id) {
     id
   }

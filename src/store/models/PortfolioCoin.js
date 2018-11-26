@@ -1,17 +1,16 @@
-import { ShowWatchlistCoin, IndexWatchlistCoins } from '../schemas/watchlistCoin.gql'
+import { ShowPortfolioCoin, IndexPortfolioCoins } from '../schemas/portfolioCoin.gql'
 
 export const watchlistCoins = {
   query () {
-    return IndexWatchlistCoins
-  }
+    return IndexPortfolioCoins
+  },
 }
 
 export const watchlistCoin = {
   query () {
-    return ShowWatchlistCoin
+    return ShowPortfolioCoin
   },
   variables () {
-    console.log('WATCHLIST:', this.watchlistCoinId)
     return {
       id: this.watchlistCoinId
     }

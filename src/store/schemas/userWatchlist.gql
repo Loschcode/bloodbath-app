@@ -1,0 +1,7 @@
+## Queries
+
+query ShowUserWatchlist {
+  watchlistCoins {
+    id
+  }
+}

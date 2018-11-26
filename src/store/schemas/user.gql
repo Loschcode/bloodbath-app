@@ -1,6 +1,6 @@
 ## Queries
 
-query GetCurrentUser {
+query ShowCurrentUser {
   currentUser {
     id
     email
