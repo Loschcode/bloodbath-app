@@ -52,14 +52,14 @@ const cache = new InMemoryCache()
 
 const apolloClient = new ApolloClient({
   cache,
-  link: ApolloLink.from([authMiddleware, httpLink]),
+  link:              ApolloLink.from([authMiddleware, httpLink]),
   connectToDevTools: true
 })
 
 Vue.use(VueApollo)
 
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient,
+  defaultClient:  apolloClient,
   defaultOptions: {
     $loadingKey: 'loading'
   }
@@ -88,17 +88,17 @@ Vue.use(VueMeta)
 
 // NotyJS
 Vue.use(VueNoty, {
-  theme: 'mint',
-  timeout: 1000,
+  theme:       'mint',
+  timeout:     1000,
   progressBar: true,
-  layout: 'topRight'
+  layout:      'topRight'
 })
 
 Vue.use(VueAnalytics, {
-  id: 'UA-115751020-1',
+  id:    'UA-115751020-1',
   router,
   debug: {
-    enabled: !isProd,
+    enabled:     !isProd,
     sendHitTask: isProd
   }
 })
@@ -114,11 +114,11 @@ Idle.start()
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el:         '#app',
   apolloProvider,
   router,
   store,
-  template: '<App/>',
+  template:   '<App/>',
   components: { App },
 
   created () {

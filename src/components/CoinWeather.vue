@@ -10,7 +10,7 @@ import Weather from '@/misc/Weather'
 export default {
   props: {
     variationProp: {
-      type: Number,
+      type:     Number,
       required: true
     }
   },

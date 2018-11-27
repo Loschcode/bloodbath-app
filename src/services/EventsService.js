@@ -1,4 +1,5 @@
 import EventBus from '@/misc/EventBus'
+import PageHelper from '@/helpers/PageHelper'
 
 class EventsService {
   constructor (vm) {
@@ -19,10 +20,6 @@ class EventsService {
   }
 
   // private
-
-  _refreshPage () {
-    window.location.reload()
-  }
 
   _setupRebootEvent () {
     EventBus.$on('rebootEvent', this._onRebootEvent.bind(this))
@@ -46,7 +43,7 @@ class EventsService {
       console.log(error)
       localStorage.clear()
     }
-    this._refreshPage()
+    PageHelper.refreshPage()
   }
 
   /**
@@ -74,14 +71,14 @@ class EventsService {
   _addNetworkCrash (rawError) {
     this.vm.error = {
       message: 'Oh snap ! There is a network error, please refresh the page.',
-      raw: rawError
+      raw:     rawError
     }
   }
 
   _addDefaultCrash (rawError) {
     this.vm.error = {
       message: 'Oh snap ! Something went wrong, please refresh the page.',
-      raw: rawError
+      raw:     rawError
     }
   }
 }

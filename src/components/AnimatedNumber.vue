@@ -33,30 +33,30 @@ import numeral from 'numeral'
 export default {
   props: {
     value: {
-      type: Number,
+      type:     Number,
       required: true
     },
     type: {
-      type: String,
+      type:     String,
       required: false,
-      default: false
+      default:  false
     },
     animatedColors: {
-      type: Boolean,
+      type:     Boolean,
       required: false,
-      default: true
+      default:  true
     },
     numberColors: {
-      type: Boolean,
+      type:     Boolean,
       required: false,
-      default: false
+      default:  false
     }
   },
   data: function () {
     return {
-      baseValue: 0,
-      valueUp: true,
-      showValue: true
+      baseValue:   0,
+      valueUp:     true,
+      showValue:   true
     }
   },
 

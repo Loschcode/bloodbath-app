@@ -109,10 +109,10 @@ export default {
 
   data () {
     return {
-      marketCoin: null,
+      marketCoin:    null,
       portfolioCoin: null,
-      editQuantity: false,
-      flipped: false
+      editQuantity:  false,
+      flipped:       false
     }
   },
 

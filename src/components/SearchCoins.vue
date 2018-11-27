@@ -76,9 +76,9 @@ export default {
   data () {
     return {
       showResults: false,
-      context: null,
-      focus: this.focusProp,
-      search: ''
+      context:     null,
+      focus:       this.focusProp,
+      search:      ''
     }
   },
 

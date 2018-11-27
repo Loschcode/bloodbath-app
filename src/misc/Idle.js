@@ -1,9 +1,9 @@
 import EventBus from '@/misc/EventBus'
 
 var idle = {
-  interval: 60000, // every 10 seconds
-  timeout: 5, // 5 minutes reload idle
-  idleCounter: 0,
+  interval:            60000, // every 10 seconds
+  timeout:             5, // 5 minutes reload idle
+  idleCounter:         0,
   expirationConfirmed: false,
 
   expired () {

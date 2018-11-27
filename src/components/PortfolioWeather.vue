@@ -101,7 +101,7 @@ export default {
 
     ...mapGetters({
       totalVariation: 'getTotalVariation',
-      totalCapital: 'getTotalCapital',
+      totalCapital:   'getTotalCapital',
       portfolioCoins: 'getPortfolioCoins'
     })
   },

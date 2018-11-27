@@ -95,11 +95,11 @@ export default {
 
   computed: {
     ...mapGetters({
-      portfolioCoins: 'getPortfolioCoins',
-      totalLow: 'getTotalLow',
-      totalHigh: 'getTotalHigh',
-      totalVariation: 'getTotalVariation',
-      totalLowVariation: 'getTotalLowVariation',
+      portfolioCoins:     'getPortfolioCoins',
+      totalLow:           'getTotalLow',
+      totalHigh:          'getTotalHigh',
+      totalVariation:     'getTotalVariation',
+      totalLowVariation:  'getTotalLowVariation',
       totalHighVariation: 'getTotalHighVariation'
     })
   },

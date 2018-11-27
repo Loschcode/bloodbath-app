@@ -57,7 +57,7 @@ export default {
 
   data () {
     return {
-      marketCoin: null,
+      marketCoin:    null,
       portfolioCoin: null
     }
   },

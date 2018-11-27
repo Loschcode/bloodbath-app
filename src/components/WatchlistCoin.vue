@@ -35,9 +35,9 @@ export default {
   data () {
     return {
       watchlistCoin: null,
-      marketCoin: null,
-      marketCoinId: null,
-      userSetting: null
+      marketCoin:    null,
+      marketCoinId:  null,
+      userSetting:   null
     }
   },
 

@@ -14,48 +14,48 @@ Vue.use(Router)
 Vue.router = new Router({
   routes: [
     {
-      path: '/test',
+      path:      '/test',
       component: Test
     },
 
     {
-      path: '/',
+      path:      '/',
       component: Index
     },
 
     {
-      path: '/watchlist',
-      name: 'watchlist',
+      path:      '/watchlist',
+      name:      'watchlist',
       component: Watchlist
     },
 
     {
-      path: '/watchlist/weather',
-      name: 'watchlist-weather',
+      path:      '/watchlist/weather',
+      name:      'watchlist-weather',
       component: WatchlistWeather
     },
 
     {
-      path: '/portfolio',
-      name: 'portfolio',
+      path:      '/portfolio',
+      name:      'portfolio',
       component: Portfolio
     },
 
     {
-      path: '/portfolio/weather',
-      name: 'portfolio-weather',
+      path:      '/portfolio/weather',
+      name:      'portfolio-weather',
       component: PortfolioWeather
     },
 
     {
-      path: '/setting',
-      name: 'setting',
+      path:      '/setting',
+      name:      'setting',
       component: Setting
     },
 
     {
-      path: '/connect',
-      name: 'connect',
+      path:      '/connect',
+      name:      'connect',
       component: Connect
     }
   ]

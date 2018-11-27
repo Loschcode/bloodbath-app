@@ -127,11 +127,11 @@ export default {
 
   data () {
     return {
-      marketCoin: null,
+      marketCoin:    null,
       watchlistCoin: null,
-      userSetting: null,
-      context: null,
-      flipped: false
+      userSetting:   null,
+      context:       null,
+      flipped:       false
     }
   },
 

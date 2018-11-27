@@ -3,7 +3,7 @@ import { ShowPortfolioCoin, IndexPortfolioCoins } from '../schemas/portfolioCoin
 export const watchlistCoins = {
   query () {
     return IndexPortfolioCoins
-  },
+  }
 }
 
 export const watchlistCoin = {

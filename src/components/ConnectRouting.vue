@@ -1,8 +1,11 @@
 <template>
   <div class="connect-routing">
-
     <!-- Crash error -->
-    <div v-if="error" @click="refreshPage()" class="+pointer">
+    <div
+      v-if="error"
+      @click="refreshPage()"
+      class="+pointer"
+    >
       <div class="error">
         <div class="row">
           <div class="gr-12 gr-centered">
@@ -19,55 +22,43 @@
     </div>
 
     <div v-else>
-
       <!-- Loading -->
-      <div v-if="!fullyLoaded()">
-        <div class="loader__full-page">
-          <loader-wave>
-            <span slot="quote">
-              Bloodbath : n.m. In financial terms: refers to an investment resulting in massive and unexpected loss.
-            </span>
-            <span slot="text">
-              Recovering account details
-            </span>
-          </loader-wave>
-        </div>
-
-      </div>
-
-      <div v-else>
-
+      <div v-if="pageReady()">
         <!-- Load the correct page -->
         <router-view />
-
       </div>
-
+      <div v-else>
+        <div class="loader__full-page">
+          <loader-wave>
+            <span slot="quote">Bloodbath: n.m. In financial terms: refers to an investment resulting in massive and unexpected loss.</span>
+            <span slot="text">Recovering account details</span>
+          </loader-wave>
+        </div>
+      </div>
     </div>
-
   </div>
-</div>
 </template>
 
 <script>
 import LoaderWave from '@/components/LoaderWave'
 import ConnectService from '@/services/ConnectService'
 import EventsService from '@/services/EventsService'
+import PageHelper from '@/helpers/PageHelper'
 
 import { currentUser } from '@/store/models/User'
 
 export default {
-
   data () {
     return {
       currentUser: null,
-      error: ''
+      error:       ''
     }
   },
 
   created () {
     Object.assign(this, {
-      eventsService:    new EventsService(this),
-      connectService:   new ConnectService(this, this.userToken)
+      eventsService:  new EventsService(this),
+      connectService: new ConnectService(this, this.userToken)
     })
 
     this.eventsService.setup()
@@ -95,8 +86,12 @@ export default {
   },
 
   methods: {
-    fullyLoaded () {
-      return (this.userToken.length > 0 && this.currentUser.id)
+    refreshPage () {
+      PageHelper.refreshPage()
+    },
+
+    appReady () {
+      return this.userToken.length > 0 && this.currentUser.id
     }
   }
 }

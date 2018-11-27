@@ -33,7 +33,7 @@ export default {
   },
 
   metaInfo: {
-    title: 'Bloodbath - Crypto Weather & Portfolio',
+    title:     'Bloodbath - Crypto Weather & Portfolio',
     htmlAttrs: {
       lang: 'en'
     },
