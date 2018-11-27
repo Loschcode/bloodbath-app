@@ -23,7 +23,7 @@
 
     <div v-else>
       <!-- Loading -->
-      <div v-if="pageReady()">
+      <div v-if="appReady()">
         <!-- Load the correct page -->
         <router-view />
       </div>

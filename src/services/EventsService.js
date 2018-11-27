@@ -4,10 +4,6 @@ import PageHelper from '@/helpers/PageHelper'
 class EventsService {
   constructor (vm) {
     this.vm = vm
-
-    return {
-      setup: this.setup
-    }
   }
 
   /**
@@ -19,9 +15,8 @@ class EventsService {
     this._setupErrorEvent()
   }
 
-  // private
-
   _setupRebootEvent () {
+    console.log('test')
     EventBus.$on('rebootEvent', this._onRebootEvent.bind(this))
   }
 
