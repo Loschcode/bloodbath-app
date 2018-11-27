@@ -17,6 +17,10 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    'key-spacing': [2, {
+      "mode": "minimum"
+      // "align": "value"
+    }],
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development

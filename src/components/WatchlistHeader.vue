@@ -53,8 +53,8 @@ import router from '@/router'
 export default {
   data () {
     return {
-      watchlistCoins: [],
-      watchlistWeather: 0.0
+      watchlistCoins:     [],
+      watchlistWeather:   0.0
     }
   },
 

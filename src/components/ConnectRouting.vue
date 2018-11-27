@@ -66,8 +66,8 @@ export default {
 
   created () {
     Object.assign(this, {
-      eventsService: new EventsService(this),
-      connectService: new ConnectService(this, this.userToken)
+      eventsService:    new EventsService(this),
+      connectService:   new ConnectService(this, this.userToken)
     })
 
     this.eventsService.setup()
@@ -95,12 +95,8 @@ export default {
   },
 
   methods: {
-    /**
-     * Preloader management
-     */
     fullyLoaded () {
-      return false
-      // return (this.userToken.length > 0 && this.currentUser.id)
+      return (this.userToken.length > 0 && this.currentUser.id)
     }
   }
 }
