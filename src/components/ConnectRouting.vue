@@ -71,18 +71,10 @@ export default {
     }
   },
 
-  components: {
-    LoaderWave
-  },
-
   computed: {
     userToken () {
       return localStorage.getItem('userToken')
     }
-  },
-
-  apollo: {
-    currentUser
   },
 
   methods: {
@@ -91,8 +83,18 @@ export default {
     },
 
     appReady () {
-      return this.userToken.length > 0 && this.currentUser.id
+      // TODO make currentUser work
+      return this.userToken && this.currentUser
     }
+  },
+
+  components: {
+    LoaderWave
+  },
+
+  apollo: {
+    currentUser
   }
+
 }
 </script>

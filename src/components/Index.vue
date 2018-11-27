@@ -14,9 +14,8 @@
 </template>
 
 <script>
-import router from '@/router'
-import { mapGetters } from 'vuex'
 import LoaderWave from '@/components/LoaderWave'
+import RedirectService from '@/services/RedirectService'
 
 export default {
   data () {
@@ -25,35 +24,17 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchPortfolioCoins')
   },
 
   watch: {
     portfolioCoins (newValue, oldValue) {
-      if (newValue.length === 0) {
-        if (this.userSetting.weather) {
-          router.push({ name: 'watchlist-weather', params: { } })
-        } else {
-          router.push({ name: 'watchlist', params: { } })
-        }
-      } else {
-        if (this.userSetting.weather) {
-          router.push({ name: 'portfolio-weather', params: { } })
-        } else {
-          router.push({ name: 'portfolio', params: { } })
-        }
-      }
+      // NOTE : maybe this will be moved with the logic of getting the portfolio etc ?
+      RedirectService.new(this).fromIndex(newValue)
     }
   },
 
   computed: {
-    userSetting () {
-      return this.$store.getters.getUserSetting
-    },
-
-    ...mapGetters({
-      portfolioCoins: 'getPortfolioCoins'
-    })
+    // TODO get PortfolioCoins, userSetting
   },
 
   components: {
