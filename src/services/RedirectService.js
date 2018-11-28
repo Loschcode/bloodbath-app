@@ -1,19 +1,20 @@
 import router from '@/router'
 
 class RedirectService {
-  constructor (vm) {
+  constructor (vm, { userSetting }) {
     this.vm = vm
+    this.userSetting = userSetting
   }
 
   fromIndex (portfolioCoins) {
     if (portfolioCoins.length === 0) {
-      this.goWatchlist()
+      this._goWatchlist()
     } else {
-      this.goPortfolio()
+      this._goPortfolio()
     }
   }
 
-  goWatchlist () {
+  _goWatchlist () {
     if (this._isWeather()) {
       router.push({ name: 'watchlist-weather', params: { } })
     } else {
@@ -21,7 +22,7 @@ class RedirectService {
     }
   }
 
-  goPortfolio () {
+  _goPortfolio () {
     if (this._isWeather()) {
       router.push({ name: 'portfolio-weather', params: { } })
     } else {
@@ -30,7 +31,7 @@ class RedirectService {
   }
 
   _isWeather () {
-    return this.vm.userSetting.weather
+    return this.userSetting.weather
   }
 }
 

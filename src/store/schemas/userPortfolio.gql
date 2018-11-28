@@ -1,13 +1,13 @@
 ## Queries
 
-query ShowUserWatchlist {
-  userWatchlist {
+query ShowUserPortfolio {
+  userPortfolio {
     id
 
     user {
       id
     }
-    watchlistCoins {
+    portfolioCoins {
       id
     }
   }

@@ -1,7 +1,16 @@
 ## Queries
 
 query ShowUserSetting {
-  userWatchlist {
+  userSetting {
     id
+    weather
+
+    primaryMarketCoin {
+      id
+    }
+
+    baseCurrency {
+      id
+    }
   }
 }

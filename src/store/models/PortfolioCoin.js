@@ -1,21 +1,21 @@
 import { ShowPortfolioCoin, IndexPortfolioCoins } from '../schemas/portfolioCoin.gql'
 
-export const watchlistCoins = {
+export const portfolioCoins = {
   query () {
     return IndexPortfolioCoins
   }
 }
 
-export const watchlistCoin = {
+export const portfolioCoin = {
   query () {
     return ShowPortfolioCoin
   },
   variables () {
     return {
-      id: this.watchlistCoinId
+      id: this.portfolioCoinId
     }
   },
   skip () {
-    return !this.watchlistCoinId
+    return !this.portfolioCoinId
   }
 }

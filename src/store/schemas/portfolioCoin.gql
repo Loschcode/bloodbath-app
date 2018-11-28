@@ -1,13 +1,24 @@
 ## Queries
 
 query IndexPortfolioCoins {
-  watchlistCoins {
-    id
+ portfolioCoins {
+    ...AllAttributes
   }
 }
 
 query ShowPortfolioCoin ($id: ID!) {
-  watchlistCoin(id: $id) {
+ portfolioCoin(id: $id) {
+    ...AllAttributes
+  }
+}
+
+fragment AllAttributes on PortfolioCoin {
+  quantity
+
+  marketCoin {
+    id
+  }
+  userPortfolio {
     id
   }
 }

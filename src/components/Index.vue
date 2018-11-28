@@ -17,6 +17,9 @@
 import LoaderWave from '@/components/LoaderWave'
 import RedirectService from '@/services/RedirectService'
 
+import { userPortfolio } from '@/store/models/UserPortfolio'
+import { userSetting } from '@/store/models/UserSetting'
+
 export default {
   data () {
     return {
@@ -24,17 +27,24 @@ export default {
   },
 
   created () {
+    Object.assign(this, {
+      redirectService:  new RedirectService(this, {
+        userSetting: this.userSetting
+      })
+    })
   },
 
   watch: {
-    portfolioCoins (newValue, oldValue) {
-      // NOTE : maybe this will be moved with the logic of getting the portfolio etc ?
-      RedirectService.new(this).fromIndex(newValue)
+    // NOTE this has been added here but maybe we could abstract everything down the services
+    // and do GraphQL request directly from them, with context.
+    userPortfolio (newValue, oldValue) {
+      this.redirectService.fromIndex(newValue)
     }
   },
 
-  computed: {
-    // TODO get PortfolioCoins, userSetting
+  apollo: {
+    userPortfolio,
+    userSetting
   },
 
   components: {

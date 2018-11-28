@@ -4,6 +4,18 @@ query ShowCurrentUser {
   currentUser {
     id
     email
+    role
+
+    userSetting {
+      id
+    }
+    userPortfolio {
+      id
+    }
+    userWatchlist {
+      id
+    }
+
     ...PrivateAttributes
     ...Timestamps
   }
@@ -11,29 +23,11 @@ query ShowCurrentUser {
 
 ## Mutations
 
-#mutation Authenticate($idToken: String!) {
-#  authenticate(idToken: $idToken) {
-#    name
-#    email
-#  }
-#}
-
 mutation CreateAnonymousUser {
   createAnonymousUser {
     token
   }
 }
-
-# signinUser(email: {
-#    email: $email,
-#    password: $password
-#  }) {
-#    token
-#    user {
-#      id
-#    }
-#  }
-#}
 
 ## Fragments
 

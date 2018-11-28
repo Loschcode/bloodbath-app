@@ -67,6 +67,7 @@ export default {
 
   watch: {
     userToken (newValue, oldValue) {
+      // TODO : check if this is working.
       new ConnectService(this, newValue).perform()
     }
   },
