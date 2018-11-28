@@ -7,6 +7,19 @@ query ShowUserSetting {
 
     primaryMarketCoin {
       id
+      code
+      symbol
+      name
+      coinName
+      fullName
+      marketCap
+      price
+      dayOpen
+      dayHigh
+      dayLow
+      priceVariation
+      dayHighVariation
+      dayLowVariation
     }
 
     baseCurrency {

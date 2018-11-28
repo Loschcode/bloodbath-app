@@ -100,32 +100,12 @@ import WatchlistHeader from '@/components/WatchlistHeader'
 import PortfolioCapital from '@/components/PortfolioCapital'
 import PortfolioHeader from '@/components/PortfolioHeader'
 
+import { currentUser } from '@/store/models/User'
+import { userSetting } from '@/store/models/UserSetting'
+
 export default {
   data () {
     return {
-    }
-  },
-
-  watch: {
-    userSetting (newValue, oldValue) {
-      if (newValue) {
-        this.$store.dispatch('fetchMarketCoin', { id: newValue.primary_market_coin_id })
-      }
-    },
-
-    /**
-     * If the primary coin is changed we change the listener to the channel
-     * We also use this entry to listen to first channels
-     */
-    primaryMarketCoin (newValue, oldValue) {
-      if (oldValue) {
-        if (oldValue.id !== newValue.id) {
-          this.$store.dispatch('unsubscribeMarketCoinChannel', { id: oldValue.id })
-          this.$store.dispatch('subscribeMarketCoinChannel', newValue)
-        }
-      } else {
-        this.$store.dispatch('subscribeMarketCoinChannel', newValue)
-      }
     }
   },
 
@@ -165,40 +145,27 @@ export default {
     }
   },
 
-  created () {
-    if (this.userSetting) {
-      this.$store.dispatch('fetchMarketCoin', { id: this.userSetting.primary_market_coin_id })
-    }
-  },
-
-  destroyed () {
-    if (this.primaryMarketCoin) {
-      this.$store.dispatch('unsubscribeMarketCoinChannel', this.primaryMarketCoin)
-    }
-  },
-
   computed: {
-    userSetting () {
-      return this.$store.getters.getUserSetting
-    },
-
-    currentUser () {
-      return this.$store.getters.getCurrentUser
-    },
-
     isConnected () {
-      return this.currentUser.role !== 'anonymous'
+      if (this.currentUser) {
+        return this.currentUser.role !== 'anonymous'
+      }
     },
 
     primaryMarketCoin () {
       if (this.userSetting) {
-        return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
+        return this.userSetting.primaryMarketCoin
       }
     },
 
     currentBaseCurrency () {
-      return this.$store.getters.getBaseCurrency(this.userSetting.base_currency_id)
+      return this.userSetting.baseCurrency
     }
+  },
+
+  apollo: {
+    currentUser,
+    userSetting
   },
 
   components: {
