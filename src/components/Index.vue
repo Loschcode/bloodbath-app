@@ -10,6 +10,8 @@
         </span>
       </loader-wave>
     </div>
+
+    <div v-show="dataSynced"></div>
   </div>
 </template>
 
@@ -26,25 +28,29 @@ export default {
     }
   },
 
-  created () {
-    Object.assign(this, {
-      redirectService:  new RedirectService(this, {
-        userSetting: this.userSetting
-      })
-    })
+  computed: {
+    dataSynced () {
+      return this.userSetting && this.userPortfolio
+    }
   },
 
-  watch: {
-    // NOTE this has been added here but maybe we could abstract everything down the services
-    // and do GraphQL request directly from them, with context.
-    userPortfolio (newValue, oldValue) {
-      this.redirectService.fromIndex(newValue)
+  updated () {
+    if (this.dataSynced) {
+      this.redirect()
+    }
+  },
+
+  methods: {
+    redirect () {
+      new RedirectService(this, {
+        userSetting: this.userSetting
+      }).fromIndex(this.userPortfolio)
     }
   },
 
   apollo: {
-    userPortfolio,
-    userSetting
+    userSetting,
+    userPortfolio
   },
 
   components: {

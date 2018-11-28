@@ -6,11 +6,11 @@ class RedirectService {
     this.userSetting = userSetting
   }
 
-  fromIndex (portfolioCoins) {
-    if (portfolioCoins.length === 0) {
-      this._goWatchlist()
-    } else {
+  fromIndex (userPortfolio) {
+    if (this._hasPortfolio(userPortfolio)) {
       this._goPortfolio()
+    } else {
+      this._goWatchlist()
     }
   }
 
@@ -28,6 +28,10 @@ class RedirectService {
     } else {
       router.push({ name: 'portfolio', params: { } })
     }
+  }
+
+  _hasPortfolio (userPortfolio) {
+    return userPortfolio.portfolioCoins.length > 0
   }
 
   _isWeather () {
