@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import AnimatedNumber from '@/components/AnimatedNumber'
-
 import { portfolioCoins } from '@/store/models/portfolioCoin'
 
 export default {
@@ -43,7 +41,6 @@ export default {
   },
 
   components: {
-    AnimatedNumber
   }
 }
 </script>

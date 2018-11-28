@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import AnimatedNumber from '@/components/AnimatedNumber'
-
 export default {
   props: [
     'marketCoinProp',
@@ -88,7 +86,6 @@ export default {
   },
 
   components: {
-    AnimatedNumber
   }
 }
 </script>

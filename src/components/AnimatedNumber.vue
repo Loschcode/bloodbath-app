@@ -33,7 +33,7 @@
 import TWEEN from '@tweenjs/tween.js'
 import numeral from 'numeral'
 
-import { userSetting } from '@/store/models/userSetting'
+import { userSetting } from '@/store/models/UserSetting'
 
 export default {
   props: {

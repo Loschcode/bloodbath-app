@@ -1,0 +1,39 @@
+## Queries
+
+query IndexMarketCoins {
+ portfolioCoins {
+    ...AllAttributes
+  }
+}
+
+query ShowMarketCoin ($id: ID!) {
+ portfolioCoin(id: $id) {
+    ...AllAttributes
+  }
+}
+
+## Fragments
+
+fragment AllAttributes on MarketCoin {
+  id
+  code
+  symbol
+  name
+  coinName
+  fullName
+  logoUrl
+  algorithm
+  proofType
+  marketCap
+  price
+  dayOpen
+  dayHigh
+  dayLow
+  priceVariation
+  dayHighVariation
+  dayLowVariation
+  allTimeHigh
+  rank
+  createdAt
+  updatedAt
+}

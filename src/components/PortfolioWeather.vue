@@ -70,7 +70,6 @@ import router from '@/router'
 
 import WatchlistWeather from '@/components/WatchlistWeather'
 
-import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
 import PortfolioCapital from '@/components/PortfolioCapital'
 
@@ -105,7 +104,6 @@ export default {
 
   components: {
     WatchlistWeather,
-    AnimatedNumber,
     CoinWeather,
     PortfolioCapital
   }

@@ -32,8 +32,6 @@
 <script>
 import router from '@/router'
 
-import AnimatedNumber from '@/components/AnimatedNumber'
-
 export default {
   data () {
     return {
@@ -80,7 +78,6 @@ export default {
   },
 
   components: {
-    AnimatedNumber
   }
 }
 </script>

@@ -93,14 +93,14 @@
 </template>
 
 <script>
-import { GET_USER_SETTING_QUERY, GET_MARKET_COIN_QUERY } from '@/constants/graphql'
-
-import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import CoinWeather from '@/components/CoinWeather'
 import LoaderWave from '@/components/LoaderWave'
 import _ from 'lodash'
+
+import { marketCoin } from '@/store/models/MarketCoin'
+import { userSetting } from '@/store/models/userSetting'
 
 export default {
   props: [
@@ -109,15 +109,12 @@ export default {
 
   data () {
     return {
-      marketCoin:    null,
-      portfolioCoin: null,
-      editQuantity:  false,
-      flipped:       false
     }
   },
 
   created () {
-    this.portfolioCoin = this.portfolioCoinProp
+    this.portfolioCoinId = this.portfolioCoinProp.id
+    this.marketCoinId = this.portfolioCoinProp.marketCoin.id
   },
 
   watch: {
@@ -137,35 +134,9 @@ export default {
     }
   },
 
-  computed: {
-  },
-
   apollo: {
-    getMarketCoin: {
-      query: GET_MARKET_COIN_QUERY,
-
-      result ({ data }) {
-        this.marketCoin = data.getMarketCoin
-      },
-
-      variables () {
-        return {
-          id: this.portfolioCoin.marketCoin.id
-        }
-      },
-
-      skip () {
-        return !this.portfolioCoin
-      }
-    },
-
-    getUserSetting: {
-      query: GET_USER_SETTING_QUERY,
-
-      result ({ data }) {
-        this.userSetting = data.getUserSetting
-      }
-    }
+    marketCoin,
+    userSetting
   },
 
   methods: {
@@ -200,7 +171,6 @@ export default {
   },
 
   components: {
-    AnimatedNumber,
     PortfolioCoinContent,
     CoinPreviewFlipped,
     CoinWeather,

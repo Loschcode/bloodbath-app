@@ -68,7 +68,6 @@
 <script>
 import CoinWeather from '@/components/CoinWeather'
 import WeatherHelper from '@/helpers/WeatherHelper'
-import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import PortfolioCoin from '@/components/PortfolioCoin'
@@ -118,7 +117,6 @@ export default {
   },
 
   components: {
-    AnimatedNumber,
     CoinWeather,
     DefaultFooter,
     DefaultHeader,

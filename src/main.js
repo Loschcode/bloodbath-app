@@ -26,6 +26,8 @@ import VueAnalytics from 'vue-analytics'
 
 import Idle from '@/misc/Idle'
 
+import AnimatedNumber from '@/mixins/AnimatedNumber'
+
 // NOTE : to reset users or memory
 // just uncomment this line
 // localStorage.clear()
@@ -111,6 +113,9 @@ Idle.start()
 
 // VueMeta
 // Vue.use(Meta)
+
+// Mixins
+Vue.mixin(AnimatedNumber)
 
 /* eslint-disable no-new */
 new Vue({

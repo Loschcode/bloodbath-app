@@ -11,7 +11,6 @@ export const watchlistCoin = {
     return ShowWatchlistCoin
   },
   variables () {
-    console.log('WATCHLIST:', this.watchlistCoinId)
     return {
       id: this.watchlistCoinId
     }

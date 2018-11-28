@@ -49,42 +49,27 @@
 </template>
 
 <script>
-import { GET_PORTFOLIO_COINS_QUERY, GET_USER_SETTING_QUERY } from '@/constants/graphql'
-
-import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import PortfolioCoin from '@/components/PortfolioCoin'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
+import { portfolioCoins } from '@/store/models/PortfolioCoin'
+import { userSetting } from '@/store/models/UserSetting'
+
 export default {
   data () {
     return {
-      portfolioCoins: []
     }
   },
 
   apollo: {
-    getPortfolioCoins: {
-      query: GET_PORTFOLIO_COINS_QUERY,
-
-      result ({ data }) {
-        this.portfolioCoins = data.getPortfolioCoins
-      }
-    },
-
-    getUserSetting: {
-      query: GET_USER_SETTING_QUERY,
-
-      result ({ data }) {
-        this.userSetting = data.getUserSetting
-      }
-    }
+    portfolioCoins,
+    userSetting
   },
 
   components: {
-    AnimatedNumber,
     DefaultFooter,
     DefaultHeader,
     PortfolioCoin,

@@ -1,21 +1,21 @@
 import { ShowMarketCoin, IndexMarketCoins } from '../schemas/marketCoin.gql'
 
-export const watchlistCoins = {
+export const marketCoins = {
   query () {
     return IndexMarketCoins
   }
 }
 
-export const watchlistCoin = {
+export const marketCoin = {
   query () {
     return ShowMarketCoin
   },
   variables () {
     return {
-      id: this.watchlistCoinId
+      id: this.marketCoinId
     }
   },
   skip () {
-    return !this.watchlistCoinId
+    return !this.marketCoinId
   }
 }

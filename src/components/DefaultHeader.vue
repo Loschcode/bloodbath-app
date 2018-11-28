@@ -89,7 +89,6 @@
 import WatchlistHeader from '@/components/WatchlistHeader'
 import PortfolioCapital from '@/components/PortfolioCapital'
 import PortfolioHeader from '@/components/PortfolioHeader'
-import AnimatedNumber from '@/components/AnimatedNumber'
 
 export default {
   data () {
@@ -195,8 +194,7 @@ export default {
   components: {
     WatchlistHeader,
     PortfolioCapital,
-    PortfolioHeader,
-    AnimatedNumber
+    PortfolioHeader
   }
 }
 </script>
