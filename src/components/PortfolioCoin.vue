@@ -100,7 +100,7 @@ import LoaderWave from '@/components/LoaderWave'
 import _ from 'lodash'
 
 import { marketCoin } from '@/store/models/MarketCoin'
-import { userSetting } from '@/store/models/userSetting'
+import { userSetting } from '@/store/models/UserSetting'
 
 export default {
   props: [

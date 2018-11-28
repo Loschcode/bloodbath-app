@@ -24,7 +24,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="portfolioCoin in portfolioCoins">
+          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="portfolioCoin in portfolioCoins" :key="portfolioCoin.id">
             <portfolio-coin :portfolioCoinProp="portfolioCoin" />
           </div>
         </div>

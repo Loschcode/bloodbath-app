@@ -1,6 +1,9 @@
 <template>
   <div class="default-header">
-    <div class="row header" ref="header">
+    <div
+      class="row header"
+      ref="header"
+    >
 
       <!-- Watchlist Section -->
       <div class="gr-4">
@@ -12,10 +15,18 @@
                 <div class="header__content-digits">
                   <div v-if="primaryMarketCoin">
                     <div class="+desktop">
-                      <animated-number :value="primaryMarketCoin.price" :type="`money`" /> / {{ primaryMarketCoin.name }}
+                      <animated-number
+                        :value="primaryMarketCoin.price"
+                        :type="`money`"
+                      /> / {{ primaryMarketCoin.name }}
                     </div>
                     <div class="+mobile">
-                      <animated-number :value="primaryMarketCoin.price_variation" :type="`percent`" :animatedColors="false" :numberColors="true" /> {{ primaryMarketCoin.name }}
+                      <animated-number
+                        :value="primaryMarketCoin.price_variation"
+                        :type="`percent`"
+                        :animatedColors="false"
+                        :numberColors="true"
+                      /> {{ primaryMarketCoin.name }}
                     </div>
                   </div>
                   <div v-else>
@@ -82,7 +93,6 @@
     </div>
 
   </div>
-</div>
 </template>
 
 <script>

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { portfolioCoins } from '@/store/models/portfolioCoin'
+import { portfolioCoins } from '@/store/models/PortfolioCoin'
 
 export default {
   data () {

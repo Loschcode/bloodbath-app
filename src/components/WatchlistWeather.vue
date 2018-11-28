@@ -53,7 +53,7 @@ import router from '@/router'
 import CoinWeather from '@/components/CoinWeather'
 import WeatherHelper from '@/helpers/WeatherHelper'
 
-import { userWatchlist } from '@/store/models/userWatchlist'
+import { userWatchlist } from '@/store/models/UserWatchlist'
 
 export default {
   data () {
