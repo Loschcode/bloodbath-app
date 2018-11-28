@@ -17,6 +17,7 @@ fragment AllAttributes on PortfolioCoin {
 
   marketCoin {
     id
+    price
   }
   userPortfolio {
     id

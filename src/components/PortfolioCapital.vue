@@ -1,7 +1,10 @@
 <template>
   <div class="portfolio-capital">
     <div v-if="totalCapital">
-      <animated-number :value="totalCapital" :type="`money`" />
+      <animated-number
+        :value="totalCapital"
+        :type="`money`"
+      />
     </div>
     <div v-else>
       Make one now !
@@ -11,9 +14,8 @@
 
 <script>
 import AnimatedNumber from '@/components/AnimatedNumber'
-import _ from 'lodash'
 
-import { mapGetters } from 'vuex'
+import { portfolioCoins } from '@/store/models/portfolioCoin'
 
 export default {
   data () {
@@ -21,31 +23,23 @@ export default {
     }
   },
 
-  created () {
-    this.$store.dispatch('fetchPortfolioCoins')
-  },
-
-  destroyed () {
-    /**
-     * We manage the unsubscription to each market coin channel
-     */
-    var vm = this
-    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
-      let marketCoin = vm.$store.getters.getMarketCoin(portfolioCoin.market_coin_id)
-      if (!_.isNil(marketCoin)) {
-        vm.$store.dispatch('unsubscribeMarketCoinChannel', marketCoin)
-      }
-    })
-  },
-
-  mounted () {
-  },
-
   computed: {
-    ...mapGetters({
-      totalCapital:   'getTotalCapital',
-      portfolioCoins: 'getPortfolioCoins'
-    })
+    totalCapital () {
+      var total = 0.0
+
+      if (this.portfolioCoins) {
+        this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+          let marketCoin = portfolioCoin.marketCoin
+          total += (marketCoin.price * portfolioCoin.quantity)
+        })
+      }
+
+      return total
+    }
+  },
+
+  apollo: {
+    portfolioCoins
   },
 
   components: {

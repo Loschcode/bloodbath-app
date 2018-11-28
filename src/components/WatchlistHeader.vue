@@ -46,7 +46,7 @@ import { GET_WATCHLIST_COINS_QUERY, GET_WATCHLIST_QUERY } from '@/constants/grap
 
 import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
-import Weather from '@/misc/Weather'
+import WeatherHelper from '@/helpers/WeatherHelper'
 
 import router from '@/router'
 
@@ -73,7 +73,7 @@ export default {
     },
 
     currentStyle () {
-      return Weather.style(this.watchlistWeather)
+      return WeatherHelper.style(this.watchlistWeather)
     }
   },
 

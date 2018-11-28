@@ -67,7 +67,7 @@
 
 <script>
 import CoinWeather from '@/components/CoinWeather'
-import Weather from '@/misc/Weather'
+import WeatherHelper from '@/helpers/WeatherHelper'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
@@ -113,14 +113,13 @@ export default {
     },
 
     currentStyle () {
-      return Weather.style(this.totalVariation)
+      return WeatherHelper.style(this.totalVariation)
     }
   },
 
   components: {
     AnimatedNumber,
     CoinWeather,
-    Weather,
     DefaultFooter,
     DefaultHeader,
     PortfolioCapital,

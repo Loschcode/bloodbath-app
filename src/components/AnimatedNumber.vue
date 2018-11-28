@@ -1,5 +1,8 @@
 <template>
-  <span v-if="currentBaseCurrency" class="animated-number">
+  <span
+    v-if="currentBaseCurrency"
+    class="animated-number"
+  >
     <span v-if="animatedColors">
       <span v-if="showValue">
         <span v-if="valueUp">
@@ -30,6 +33,8 @@
 import TWEEN from '@tweenjs/tween.js'
 import numeral from 'numeral'
 
+import { userSetting } from '@/store/models/userSetting'
+
 export default {
   props: {
     value: {
@@ -54,9 +59,9 @@ export default {
   },
   data: function () {
     return {
-      baseValue:   0,
-      valueUp:     true,
-      showValue:   true
+      baseValue: 0,
+      valueUp:   true,
+      showValue: true
     }
   },
 
@@ -68,12 +73,6 @@ export default {
         this.showValue = true
         this.loopValue(newValue, oldValue)
       })
-    }
-  },
-
-  created () {
-    if ((!this.currentBaseCurrency) && (this.userSetting) && (this.userSetting.base_currency_id)) {
-      this.$store.dispatch('fetchBaseCurrency', { id: this.userSetting.base_currency_id })
     }
   },
 
@@ -97,13 +96,9 @@ export default {
       return this.baseValue
     },
 
-    userSetting () {
-      return this.$store.getters.getUserSetting
-    },
-
     currentBaseCurrency () {
       if (this.userSetting) {
-        return this.$store.getters.getBaseCurrency(this.userSetting.base_currency_id)
+        return this.userSetting.baseCurrency
       }
     }
   },
@@ -111,6 +106,10 @@ export default {
   mounted: function () {
     // this.loopValue()
     this.tween(0, this.value)
+  },
+
+  apollo: {
+    userSetting
   },
 
   methods: {
@@ -128,7 +127,7 @@ export default {
 
     processMoney (value) {
       let symbol = this.currentBaseCurrency.symbol
-      let exchangeRate = this.currentBaseCurrency.exchange_rate
+      let exchangeRate = this.currentBaseCurrency.exchangeRate
 
       let exchangeDigits = (value * exchangeRate)
       let end = value

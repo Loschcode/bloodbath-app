@@ -54,7 +54,7 @@ import router from '@/router'
 
 import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
-import Weather from '@/misc/Weather'
+import WeatherHelper from '@/helpers/WeatherHelper'
 
 export default {
   data () {
@@ -80,7 +80,7 @@ export default {
 
   computed: {
     currentStyle () {
-      return Weather.style(this.watchlistWeather)
+      return WeatherHelper.style(this.watchlistWeather)
     }
   },
 

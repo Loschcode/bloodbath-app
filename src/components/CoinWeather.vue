@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Weather from '@/misc/Weather'
+import WeatherHelper from '@/helpers/WeatherHelper'
 
 export default {
   props: {
@@ -26,11 +26,11 @@ export default {
     },
 
     currentStyle () {
-      return Weather.style(this.variation)
+      return WeatherHelper.style(this.variation)
     },
 
     currentWeather () {
-      return Weather.current(this.variation)
+      return WeatherHelper.current(this.variation)
     }
   },
 

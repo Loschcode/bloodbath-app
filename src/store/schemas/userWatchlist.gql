@@ -3,6 +3,7 @@
 query ShowUserWatchlist {
   userWatchlist {
     id
+    watchlistWeather
 
     user {
       id

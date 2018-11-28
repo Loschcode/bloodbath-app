@@ -3,6 +3,7 @@
 query ShowUserPortfolio {
   userPortfolio {
     id
+    portfolioWeather
 
     user {
       id
