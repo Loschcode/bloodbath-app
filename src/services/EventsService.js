@@ -15,8 +15,11 @@ class EventsService {
     this._setupErrorEvent()
   }
 
+  crash (error) {
+    EventBus.$emit('crashEvent', error)
+  }
+
   _setupRebootEvent () {
-    console.log('test')
     EventBus.$on('rebootEvent', this._onRebootEvent.bind(this))
   }
 

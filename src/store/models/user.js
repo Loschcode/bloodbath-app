@@ -1,8 +1,12 @@
 import { CreateAnonymousUser, ShowCurrentUser } from '../schemas/user.gql'
+import EventsService from '../../services/EventsService'
 
 export const currentUser = {
   query: ShowCurrentUser,
   result ({ data }) {
+  },
+  error () {
+    new EventsService(this).crash('We were unable to retrieve the current user')
   }
 }
 

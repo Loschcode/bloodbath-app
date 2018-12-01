@@ -1,11 +1,14 @@
 import Cable from '@/misc/Cable'
 import _ from 'lodash'
 import { createAnonymousUser } from '@/store/models/User'
+import EventsService from './EventsService'
 
 class ConnectService {
   constructor (vm, userToken) {
     this.vm = vm
     this.userToken = userToken
+
+    this.events = new EventsService(vm)
   }
 
   /**
@@ -28,9 +31,13 @@ class ConnectService {
   * and connect it completely
   */
   async _connectAnonymous () {
-    console.log('connect anonymous ...')
-    const response = await createAnonymousUser(this.vm)
-    localStorage.setItem('userToken', response.token)
+    try {
+      console.log('connect anonymous ...')
+      const response = await createAnonymousUser(this.vm)
+      localStorage.setItem('userToken', response.token)
+    } catch (error) {
+      this.events.crash('We were unable to create an anonymous user')
+    }
   }
 
   /**
@@ -38,8 +45,12 @@ class ConnectService {
   * and the classic AJAX
   */
   _connectAll () {
-    console.log('connectAll with : ' + this.userToken)
-    this._connectCable()
+    try {
+      console.log('connectAll with : ' + this.userToken)
+      this._connectCable()
+    } catch (error) {
+      this.events.crash('We were unable to connect to our socket service')
+    }
   }
 
   /**

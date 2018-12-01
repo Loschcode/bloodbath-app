@@ -112,7 +112,7 @@ import EventBus from '@/misc/EventBus'
 
 import router from '@/router'
 
-import portfolioCoins from '@/store/models/PortfolioCoins'
+import { portfolioCoins } from '@/store/models/PortfolioCoin'
 
 export default {
   data () {
