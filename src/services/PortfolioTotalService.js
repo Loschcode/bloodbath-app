@@ -1,139 +1,104 @@
-// import _ from 'lodash'
+import _ from 'lodash'
 
 class PortfolioTotalService {
   constructor (vm, portfolioCoins) {
     this.vm = vm
+    this.portfolioCoins = portfolioCoins
   }
 
   allTimeHigh () {
-    return 0
+    var allTimeHigh = 0.0
+
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        allTimeHigh += (marketCoin.allTimeHigh * portfolioCoin.quantity)
+      }
+    })
+
+    return allTimeHigh
   }
 
   capital () {
-    return 0
+    var total = 0.0
+
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        total += (marketCoin.price * portfolioCoin.quantity)
+      }
+    })
+
+    return total
   }
 
   low () {
-    return 0
+    let total = 0.0
+
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        total += (marketCoin.dayLow * portfolioCoin.quantity)
+      }
+    })
+    return total
   }
 
   high () {
-    return 0
+    let total = 0.0
+
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        total += (marketCoin.dayHigh * portfolioCoin.quantity)
+      }
+    })
+    return total
   }
 
   variation () {
-    return 0
+    var variations = []
+    var quantities = 0
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        let variation = marketCoin.priceVariation * (portfolioCoin.quantity * marketCoin.price)
+        variations.push(variation)
+        quantities += (portfolioCoin.quantity * marketCoin.price)
+      }
+    })
+    return (_.sum(variations) / quantities)
   }
 
   lowVariation () {
-    return 0
+    var variations = []
+    var quantities = 0
+
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        let variation = marketCoin.dayLowVariation * (portfolioCoin.quantity * marketCoin.day_low)
+        variations.push(variation)
+        quantities += (portfolioCoin.quantity * marketCoin.dayLow)
+      }
+    })
+    return (_.sum(variations) / quantities)
   }
 
   highVariation () {
-    return 0
+    var variations = []
+    var quantities = 0
+
+    this.portfolioCoins.forEach(function (portfolioCoin, index, object) {
+      let marketCoin = portfolioCoin.marketCoin
+      if (!_.isNil(marketCoin)) {
+        let variation = marketCoin.dayHighVariation * (portfolioCoin.quantity * marketCoin.dayHigh)
+        variations.push(variation)
+        quantities += (portfolioCoin.quantity * marketCoin.dayHigh)
+      }
+    })
+    return (_.sum(variations) / quantities)
   }
 }
 
 export default PortfolioTotalService
-
-  // getTotalAllTimeHigh (state, getters) {
-  //   var allTimeHigh = 0.0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       allTimeHigh += (marketCoin.all_time_high * portfolioCoin.quantity)
-  //     }
-  //   })
-
-  //   return allTimeHigh
-  // },
-
-  // getTotalCapital (state, getters) {
-  //   var total = 0.0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       total += (marketCoin.price * portfolioCoin.quantity)
-  //     }
-  //   })
-
-  //   return total
-  // },
-
-  // getTotalLow (state, getters) {
-  //   let total = 0.0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       total += (marketCoin.day_low * portfolioCoin.quantity)
-  //     }
-  //   })
-  //   return total
-  // },
-
-  // getTotalHigh (state, getters) {
-  //   let total = 0.0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       total += (marketCoin.day_high * portfolioCoin.quantity)
-  //     }
-  //   })
-  //   return total
-  // },
-
-  // getTotalVariation (state, getters) {
-  //   var variations = []
-  //   var quantities = 0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       let variation = marketCoin.price_variation * (portfolioCoin.quantity * marketCoin.price)
-  //       variations.push(variation)
-  //       quantities += (portfolioCoin.quantity * marketCoin.price)
-  //     }
-  //   })
-  //   return (_.sum(variations) / quantities)
-  // },
-
-  // getTotalLowVariation (state, getters) {
-  //   var variations = []
-  //   var quantities = 0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       let variation = marketCoin.day_low_variation * (portfolioCoin.quantity * marketCoin.day_low)
-  //       variations.push(variation)
-  //       quantities += (portfolioCoin.quantity * marketCoin.day_low)
-  //     }
-  //   })
-  //   return (_.sum(variations) / quantities)
-  // },
-
-  // getTotalHighVariation (state, getters) {
-  //   var variations = []
-  //   var quantities = 0
-  //   let portfolioCoins = getters.getPortfolioCoins
-
-  //   portfolioCoins.forEach(function (portfolioCoin, index, object) {
-  //     let marketCoin = getters.getMarketCoin(portfolioCoin.market_coin_id)
-  //     if (!_.isNil(marketCoin)) {
-  //       let variation = marketCoin.day_high_variation * (portfolioCoin.quantity * marketCoin.day_high)
-  //       variations.push(variation)
-  //       quantities += (portfolioCoin.quantity * marketCoin.day_high)
-  //     }
-  //   })
-  //   return (_.sum(variations) / quantities)
-  // }

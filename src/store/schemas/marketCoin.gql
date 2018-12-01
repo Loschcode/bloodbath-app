@@ -1,20 +1,20 @@
 ## Queries
 
 query IndexMarketCoins {
- portfolioCoins {
-    ...AllAttributes
+ marketCoins {
+    ...AllAttributesForCoins
   }
 }
 
 query ShowMarketCoin ($id: ID!) {
- portfolioCoin(id: $id) {
-    ...AllAttributes
+ marketCoin(id: $id) {
+    ...AllAttributesForCoins
   }
 }
 
 ## Fragments
 
-fragment AllAttributes on MarketCoin {
+fragment AllAttributesForCoins on MarketCoin {
   id
   code
   symbol

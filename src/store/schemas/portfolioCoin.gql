@@ -1,5 +1,4 @@
 ## Queries
-
 query IndexPortfolioCoins {
  portfolioCoins {
     ...AllAttributes
@@ -12,14 +11,38 @@ query ShowPortfolioCoin ($id: ID!) {
   }
 }
 
+# TODO : find a solution to import AllAttributesForCoins
 fragment AllAttributes on PortfolioCoin {
   quantity
 
   marketCoin {
-    id
-    price
+    ...AllAttributesForCoins # TODO: to change
   }
   userPortfolio {
     id
   }
+}
+
+fragment AllAttributesForCoins on MarketCoin {
+  id
+  code
+  symbol
+  name
+  coinName
+  fullName
+  logoUrl
+  algorithm
+  proofType
+  marketCap
+  price
+  dayOpen
+  dayHigh
+  dayLow
+  priceVariation
+  dayHighVariation
+  dayLowVariation
+  allTimeHigh
+  rank
+  createdAt
+  updatedAt
 }
