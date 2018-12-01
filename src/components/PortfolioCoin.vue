@@ -1,6 +1,6 @@
 <template>
   <div class="portfolio-coin">
-    <div v-if="portfolioCoin && marketCoin">
+    <div v-if="appReady()">
 
         <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
@@ -101,6 +101,7 @@ import _ from 'lodash'
 
 import { marketCoin } from '@/store/models/MarketCoin'
 import { userSetting } from '@/store/models/UserSetting'
+import { portfolioCoin } from '@/store/models/PortfolioCoin'
 
 export default {
   props: [
@@ -136,10 +137,14 @@ export default {
 
   apollo: {
     marketCoin,
-    userSetting
+    userSetting,
+    portfolioCoin
   },
 
   methods: {
+    appReady () {
+      return this.userSetting && this.portfolioCoin && this.marketCoin
+    },
     flipCoin () {
       if (this.flipped) {
         this.flipped = false
@@ -159,13 +164,13 @@ export default {
 
     updateQuantity (event) {
       event.preventDefault()
-      this.$store.dispatch('updatePortfolioCoin', { id: this.portfolioCoin.id, changeset: { quantity: this.portfolioCoin.quantity } })
+      // TODO : mutation update portfolio coin quantity: this.portfolioCoin.quantity
       this.$noty.info(`Your portfolio now contains ${this.portfolioCoin.quantity} ${this.marketCoin.code} !`)
     },
 
     destroyPortfolioCoin (event) {
       event.preventDefault()
-      this.$store.dispatch('destroyPortfolioCoin', { id: this.portfolioCoin.id })
+      // TODO : mutation destroy portfolioc oin
       this.$noty.info(`You removed ${this.marketCoin.code} from your portfolio !`)
     }
   },

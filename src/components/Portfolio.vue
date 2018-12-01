@@ -3,7 +3,7 @@
     <default-header />
 
     <!-- My portfolio -->
-    <div v-if="portfolioCoins.length">
+    <div v-if="portfolioCoins">
 
       <div class="section">
         <div class="row">

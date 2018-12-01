@@ -1,28 +1,30 @@
 <template>
   <div class="default-footer">
-    <div class="row">
-      <div class="gr-6">
-        <div class="inner-footer inner-footer__left">
-          <div v-if="isConnected">
-            <div class="inner-footer__red">
-              <a @click="tryLogOut()">
-                <span class="icon-log-out"></span> Log-out from my account
+    <div v-if="appReady()">
+      <div class="row">
+        <div class="gr-6">
+          <div class="inner-footer inner-footer__left">
+            <div v-if="isConnected">
+              <div class="inner-footer__red">
+                <a @click="tryLogOut()">
+                  <span class="icon-log-out"></span> Log-out from my account
+                </a>
+              </div>
+            </div>
+            <div v-else>
+              <a @click="goConnect()">
+                <span class="icon-log-in"></span> No account ? Sign up now !
               </a>
             </div>
           </div>
-          <div v-else>
-            <a @click="goConnect()">
-              <span class="icon-log-in"></span> No account ? Sign up now !
+        </div>
+        <div class="gr-6">
+          <!-- Suggestion -->
+          <div class="inner-footer inner-footer__right">
+            <a href="mailto:laurent.schaffner.code@gmail.com">
+              <span class="icon-contact"></span> Any suggestion or bug report ?
             </a>
           </div>
-        </div>
-      </div>
-      <div class="gr-6">
-        <!-- Suggestion -->
-        <div class="inner-footer inner-footer__right">
-          <a href="mailto:laurent.schaffner.code@gmail.com">
-            <span class="icon-contact"></span> Any suggestion or bug report ?
-          </a>
         </div>
       </div>
     </div>
@@ -32,6 +34,9 @@
 <script>
 import router from '@/router'
 
+import { currentUser } from '@/store/models/User'
+import { userSetting } from '@/store/models/UserSetting'
+
 export default {
   data () {
     return {
@@ -39,12 +44,16 @@ export default {
   },
 
   methods: {
+    appReady () {
+      return this.currentUser && this.userSetting
+    },
+
     weatherOn () {
-      this.$store.dispatch('updateUserSetting', { changeset: { weather: true } })
+      // TODO: mutation
     },
 
     weatherOff () {
-      this.$store.dispatch('updateUserSetting', { changeset: { weather: false } })
+      // TODO: mutation
     }
   },
 
@@ -60,21 +69,18 @@ export default {
     },
 
     goConnect () {
-      router.push({ name: 'connect', params: { } })
+      router.push({ name: 'connect', params: {} })
     },
 
     tryLogOut () {
-      this.$store.commit('unsetCurrentUser')
+      // TODO: logout from a service or somehting
       window.location.href = '/'
-    },
-
-    currentUser () {
-      return this.$store.getters.getCurrentUser
-    },
-
-    userSetting () {
-      return this.$store.getters.getUserSetting
     }
+  },
+
+  apollo: {
+    currentUser,
+    userSetting
   },
 
   components: {

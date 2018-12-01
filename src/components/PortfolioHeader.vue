@@ -1,6 +1,6 @@
 <template>
   <div class="portfolio-header">
-    <div v-if="portfolioCoins.length">
+    <div v-if="appReady()">
       <div class="row">
         <div
           class="gr-12 gr-centered +pointer"
@@ -17,7 +17,7 @@
 
                     <div class="market-weather__title">
                       <span>
-                        <coin-weather :variationProp="totalVariation" /></span>
+                        <coin-weather :variationProp="total.variation()" /></span>
                     </div>
 
                     <div class="market-weather__info">
@@ -35,7 +35,7 @@
                       <portfolio-capital />
                       <div>
                         <animated-number
-                          :value="totalVariation"
+                          :value="total.variation()"
                           :type="`percent`"
                           :animatedColors="false"
                           :numberColors="true"
@@ -50,14 +50,14 @@
                             <div>LOW</div>
                             <div>
                               <animated-number
-                                :value="totalLow"
+                                :value="total.low()"
                                 :type="`money`"
                               />
                             </div>
                             <!-- Variation is the same than the day low / high of the coin itself -->
                             <div>
                               <animated-number
-                                :value="totalLowVariation"
+                                :value="total.lowVariation()"
                                 :type="`percent`"
                                 :animatedColors="false"
                                 :numberColors="true"
@@ -70,14 +70,14 @@
                             <div>HIGH</div>
                             <div>
                               <animated-number
-                                :value="totalHigh"
+                                :value="total.high()"
                                 :type="`money`"
                               />
                             </div>
                             <!-- Variation is the same than the day low / high of the coin itself -->
                             <div>
                               <animated-number
-                                :value="totalHighVariation"
+                                :value="total.highVariation()"
                                 :type="`percent`"
                                 :animatedColors="false"
                                 :numberColors="true"
@@ -114,31 +114,36 @@ import router from '@/router'
 
 import { portfolioCoins } from '@/store/models/PortfolioCoin'
 
+import PortfolioTotalService from '@/services/PortfolioTotalService'
+
 export default {
   data () {
     return {
     }
   },
 
-  apollo: {
-    portfolioCoins
+  computed: {
+    total () {
+      return new PortfolioTotalService(this, this.portfolioCoins)
+    }
   },
 
-  // TODO all this shit
-  // totalLow:           'getTotalLow',
-  // totalHigh:          'getTotalHigh',
-  // totalVariation:     'getTotalVariation',
-  // totalLowVariation:  'getTotalLowVariation',
-  // totalHighVariation: 'getTotalHighVariation'
-
   methods: {
+    appReady () {
+      return this.portfolioCoins
+    },
+
     goPortfolioWeather () {
       router.push({ name: 'portfolio-weather', params: {} })
     },
 
     currentStyle () {
-      return WeatherHelper.style(this.totalVariation)
+      return WeatherHelper.style(this.total.variation)
     }
+  },
+
+  apollo: {
+    portfolioCoins
   },
 
   components: {
