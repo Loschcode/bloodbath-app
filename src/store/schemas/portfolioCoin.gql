@@ -13,6 +13,7 @@ query ShowPortfolioCoin ($id: ID!) {
 
 # TODO : find a solution to import AllAttributesForCoins
 fragment AllAttributes on PortfolioCoin {
+  id
   quantity
 
   marketCoin {

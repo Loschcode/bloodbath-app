@@ -99,9 +99,9 @@ import CoinWeather from '@/components/CoinWeather'
 import LoaderWave from '@/components/LoaderWave'
 import _ from 'lodash'
 
-import { marketCoin } from '@/store/models/MarketCoin'
 import { userSetting } from '@/store/models/UserSetting'
 import { portfolioCoin } from '@/store/models/PortfolioCoin'
+import { marketCoin } from '@/store/models/MarketCoin'
 
 export default {
   props: [
@@ -110,6 +110,10 @@ export default {
 
   data () {
     return {
+      editQuantity:    false,
+      flipped:         false,
+      portfolioCoinId: null,
+      marketCoinId:    null
     }
   },
 
@@ -136,15 +140,16 @@ export default {
   },
 
   apollo: {
-    marketCoin,
     userSetting,
-    portfolioCoin
+    portfolioCoin,
+    marketCoin
   },
 
   methods: {
     appReady () {
       return this.userSetting && this.portfolioCoin && this.marketCoin
     },
+
     flipCoin () {
       if (this.flipped) {
         this.flipped = false

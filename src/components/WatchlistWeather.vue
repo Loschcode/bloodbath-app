@@ -1,5 +1,5 @@
 <template>
-  <div v-if="watchlistWeather">
+  <div v-if="userWatchlist">
     <div :class="`full-weather full-weather__${currentStyle}`">
 
       <div @click="goWatchlist" class="+pointer">
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="full-weather__title">
-                  <span><coin-weather :variationProp="watchlistWeather" /></span>
+                  <span><coin-weather :variationProp="userWatchlist.watchlistWeather" /></span>
                 </div>
 
 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="full-weather__percent">
-                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="userWatchlist.watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                 </div>
 
               </div>
