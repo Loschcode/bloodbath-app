@@ -1,21 +1,6 @@
 <template>
   <div class="coins">
-    <div v-if="!fullyLoaded()">
-
-      <div class="loader__full-page">
-        <loader-wave>
-          <span slot="quote">
-            Coin : n.m. A small, round piece of metal, usually silver or copper coloured, that is used as money.
-          </span>
-          <span slot="text">
-            Recovering coins history
-          </span>
-        </loader-wave>
-      </div>
-
-    </div>
-    <div v-else>
-
+    <div v-if="appReady()">
       <default-header />
 
       <!-- Watchlist Coins -->
@@ -30,7 +15,7 @@
           </div>
 
           <div class="row">
-            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="watchlistCoin in watchlistCoins">
+            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="watchlistCoin in watchlistCoins" v-bind:key="watchlistCoin.id">
               <watchlist-coin :watchlistCoinProp="watchlistCoin" />
             </div>
           </div>
@@ -49,12 +34,24 @@
 
     </div>
 
+    <div v-else>
+      <div class="loader__full-page">
+        <loader-wave>
+          <span slot="quote">
+            Coin : n.m. A small, round piece of metal, usually silver or copper coloured, that is used as money.
+          </span>
+          <span slot="text">
+            Recovering coins history
+          </span>
+        </loader-wave>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
 <script>
-import { GET_WATCHLIST_COINS_QUERY } from '@/constants/graphql'
-
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import WatchlistCoin from '@/components/WatchlistCoin'
@@ -63,7 +60,8 @@ import LoaderWave from '@/components/LoaderWave'
 
 import EventBus from '@/misc/EventBus'
 
-import { mapGetters } from 'vuex'
+import { watchlistCoins } from '@/store/models/WatchlistCoin'
+import { userSetting } from '@/store/models/UserSetting'
 
 export default {
   data () {
@@ -75,19 +73,12 @@ export default {
   created () {
   },
 
-  computed: {
-    // TODO TO REMOVE
-    ...mapGetters({
-      userSetting: 'getUserSetting'
-    })
-  },
-
   mounted () {
   },
 
   methods: {
-    fullyLoaded () {
-      return this.userSetting.id !== null
+    appReady () {
+      return this.userSetting
     }
   },
 
@@ -101,12 +92,8 @@ export default {
   },
 
   apollo: {
-    getWatchlistCoins: {
-      query: GET_WATCHLIST_COINS_QUERY,
-      result ({ data }) {
-        this.watchlistCoins = data.getWatchlistCoins
-      }
-    }
+    userSetting,
+    watchlistCoins
   }
 }
 </script>

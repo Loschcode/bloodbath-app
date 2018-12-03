@@ -108,14 +108,17 @@
 </template>
 
 <script>
-import { GET_USER_SETTING_QUERY } from '@/constants/graphql'
-
 import WatchlistCoinRemove from '@/components/WatchlistCoinRemove'
 import CoinPreviewContent from '@/components/CoinPreviewContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import LoaderWave from '@/components/LoaderWave'
 import CoinWeather from '@/components/CoinWeather'
 import EventBus from '@/misc/EventBus'
+
+import { currentUser } from '@/store/models/User'
+import { userSetting } from '@/store/models/UserSetting'
+import { watchlistCoin } from '@/store/models/WatchlistCoin'
+import { marketCoin } from '@/store/models/MarketCoin'
 
 export default {
   props: [
@@ -127,11 +130,10 @@ export default {
 
   data () {
     return {
-      marketCoin:    null,
-      watchlistCoin: null,
-      userSetting:   null,
-      context:       null,
-      flipped:       false
+      marketCoinId:    null,
+      watchlistCoinId: null,
+      context:         null,
+      flipped:         false
     }
   },
 
@@ -141,8 +143,8 @@ export default {
     this.context = this.contextProp
     this.searched = this.searchedProp
 
-    this.watchlistCoin = this.watchlistCoinProp
-    this.marketCoin = this.marketCoinProp
+    this.watchlistCoinId = this.watchlistCoinProp.id
+    this.marketCoinId = this.marketCoinProp.id
   },
 
   mounted () {
@@ -151,23 +153,6 @@ export default {
         this.clickAction()
       }
     })
-  },
-
-  destroyed () {
-    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoinProp.id })
-    EventBus.$off('CoinPreviewClick')
-  },
-
-  computed: {
-    currentUser () {
-      return this.$store.getters.getCurrentUser
-    },
-
-    portfolioCoin () {
-      if (this.marketCoin) {
-        return this.$store.getters.getPortfolioCoinByMarketCoin(this.marketCoin.id)
-      }
-    }
   },
 
   methods: {
@@ -190,7 +175,7 @@ export default {
     },
 
     isPrimaryCoin () {
-      return this.marketCoin.id === this.userSetting.primary_market_coin_id
+      return this.marketCoin.id === this.userSetting.primaryMarketCoinId
     },
 
     flipCoin () {
@@ -237,13 +222,10 @@ export default {
   },
 
   apollo: {
-    getUserSetting: {
-      query: GET_USER_SETTING_QUERY,
-
-      result ({ data }) {
-        this.userSetting = data.getUserSetting
-      }
-    }
+    currentUser,
+    userSetting,
+    watchlistCoin,
+    marketCoin
   },
 
   components: {

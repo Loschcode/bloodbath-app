@@ -1,6 +1,6 @@
 <template>
   <div class="watchlist-coin">
-    <div v-if="marketCoin && watchlistCoin">
+    <div v-if="appReady()">
 
       <div class="gr-12 gr-12@mobile gr-12@tablet">
         <div>
@@ -38,12 +38,20 @@ export default {
 
   data () {
     return {
+      watchlistCoinId: null,
+      marketCoinId:    null
     }
   },
 
   created () {
     this.watchlistCoinId = this.watchlistCoinProp.id
     this.marketCoinId = this.watchlistCoinProp.marketCoin.id
+  },
+
+  methods: {
+    appReady () {
+      return this.marketCoin && this.watchlistCoin
+    }
   },
 
   apollo: {

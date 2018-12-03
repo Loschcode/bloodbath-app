@@ -17,12 +17,16 @@ export default {
     'marketCoinProp'
   ],
 
-  created () {
-  },
-
   data () {
     return {
+      watchlisrCoin: null,
+      marketCoin:    null
     }
+  },
+
+  created () {
+    this.watchlistCoin = this.watchlistCoinProp
+    this.marketCoin = this.marketCoinProp
   },
 
   methods: {

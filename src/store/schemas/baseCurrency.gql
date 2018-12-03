@@ -1,0 +1,20 @@
+query IndexBaseCurrencies {
+  baseCurrencies {
+    id
+    code
+    fullName
+    exchangeRate
+    symbol
+  }
+}
+
+query ShowBaseCurrency {
+ baseCurrency(id: $id) {
+  id
+  code
+  fullName
+  exchangeRate
+  symbol
+  }
+}
+

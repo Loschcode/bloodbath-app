@@ -13,7 +13,7 @@ query ShowWatchlistCoin ($id: ID!) {
 }
 
 fragment AllAttributes on WatchlistCoin {
-  quantiy
+  id
 
   marketCoin {
     id

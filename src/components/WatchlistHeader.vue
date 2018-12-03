@@ -1,6 +1,6 @@
 <template>
   <div class="watchlist-weather">
-    <div v-if="userWatchlist">
+    <div v-if="appReady()">
       <div class="row">
         <div class="gr-12 gr-12@mobile gr-12@tablet +pointer" @click="goWatchlistWeather">
 
@@ -16,7 +16,7 @@
 
                     <div class="market-weather__title">
                       <span>
-                        <coin-weather :variationProp="watchlistWeather" />
+                        <coin-weather :variationProp="userWatchlist.watchlistWeather" />
                       </span>
                     </div>
 
@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="market-weather__title">
-                      <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                      <span :class="`coin-weather__${currentStyle()}`"><animated-number :value="userWatchlist.watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                     </div>
                   </div>
 
@@ -56,6 +56,10 @@ export default {
   },
 
   methods: {
+    appReady () {
+      return this.userWatchlist
+    },
+
     goWatchlistWeather () {
       router.push({ name: 'watchlist-weather', params: { } })
     },
