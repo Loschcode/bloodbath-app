@@ -138,7 +138,7 @@ export default {
     },
 
     currentStyle () {
-      return WeatherHelper.style(this.total.variation)
+      return WeatherHelper.style(this.total.variation())
     }
   },
 
