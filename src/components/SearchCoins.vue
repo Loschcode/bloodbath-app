@@ -107,7 +107,7 @@ export default {
       return this.marketCoins
     },
     resultLoading () {
-      return false
+      return this.$apollo.queries.marketCoins.loading
     }
   },
 
