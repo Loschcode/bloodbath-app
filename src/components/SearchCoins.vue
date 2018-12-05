@@ -24,7 +24,9 @@
 
     <div class="row">
       <div class="section__title">
-        Results ({{ resultCoins.length }})
+        <div v-if="resultCoins">
+          Results ({{ resultCoins.length }})
+        </div>
       </div>
     </div>
 
@@ -39,10 +41,10 @@
       </div>
 
       <div v-else>
-        <div v-if="resultCoins.length">
+        <div v-if="resultCoins">
           <div class="row">
-            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="resultCoin in resultCoins">
-              <coin-preview :contextProp='context' :searchedProp='true' :marketCoinProp="resultCoin.market_coin" />
+            <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="resultCoin in resultCoins" v-bind:key="resultCoin.id">
+              <coin-preview :contextProp='context' :searchedProp='true' :marketCoinProp="resultCoin" />
             </div>
           </div>
         </div>
@@ -67,6 +69,8 @@ import LoaderWave from '@/components/LoaderWave'
 import EventBus from '@/misc/EventBus'
 import _ from 'lodash'
 
+import { marketCoins } from '@/store/models/MarketCoin'
+
 export default {
   props: [
     'contextProp',
@@ -75,10 +79,13 @@ export default {
 
   data () {
     return {
-      showResults: false,
-      context:     null,
-      focus:       this.focusProp,
-      search:      ''
+      showResults:             false,
+      marketCoins:             null,
+      marketCoinsFilter:      {},
+      marketCoinsLimit:       4,
+      context:                 null,
+      focus:                   this.focusProp,
+      search:                  ''
     }
   },
 
@@ -96,12 +103,11 @@ export default {
   },
 
   computed: {
-    resultLoading () {
-      return this.$store.getters.getResultLoading
-    },
-
     resultCoins () {
-      return this.$store.getters.getResultCoins
+      return this.marketCoins
+    },
+    resultLoading () {
+      return false
     }
   },
 
@@ -135,8 +141,14 @@ export default {
         return false
       }
 
-      this.$store.dispatch('fetchResultCoins', query)
+      this.marketCoinsFilter = { search: query }
+
+      // query contains the data
     }
+  },
+
+  apollo: {
+    marketCoins
   },
 
   components: {

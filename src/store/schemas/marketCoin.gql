@@ -1,7 +1,7 @@
 ## Queries
 
-query IndexMarketCoins {
- marketCoins {
+query IndexMarketCoins($filter: Json, $limit: Int) {
+ marketCoins(filter: $filter, limit: $limit) {
     ...AllAttributesForCoins
   }
 }

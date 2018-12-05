@@ -143,7 +143,9 @@ export default {
     this.context = this.contextProp
     this.searched = this.searchedProp
 
-    this.watchlistCoinId = this.watchlistCoinProp.id
+    if (this.watchlistCoinProp) {
+      this.watchlistCoinId = this.watchlistCoinProp.id
+    }
     this.marketCoinId = this.marketCoinProp.id
   },
 
@@ -187,6 +189,7 @@ export default {
     },
 
     clickAction (event) {
+      // TODO : everything to do again into a service 100%
       if (event) {
         event.preventDefault()
       }
@@ -206,18 +209,19 @@ export default {
 
     addWatchlist () {
       // event.preventDefault()
-      this.$store.dispatch('createWatchlistCoin', { changeset: { market_coin_id: this.marketCoin.id } })
-      this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
+      // TODO createWatchlistCoin
+      // TODO : refacto the following notification too
+      // this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
     },
 
     updatePrimaryCoin () {
-      this.$store.dispatch('updateUserSetting', { changeset: { primary_market_coin_id: this.marketCoin.id } })
+      // TODO : updatePrimaryCoin
     },
     /**
      * In case of portfolio context, it'll be the action
      */
     createPortfolioCoin () {
-      this.$store.dispatch('createPortfolioCoin', { changeset: { market_coin_id: this.marketCoin.id } })
+      // TODO : createPortfolioCoin
     }
   },
 
