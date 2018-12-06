@@ -24,7 +24,7 @@ import VueMeta from 'vue-meta'
 import VueNoty from 'vuejs-noty'
 import VueAnalytics from 'vue-analytics'
 
-import Idle from '@/misc/Idle'
+import IdleService from '@/services/IdleService'
 
 import AnimatedNumber from '@/mixins/AnimatedNumber'
 
@@ -106,7 +106,7 @@ Vue.use(VueAnalytics, {
 })
 
 // Idle management
-Idle.start()
+new IdleService().start()
 
 // VueRouter
 // Vue.use(Router)

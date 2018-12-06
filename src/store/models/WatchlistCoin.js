@@ -1,4 +1,4 @@
-import { ShowWatchlistCoin, IndexWatchlistCoins } from '../schemas/watchlistCoin.gql'
+import { ShowWatchlistCoin, IndexWatchlistCoins, CreateWatchlistCoin } from '../schemas/watchlistCoin.gql'
 
 export const watchlistCoins = {
   query () {
@@ -18,4 +18,18 @@ export const watchlistCoin = {
   skip () {
     return !this.watchlistCoinId
   }
+}
+
+export const createWatchlistCoin = async (vm, marketCoinId) => {
+  await vm.$apollo.mutate({
+    mutation:  CreateWatchlistCoin,
+    variables: {
+      marketCoinId
+    },
+    update: (store, { data: { createWatchlistCoin } }) => {
+      vm.createWatchlistCoin = createWatchlistCoin
+    }
+  }).then((data) => {
+    return data
+  })
 }

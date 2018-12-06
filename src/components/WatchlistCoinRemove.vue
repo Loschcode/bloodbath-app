@@ -10,6 +10,7 @@
 
 <script>
 import EventBus from '@/misc/EventBus'
+import WatchlistCoinService from '@/services/WatchlistCoinService'
 
 export default {
   props: [
@@ -19,7 +20,7 @@ export default {
 
   data () {
     return {
-      watchlisrCoin: null,
+      watchlistCoin: null,
       marketCoin:    null
     }
   },
@@ -27,27 +28,26 @@ export default {
   created () {
     this.watchlistCoin = this.watchlistCoinProp
     this.marketCoin = this.marketCoinProp
+
+    Object.assign(this, {
+      watchlistCoinService:  new WatchlistCoinService(this, this.marketCoin)
+    })
   },
 
   methods: {
     addWatchlist (event) {
       event.preventDefault()
-      this.$store.dispatch('createWatchlistCoin', { changeset: { market_coin_id: this.marketCoin.id } })
-      this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
+      this.watchlistCoinService.create()
     },
 
     removeWatchlist (event) {
       event.preventDefault()
-      this.$store.dispatch('destroyWatchlistCoin', this.watchlistCoin)
-      this.$noty.info(`${this.marketCoin.coin_name} removed from your watchlist !`)
+      this.watchlistCoinService.destroy()
     }
   },
 
   components: {
     EventBus
-  },
-
-  mixins: [
-  ]
+  }
 }
 </script>

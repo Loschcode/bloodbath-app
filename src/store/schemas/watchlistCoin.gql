@@ -22,3 +22,11 @@ fragment AllAttributes on WatchlistCoin {
     id
   }
 }
+
+## Mutations
+
+mutation CreateWatchlistCoin($marketCoinId: ID!) {
+  createWatchlistCoin(marketCoinId: $marketCoinId) {
+    id
+  }
+}

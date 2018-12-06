@@ -67,8 +67,8 @@
               <div class="row">
                 <div class="gr-10">
                   <div class="module__footer-details">
-                    <div v-if="userSetting.weather && marketCoin.price_variation">
-                      <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
+                    <div v-if="userSetting.weather && marketCoin.priceVariation">
+                      <span><coin-weather :variationProp="marketCoin.priceVariation" /></span>
                     </div>
                   </div>
                 </div>
@@ -117,9 +117,9 @@ import EventBus from '@/misc/EventBus'
 
 import { currentUser } from '@/store/models/User'
 import { userSetting } from '@/store/models/UserSetting'
-import { watchlistCoin } from '@/store/models/WatchlistCoin'
+import { watchlistCoin, watchlistCoins } from '@/store/models/WatchlistCoin'
 import { marketCoin } from '@/store/models/MarketCoin'
-
+import WatchlistCoinService from '@/services/WatchlistCoinService'
 export default {
   props: [
     'contextProp',
@@ -130,10 +130,11 @@ export default {
 
   data () {
     return {
-      marketCoinId:    null,
-      watchlistCoinId: null,
-      context:         null,
-      flipped:         false
+      marketCoinId:        null,
+      watchlistCoinId:     null,
+      context:             null,
+      flipped:             false,
+      createWatchlistCoin: null
     }
   },
 
@@ -155,6 +156,18 @@ export default {
         this.clickAction()
       }
     })
+  },
+
+  watch: {
+    marketCoin: function (newValue, oldValue) {
+      Object.assign(this, {
+        watchlistCoinService:  new WatchlistCoinService(this, newValue)
+      })
+    },
+
+    createWatchlistCoin: function (newValue, oldValue) {
+      this.$apollo.queries.watchlistCoins.refetch()
+    }
   },
 
   methods: {
@@ -196,22 +209,20 @@ export default {
       if (this.context === 'portfolio') {
         this.createPortfolioCoin()
         this.$noty.info(`${this.marketCoin.code} is now part of your portfolio !`)
-        this.$noty.info(`${this.marketCoin.coin_name} is now your primary coin ! Look at the header ...`)
+        this.$noty.info(`${this.marketCoin.coinName} is now your primary coin ! Look at the header ...`)
       } else if (this.context === 'watchlist') {
         this.addWatchlist()
       } else if (this.context === 'primary') {
         this.updatePrimaryCoin()
-        this.$noty.info(`${this.marketCoin.coin_name} added to your watchlist !`)
+        this.$noty.info(`${this.marketCoin.coinName} added to your watchlist !`)
       } else {
         this.flipCoin()
       }
     },
 
     addWatchlist () {
-      // event.preventDefault()
-      // TODO createWatchlistCoin
-      // TODO : refacto the following notification too
-      // this.$noty.info(`${this.marketCoin.coin_name} added to your your watchlist !`)
+      event.preventDefault()
+      this.watchlistCoinService.create()
     },
 
     updatePrimaryCoin () {
@@ -229,6 +240,7 @@ export default {
     currentUser,
     userSetting,
     watchlistCoin,
+    watchlistCoins,
     marketCoin
   },
 

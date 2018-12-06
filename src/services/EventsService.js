@@ -15,6 +15,18 @@ class EventsService {
     this._setupErrorEvent()
   }
 
+  success (message) {
+    this.vm.$noty.info(message)
+  }
+
+  reboot () {
+    EventBus.$emit('rebootEvent')
+  }
+
+  error (error) {
+    EventBus.$emit('errorEvent', error)
+  }
+
   crash (error) {
     EventBus.$emit('crashEvent', error)
   }

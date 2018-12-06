@@ -47,3 +47,14 @@ fragment AllAttributesForCoins on MarketCoin {
   createdAt
   updatedAt
 }
+
+## Fragments
+
+fragment PrivateAttributes on User {
+  token
+}
+
+fragment Timestamps on User {
+  updatedAt
+  createdAt
+}
