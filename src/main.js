@@ -1,32 +1,32 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
-import { ApolloLink } from 'apollo-link' // concat
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { ApolloLink } from 'apollo-link'; // concat
+import { InMemoryCache } from 'apollo-cache-inmemory';
 // import { withClientState } from 'apollo-link-state'
 // import { WebSocketLink } from 'apollo-link-ws';
 // import { getMainDefinition } from 'apollo-utilities'
 
-import Vue from 'vue'
+import Vue from 'vue';
 
-import VueApollo from 'vue-apollo'
-import App from './App'
-import router from './router'
-import store from './store'
+import VueApollo from 'vue-apollo';
+import App from './App';
+import router from './router';
+import store from './store';
 
-import _ from 'lodash'
+import _ from 'lodash';
 
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import VueCookie from 'vue-cookie'
-import VueMeta from 'vue-meta'
-import VueNoty from 'vuejs-noty'
-import VueAnalytics from 'vue-analytics'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import VueCookie from 'vue-cookie';
+import VueMeta from 'vue-meta';
+import VueNoty from 'vuejs-noty';
+import VueAnalytics from 'vue-analytics';
 
-import IdleService from '@/services/IdleService'
+import IdleService from '@/services/IdleService';
 
-import AnimatedNumber from '@/mixins/AnimatedNumber'
+import AnimatedNumber from '@/mixins/AnimatedNumber';
 
 // NOTE : to reset users or memory
 // just uncomment this line
@@ -35,7 +35,7 @@ import AnimatedNumber from '@/mixins/AnimatedNumber'
 // Global configuration
 Vue.config.productionTip = false
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production';
 
 const httpLink = new HttpLink({
   uri: process.env.GRAPHQL_ENDPOINT
@@ -127,12 +127,15 @@ new Vue({
   components: { App },
 
   created () {
-    axios.interceptors.request.use((config) => {
+    axios.interceptors.request.use(config => {
       /**
        * if the token isn't already present we add it up to the system
        * we also keep the other data by merging the objects
        */
-      config.params = _.merge({token: this.$store.getters.getUserToken}, config.params)
+      config.params = _.merge(
+        { token: this.$store.getters.getUserToken },
+        config.params
+      )
       return config
     })
 
