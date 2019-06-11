@@ -1,9 +1,10 @@
 import _ from 'lodash'
 
-class WeatherHelper {
+var weather = {
+
   style (variation) {
     return _.snakeCase(this.current(variation)).replace(/_/g, '-')
-  }
+  },
 
   current (variation) {
     variation = variation * 100
@@ -49,5 +50,4 @@ class WeatherHelper {
     return ''
   }
 }
-
-export default new WeatherHelper()
+export default weather

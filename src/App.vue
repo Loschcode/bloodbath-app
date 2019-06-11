@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="isRawRoute()">
-      <router-view />
-    </div>
-    <div v-else>
-      <connect-routing />
-    </div>
+    <connect-routing />
   </div>
 </template>
 
@@ -14,11 +9,6 @@ import ConnectRouting from '@/components/ConnectRouting'
 
 export default {
   name: 'app',
-
-  props: [
-    'rawRoute'
-  ],
-
   data () {
     return {}
   },
@@ -26,14 +16,8 @@ export default {
   created () {
   },
 
-  methods: {
-    isRawRoute () {
-      return this.$router.currentRoute.query.raw_route
-    }
-  },
-
   metaInfo: {
-    title:     'Bloodbath - Crypto Weather & Portfolio',
+    title: 'Bloodbath - Crypto Weather & Portfolio',
     htmlAttrs: {
       lang: 'en'
     },

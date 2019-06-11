@@ -1,8 +1,8 @@
 <template>
-  <div v-if="userWatchlist">
+  <div v-if="marketWeather">
     <div :class="`full-weather full-weather__${currentStyle}`">
 
-      <div @click="goWatchlist" class="+pointer">
+      <div @click="goCoins" class="+pointer">
         <div class="row">
           <div class="gr-12 gr-12@mobile gr-12@tablet">
 
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="full-weather__title">
-                  <span><coin-weather :variationProp="userWatchlist.watchlistWeather" /></span>
+                  <span><coin-weather :variationProp="marketWeather" /></span>
                 </div>
 
 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="full-weather__percent">
-                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="userWatchlist.watchlistWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
+                  <span :class="`coin-weather__${currentStyle}`"><animated-number :value="marketWeather" :type="`percent`" :animatedColors="true" :numberColors="false" /></span>
                 </div>
 
               </div>
@@ -33,7 +33,7 @@
             <div class="row">
               <div class="gr-3 gr-centered gr-12@mobile gr-12@tablet">
                 <div class="full-weather__buttons">
-                  <a @click="goWatchlist" class="+pointer">Check watchlist details</a>
+                  <a @click="goCoins" class="+pointer">Check watchlist details</a>
                 </div>
               </div>
 
@@ -50,10 +50,9 @@
 <script>
 import router from '@/router'
 
+import AnimatedNumber from '@/components/AnimatedNumber'
 import CoinWeather from '@/components/CoinWeather'
-import WeatherHelper from '@/helpers/WeatherHelper'
-
-import { userWatchlist } from '@/store/models/UserWatchlist'
+import Weather from '@/misc/Weather'
 
 export default {
   data () {
@@ -61,31 +60,31 @@ export default {
     }
   },
 
-  watch: {
-    watchlistCoins (newValue, oldValue) {
-      if (newValue.length === 0) {
-        router.push({ name: 'watchlist', params: { } })
-      }
-    }
+  created () {
+    this.$store.dispatch('fetchFavoriteCoins')
+  },
+
+  destroyed () {
   },
 
   computed: {
+    marketWeather () {
+      return this.$store.getters.getWatchlistWeather
+    },
+
     currentStyle () {
-      return WeatherHelper.style(this.userWatchlist.watchlistWeather)
+      return Weather.style(this.marketWeather)
     }
   },
 
-  apollo: {
-    userWatchlist
-  },
-
   methods: {
-    goWatchlist () {
-      router.push({ name: 'watchlist', params: { } })
+    goCoins () {
+      router.push({ name: 'coins', params: { } })
     }
   },
 
   components: {
+    AnimatedNumber,
     CoinWeather
   }
 }

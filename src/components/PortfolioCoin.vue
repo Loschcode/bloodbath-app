@@ -1,6 +1,6 @@
 <template>
   <div class="portfolio-coin">
-    <div v-if="appReady()">
+    <div v-if="portfolioCoin">
 
         <div class="gr-12 gr-12@mobile gr-12@tablet">
           <div class="module">
@@ -14,7 +14,7 @@
                 </div>
               </div>
               <div class="gr-10">
-                <h2>{{ marketCoin.coinName }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
+                <h2>{{ marketCoin.coin_name }} <span class="module__subtitle">{{ marketCoin.name }}</span></h2>
               </div>
             </div>
 
@@ -69,8 +69,8 @@
                 <div class="row">
                   <div class="gr-10">
                     <div class="module__footer-details">
-                      <div v-if="userSetting.weather && marketCoin.priceVariation">
-                        <span><coin-weather :variationProp="marketCoin.priceVariation" /></span>
+                      <div v-if="userSetting.weather && marketCoin.price_variation">
+                        <span><coin-weather :variationProp="marketCoin.price_variation" /></span>
                       </div>
                     </div>
                   </div>
@@ -93,15 +93,14 @@
 </template>
 
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber'
 import PortfolioCoinContent from '@/components/PortfolioCoinContent'
 import CoinPreviewFlipped from '@/components/CoinPreviewFlipped'
 import CoinWeather from '@/components/CoinWeather'
 import LoaderWave from '@/components/LoaderWave'
 import _ from 'lodash'
 
-import { userSetting } from '@/store/models/UserSetting'
-import { portfolioCoin } from '@/store/models/PortfolioCoin'
-import { marketCoin } from '@/store/models/MarketCoin'
+import { mapGetters } from 'vuex'
 
 export default {
   props: [
@@ -110,16 +109,20 @@ export default {
 
   data () {
     return {
-      editQuantity:    false,
-      flipped:         false,
-      portfolioCoinId: null,
-      marketCoinId:    null
+      editQuantity: false,
+      flipped: false
     }
   },
 
   created () {
-    this.portfolioCoinId = this.portfolioCoinProp.id
-    this.marketCoinId = this.portfolioCoinProp.marketCoin.id
+    this.$store.commit('setPortfolioCoin', this.portfolioCoinProp)
+    if (this.marketCoin) {
+      this.$store.dispatch('subscribeMarketCoinChannel', this.marketCoin)
+    }
+  },
+
+  destroyed () {
+    this.$store.dispatch('unsubscribeMarketCoinChannel', { id: this.marketCoin.id })
   },
 
   watch: {
@@ -139,17 +142,21 @@ export default {
     }
   },
 
-  apollo: {
-    userSetting,
-    portfolioCoin,
-    marketCoin
+  computed: {
+    portfolioCoin () {
+      return this.$store.getters.getPortfolioCoin(this.portfolioCoinProp.id)
+    },
+
+    marketCoin () {
+      return this.$store.getters.getMarketCoin(this.portfolioCoinProp.market_coin_id)
+    },
+
+    ...mapGetters({
+      userSetting: 'getUserSetting'
+    })
   },
 
   methods: {
-    appReady () {
-      return this.userSetting && this.portfolioCoin && this.marketCoin
-    },
-
     flipCoin () {
       if (this.flipped) {
         this.flipped = false
@@ -169,18 +176,19 @@ export default {
 
     updateQuantity (event) {
       event.preventDefault()
-      // TODO : mutation update portfolio coin quantity: this.portfolioCoin.quantity
+      this.$store.dispatch('updatePortfolioCoin', { id: this.portfolioCoin.id, changeset: { quantity: this.portfolioCoin.quantity } })
       this.$noty.info(`Your portfolio now contains ${this.portfolioCoin.quantity} ${this.marketCoin.code} !`)
     },
 
     destroyPortfolioCoin (event) {
       event.preventDefault()
-      // TODO : mutation destroy portfolioc oin
+      this.$store.dispatch('destroyPortfolioCoin', { id: this.portfolioCoin.id })
       this.$noty.info(`You removed ${this.marketCoin.code} from your portfolio !`)
     }
   },
 
   components: {
+    AnimatedNumber,
     PortfolioCoinContent,
     CoinPreviewFlipped,
     CoinWeather,

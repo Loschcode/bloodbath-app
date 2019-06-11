@@ -78,11 +78,11 @@ export default {
       newMember: true,
 
       registerData: {
-        email:    null,
+        email: null,
         password: null
       },
       authenticateData: {
-        email:    null,
+        email: null,
         password: null
       }
     }
@@ -119,8 +119,8 @@ export default {
       // Google Analytics Action
       this.$ga.event({
         eventCategory: 'connect',
-        eventAction:   'tryRegister',
-        eventValue:    ''
+        eventAction: 'tryRegister',
+        eventValue: ''
       })
     },
 

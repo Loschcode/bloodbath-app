@@ -17,14 +17,14 @@
     <div class="row">
       <div class="gr-12">
         <div class="coin-preview-flipped__image">
-          <div v-if="marketCoin.logoUrl">
-            <img :src="marketCoin.logoUrl" />
+          <div v-if="marketCoin.logo_url">
+            <img :src="marketCoin.logo_url" />
           </div>
         </div>
 
         <div class="module__content-percent --small">
-          <div v-if="marketCoin.marketCap">
-            <animated-number :value="marketCoin.marketCap" :type="`big-money`" :animatedColors="true" :numberColors="false" />
+          <div v-if="marketCoin.market_cap">
+            <animated-number :value="marketCoin.market_cap" :type="`big-money`" :animatedColors="true" :numberColors="false" />
           </div>
           <div v-else>
             -
@@ -40,11 +40,14 @@
         </div>
       </div>
 
+
     </div>
   </div>
 </template>
 
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber'
+
 export default {
   props: [
     'marketCoinProp'
@@ -52,21 +55,20 @@ export default {
 
   data () {
     return {
-      marketCoin: null
     }
   },
 
-  created () {
-    this.marketCoin = this.marketCoinProp
-  },
-
   computed: {
+    marketCoin () {
+      return this.$store.getters.getMarketCoin(this.marketCoinProp.id)
+    }
   },
 
   methods: {
   },
 
   components: {
+    AnimatedNumber
   }
 }
 </script>

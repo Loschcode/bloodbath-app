@@ -1,16 +1,16 @@
 <template>
-  <div class="watchlist-weather">
-    <span :class="`watchlist-weather__${currentStyle}`">{{ currentWeather }}</span>
+  <div class="coin-weather">
+    <span :class="`coin-weather__${currentStyle}`">{{ currentWeather }}</span>
   </div>
 </template>
 
 <script>
-import WeatherHelper from '@/helpers/WeatherHelper'
+import Weather from '@/misc/Weather'
 
 export default {
   props: {
     variationProp: {
-      type:     Number,
+      type: Number,
       required: true
     }
   },
@@ -26,11 +26,11 @@ export default {
     },
 
     currentStyle () {
-      return WeatherHelper.style(this.variation)
+      return Weather.style(this.variation)
     },
 
     currentWeather () {
-      return WeatherHelper.current(this.variation)
+      return Weather.current(this.variation)
     }
   },
 

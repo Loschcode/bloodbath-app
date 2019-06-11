@@ -1,65 +1,65 @@
-.watchlist-weather {
+.coin-weather {
   text-transform: uppercase;
 }
 
-.watchlist-weather--static {
+.coin-weather--static {
   animation: none !important
 }
 
-.watchlist-weather__full {
+.coin-weather__full {
   font-weight: 600;
 }
 
-.watchlist-weather__death {
+.coin-weather__death {
   color: $death-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
 
-.watchlist-weather__apocalypse {
+.coin-weather__apocalypse {
   color: $apocalypse-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
 
-.watchlist-weather__bloodbath {
+.coin-weather__bloodbath {
   color: $bloodbath-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
-.watchlist-weather__very-bloody {
+.coin-weather__very-bloody {
   color: $bloody-color;
 }
 
-.watchlist-weather__bloody {
+.coin-weather__bloody {
   color: $very-bloody-color;
 }
 
-.watchlist-weather__boring {
+.coin-weather__boring {
   color: $boring-color;
 }
 
-.watchlist-weather__sunny {
+.coin-weather__sunny {
   color: $sunny-color;
 }
 
-.watchlist-weather__very-sunny {
+.coin-weather__very-sunny {
   color: $very-sunny-color;
 }
 
-.watchlist-weather__to-the-moon {
+.coin-weather__to-the-moon {
   color: $to-the-moon-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
 
-.watchlist-weather__to-andromeda-galaxy {
+.coin-weather__to-andromeda-galaxy {
   color: $to-andromeda-galaxy-color;
   opacity: 1;
   animation: fade 1s infinite;
 }
 
-.watchlist-weather__infinity-and-beyond {
+.coin-weather__infinity-and-beyond {
   color: $infinity-and-beyond-color;
   opacity: 1;
   animation: fade 1s infinite;

@@ -2,7 +2,4 @@
 /config/
 /dist/
 /*.js
-/_archives/*
-/*old.js
-/*old.vue
 /test/unit/coverage/

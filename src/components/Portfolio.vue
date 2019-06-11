@@ -3,7 +3,7 @@
     <default-header />
 
     <!-- My portfolio -->
-    <div v-if="portfolioCoins">
+    <div v-if="portfolioCoins.length">
 
       <div class="section">
         <div class="row">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="row">
-          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="portfolioCoin in portfolioCoins" :key="portfolioCoin.id">
+          <div class="gr-3 gr-12@mobile gr-6@tablet" v-for="portfolioCoin in portfolioCoins">
             <portfolio-coin :portfolioCoinProp="portfolioCoin" />
           </div>
         </div>
@@ -49,14 +49,14 @@
 </template>
 
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber'
 import DefaultFooter from '@/components/DefaultFooter'
 import DefaultHeader from '@/components/DefaultHeader'
 import PortfolioCoin from '@/components/PortfolioCoin'
 import SearchCoins from '@/components/SearchCoins'
 import EventBus from '@/misc/EventBus'
 
-import { portfolioCoins } from '@/store/models/PortfolioCoin'
-import { userSetting } from '@/store/models/UserSetting'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -64,12 +64,29 @@ export default {
     }
   },
 
-  apollo: {
-    portfolioCoins,
-    userSetting
+  created () {
+    this.$store.dispatch('fetchPortfolioCoins')
+  },
+
+  watch: {
+  },
+
+  computed: {
+    ...mapGetters({
+      totalAllTimeHigh: 'getTotalAllTimeHigh',
+      portfolioCoins: 'getPortfolioCoins',
+      userSetting: 'getUserSetting'
+    })
+  },
+
+  mounted () {
+  },
+
+  methods: {
   },
 
   components: {
+    AnimatedNumber,
     DefaultFooter,
     DefaultHeader,
     PortfolioCoin,

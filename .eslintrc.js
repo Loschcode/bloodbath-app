@@ -1,5 +1,4 @@
 // https://eslint.org/docs/user-guide/configuring
-var OFF = 0, WARN = 1, ERROR = 2;
 
 module.exports = {
   root: true,
@@ -18,12 +17,8 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'key-spacing': [ERROR, {
-      "mode": "minimum",
-      "align": "value"
-    }],
     // allow async-await
-    'generator-star-spacing': OFF,
+    'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }

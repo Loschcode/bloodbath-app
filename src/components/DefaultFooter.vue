@@ -1,30 +1,28 @@
 <template>
   <div class="default-footer">
-    <div v-if="appReady()">
-      <div class="row">
-        <div class="gr-6">
-          <div class="inner-footer inner-footer__left">
-            <div v-if="isConnected">
-              <div class="inner-footer__red">
-                <a @click="tryLogOut()">
-                  <span class="icon-log-out"></span> Log-out from my account
-                </a>
-              </div>
-            </div>
-            <div v-else>
-              <a @click="goConnect()">
-                <span class="icon-log-in"></span> No account ? Sign up now !
+    <div class="row">
+      <div class="gr-6">
+        <div class="inner-footer inner-footer__left">
+          <div v-if="isConnected">
+            <div class="inner-footer__red">
+              <a @click="tryLogOut()">
+                <span class="icon-log-out"></span> Log-out from my account
               </a>
             </div>
           </div>
-        </div>
-        <div class="gr-6">
-          <!-- Suggestion -->
-          <div class="inner-footer inner-footer__right">
-            <a href="mailto:laurent.schaffner.code@gmail.com">
-              <span class="icon-contact"></span> Any suggestion or bug report ?
+          <div v-else>
+            <a @click="goConnect()">
+              <span class="icon-log-in"></span> No account ? Sign up now !
             </a>
           </div>
+        </div>
+      </div>
+      <div class="gr-6">
+        <!-- Suggestion -->
+        <div class="inner-footer inner-footer__right">
+          <a href="mailto:laurent.schaffner.code@gmail.com">
+            <span class="icon-contact"></span> Any suggestion or bug report ?
+          </a>
         </div>
       </div>
     </div>
@@ -34,8 +32,7 @@
 <script>
 import router from '@/router'
 
-import { currentUser } from '@/store/models/User'
-import { userSetting } from '@/store/models/UserSetting'
+import AnimatedNumber from '@/components/AnimatedNumber'
 
 export default {
   data () {
@@ -44,16 +41,12 @@ export default {
   },
 
   methods: {
-    appReady () {
-      return this.currentUser && this.userSetting
-    },
-
     weatherOn () {
-      // TODO: mutation
+      this.$store.dispatch('updateUserSetting', { changeset: { weather: true } })
     },
 
     weatherOff () {
-      // TODO: mutation
+      this.$store.dispatch('updateUserSetting', { changeset: { weather: false } })
     }
   },
 
@@ -69,21 +62,25 @@ export default {
     },
 
     goConnect () {
-      router.push({ name: 'connect', params: {} })
+      router.push({ name: 'connect', params: { } })
     },
 
     tryLogOut () {
-      // TODO: logout from a service or somehting
+      this.$store.commit('unsetCurrentUser')
       window.location.href = '/'
+    },
+
+    currentUser () {
+      return this.$store.getters.getCurrentUser
+    },
+
+    userSetting () {
+      return this.$store.getters.getUserSetting
     }
   },
 
-  apollo: {
-    currentUser,
-    userSetting
-  },
-
   components: {
+    AnimatedNumber
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="watchlist-header">
+  <div class="coin-header">
   <h1>
     {{ marketCoin.full_name }}
   </h1>

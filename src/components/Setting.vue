@@ -4,7 +4,7 @@
     </default-header>
 
     <!--Preferences  -->
-    <div v-if="appReady()">
+    <div v-if="currentUser && userSetting">
 
       <div v-if="!isConnected()" class="section">
         <div class="row">
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="section__content">
-                      <div class="gr-3 gr-12@mobile gr-12@tablet" v-for="baseCurrency in baseCurrencies" v-bind:key="baseCurrency.id">
+                      <div class="gr-3 gr-12@mobile gr-12@tablet" v-for="baseCurrency in baseCurrencies">
 
                         <a @click="setCurrentCurrency" :id="baseCurrency.id" class="+pointer">
                           <div class="mini-module" v-bind:class="{ 'mini-module--active': isCurrentCurrency(baseCurrency) }">
@@ -53,10 +53,10 @@
                               <h2>{{ baseCurrency.code }}</h2>
                             </div>
                             <div class="mini-module__content">
-                              {{ baseCurrency.fullName }}
+                              {{ baseCurrency.full_name }}
                             </div>
                             <div class="mini-module__footer">
-                              {{ baseCurrency.exchangeRate }} / BTC
+                              {{ baseCurrency.exchange_rate }} / BTC
                             </div>
                           </div>
                         </a>
@@ -104,37 +104,42 @@ import CoinPreview from '@/components/CoinPreview'
 import SearchCoins from '@/components/SearchCoins'
 import Connect from '@/components/Connect'
 
-import { currentUser } from '@/store/models/User'
-import { userSetting } from '@/store/models/UserSetting'
-import { baseCurrencies } from '@/store/models/BaseCurrency'
-
 export default {
   data () {
     return {
     }
   },
 
+  created () {
+    this.$store.dispatch('fetchBaseCurrencies')
+  },
+
+  destroyed () {
+  },
+
   computed: {
+    currentUser () {
+      return this.$store.getters.getCurrentUser
+    },
+
+    userSetting () {
+      return this.$store.getters.getUserSetting
+    },
+
     primaryMarketCoin () {
-      return this.userSetting.primaryMarketCoin
+      return this.$store.getters.getMarketCoin(this.userSetting.primary_market_coin_id)
+    },
+
+    baseCurrencies () {
+      return this.$store.getters.getBaseCurrencies
     },
 
     currentBaseCurrency () {
-      return this.userSetting.baseCurrency
+      return this.$store.getters.getBaseCurrency(this.userSetting.base_currency_id)
     }
   },
 
-  apollo: {
-    currentUser,
-    userSetting,
-    baseCurrencies
-  },
-
   methods: {
-    appReady () {
-      return this.currentUser && this.userSetting
-    },
-
     goConnect () {
       router.push({ name: 'connect', params: { } })
     },

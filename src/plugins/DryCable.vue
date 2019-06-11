@@ -28,6 +28,30 @@ export default {
         console.log(`unsubscribed from ${channel}`)
       },
 
+      /**
+      * subscribe to a channel
+      * @param  {object} scope context from VueJS
+      * @param  {string} modelName a camelCase model name
+      * @param  {function} onShow a specific callback to mutate data mnanually (optional)
+      *
+      * USE CASES
+      *
+      * You can use it in a very DRY way to refresh the variable depending the context
+      * this will automatically mutate this.marketCoin from the calling place (scope + model)
+      * and work with the reactiveness of VueJS
+      *
+       this.$drycable.subscribe(this, 'marketCoin')
+      *
+      * You can use it with custom callback so it changes whatever you want within your system -
+      * It is especially useful in case of VueX Store or things like that which can't mutate variables
+      * like this.marketCoin but have to commit() the changes and render through computed()
+      *
+       this.$drycable.subscribe(this, 'marketCoin', function (channel, marketCoin) {
+         vm.channel = channel
+         vm.$store.commit('setMarketCoin', marketCoin)
+       })
+      *
+      */
       subscribe (scope, modelName, onShow) {
         const channelName = _.upperFirst(`${modelName}Channel`)
         const receivedModel = _.snakeCase(modelName)

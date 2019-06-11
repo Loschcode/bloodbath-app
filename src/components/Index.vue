@@ -10,17 +10,13 @@
         </span>
       </loader-wave>
     </div>
-
-    <div v-show="dataSynced"></div>
   </div>
 </template>
 
 <script>
+import router from '@/router'
+import { mapGetters } from 'vuex'
 import LoaderWave from '@/components/LoaderWave'
-import RedirectService from '@/services/RedirectService'
-
-import { userPortfolio } from '@/store/models/UserPortfolio'
-import { userSetting } from '@/store/models/UserSetting'
 
 export default {
   data () {
@@ -28,29 +24,36 @@ export default {
     }
   },
 
+  created () {
+    this.$store.dispatch('fetchPortfolioCoins')
+  },
+
+  watch: {
+    portfolioCoins (newValue, oldValue) {
+      if (newValue.length === 0) {
+        if (this.userSetting.weather) {
+          router.push({ name: 'coins-full-weather', params: { } })
+        } else {
+          router.push({ name: 'coins', params: { } })
+        }
+      } else {
+        if (this.userSetting.weather) {
+          router.push({ name: 'portfolio-full-weather', params: { } })
+        } else {
+          router.push({ name: 'portfolio', params: { } })
+        }
+      }
+    }
+  },
+
   computed: {
-    dataSynced () {
-      return this.userSetting && this.userPortfolio
-    }
-  },
+    userSetting () {
+      return this.$store.getters.getUserSetting
+    },
 
-  updated () {
-    if (this.dataSynced) {
-      this.redirect()
-    }
-  },
-
-  methods: {
-    redirect () {
-      new RedirectService(this, {
-        userSetting: this.userSetting
-      }).fromIndex(this.userPortfolio)
-    }
-  },
-
-  apollo: {
-    userSetting,
-    userPortfolio
+    ...mapGetters({
+      portfolioCoins: 'getPortfolioCoins'
+    })
   },
 
   components: {

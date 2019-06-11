@@ -1,63 +1,59 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Watchlist from '@/components/Watchlist'
-import WatchlistWeather from '@/components/WatchlistWeather'
+import Coins from '@/components/Coins'
+import CoinsFullWeather from '@/components/CoinsFullWeather'
 import Connect from '@/components/Connect'
 import Portfolio from '@/components/Portfolio'
-import PortfolioWeather from '@/components/PortfolioWeather'
+import PortfolioFullWeather from '@/components/PortfolioFullWeather'
 import Setting from '@/components/Setting'
 import Index from '@/components/Index'
-import Test from '@/components/Test'
 
 Vue.use(Router)
 
 Vue.router = new Router({
   routes: [
-    {
-      path:      '/test',
-      component: Test
-    },
 
     {
-      path:      '/',
+      path: '/',
       component: Index
     },
 
     {
-      path:      '/watchlist',
-      name:      'watchlist',
-      component: Watchlist
+      path: '/coins',
+      name: 'coins',
+      component: Coins
     },
 
     {
-      path:      '/watchlist/weather',
-      name:      'watchlist-weather',
-      component: WatchlistWeather
+      path: '/coins/weather',
+      name: 'coins-full-weather',
+      component: CoinsFullWeather
     },
 
     {
-      path:      '/portfolio',
-      name:      'portfolio',
+      path: '/portfolio',
+      name: 'portfolio',
       component: Portfolio
     },
 
     {
-      path:      '/portfolio/weather',
-      name:      'portfolio-weather',
-      component: PortfolioWeather
+      path: '/portfolio/weather',
+      name: 'portfolio-full-weather',
+      component: PortfolioFullWeather
     },
 
     {
-      path:      '/setting',
-      name:      'setting',
+      path: '/setting',
+      name: 'setting',
       component: Setting
     },
 
     {
-      path:      '/connect',
-      name:      'connect',
+      path: '/connect',
+      name: 'connect',
       component: Connect
     }
+
   ]
 })
 
